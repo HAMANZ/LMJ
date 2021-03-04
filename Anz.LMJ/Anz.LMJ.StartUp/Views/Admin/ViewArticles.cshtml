@@ -1,0 +1,74 @@
+﻿@using Anz.LMJ.BLO.ContentObjects;
+@using Anz.LMJ.BLO.LogicObjects.Submission
+@using Anz.LMJ.BLO.LookUpObjects;
+@{
+    ViewBag.Title = "Articles";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li> EditorPick</li>
+        </ol>
+    </div>
+    <div id="content">
+
+        <div class="jarviswidget jarviswidget-color-darken" id="IngredientsTable" data-widget-editbutton="false">
+
+
+            <div>
+                <div class="jarviswidget-editbox">
+                </div>
+                <div class="widget-body no-padding">
+                    <table id="dt" class="table table-striped table-bordered table-hover" width="100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var i = 0;
+                            }
+
+                            @foreach (var item in (List<SubmissionLO>)ViewBag.editorspick)
+                            {
+
+                                i = i + 1;
+
+                                <tr id="@item.Id">
+                                    <td>@item.Title</td>
+                                    <td>
+                                        <a name="delete" class="btn btn-sm btn-danger fa fa-trash-o " data-row-id="@item.Id" href="/Admin/GetArticle/@item.Id">Edit</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<script src="~/Scripts/cms/Admin/jquery-3.3.1.js"></script>
+<script src="~/Scripts/cms/CmsJquery.js"></script>
+<script>
+  
+</script>

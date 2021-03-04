@@ -1,0 +1,87 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@model List<SubmissionFilesLO>
+  <div class="jarviswidget-editbox jarviswidget-color-darken" data-widget-colorbutton="false">
+    <header>
+    <div class="jarviswidget-ctrls">
+     <a data-target="#ModelAddGalleys" onclick="" data-toggle="modal">Upload Files</a>
+        </div><h2>Galleys</h2>
+    </header><div>
+       <div class="widget-body no-padding">
+         <table class="table table-striped table-bordered table-hover" width="100%">
+             
+                <thead>
+                    <tr>
+                     <th>#</th>
+                     <th>Name</th>
+                     <th>File Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{ int counter = 1;}
+                    <!-- content goes here -->
+                    @if (Model != null)
+                    {
+                        foreach (SubmissionFilesLO item in Model)
+                        {
+                            <tr>
+                                <td>@counter</td>
+                                <td>@item.Name</td>
+                                <td>@item.TypeName</td>
+                                @{ counter++;}
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="galleyContent"></div>
+
+
+
+<script>
+
+
+
+
+
+    $("document").ready(function () {
+        if ($('#ModelAddGalleys').length == 0)
+        $(".galleyContent").append(getAddModel('Galleys'));
+    });
+
+
+    $(".AddEditors ").click(function () {
+        getAddModel('Galleys')
+        var url = window.location.href;
+        var array = url.split('/');
+        var submissionid = array[array.length - 1];
+        var filesckhd = [];
+        var processidinmodel = 10009;
+        $("input:checkbox[name=reveiwers]:checked").each(function () {
+            filesckhd.push($(this).attr("value"));
+        });
+             $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("AddReveiwers")',
+                 data: {
+                     userids: filesckhd, submissionid: submissionid, role: "copyediting", processidinmodel: processidinmodel},
+                            success: function (result) {
+                                if (result.HttpStatusCode != 200) {
+                                    alert(result.Message);
+                                }
+                                else {
+                                    location.reload(true);
+                                }
+                            },
+                            error: function (ex) {
+
+                            }
+                        });
+
+    });
+</script>

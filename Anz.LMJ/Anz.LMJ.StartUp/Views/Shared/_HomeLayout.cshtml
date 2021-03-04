@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JML/LMJ | @ViewBag.Title</title>
+    <meta name="description" content="JOURNAL MEDICAL LIBANAIS / LEBANESE MEDICAL JOURNAL">
+    <meta name="keywords" content="JOURNAL, MEDICAL, LIBANAIS,JML,LMJ,LEBANESE, MEDICAL, JOURNAL">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link href="~/Content/img/fav.jpg" rel="icon">
+    <link href="~/Content/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
+
+    <link href="~/Content/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/Content/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/lib/lightbox/css/lightbox.min.css" >
+    <link rel="stylesheet" href="~/Content/css/stylecss.css">
+    <style>
+        .fa {
+            padding-right: 0.25rem;
+        }
+
+        .footer-img {
+            width: 100%;
+            border: 1px solid #f3f4f7;
+            background: #f3f4f7;
+            cursor: pointer;
+        }
+
+        .mg-btm {
+            margin-bottom: 1rem;
+        }
+
+        .footer-second {
+            background: #f1f2f5;
+            padding: 60px 0 30px 0;
+        }
+
+        span {
+            font-family: OpenSansRegular;
+            color: #161616;
+        }
+
+        #footer h6 {
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+
+
+
+    <header id="header">
+        <div class="logo float-left desktop-none">
+            <a href="/Home" class="scrollto"><img src="~/Content/img/LMJ-logo.jpg" alt="LMJ-LOGO" class="img-fluid img-logo"></a>
+        </div>
+        <div class="topbar">
+            <div class="container border-1">
+                <div class="faq-links">
+                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+
+                </div>
+                <div class="social-links">
+                    <a href="/Home/index" class="facebook"><i class="fa fa-question-circle"></i> Home</a>
+                    <a href="/Home/Articles" class="instagram"><i class="fa fa-question-circle"></i>Articles</a>
+                    <a href="/Home/SubmitArticles" class="instagram"><i class="fa fa-question-circle"></i> Submit your article</a>
+                    <a href="/Home/EditorialBoards" id="EditorialBoard" class="instagram"><i class="fa fa-question-circle"></i>Editorial board</a>
+                    <a href="/Home/About" class="linkedin"><i class="fa fa-question-circle"></i>About Us </a>
+                    <a href="/Home/Contact" class="instagram"><i class="fa fa-question-circle"></i> Contact us</a>
+                </div>
+            </div>
+        </div>
+        <div class="topbar">
+            <div class="container border-2">
+                <div class="row" style="width: 100%">
+                    <div class="col-md-6">
+                        <a href="/Home" class="scrollto"><img src="~/Content/img/LMJ-logo.jpg" alt="LMJ-LOGO" class="img-fluid img-logo"></a>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="search">
+                            <input type="text" class="searchTerm" value="" placeholder="Search">
+                            <button type="submit" class="searchButton">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button data-toggle="modal" data-target="#myModalAdvancedSearch" class="btn btn-primary AdvancedSearch">Advanced search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container topbar border-3">
+            <nav class="main-nav d-none d-lg-block">
+                <ul>
+                    <li id="Home" class="active"><a href="/Home/index">Home</a></li>
+
+                    <li id="Articles"><a href="/Home/Articles">Articles</a></li>
+                    <li id="SubmitArticles"><a href="/Home/SubmitArticles">Submit your article</a></li>
+                    <li id="EditorialBoard"><a href="/Home/EditorialBoards">Editorial board</a></li>
+                    <li id="AboutUs"><a href="/Home/About">About Us</a></li>
+                    <li id="ContactUs"><a href="/Home/Contact">Contact us</a></li>
+                </ul>
+            </nav><!-- .main-nav -->
+
+        </div>
+        <div class="container stp-bar">
+            <div class="logo float-left">
+                <a href="/Home" class="scrollto"><img src="~/Content/img/LMJ-logo.jpg" alt="LMJ-LOGO" class="img-fluid img-logo"></a>
+            </div>
+            <nav class="main-nav float-right d-none d-lg-block">
+                <ul>
+                    <li id="Home" class="active"><a href="/Home/index">Home</a></li>
+                    <li id="AboutUs"><a href="/Home/About">About Us</a></li>
+                    <li id="Articles"><a href="/Home/Articles">Articles</a></li>
+                    <li id="SubmitArticles"><a href="/Home/SubmitArticles">Submit your article</a></li>
+                    <li id="EditorialBoard"><a href="#">Editorial board</a></li>
+                    <li id="ContactUs"><a href="/ContactUs">Contact us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+
+
+
+
+    @RenderBody()
+
+
+
+    @Html.Action("Footer", "Layout")
+
+
+
+    <section class="footer-second">
+        <div class="container">
+            <div class="logo">
+                <a href="/Home" class="scrollto"><img src="~/Content/img/LMJ-logo.jpg" alt="LMJ-LOGO" class="img-fluid img-logo"></a>
+            </div>
+            <div class="copyright">
+                &copy; Copyright <strong>JML / LMJ</strong>. All Rights Reserved
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="credits">
+                        <a href="#">Disclaimer</a> |
+                        <a href="#">Copyright and Licensing</a> |
+                        <a href="#">Terms of Service</a> |
+                        <a href="#">Privacy Policy </a> |
+                        <a href="/Home/Contact">Contact Us</a> |
+                        <a href="#">ISSN : 0023-9852</a> |
+                        <a href="#">E-ISSN NB</a>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="cards">
+                        <a href="#"><img src="~/Images/mastercard-logo.svg" /></a>
+                        <a href="#"><img src="~/Images/visa-logo.svg" /></a>
+                        <a href="#"><img src="~/Images/paypal-logo.svg" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <div id="preloader"></div>
+
+    <script src="~/Content/lib/jquery/jquery.min.js"></script>
+    <script src="~/Content/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="~/Content/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/lib/easing/easing.min.js"></script>
+    <script src="~/Content/lib/mobile-nav/mobile-nav.js"></script>
+    <script src="~/Content/lib/wow/wow.min.js"></script>
+    <script src="~/Content/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/Content/lib/counterup/counterup.min.js"></script>
+    <script src="~/Content/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/Content/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="~/Content/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="~/Content/contactform/contactform.js"></script>
+    <script src="~/Content/js/mainjs.js"></script>
+
+    <script>
+        var carousel = function () {
+            $('.carousel-testimony').owlCarousel({
+                center: true,
+                loop: true,
+                items: 1,
+                margin: 30,
+                stagePadding: 0,
+                nav: false,
+                navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+
+        };
+        carousel();
+    </script>
+
+</body>
+
+</html>

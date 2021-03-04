@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6554F184-BDFA-4FEC-A7CF-CE03996CB0DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Anz.LMJ.DAL</RootNamespace>
+    <AssemblyName>Anz.LMJ.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accessors\AllLoggerAccessor.cs" />
+    <Compile Include="Accessors\CityAccessor.cs" />
+    <Compile Include="Accessors\CountryAccessor.cs" />
+    <Compile Include="Accessors\ExcelAccessor.cs" />
+    <Compile Include="Accessors\IssueAccessor.cs" />
+    <Compile Include="Accessors\RequirmentAccessor.cs" />
+    <Compile Include="Accessors\ResearchAccessor.cs" />
+    <Compile Include="Accessors\ArticleTypeAccessor.cs" />
+    <Compile Include="Accessors\QuestionAccessor.cs" />
+    <Compile Include="Accessors\SpecialitiesAccessor.cs" />
+    <Compile Include="Accessors\SubjectAccessor.cs" />
+    <Compile Include="Accessors\GalleyAccessor.cs" />
+    <Compile Include="Accessors\NewsletterAccessor.cs" />
+    <Compile Include="Accessors\SubmissionKeywordsAccessor.cs" />
+    <Compile Include="Accessors\ContributorsAccessor.cs" />
+    <Compile Include="Accessors\DiscussionAccessor.cs" />
+    <Compile Include="Accessors\DiscussionFileAccessor.cs" />
+    <Compile Include="Accessors\DiscussionParticipantAccessor.cs" />
+    <Compile Include="Accessors\ProcessAccessor.cs" />
+    <Compile Include="Accessors\ProcessStagesAccessor.cs" />
+    <Compile Include="Accessors\SectionAccessor.cs" />
+    <Compile Include="Accessors\SubmissionAccessor.cs" />
+    <Compile Include="Accessors\SubmissionFilesAccessor.cs" />
+    <Compile Include="Accessors\SubmissionInProcessAccessor.cs" />
+    <Compile Include="Accessors\SubmissionStatusAccessor.cs" />
+    <Compile Include="Accessors\ReviewAccessor.cs" />
+    <Compile Include="Accessors\UserAccessor.cs" />
+    <Compile Include="Accessors\LanguageAccessor.cs" />
+    <Compile Include="Accessors\LookUpAccessor.cs" />
+    <Compile Include="Accessors\LookUpMediaAccessor.cs" />
+    <Compile Include="Accessors\LookUpMultiLanguageAccessor.cs" />
+    <Compile Include="Accessors\UserResponsibleInProcessAccessor.cs" />
+    <Compile Include="Accessors\UserRoleAccessor.cs" />
+    <Compile Include="Accessors\UserRolesInJournalAccessor.cs" />
+    <Compile Include="Model\ArticleType.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\City.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ContactU.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Contributor.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Country.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Discussion.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DiscussionParticipant.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DiscussionsFile.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EmailLog.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Galley.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Issue.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Journal.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Language.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Library.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LMJModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LMJModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LMJModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LMJModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LMJModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Logger_Admin.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Logger_CyberSource.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Logger_Error.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Logger_User.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LookUp.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LookUpMedia.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LookUpMultiLanguage.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LookUpTable.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Medium.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Newsletter.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Payment.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Process.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ProcessStage.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Question.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Requirment.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Research.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Review.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Section.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Speciality.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Subject.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Submission.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SubmissionFile.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SubmissionInProcess.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SubmissionKeyword.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SubmissionStatu.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Subscription.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagram.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Tag.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\User.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserResponsibleInProcess.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserRole.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserRolesInJournal.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Anz.LMJ.Library\Anz.LMJ.Library.csproj">
+      <Project>{b4b9fa76-3753-4cb9-9630-b6624925a9f3}</Project>
+      <Name>Anz.LMJ.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Model\LMJModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LMJModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\LMJModel.edmx.diagram">
+      <DependentUpon>LMJModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\LMJModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LMJModel.edmx</DependentUpon>
+      <LastGenOutput>LMJModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\LMJModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LMJModel.edmx</DependentUpon>
+      <LastGenOutput>LMJModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,371 @@
+﻿@using System.Xml;
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <title>LMJ | @ViewBag.Title</title>
+
+    <meta charset="utf-8">
+    <meta name="description" Scripts="">
+    <meta name="author" Scripts="">
+    <meta name="viewport" Scripts="width=device-width" />
+    <meta name="apple-mobile-web-app-capable" Scripts="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" Scripts="black">
+    <meta name="viewport" Scripts="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    @Styles.Render("~/Content/cms/bootstrap.min.css")
+    @Styles.Render("~/Content/cms/font-awesome.min.css")
+    @Styles.Render("~/Content/cms/smartadmin-production-plugins.min.css")
+    @Styles.Render("~/Content/cms/smartadmin-production.min.css")
+    @Styles.Render("~/Content/cms/smartadmin-skins.min.css")
+    @Styles.Render("~/Content/cms/smartadmin-rtl.min.css")
+    @*@Styles.Render("~/Content/editor.css")*@
+
+
+    <style>
+        .close {
+            float: right;
+            font-size: 24.5px;
+        }
+
+        .modal-title {
+            font-size: 21px;
+            margin: 0;
+            line-height: 1.42857143;
+            color: #474544;
+            font-weight: 500;
+        }
+
+        .modal-header {
+            background: #e5e5e5;
+        }
+
+        .btn-default {
+            margin-top: -10px;
+        }
+
+        #add_DiscussionPreReview_files {
+            margin-top: 0px !important;
+        }
+
+        .btn-secondary {
+            margin-top: -10px !important;
+            background-color: #ece9e9;
+        }
+
+        #logo {
+            color: #000;
+            font-size: 2.5rem;
+            text-align: left;
+        }
+
+        .jarviswidget-color-darken > header {
+            background: linear-gradient(to left, #AD0202, #AD0202) !important;
+        }
+
+        .btn-primary.active, .btn-primary:active, .btn-primary:hover, .open > .dropdown-toggle.btn-primary {
+            color: #fff;
+            background-color: #AD0202;
+            border-color: #AD0202;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #AD0202;
+            border-color: #AD0202;
+        }
+
+        .jarviswidget-ctrls a {
+            text-decoration: none;
+            font-size: 15px !important;
+            text-align: center;
+            display: inline-block;
+            line-height: 0px !important;
+            padding: 0;
+            margin: 0;
+            color: #333;
+        }
+
+        #btn-datatable {
+            color: #AD0202 !important;
+        }
+
+        .btn-datatable {
+            border: 1px solid #AD0202 !important;
+            color: #AD0202 !important;
+            background-color: #fff !important;
+            padding: 5px 12px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class="se-pre-con"></div>
+    <header id="header">
+        <div id="logo-group">
+
+            <!-- PLACE YOUR LOGO HERE -->
+            <span id="logo"> LMJ </span>
+            <!-- END LOGO PLACEHOLDER -->
+            <!-- Note: The activity badge color changes when clicked and resets the number to 0
+            Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
+            <span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
+
+            <!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
+            <div class="ajax-dropdown">
+
+                <!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
+                <div class="btn-group btn-group-justified" data-toggle="buttons">
+                    @*<label class="btn btn-default">
+                            <input type="radio" name="activity" id="/Home">
+                            Msgs (14)
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" name="activity" id="/home">
+                            notify (3)
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" name="activity" id="/home">
+                            Tasks (4)
+                        </label>*@
+                </div>
+
+                <!-- notification content -->
+                <div class="ajax-notifications custom-scroll">
+
+                    <div class="alert alert-transparent">
+                        <h4>Click a button to show messages here</h4>
+                    </div>
+
+                    <div class="alert alert-transparent">
+                        <h4>Click a button to show messages here</h4>
+                    </div>
+
+                    @*<i class="fa fa-lock fa-4x fa-border"></i>*@
+
+                </div>
+                <!-- end notification content -->
+                <!-- footer: refresh area -->
+                @*<span>
+                        Last updated on: 12/12/2013 9:43AM
+                        <button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..." class="btn btn-xs btn-default pull-right">
+                            <i class="fa fa-refresh"></i>
+                        </button>
+                    </span>*@
+                <!-- end footer -->
+
+            </div>
+            <!-- END AJAX-DROPDOWN -->
+        </div>
+
+        <!-- #PROJECTS: projects dropdown -->
+        <div class="project-context hidden-xs">
+
+            @*<span class="label">Projects:</span>
+                <span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>*@
+
+            <!-- Suggestion: populate this list with fetch and push technique -->
+            @*<ul class="dropdown-menu">
+                    <li>
+                        <a href="javascript:void(0);">Online e-merchant management system - attaching integration with the iOS</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">Notes on pipeline upgradee</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">Assesment Report for merchant account</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="javascript:void(0);"><i class="fa fa-power-off"></i> Clear</a>
+                    </li>
+                </ul>*@
+            <!-- end dropdown-menu-->
+
+        </div>
+        <!-- end projects dropdown -->
+        <div class="pull-right rightpp">
+            <div id="hide-menu" class="btn-header pull-right">
+                <span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
+            </div>
+
+            <div id="logout" data-target="#ModelLogout" data-toggle="modal" class="btn-header transparent pull-right">
+                <span> <a><i class="fa fa-sign-out"></i></a> </span>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <aside id="left-panel">
+
+        <nav>
+
+            <ul>
+                @{
+
+                    XmlDocument doc = new XmlDocument();
+                    string XMLPath = HttpContext.Current.Server.MapPath("~/ManagementASide.xml");
+                    doc.Load(XMLPath);
+                    XmlNode MainNode = doc.ChildNodes[1];
+                    foreach (XmlNode child in MainNode.ChildNodes)
+                    {
+
+                        <li class="main-menu @child.Attributes["class"].Value">
+
+                            <a href="@child.Attributes["link"].Value" title="@child.Attributes["name"].Value">
+                                <i class="@child.Attributes["icon"].Value"></i>
+                                <span class="menu-item-parent">
+                                    @child.Attributes["name"].Value
+                                </span>
+                            </a>
+
+                            @if (@child.HasChildNodes)
+                            {
+                                <ul>
+
+                                    @foreach (XmlNode subnode in child.ChildNodes)
+                                    {
+                                        <li class="sub-menu @subnode.Attributes["class"].Value">
+                                            <a href="@subnode.Attributes["link"].Value" title=""><span class="menu-item-parent">@subnode.Attributes["name"].Value</span></a>
+                                        </li>
+                                    }
+
+                                </ul>
+                            }
+
+                        </li>
+
+                    }
+                }
+            </ul>
+        </nav>
+
+    </aside>
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <div class="page-footer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <span class="txt-color-white">LMJ <span class="hidden-xs"> </span> © 2020  All rights reserved.</span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade ModelLogout" id="ModelLogout" tabindex="-1" role="dialog" aria-labelledby="ModelLogout" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="UploadSubmissionFiles">Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+                    <div class="row" style="padding-left: 2%;">
+                        Are You Sure You Want to Logout
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary confim-logout">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+
+</html>
+
+
+
+<!--================================================== -->
+<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+<script data-pace-options='{ "restartOnRequestAfter": true }' src="~/Scripts/cms/plugin/pace/pace.min.js"></script>
+
+<script>
+    if (!window.jQuery) {
+        document.write('<script src="Scripts/js/libs/jquery-2.1.1.min.js"><\/script>');
+    }
+</script>
+
+
+<script>
+    if (!window.jQuery.ui) {
+        document.write('<script src="Scripts/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+    }
+</script>
+
+
+<script src="~/Scripts/cms/app.config.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/cms/Admin/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/cms/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
+<script src="~/Scripts/cms/notification/SmartNotification.min.js"></script>
+<script src="~/Scripts/cms/smartwidgets/jarvis.widget.min.js"></script>
+<script src="~/Scripts/cms/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+<script src="~/Scripts/cms/plugin/sparkline/jquery.sparkline.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/cms/plugin/masked-input/jquery.maskedinput.min.js"></script>
+<script src="~/Scripts/cms/plugin/select2/select2.min.js"></script>
+<script src="~/Scripts/cms/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+<script src="~/Scripts/cms/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+<script src="~/Scripts/cms/plugin/fastclick/fastclick.min.js"></script>
+<script src="~/Scripts/cms/plugin/datatables/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/cms/plugin/datatables/jszip.min.js"></script>
+<script src="~/Scripts/cms/plugin/datatables/buttons.html5.min.js"></script>
+<script src="~/Scripts/cms/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="~/Scripts/cms/plugin/superbox/superbox.min.js"></script>
+<script src="~/Scripts/cms/plugin/ckeditor/ckeditor.js"></script>
+<script src="~/Scripts/cms/app.min.js"></script>
+<script src="~/Scripts/cms/libs/jspdf.min.js"></script>
+<script src="~/Scripts/cms/editor.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        pageSetUp();
+
+        $("#logout").on("click", function (event) {
+            event.preventDefault();
+            console.log("click");
+            $('#Logout_Modal').modal('show');
+        });
+
+
+
+
+
+        $(".confim-logout").on("click", function (event) {
+            event.preventDefault();
+            location.href = "/Home/Logout/";
+        });
+    })
+
+</script>
+
+
+
+

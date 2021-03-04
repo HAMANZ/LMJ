@@ -1,0 +1,157 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@using Anz.LMJ.BLO.LogicObjects.User
+@model SubmissionLO
+
+
+
+
+<div class="modal fade ModelMetadata" id="ModelMetadata" tabindex="-1" role="dialog" aria-labelledby="ModelMetadata" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="UploadSubmissionFiles">@ViewBag.Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Cover letter</strong>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <textarea class="form-control " name="CommentsForEditor" disabled style="width:100%">@Model.CommentsForEditor</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Abstract</strong>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <textarea class="form-control " name="Abstract" disabled style="width:100%">@Model.AbstractText</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Mini Description</strong>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <textarea class="form-control " name="MiniDescription" disabled style="width:100%">@Model.MiniDescription</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.SubmissionKeywords != null)
+                {
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label">
+                                    <strong>keywords</strong>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="keywords_container">
+                        <div class="row">
+                            @foreach (string item in Model.SubmissionKeywords)
+                            {
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input class="form-control input-md Keywords" disabled type="text" value="@item" name="Keywords" id="Keywords">
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+
+                @if (@ViewBag.User.isReviewer != true)
+                {
+                    if (Model.Author != null)
+                    {
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-sm-12 control-label">
+                                        <strong>Authors</strong>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            @{var main_authur = @Model.Author.FirstName + " " + @Model.Author.LastName; }
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input class="form-control input-md" type="text" disabled value="@main_authur" name="auther">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    if (Model.Contributors != null)
+                    {
+                        foreach (UserLO item in Model.Contributors)
+                        {
+                            var authur = item.FirstName + " " + item.LastName;
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input class="form-control input-md" type="text" disabled value="@authur" name="auther">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @if (item.isCorresponding == true)
+                                {
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>is Corresponding</label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+
+                    }
+                }
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

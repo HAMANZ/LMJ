@@ -1,0 +1,501 @@
+﻿
+@using Anz.LMJ.BLO.LogicObjects.Submission;
+<style>
+    .contributers_container label {
+        text-align: right;
+    }
+
+    .hidden-td {
+        display: none;
+    }
+ 
+</style>
+<div class="tab-pane" id="tab4">
+    <br />
+    <br />
+    <br />
+   
+    <div class="form-group">
+        <table id="dtt-auther" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Author</th>
+                    @*<th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>*@
+                    @*<th>Name</th>
+                    <th>Mname</th>
+                    <th>Lname</th>
+                    <th>Degree</th>
+                    <th>Aff</th>
+                    <th>Email</th>
+                    <th>ORCIDModel</th>
+                    <th>Inst</th>
+                    <th>Dep</th>
+                    <th>CityModel</th>
+                    <th>CountryModel</th>
+                    <th>IsCorsponding</th>*@
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+
+        </table>
+
+    
+
+        <div class="modal fade" id="ModelAddContributer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="AddDiscussion">Add Auther</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                            <div id="contributers_container">
+                                <div class="contributers_container">
+                                    <form id="author-model" novalidate="novalidate" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>First Name</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6">
+                                                <div class="form-group">
+                                                    <input class="form-control input-md contributor-fname" name="ContributorFnameModel" type="text" placeholder="First name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>Middle Name</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6">
+                                                <div class="form-group">
+                                                    <input class="form-control input-md  contributor-mname" type="text" name="ContributoMnameModel" placeholder="Middle name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>Last Name</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6">
+                                                <div class="form-group">
+                                                    <input class="form-control input-md contributor-lname" type="text" name="ContributorLnameModel" placeholder="Last name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>Academic Degree(s)</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6">
+                                                <div class="select-form">
+                                                    <div class="form-group">
+                                                        <select multiple style="width:100%" name="DegreesModel" class="select2 DegreesModel">
+                                                            <option value="1">Degree 1</option>
+                                                            <option value="2">Degree 2</option>
+                                                            <option value="3">Degree 3</option>
+                                                        </select>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>Affilation</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6">
+                                                <div class="form-group">
+                                                        <textarea class="form-control input-md contributor-affilation required" name="ContributorAffilationModel" placeholder="Affilation"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>Email Address</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6">
+                                                <div class="form-group">
+                                                    <input class="form-control input-md contributor-email" name="ContributorEmailModel" type="text" placeholder="Email" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>ORCIDModel</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6">
+                                                <div class="form-group">
+                                                        <input class="form-control input-md contributor-ORCIDModel" name="ORCIDModel" type="text" placeholder="ORCIDModel">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>InstitutionModel</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6">
+                                                <div class="form-group">
+                                                        <input class="form-control input-md contributor-InstitutionModel" name="InstitutionModel" type="text" placeholder="InstitutionModel">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>DepartmentModel</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6">
+                                                <div class="select-form">
+                                                    <div class="form-group">
+                                                        <select style="width:100%" class="select2 form-control DepartmentModel" name="DepartmentModel">
+                                                            <option value="">select Dep</option>
+                                                            <option value="1">Dep 1</option>
+                                                            <option value="2">Dep 2</option>
+                                                            <option value="3">Dep 3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>CityModel</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6">
+                                                <div class="select-form">
+                                                    <div class="form-group">
+                                                        <select style="width:100%" class="select2 form-control CityModel" name="CityModel">
+                                                            <option value="">select CityModel</option>
+                                                            <option value="1">CityModel 1</option>
+                                                            <option value="2">CityModel 2</option>
+                                                            <option value="3">CityModel 3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>CountryModel</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6">
+                                                <div class="select-form">
+                                                    <div class="form-group">
+                                                        <select style="width:100%" class="select2 form-control CountryModel" name="CountryModel">
+                                                            <option value="">select CountryModel</option>
+                                                            <option value="1">CountryModel 1</option>
+                                                            <option value="2">CountryModel 2</option>
+                                                            <option value="3">CountryModel 3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>is Corresponding?</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="IsCorspondingModel" name="IsCorspondingModel">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <input  type="submit" class="btn btn-primary add_auther" value="Add">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary" type="button" id="add_contributers" data-target="#ModelAddContributer" onclick="resetAllValues();" data-toggle="modal"> add Author</button>
+        <br />
+    </div>
+</div>
+<script src="~/Scripts/cms/lib/jquery-2.1.1.min.js"></script>
+<script src="~/Scripts/cms/plugin/select2/select2.min.js"></script>
+<script src="~/Scripts/cms/app.min.js"></script>
+<script src="editor.js"></script>
+<script type="text/javascript">
+    var counter = 0;
+
+    $(document).ready(function () {
+
+        dttauthor = $('#dtt-auther').DataTable({
+            rowReorder: true,
+            createdRow: function (row, data, dataIndex) {
+                $(row).find('td:eq(1)').attr('name', 'ContributorFname');
+                $(row).find('td:eq(2)').attr('name', 'ContributoMname');
+            },
+            "columnDefs": [
+                //{
+                //    "targets": [2],
+                //    "name": "ContributorFname",
+                //    "visible": true,
+                //},
+                //{
+
+                //    "targets": [3],
+                //    "name": "ContributoMname",
+                //    "visible": true,
+                //},
+                //{
+
+                //    "targets": [4],
+                //    "name": "ContributoLname",
+                //    "visible": true,
+                //},
+                //{
+
+                //    "targets": [5],
+                //    "name": "Degrees",
+                //    "visible": true,
+                //    "type": "select2"
+                //},
+                //{
+
+                //    "targets": [6],
+                //    "name": "ContributorAffilation",
+                //    "visible": true,
+                //},
+                //{
+                //    "name": "ContributorEmail",
+                //    "targets": [7],
+                //    "visible": true,
+                //},
+                //{
+                //    "name": "ORCID",
+                //    "targets": [8],
+                //    "visible": true,
+                //},
+                //{
+                //    "name": "Institution",
+                //    "targets": [9],
+                //    "visible": true,
+                //},
+                //{
+                //    "name": "Department",
+                //    "targets": [10],
+                //    "visible": true,
+                //    "type": "select"
+                //},
+                //{
+                //    "name": "City",
+                //    "targets": [11],
+                //    "visible": true,
+                //    "type": "select"
+                //},
+                //{
+                //    "name": "Country",
+                //    "targets": [12],
+                //    "visible": true,
+                //    "type": "select"
+                //},
+                //{
+                //    "name": "IsCorsponding",
+                //    "targets": [13],
+                //    "visible": true,
+                //}
+            ]
+        });
+
+        runAllForms();
+        $("#txtEditorAbstract").Editor();
+        $("#txtEditorMiniDescription").Editor();
+
+
+
+
+        $(".add_auther").click(function () {
+            Add_Author(false);
+            $(".edit_author").hide();
+            $(".add_auther").show();
+          
+        });
+
+
+
+        $('#dtt-auther').on('click', '.delete-row', function () {
+            $(this).closest("tr").remove();
+        });
+
+        $('#dtt-auther').on('click', '.edit-row', function () {
+
+            $(this).closest('tr').addClass("removerow");
+
+            var row = $(this).closest("tr");
+            var td = row.find("td");
+            $(".edit_author").remove();
+            $.each(td, function () {
+                $(".contributers_container ContributorFnameModel").val($("td .ContributorFnameModel").val());
+                $(".contributers_container ContributoMnameModel").val($("td .ContributoMnameModel").val());
+                $(".contributers_container ContributoLnameModel").val($("td .ContributoLnameModel").val());
+                $(".contributers_container Degrees").val($("td .DegreesModel").val());
+                $(".contributers_container ContributorAffilationModel").val($("td .ContributorAffilationModel").val());
+                $(".contributers_container ContributorEmailModel").val($("td .ContributorEmailModel").val());
+                $(".contributers_container ORCIDModel").val($("td .ORCIDModel").val());
+                $(".contributers_container InstitutionModel").val($("td .InstitutionModel").val());
+                $(".contributers_container DepartmentModel").val($("td .DepartmentModel").val());
+                $(".contributers_container CityModel").val($("td .CityModel").val());
+                $(".contributers_container CountryModel").val($("td .CountryModel").val());
+            });
+
+
+            $(".add_auther").hide();
+            $(".modal-footer").append('<button type="button" class="btn btn-primary edit_author" data-dismiss="modal" onclick="Add_Author(' + true + ')">Edit</button>');
+            $("#ModelAddContributer").modal('show');
+
+        });
+
+
+    });
+
+
+    function resetAllValues() {
+
+        $('.contributers_container').find('select').val(0).trigger("change");
+        $('select option').filter(":selected").remove();
+        $("#IsCorspondingModel").prop('checked', false);
+        $('.contributers_container').find('input:text').val('');
+        $('.contributers_container').find('textarea').val('');
+        $('.contributers_container').find('select').val('');
+        $('.contributers_container .form-group').removeClass('has-success');
+    }
+
+
+    function Add_Author(isedit) {
+
+        if (isedit) {
+            dttauthor.row('.removerow').remove().draw(false);
+        }
+
+        var Degreelist;
+        var Degrees = $(".DegreesModel").val();
+        if (Degrees)
+            for (var i = 0; i < Degrees.length; i++) {
+                Degreelist += Degrees[i] + ",";
+            }
+
+
+        
+        var Fname = '<input type="hidden"  name="ContributorFname"  value="' + $("input[name=ContributorFnameModel]").val() + '" >';
+        var Mname = '<input type="hidden"  name="ContributoMname"  value="' + $("input[name=ContributoMnameModel]").val() + '" >';
+        var Lname = '<input type="hidden"  name="ContributorLname"  value="' + $("input[name=ContributorLnameModel]").val() + '" >';
+        var Degree = '<input type="hidden"  name="Degrees"  value="' + Degreelist + '" >';
+        var Aff = '<input type="hidden"  name="ContributorAffilation"  value="' + $("textarea[name=ContributorAffilationModel]").val() + '" >';
+        var Email = '<input type="hidden"  name="ContributorEmail"  value="' + $("input[name=ContributorEmailModel]").val() + '" >';
+        var ORCIDModel = '<input type="hidden"  name="ORCID"  value="' + $("input[name=ORCIDModel]").val() + '" >';
+        var Inst = '<input type="hidden"  name="Institution"  value="' + $("input[name=InstitutionModel]").val() + '" >';
+        var Dep = '<input type="hidden"  name="Department"  value="' + $(".DepartmentModel option:selected").val() + '" >';
+        var CityModel = '<input type="hidden"  name="City"  value="' + $(".CityModel option:selected").val() + '" >';
+        var CountryModel = '<input type="hidden"  name="Country"  value="' + $(".CountryModel option:selected").val() + '" >';
+        var IsCorsponding;
+        if ($("#IsCorspondingModel").is(":checked")) {
+            IsCorsponding = true;
+            $("input:text[name=isCorresponding]").val(false);
+        }
+        else {
+            IsCorsponding = false;
+        }
+        var IsCorsponding = '<input type="hidden"  name="isCorresponding"  value="' + IsCorsponding + '" >';
+        var deleteaction = '<input type="button" name="delete" class="btn btn-sm btn-danger fa fa-trash-o delete-row" value="Delete" data-row-id="Id" > ';
+        var Editaction = '<input type="button" name="delete" class="btn btn-sm btn-danger fa fa-trash-o edit-row" data-row-id="Id" value="Edit"  > ';
+        counter = counter + 1;
+        var Author = '<div class="author-dt">' + $("input[name=ContributorFnameModel]").val() + " " + $("input[name=ContributorLnameModel]").val() +
+            Fname + Mname + Lname + Degree + Aff + Email + ORCIDModel + Inst + Dep + CityModel + CountryModel + IsCorsponding + '</div>';
+
+        dttauthor.row.add([
+            counter,
+            Author,
+            //Fname,
+            //Mname,
+            //Lname,
+            //Degree,
+            //Aff,
+            //Email,
+            //ORCIDModel,
+            //Inst,
+            //Dep,
+            //CityModel,
+            //CountryModel,
+            //IsCorsponding,
+            Editaction,
+            deleteaction]
+        ).draw().node();
+
+        //$("#dtt-auther tbody").append("<tr>" + Author + Fname + Mname + Lname + Degree + Aff + Email + ORCIDModel + Inst ++ deleteaction + Editaction + "</tr>");
+    }
+
+    $('#btn').on('click', function () {
+       
+    });
+  
+</script>
+

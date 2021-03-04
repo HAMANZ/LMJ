@@ -1,0 +1,158 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.User
+@model List<UserLO>
+
+
+
+
+<div class="jarviswidget-editbox jarviswidget-color-darken" data-widget-colorbutton="false"
+     data-widget-editbutton="false"
+     data-widget-togglebutton="false"
+     data-widget-deletebutton="false"
+     data-widget-fullscreenbutton="false"
+     data-widget-custombutton="false"
+     data-widget-collapsed="false"
+     data-widget-sortable="false">
+    <header>
+        <div class="jarviswidget-ctrls">
+            <a data-target="#ModelAddProofreading" class="getProofreading" data-toggle="modal">Add Proofreading</a>
+        </div>
+        <h2>@ViewBag.Title</h2>
+    </header>
+    <div>
+        <div class="widget-body no-padding">
+            <table class="table table-striped table-bordered table-hover" width="100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{ int counter = 1;}
+                    <!-- content goes here -->
+                    @if (Model != null)
+                    {
+                        foreach (UserLO item in Model)
+                        {
+                            <tr>
+                                <td>@counter</td>
+                                <td>@item.FirstName @item.LastName></td>
+                                <td>@item.Email</td>
+                                @{ counter++;}
+                            </tr>
+                        }
+                    }
+                    <!-- end content -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModelAddProofreading" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="UploadSubmissionFiles">Add Proofreading</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body Proofreading-model">
+
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary  AddProofreading">Add Proofreading</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+  
+
+
+
+    $(".getProofreading").click(function () {
+          $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetUserByRole")',
+              data: { role: "proofreading" },
+                            success: function (result) {
+                                if (result.HttpStatusCode != 200) {
+                                    alert(result.Message);
+                                }
+                                else {
+                                 
+                                    var table = '<div class="jarviswidget-editbox jarviswidget-color-darken" data-widget-colorbutton="false">';
+                                    table +='<header><h2>Proofreading</h2></header>';
+                                    table += '<div>';
+                                    table += '<div class="widget-body no-padding">';
+                                    table += '        <table class="table table-striped table-bordered table-hover" width="100%">';
+                                    table += '           <thead>';
+                                    table += '               <tr>';
+                                    table += '                   <th>#</th>';
+                                    table += '                    <th>Name</th>';
+                                    table += '                    <th>LastName</th>';
+                                    table += '                    <th>Email</th>';
+                                    table += '                 </tr>';
+                                    table += '           </thead>';
+                                    table += '<tbody>';
+
+                                  
+                                    for (var i = 0; i < result.Data.length; i++) {
+                                        table +=' <td><input type="checkbox" name="Proofreading" value="' + result.Data[i].Id + '"/></td>';
+                                        table +=' <td>' + result.Data[i].FirstName + '</td>';
+                                        table +=' <td>' + result.Data[i].LastName + '</td>';
+                                        table +=' <td>' + result.Data[i].Email + '</td>';
+                                    }
+                                    table += '</tbody>';
+                                    table += '</table></div></div></div>';
+                                    $(".Proofreading-model").append(table);
+                                 
+                                }
+                            },
+                            error: function (ex) {
+
+                            }
+                        });
+    });
+    
+  
+    $(".AddProofreading").click(function () {
+        var url = window.location.href;
+        var array = url.split('/');
+        var submissionid = array[array.length - 1];
+        var filesckhd = [];
+        var processidinmodel = 10012;
+        $("input:checkbox[name=Proofreading]:checked").each(function () {
+            filesckhd.push($(this).attr("value"));
+        });
+             $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("AddReveiwers")',
+                 data: {
+                     userids: filesckhd, submissionid: submissionid, role: "proofreading", processidinmodel: processidinmodel},
+                            success: function (result) {
+                                if (result.HttpStatusCode != 200) {
+                                    alert(result.Message);
+                                }
+                                else {
+                                    location.reload(true);
+                                }
+                            },
+                            error: function (ex) {
+
+                            }
+                        });
+
+    });
+</script>

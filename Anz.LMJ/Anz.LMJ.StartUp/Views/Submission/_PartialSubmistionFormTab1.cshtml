@@ -1,0 +1,28 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission;
+<div class="tab-pane active" id="tab1">
+    <br />
+    <br />
+    <br />
+    <div class="data-container">
+        <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
+                <div class="form-group">
+                    <label class="col-sm-12 control-label">
+                        <strong>Section</strong>
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-3">
+                <div class="form-group">
+                    <select name="ArticleTypeId" style="width:100%" class="form-control">
+                        <option value="" selected="selected">Select Section </option>
+                        @foreach (SelectValues item in (List<SelectValues>)ViewBag.GetSelect.ArticleType)
+                        {
+                            <option value="@item.Id">@item.Value</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

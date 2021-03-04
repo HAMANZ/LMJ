@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+
+  <TopLevelMenu name="Management" link="/management/index/" icon="fa fa-lg fa-fw fa-dashboard" class="dashboard">
+  </TopLevelMenu>
+
+
+  <TopLevelMenu name="Newsletters" link="/Submission/Newsletters/" icon="fa fa-lg fa-fw fa-book" class="newsletter">
+  </TopLevelMenu>
+
+
+</root>

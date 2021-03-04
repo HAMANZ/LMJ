@@ -1,0 +1,264 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@using Anz.LMJ.BLO.LogicObjects.User;
+@using Anz.LMJ.BLO.LookUpObjects;
+<style>
+    #footer .footer-top .footer-links ul li {
+        padding: 0px 0 !important;
+    }
+
+        #footer .footer-top .footer-links ul li h6:hover {
+            font-weight: bold;
+            color: #f11a21;
+        }
+
+    #footer .footer-faq p:hover {
+        font-weight: bold;
+        color: #f11a21;
+    }
+</style>
+
+
+<div class="modal fade" id="myModalAdvancedSearch" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Advanced Search</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row d-flex">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label" for="name">Issue Date</label>
+                                <select class="form-control" id="IssueDate">
+                                    <option value="0">ANY DATE</option>
+                                    @foreach (Options item in (List<Options>)(ViewBag.options.IssuesDate))
+                                    {
+                                        <option value="@item.Id">@item.Value</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label" for="name">Issues</label>
+                                <select class="form-control" id="Issues">
+                                    <option value="0">All Issues</option>
+                                    @foreach (Options item in (List<Options>)(ViewBag.options.Issues))
+                                    {
+                                        <option value="@item.Id">@item.Value</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label" for="name">Volume</label>
+                                <select class="form-control" id="Volume">
+                                    <option value="0">All volumes</option>
+                                    @foreach (Options item in (List<Options>)(ViewBag.options.Volumes))
+                                    {
+                                        <option value="@item.Id">@item.Value</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label" for="name">Article Type</label>
+                                <select class="form-control" id="ArticleType">
+                                    <option value="0">All Article Type</option>
+                                    @foreach (SelectValues item in (List<SelectValues>)(ViewBag.options.ArticleType))
+                                    {
+                                        <option value="@item.Id">@item.Value</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label" for="name">Author</label>
+                                <select class="form-control" id="Author">
+                                    <option value="0">All Author</option>
+                                    @foreach (Options item in (List<Options>)(ViewBag.options.Authors))
+                                    {
+                                        <option value="@item.Id">@item.Value</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label" for="name">Category</label>
+                                <select class="form-control" id="Category">
+                                    <option value="0">All Category</option>
+                                    @foreach (Options item in (List<Options>)(ViewBag.options.Category))
+                                    {
+                                        <option value="@item.Id">@item.Value</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary">clear</button>
+                <a type="button" class="btn btn-primary" onclick="searcharticles()" id="searcharticles" data-dismiss="modal">apply</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<footer id="footer" class="section-bg">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="footer-links">
+                                <h4>
+                                    Contact Information
+                                </h4>
+                                <p>
+                                    A108 Adam Street <br>
+                                    New York, NY 535022<br>
+                                    United States <br>
+                                    <strong>Phone:</strong> +961 77 855 422<br>
+                                    <strong>Email:</strong> info@lmj.com<br>
+                                </p>
+                            </div>
+                            <div class="social-links">
+                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="footer-links">
+                                <h4>Recent Articles</h4>
+                                <ul>
+                                    @foreach (SubmissionLO item in (List<SubmissionLO>)ViewBag.Issues)
+                                    {
+                                        <li>
+                                            <a href="/Home/ArticleDetails/@item.Id">
+                                                @if (@item.Title.Length > 30)
+                                                {
+                                                    <h6>@item.Title.Substring(0, 25) ...</h6>
+                                                }
+                                                else
+                                                {
+                                                    <h6>@item.Title</h6>
+                                                }
+                                                <span>@item.PublishDate.ToString("MMMM .dd . yyyy") </span>
+                                                <hr />
+                                            </a>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="footer-links footer-faq">
+                                <h4>
+                                    Categories
+                                </h4>
+                                <div>
+                                    <div class="row">
+                                        @foreach (Options item in (List<Options>)ViewBag.articlestype)
+                                        {
+                                            <div class="col-sm-3 mg-btm">
+                                                <a href="/Home/Articles?id=@item.Id"> <p>@item.Value</p> </a>
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="footer-links footer-recent-issues">
+                                            <h4>
+                                                Recent ISSUES
+                                            </h4>
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-sm-4 mg-btm">
+                                                        <img src="~/Images/LMJ.png" class="footer-img" />
+                                                    </div>
+                                                    <div class="col-sm-4 mg-btm">
+                                                        <img src="~/Images/LMJ.png" class="footer-img" />
+                                                    </div>
+                                                    <div class="col-sm-4 mg-btm">
+                                                        <img src="~/Images/LMJ.png" class="footer-img" />
+                                                    </div>
+                                                    <div class="col-sm-4 mg-btm">
+                                                        <img src="~/Images/LMJ.png" class="footer-img" />
+                                                    </div>
+                                                    <div class="col-sm-4 mg-btm">
+                                                        <img src="~/Images/LMJ.png" class="footer-img" />
+                                                    </div>
+                                                    <div class="col-sm-4 mg-btm">
+                                                        <img src="~/Images/LMJ.png" class="footer-img" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+
+</footer>
+<script type="text/javascript" src="~/Content/lib/jquery/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="~/Content/lib/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript">
+
+
+            $('.searchButton').on('click', function () {
+                var search = $(".searchTerm").val();
+                searcharticles(search);
+            });
+            $('.searchTerm').on('keyup', function () {
+                var search = $(".searchTerm").val();
+                searcharticles(search);
+            });
+    function searcharticles(issuetitle) {
+        var submissionid = $("select[id='IssueDate']").val();
+        var Author = $("select[id='Author']").val();
+        var Category = $("select[id='Category']").val();
+        var Issues = $("select[id='Issues']").val();
+        var Volume = $("select[id='Volume']").val();
+        var ArticleType = $("select[id='ArticleType']").val();
+        //alert(submissionid + "Author" + Author + "Category" + Category + "Issues" + Issues + "Volume" + Volume + "ss" + ArticleType )
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SearchArticle")',
+            data: { submissionid: submissionid, issueid: Issues, volumeid: Volume, articletype: ArticleType, author: Author, sectionid: Category, issuetitle: issuetitle },
+            success: function (result) {
+              
+                $(".index-container").html(result);
+                $(".ArticlsSection").html(result);
+
+            }
+        });
+    }
+</script>

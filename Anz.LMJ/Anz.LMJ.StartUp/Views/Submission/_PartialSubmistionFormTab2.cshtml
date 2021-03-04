@@ -1,0 +1,159 @@
+﻿
+<style>
+    .uploadEditorFile {
+        /*display:none;*/
+    }
+
+    .dataTables_length, .dataTables_filter, .dataTables_info, .dataTables_paginate {
+        display: none;
+    }
+
+    .btn-primary.focus, .btn-primary:focus {
+        color: #fff;
+        background-color: #275b89;
+        border-color: #10263a;
+    }
+
+    element.style {
+    }
+
+    .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover {
+        color: #fff !important;
+        background-color: #AD0202 !important;
+        border-color: #AD0202 !important;
+    }
+
+    a:focus, a:hover {
+        color: #AD0202;
+        text-decoration: none;
+    }
+
+    .btn-danger {
+        border: 1px solid #AD0202 !important;
+        color: #AD0202 !important;
+        background-color: #fff !important;
+        border-color: #AD0202;
+    }
+    .sorting_1 {
+        color:#fff;
+        
+    }
+</style>
+
+
+    
+    
+<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/rowreorder/1.2.7/css/rowReorder.dataTables.min.css" rel="stylesheet">
+
+
+<div class="tab-pane" id="tab2">
+    <br />
+    <br />
+    <br />
+    
+    <table id="dtt-files" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Type</th>
+                <th>Upload File</th>
+                <th>Caption</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="ttbody">
+
+        <tbody>
+
+    </table>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="padding-left: 2%;">
+                        Delete The Selected News
+                        <input type="hidden" name="id" value="" id="id" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary confim-delete-events">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <button type="button" class="btn btn-primary" id="add_submission_files"> add files</button>
+</div>
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js"></script>
+
+<script type="text/javascript">
+    var count = 0;
+    $(document).ready(function () {
+         table = $('#dtt-files').DataTable({
+             rowReorder: true,
+        });
+
+        $("#add_submission_files").click(function () {
+           
+           
+            count = count + 1;
+            if (count % 2 == 0)
+                var cls = "even";
+            else cls = "odd";
+            $("#dtt-files .dataTables_empty").remove();
+            var select = '<td><div class="form-group"><select class="submission-component form-control input-md FileTypeSelector" name="ArticleComponentId" ><';
+            select += '<option value="">File Type</option>';
+            select += '<option value="1">Manuscript</option>';
+            select += '<option value="2">Figure</option>';
+            select += '<option value="3">Table</option>';
+            select += ' <option value="4">CopyRight</option> </select></div></td>';
+            var File = '<td><div class="form-group"><input class="form-control input-md FileName" name="FilesToUpload" type="file"></div></td>';
+            var Order = '<td><div class="form-group"><input class="form-control input-md Order" name="Order" type="text" value="' + 1 + '"></div></td>';
+            var Caption = '<td><div class="form-group"><input class="form-control input-md Caption"placeholder="Caption" name="Caption" type="text"></div></td>';
+            var deleteaction = '<td><button name="delete" class="btn btn-sm btn-danger fa fa-trash-o delete-row" data-row-id="Id" > Delete</button></td>';
+            var d = '<td class="sorting_1">' + count +'</td>';
+            //$("#dtt-files .ttbody").append("<tr role='row' class='" + cls +"'>" + d + select + File + Caption + deleteaction + "</tr>");
+
+            table.row.add([
+                count,
+                select,
+                File,
+                Caption,
+                deleteaction]
+            ).draw().node();
+
+    
+    });
+
+        $('#dtt-files').on('click', '.delete-row', function () {
+            $(this).closest('tr').addClass("selected");
+            table.row('.selected').remove().draw(false);
+            //count--;
+
+            //$.each($('#dtt-files tr td:nth-child(2)'), function (index, val) {
+            //    $(this).html(index + 1)
+            //});
+        });
+
+
+    });
+
+</script>

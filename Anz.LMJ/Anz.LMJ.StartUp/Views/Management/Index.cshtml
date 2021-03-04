@@ -1,0 +1,159 @@
+﻿
+@using Anz.LMJ.BLO.LogicObjects.User
+@using Anz.LMJ.BLO.LogicObjects.Submission
+
+@{
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+    var User = (UserQueueLO)ViewBag.queue;
+    var Submissions = (List<SubmissionLO>)ViewBag.unassigned;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .jarviswidget-editbox {
+            display: block;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" role="main">
+
+
+        <div id="ribbon">
+
+            <span class="ribbon-button-alignment">
+                <span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh" rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
+                    <i class="fa fa-refresh"></i>
+                </span>
+            </span>
+
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li>Home</li>
+                <li>Submissions</li>
+            </ol>
+
+
+        </div>
+
+
+        <div id="main-content">
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                    <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-home"></i> Submissions <span>> My Queue</span></h1>
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+
+                </div>
+            </div>
+
+
+            <!-- widget grid -->
+            <section id="widget-grid" class="">
+
+                <!-- row -->
+                <div class="row" style="margin: 0 !important;">
+                    <article class="col-sm-12">
+                        <!-- new widget -->
+                        <div class="jarviswidget" id="wid-id-0" data-widget-togglebutton="false" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+
+                            <header>
+
+
+                                <ul class="nav nav-tabs pull-right in" id="myTab">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#queue"><i class="fa fa-clock-o"></i> <span class="hidden-mobile hidden-tablet">My Queue</span></a>
+                                    </li>
+                                    @if (User.isEditor == true || User.isAuthor == true)
+                                    {
+                                        <li id="unassigned-li">
+                                            <a data-toggle="tab" href="#unassigned"> <i class="fa fa-clock-o"></i> <span class="hidden-mobile hidden-tablet">Unassigned</span></a>
+                                        </li>
+                                    }
+
+
+
+                                    <li>
+                                        <a data-toggle="tab" href="#active"> <i class="fa fa-clock-o"></i> <span class="hidden-mobile hidden-tablet">All Active</span></a>
+                                    </li>
+
+                                    <li>
+                                        <a data-toggle="tab" href="#archive"><i class="fa fa-clock-o"></i> <span class="hidden-mobile hidden-tablet">Archives</span></a>
+                                    </li>
+                                </ul>
+
+                            </header>
+
+                            <!-- widget div-->
+                            <div class="no-padding">
+
+                                <!-- end widget edit box -->
+
+                                <div class="widget-body">
+                                    <!-- content -->
+                                    <div id="myTabContent" class="tab-content">
+                                        <div class="tab-pane fade active in padding-10 no-padding-bottom" id="queue">
+
+                                            <!-- MAIN CONTENT -->
+                                            <div class="tab-content">
+                                                @if (User.isAuthor)
+                                                {
+
+                                                    @Html.Partial("_PartialQueueDataTable", User.asAuthor, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "My Author") });
+
+                                                }
+
+                                                @if (User.isEditor)
+                                                {
+                                                    //<p>author</p>
+
+                                                    @Html.Partial("_PartialQueueDataTable", User.asEditor, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "My Editing") });
+
+                                                }
+                                                @if (User.isCopyEditor)
+                                                {
+                                                    // <p>author</p>
+                                                    @Html.Partial("_PartialQueueDataTable", User.asCopyEditor, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "My CopyEditor") });
+
+
+                                                }
+                                                @if (User.isProofReader)
+                                                {
+                                                    // <p>author</p>
+                                                    @Html.Partial("_PartialQueueDataTable", User.asProofReader, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "My Proofreader") });
+
+
+                                                }
+                                                @if (User.isReviewer)
+                                                {
+                                                    // <p>author</p>
+                                                    @Html.Partial("_PartialQueueDataTable", User.asReviewer, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "My Reviewing") });
+
+
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade  in padding-10 no-padding-bottom" id="unassigned">
+                                            <div class="tab-content">
+                                                @Html.Partial("_PartialUnAssignedDataTable", new ViewDataDictionary { new KeyValuePair<string, object>("Title", "UnAssigned") , new KeyValuePair<string, object>("Submissions", Submissions) });
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+            </section>
+
+        </div>
+
+</body>
+</html>

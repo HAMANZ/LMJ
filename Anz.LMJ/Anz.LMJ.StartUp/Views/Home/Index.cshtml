@@ -1,0 +1,1141 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@using Anz.LMJ.BLO.LookUpObjects;
+@using Anz.LMJ.BLO.ContentObjects;
+@using Anz.LMJ.BLO.LogicObjects.Issue;
+
+@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    ViewBag.Title = "Home";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Mouse+Memoirs&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="~/slick/slick-theme.css" />
+
+    <title>LMJ | JML</title>
+
+    <style>
+        .slick-slide {
+            display: none;
+            float: left;
+            height: 450px !important;
+        }
+        /*=============================================
+        =            Hero Banner Section             =
+        =============================================*/
+        .section__banner {
+            position: relative;
+        }
+
+        .section__banner--img {
+            width: 100%;
+            filter: brightness(40%);
+        }
+
+        @@media only screen and (max-width: 37.5em) {
+            .section__banner--img {
+                height: 34vh;
+            }
+        }
+
+        .section__banner--textbox {
+            position: absolute;
+            top: 20%;
+            left: 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @@media only screen and (max-width: 37.5em) {
+            .section__banner--textbox {
+                top: 10%;
+            }
+
+            .section__banner .slick-dots {
+                display: none !important;
+            }
+        }
+
+        .section__banner--textbox-btns {
+            display: flex;
+            width: 33rem;
+            justify-content: flex-start;
+        }
+
+        .section__banner .heading-tertiary {
+            color: #fff;
+        }
+
+        /*=====  End of Banner Section  ======*/
+        body {
+            /*overflow-x: hidden;*/
+        }
+
+        .section__purpose .slick-slider {
+            overflow: hidden;
+            z-index: 11;
+        }
+
+        .carousel img {
+            padding: 2rem;
+        }
+
+
+        .paragraph {
+            width: 75%;
+            font-size: inherit;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .section-about .paragraph {
+            width: 50% !important;
+        }
+
+        .section-about--redLeaf {
+            opacity: 5 !important;
+        }
+
+        .u-margin-bottom-big {
+            margin-bottom: 8rem !important;
+        }
+
+        .heading-mission:after {
+            background-image: url(../../Images/vectorwhite.svg);
+            display: block;
+            width: auto;
+            height: 0.5em;
+            content: "";
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .section-about--redLeaf {
+            width: 22em;
+        }
+
+        @@media only screen and (max-width: 75em) {
+
+            .section-about--redLeaf {
+                width: 18em;
+            }
+        }
+
+        .blue-leaf {
+            top: 0px !important;
+            width: 18em !important;
+            opacity: 0.5;
+        }
+
+        .Green-Banner {
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            opacity: 0.5;
+            width: 15%;
+        }
+
+        .paragraph-news {
+            font-weight: bold;
+            padding-top: 3em;
+            margin-bottom: 3em;
+        }
+
+        .section__purpose--lowerSection-left-leaf1 {
+            position: absolute;
+            left: 0;
+            width: 19%;
+        }
+
+        .btn, .btn:link, .btn:visited {
+            margin: 1% !important;
+        }
+
+        .EventsLeaf {
+            position: absolute;
+            bottom: 0rem;
+            left: 0;
+            width: 16em;
+            /*opacity: 0.2;*/
+            z-index: 0;
+        }
+
+        .section__purpose--upperSection {
+            background: #004FAE !important;
+        }
+
+        .NewsHeight {
+            height: 983px;
+        }
+
+        .pinkleafhome {
+            position: absolute;
+            right: 0;
+            width: 12%;
+            bottom: 0;
+        }
+
+        .secondSection {
+            height: 50em;
+        }
+
+            .secondSection .heading-secondary {
+                font-size: 2.3rem;
+            }
+
+        .BackgroundImageMission {
+            height: 100%;
+            width: 100%;
+        }
+
+        .lower-Events, .upper-Mission {
+            height: 48em;
+            z-index: 99;
+        }
+
+        .center-event {
+            position: relative;
+            height: 100%;
+        }
+
+        .bg-events {
+            height: 100%;
+        }
+
+        .section__purpose--upperSection-right {
+            height: 100%;
+            width: 50%;
+            padding-top: 25rem;
+            padding-left: 6rem;
+            color: #fff;
+            position: relative;
+            padding-right: 6rem;
+        }
+
+        .section__purpose--lowerSection-right {
+            margin-bottom: 0rem;
+        }
+
+        .section__news {
+            background: url(https://cdn.shopify.com/s/files/1/2396/6529/files/oie_6103519v21uWWP4.png?3127);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 3rem 0;
+            margin-top: -4rem;
+            position: relative;
+        }
+
+        @@media screen and (max-width: 482px) {
+            .heading-secondary:after, .heading-mission:after {
+                background-size: 2em !important;
+            }
+            /*.section__news--blocks-item {
+                        height: 32em;
+                    }*/
+            .lower-Events, .upper-Mission {
+                height: 60em !important;
+            }
+
+
+            .section__purpose--upperSection-left {
+                height: 50%;
+            }
+
+            .section__purpose--lowerSection-right {
+                height: 50%;
+            }
+
+            .section__purpose--lowerSection-left u-center-text center-event {
+                padding-top: 225px;
+            }
+
+            .section__purpose--upperSection-right {
+                padding-top: 150px !important;
+            }
+
+            .section__purpose--lowerSection-left {
+                padding-top: 60px !important;
+            }
+            /*.section__news--blocks-item img {
+                        height: 63%;
+                    }*/
+            .section__news--blocks-item_text {
+                height: 37%;
+                overflow: hidden;
+            }
+        }
+
+        .paragraph-Testimonials {
+            width: 75%;
+            font-size: inherit;
+            text-align: center;
+            margin: 0 auto;
+            margin-bottom: 0em !important;
+            position: absolute;
+            bottom: 2rem;
+            LEFT: 50%;
+            transform: translate(-50%);
+        }
+
+            .paragraph-Testimonials a {
+                color: white;
+                text-decoration: underline;
+            }
+
+        .newTesti .section__testimonials--rowBlock-block {
+            width: 95% !important;
+        }
+
+        @@media screen and (max-width: 950px) and (min-width:482px) {
+
+            .section__news--blocks-item {
+                height: 50em !important;
+            }
+
+            .section__purpose--upperSection-right {
+                padding-top: 28rem !important;
+            }
+
+            .section__purpose--lowerSection-left {
+                padding-top: 28rem !important;
+            }
+
+
+            .lower-Events, .upper-Mission {
+                height: 100em !important;
+            }
+
+
+            .section__purpose--upperSection-left {
+                height: 50%;
+            }
+
+            .section__purpose--lowerSection-right {
+                height: 50%;
+            }
+        }
+
+
+
+
+
+        @@media screen and (max-width: 650px) and (min-width:482px) {
+
+            .section__news--blocks-item {
+                height: 40em !important;
+            }
+        }
+        /*
+
+                @@media screen and (max-width: 767px) and (min-width:482px) {
+
+                    .lower-Events, .upper-Mission {
+                        height: 100em !important;
+                    }
+
+
+
+
+
+                }
+                @@media screen and (max-width: 1199px) and (min-width:768px) {
+
+                    .lower-Events, .upper-Mission {
+                        height: 36em !important;
+                    }
+
+                }*/
+
+
+        @@media screen and (min-width:1200px) {
+
+            .section__news--blocks-item {
+                height: 40em !important;
+            }
+
+                .section__news--blocks-item img {
+                    height: 40%;
+                }
+
+            .lower-Events, .upper-Mission {
+                height: 44em;
+            }
+
+            .section__purpose--upperSection-right {
+                height: 100% !important;
+            }
+
+            .section__purpose--upperSection-left {
+                height: 100%;
+            }
+
+            .section__purpose--lowerSection-right {
+                height: 100%;
+            }
+        }
+
+        @@media only screen and (max-width: 56.25em) {
+            /*.lower-Events, .upper-Mission {
+                        height: 74em !important;
+                    }*/
+            .newTesti .section__testimonials--rowBlock-block {
+                width: 95% !important;
+                height: 33rem !important;
+                font-size: 1rem;
+            }
+
+            .newTesti .slick-dots {
+                bottom: 10px !important;
+            }
+
+            .right_sec {
+                padding: 1rem !important;
+                width: 50% !important;
+            }
+
+            .mobile-donate {
+                display: block !important;
+                position: fixed;
+                padding-top: 2rem;
+                top: 11rem;
+                width: 4em;
+                height: 4em;
+                right: 3rem;
+                background-color: #ea3828;
+                border-radius: 50%;
+                color: white !important;
+                z-index: 2000;
+                box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+                text-align: center;
+                cursor: pointer;
+            }
+
+            .section__banner--textbox-btns .btn {
+                padding: 0.5rem 1.5rem !important;
+            }
+
+            .heading-primary {
+                font-size: 2rem;
+                letter-spacing: .1rem;
+            }
+
+            .section__purpose--lowerSection-left {
+                position: relative;
+                height: 55% !important;
+            }
+
+            .section__purpose--upperSection-right {
+                position: relative;
+                /*height: 50% !important;*/
+                padding-top: 150px;
+            }
+
+
+            .section__purpose--upperSection-right {
+                height: 36em;
+                width: 100% !important;
+                padding-top: 25rem;
+                padding-left: 6rem;
+                color: #fff;
+                position: relative;
+                padding-right: 6rem;
+            }
+
+            .section__news {
+                background: url(https://cdn.shopify.com/s/files/1/2396/6529/files/oie_6103519v21uWWP4.png?3127);
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                padding: 3rem 0;
+                margin-top: -3rem;
+                position: relative;
+            }
+
+            .section__purpose--upperSection-right-leaf {
+                top: 0rem !important;
+            }
+
+            .section__news--blocks {
+                align-items: center !important;
+            }
+
+            .NewsHeight {
+                height: auto;
+            }
+
+            .blue-leaf {
+                opacity: 0.5;
+                top: -1.2em !important;
+                width: 10em !important;
+            }
+
+            .pinkleafhome {
+                width: 9em;
+            }
+
+            .btn, .btn:link, .btn:visited {
+                padding: 0.8rem 3.5rem;
+                margin: 4px;
+            }
+
+            .footer .btn {
+                padding: 2rem 4.8rem;
+            }
+            /*.section__purpose--upperSection-right {
+                        padding-top: 8rem !important;
+                    }*/
+            .section-about--redLeaf {
+                width: 10em;
+            }
+
+
+            .Green-Banner {
+                width: 4em;
+            }
+
+            .EventsLeaf {
+                width: 10em;
+            }
+        }
+
+        .u-left-text-0 {
+            text-align: left !important;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: -10;
+            opacity: 0.5;
+        }
+
+        .u-left-text-1 {
+            text-align: left !important;
+            position: absolute;
+            top: 0em;
+            left: 12px;
+            z-index: -10;
+            opacity: 0.5;
+        }
+
+        .u-left-text-2 {
+            text-align: left !important;
+            position: absolute;
+            z-index: -10;
+            opacity: 0.5;
+            right: 0;
+            bottom: 0;
+        }
+
+        .section__testimonials .testimonial-orange, .section__testimonials .testimonial-yellow {
+            z-index: 10;
+        }
+
+        .section__testimonials .testimonial-purple {
+            z-index: 10;
+        }
+
+
+
+
+
+        .slick-dots {
+            bottom: 40px;
+        }
+
+            .slick-dots li {
+                width: 15px;
+                height: 15px;
+            }
+
+                .slick-dots li button {
+                    color: white;
+                    background: transparent;
+                }
+
+                    .slick-dots li button:before {
+                        font-size: 8px;
+                        color: white;
+                        opacity: 1;
+                    }
+
+                .slick-dots li.slick-active button:before {
+                    color: #004fae;
+                }
+
+        .slick-dotted.slick-slider {
+            margin-bottom: 0px;
+        }
+
+        .newTesti .section__testimonials--rowBlock-block {
+            width: 40%;
+            height: 28rem;
+            padding: 0rem 0rem;
+            border-radius: 2rem;
+            position: relative;
+            display: flex;
+            margin: auto;
+        }
+
+        .right_sec {
+            padding: 1rem;
+            position: relative;
+            text-align: right;
+            color: white !important;
+            font-size: 1rem;
+            width: 50%;
+        }
+
+        .left_sec img {
+            height: 100%;
+            border-top-left-radius: 2rem;
+            border-bottom-left-radius: 2rem;
+        }
+
+        .left_sec {
+            width: 50%;
+        }
+
+        .info_box {
+            position: absolute;
+            bottom: 2em;
+            text-align: left;
+            color: white !important;
+        }
+
+            .info_box p {
+                margin: 0;
+                font-weight: 300;
+            }
+
+        .newTesti .slick-dots {
+            bottom: 20px;
+        }
+
+        @@media only screen and (max-width: 56.25em) {
+            .secondSection strong {
+                font-size: 2.2rem !important;
+            }
+
+            .secondSection {
+                height: 60em;
+            }
+
+                .secondSection .heading-secondary {
+                    font-size: 1.5rem !important;
+                }
+
+            .right_sec {
+                padding: 1rem !important;
+                width: 45% !important;
+            }
+
+            .left_sec {
+                width: 55%;
+            }
+
+                .left_sec img {
+                    width: 100%;
+                }
+        }
+
+        .section__testimonials--rowBlock-block {
+            box-shadow: none;
+        }
+
+        .secondSection strong {
+            font-size: 1.8rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <main id="main" class="index-container">
+
+        <section class="section__banner">
+
+            @{
+                List<string> imgs1 = new List<string>();
+                imgs1 = @ViewBag.Banner.BackgroundImage;
+            }
+            <div class="banner--wrapper">
+                @for (int d = 0; d < imgs1.Count; d++)
+                {
+                    <img class="section__banner--img" src="~/Images/Articles/@imgs1[d]">
+                }
+            </div>
+            <div class="section__banner--textbox">
+                <h1 class="heading-primary u-margin-bottom-small">
+                    @ViewBag.Banner.Title
+                </h1>
+                <h5 class="heading-tertiary u-margin-bottom-medium">
+                    @ViewBag.Banner.SubTitle
+                </h5>
+                <div class="section__banner--textbox-btns">
+                    <a href="/Home/About" class="btn btn-primary">About Us</a>
+                    @*<a href="/Home/Members" class="btn btn-blue-trans">Our Members</a>*@
+                </div>
+            </div>
+        </section>
+        <br />
+        <div class="ArticlsSection">
+            <section id="latest-issues">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+
+
+                            @{ int j = 0;}
+                            @foreach (SubmissionLO item in (List<SubmissionLO>)(ViewBag.latestarticles))
+                            {
+
+                                if (j == 2)
+                                {
+                                    <div class="col-md-6 d-flex">
+                                        <div class="align-self-stretch">
+                                            <a href="/Home/ArticleDetails/@item.Id" class="block-20 rounded" style="background-image: url('/Images/Articles/@item.Photo')"></a>
+                                            <div class="text">
+                                                <button class="btn btn-secondary">@item.Specialit</button>
+                                                <h2 href="/Home/ArticleDetails/@item.Id">
+                                                    @(item.Title.Length > 38 ? item.Title.Substring(0,38) + "..." : item.Title)
+                                                </h2>
+                                                <div class="meta mb-2">
+                                                    <div>By @item.Author.FirstName  @item.Author.LastName</div>
+                                                    <div>@item.PublishDate.ToString("MMM .dd . yyyy") | @item.Type</div>
+                                                    <div>@item.Volume |  @item.IssueNO.Split('(')[0]</div>
+                                                </div>
+                                                <button href="/Home/ArticleDetails/@item.Id" class="btn btn-grey">Read More</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                if (j < 2)
+                                {
+
+                                    string[] issno = @item.IssueNO.Split('(');
+                                    <div class="align-self-stretch">
+                                        <a href="/Home/ArticleDetails/@item.Id" class="block-10 rounded" style="background-image: url('/Images/Articles/@item.Photo')"></a>
+                                        <div class="text">
+                                            <button class="btn btn-secondary">@item.Specialit</button>
+                                            <a href="/Home/ArticleDetails/@item.Id">
+                                                <h3>
+                                                    @(item.Title.Length > 38 ? item.Title.Substring(0,38) + "..." : item.Title)
+                                                </h3>
+                                            </a>
+                                            <div class="meta mb-2">
+                                                <p> @item.SubTitle</p>
+                                                <div>By @item.Author.FirstName  @item.Author.LastName</div>
+                                                <div>@item.PublishDate.ToString("MMM .dd . yyyy") | @item.Type</div>
+                                                <div>@item.Volume | @issno[0]</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                if (j == 1)
+                                {
+                                @:</div>
+
+
+
+
+                            }
+                            j++;
+                        }
+                            <div class="col-md-3 d-flex grey-box">
+                                <a href="/Home/ArticlesByIssueId?issueid=@ViewBag.latestIssues.Id">
+                                    <div class="align-self-stretch">
+                                        <h1>Latest issue</h1>
+                                        <a href="/Home/ArticlesByIssueId?issueid=@ViewBag.latestIssues.Id"><h5>@ViewBag.latestIssues.Title </h5></a>
+                                        <p>@ViewBag.latestIssues.SubTitle</p>
+                                        <img src="/Images/Articles/@ViewBag.latestIssues.CoverImage">
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+                <section class="ftco-section testimony-section bg-light TopReadArticlesSection padding-top-btm">
+                    <div class="container">
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-md-7 heading-section text-center">
+                                <h2>top read Articles</h2>
+                                <div class="about-border"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="carousel-testimony owl-carousel">
+                                    @foreach (SubmissionLO item in (List<SubmissionLO>)(ViewBag.articles))
+                                    {
+                                        if (item.isTopReader)
+                                        {
+                                            string[] issno = @item.IssueNO.Split('(');
+                                            <div class="item">
+                                                <div class="testimony-wrap d-flex">
+                                                    <div class="text">
+                                                        <button class="btn btn-grey">@item.Type</button>
+                                                        <a href="/Home/ArticleDetails/@item.Id">
+                                                            <p class="name">
+                                                                @(item.Title.Length > 35 ? item.Title.Substring(0,35) + "..." : item.Title)
+                                                            </p>
+                                                        </a>
+                                                        <div>By @item.Author.FirstName  @item.Author.LastName</div>
+                                                        <div>@item.PublishDate.ToString("MMM .dd . yyyy") | @item.Specialit</div>
+                                                        <div>@item.Volume | @issno[0]</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="ftco-section EditorsPickSection padding-top-btm">
+                    <div class="container">
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-md-7 heading-section text-center">
+                                <h2>Editor’s pick</h2>
+                                <div class="about-border"></div>
+
+                            </div>
+                        </div>
+                        <div class="row d-flex">
+
+                            @foreach (SubmissionLO item in (List<SubmissionLO>)(ViewBag.articles))
+                            {
+                                if (item.isEditorsPick)
+                                {
+
+                                    string[] issno = @item.IssueNO.Split('(');
+                                    <div class="col-md-4 d-flex">
+                                        <div class="align-self-stretch">
+                                            <a href="/Home/ArticleDetails/@item.Id" class="block-20 rounded" style="background-image: url('/Images/Articles/@item.Photo')">
+                                            </a>
+                                            <div class="text">
+                                                <button class="btn btn-secondary">@item.Type</button>
+                                                <a href="/Home/ArticleDetails/@item.Id">
+                                                    <h3 class="heading"> @(item.Title.Length > 38 ? item.Title.Substring(0,38) + "..." : item.Title)</h3>
+                                                </a>
+                                                <div class="meta">
+                                                    <p>@item.SubTitle</p>
+                                                    <div>By @item.Author.FirstName  @item.Author.LastName</div>
+                                                    <div>@item.PublishDate.ToString("MMM .dd . yyyy") | @item.Type</div>
+                                                    <div>@item.Volume | @issno[0]</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+
+                            }
+                        </div>
+                    </div>
+                </section>
+                @*@if (ViewBag.News.Count != 0)
+                    {
+                        <section class="ftco-section testimony-section bg-light AnnouncementsNewsSection padding-top-btm">
+                            <div class="container">
+                                <div class="row justify-content-center mb-3">
+                                    <div class="col-md-7 heading-section text-center">
+                                        <h2>Announcements and News</h2>
+                                        <div class="about-border"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="carousel-testimony owl-carousel">
+                                            @foreach (News item in (List<News>)(ViewBag.News))
+                                            {
+
+                                                <div class="item">
+                                                    <div class="testimony-wrap d-flex">
+                                                        <div class="align-self-stretch">
+                                                            <a href="#" class="block-180 rounded" style="background-image: url('/Images/@item.Image')"></a>
+                                                            <div class="text">
+                                                                <a href="/Home/ArticleDetails/@item.Id"> <button class="btn btn-secondary">Ethics</button></a>
+                                                                <h3 class="heading">@item.Title</h3>
+                                                                <div class="meta">
+                                                                    <p>@item.SubDesc</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    }*@
+                @if (ViewBag.Videos.Count != 0)
+                {
+                    <section class="ftco-section VideosSection padding-top-btm">
+                        <div class="container px-md-0">
+                            <div class="row no-gutters justify-content-center mb-3">
+                                <div class="col-md-7 heading-section text-center">
+                                    <h2>Videos</h2>
+                                    <div class="about-border"></div>
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
+                                @{
+                                    int i = 0;}
+                                @foreach (Videos item in (List<Videos>)(ViewBag.Videos))
+                                {
+
+                                    if (@i == 0)
+                                    {
+                                        @:<div class="col-lg-9">
+                                            <div class="img-section">
+                                                <a href="/Home/VideoDetail/@item.Id">
+                                                    '
+                                                    <img src="~/Images/Articles/Videos/@item.Image" class="largeImg">
+                                                </a>
+                                            </div>
+                                        }
+                                        if (@i == 0)
+                                        {
+                                        @:</div>
+                                    }
+                                    i++;
+                                    if (@i == 1)
+                                    {
+                                        @:<div class="col-lg-3">
+                                        }
+                                        if (@i <= 3 && @i != 0)
+                                        {
+                                            <div class="img-section" style="padding: 2px;">
+                                                <a href="/Home/VideoDetail/@item.Id">
+                                                    <img src="~/Images/Articles/Videos/@item.Image" class="smallImg">
+                                                    <h5>@item.Name</h5>
+                                                </a>
+                                            </div>
+
+                                        }
+                                        if (@i == 3)
+                                        {
+                                        @:</div>
+                                    }
+
+                                }
+                                @{ if (@i == 3)
+                                    {
+                                        @Html.Raw("</div>");
+                                    }
+
+                                }
+                                <div class="row no-gutters VideoDesc">
+                                    @foreach (Videos item in (List<Videos>)(ViewBag.Videos))
+                                    {
+
+
+                                        if (@i == 4)
+                                        {
+                                            <div class="col-lg-12">
+                                                <div class="text">
+                                                    <a href="/Home/VideoDetail/@item.Id"> <button class="btn btn-secondary">View</button></a>
+                                                    <h2>
+                                                        @item.Name
+                                                    </h2>
+
+                                                    <p> @item.SubDesc</p>
+                                                </div>
+                                            </div>
+                                        }
+                                        i++;
+                                    }
+                                </div>
+                            </div>
+                    </section>
+                }
+                @if (ViewBag.Events.Count != 0)
+                {
+                    <section id="services" class="EventsSection">
+                        <div class="container">
+
+                            <div class="row no-gutters justify-content-center mb-3">
+                                <div class="col-md-7 heading-section text-center">
+                                    <h2>Events</h2>
+                                    <div class="about-border"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                @foreach (Events item in (List<Events>)(ViewBag.Events))
+                                {
+
+                                    <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                                        <div class="box">
+                                            <div class="room-wrap d-md-flex bg-grey" style="background-image: url('/Images/@item.MainImg')">
+                                                <div class="half d-flex align-items-center">
+                                                    <div class="text p-4 p-xl-5">
+                                                        <img clas="smallImg" />
+                                                        <a href="/Home/EventDetail/@item.Id"> <button class="btn btn-secondary">View</button></a>
+                                                        <h3>@item.MainTitle</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </section>
+                }
+                <section id="portfolio" class="section-bg PreviousIssuesSection bg-light">
+                    <div class="container">
+
+                        <div class="row no-gutters justify-content-center mb-3">
+                            <div class="col-md-7 heading-section text-center">
+                                <h2>Issues</h2>
+                                <div class="about-border"></div>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul id="portfolio-flters">
+                                    <li data-filter="*" class="filter-active">All</li>
+                                    <li data-filter=".filter-app">Current Issue </li>
+                                    <li data-filter=".filter-card">Recent Issues</li>
+                                    <li data-filter=".filter-web">Full Issue Index</li>
+                                    <li data-filter=".filter-lmj">LMJ archive</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row portfolio-container">
+                            @foreach (IssueLO item in (List<IssueLO>)(ViewBag.allissues))
+                            {
+                                string classfilter = "", datawowdelay = "";
+                                DateTime dateValue, CurrentFromDate, CurrentToDate, RecentFromDate, RecentToDate, IndexFromDate, IndexToDate, ArchiveFromDate, ArchiveToDate;
+                                DateTime current = DateTime.Now.AddDays(-620);
+                                DateTime.TryParse(@item.Date.ToString(), out dateValue);
+
+                                DateTime.TryParse(@ViewBag.issuefilter.CurrentFromDate.ToString(), out CurrentFromDate);
+                                DateTime.TryParse(@ViewBag.issuefilter.CurrentFromDate.ToString(), out CurrentToDate);
+                                DateTime.TryParse(@ViewBag.issuefilter.RecentFromDate.ToString(), out RecentFromDate);
+                                DateTime.TryParse(@ViewBag.issuefilter.RecentToDate.ToString(), out RecentToDate);
+                                DateTime.TryParse(@ViewBag.issuefilter.IndexFromDate.ToString(), out IndexFromDate);
+                                DateTime.TryParse(@ViewBag.issuefilter.IndexToDate.ToString(), out IndexToDate);
+                                DateTime.TryParse(@ViewBag.issuefilter.ArchiveFromDate.ToString(), out ArchiveFromDate);
+                                DateTime.TryParse(@ViewBag.issuefilter.ArchiveToDate.ToString(), out ArchiveToDate);
+
+                                if (CurrentFromDate <= dateValue && CurrentToDate >= dateValue)
+                                {
+                                    classfilter = "filter-app";
+                                    datawowdelay = "0.1s";
+                                }
+                                else if (RecentFromDate <= dateValue && RecentToDate >= dateValue)
+
+                                {
+                                    classfilter = "filter-card";
+                                    datawowdelay = "0.2s";
+                                }
+                                else if (IndexFromDate <= dateValue && IndexToDate >= dateValue)
+
+                                {
+                                    classfilter = "filter-web";
+                                    datawowdelay = "0.3s";
+                                }
+                                else if (ArchiveFromDate <= dateValue || ArchiveToDate >= dateValue)
+
+                                {
+                                    classfilter = "filter-lmj";
+                                }
+                            }
+                                </div>
+                      </section>
+
+            </main>
+
+
+            <script type="text/javascript" src="~/Content/lib/jquery/jquery-1.11.0.min.js"></script>
+            <script type="text/javascript" src="~/Content/lib/jquery/jquery-migrate-1.2.1.min.js"></script>
+            <script type="text/javascript" src="~/slick/slick.min.js"></script>
+
+            <script type="text/javascript">
+
+
+
+
+
+                $('.carousel').slick({
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+
+
+                });
+                $('.section__purpose--upperSection-left').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 4000,
+                    dots: true,
+                    arrows: false,
+                    pauseOnHover: false
+                });
+                $('.section__purpose--lowerSection-right').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 4000,
+                    dots: true,
+                    arrows: false,
+                    pauseOnHover: false
+                });
+                $('.banner--wrapper').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 4000,
+                    dots: true,
+                    arrows: false,
+                    pauseOnHover: false,
+                });
+
+                $('.newTesti').slick({
+
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 4000,
+                    dots: true,
+                    arrows: false,
+                    responsive: [
+                        {
+                            breakpoint: 768,
+                            settings: {
+
+                                slidesToShow: 1
+                            }
+                        }]
+                });
+            </script>
+        </body>
+
+    </html>

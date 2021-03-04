@@ -1,0 +1,472 @@
+﻿@using Anz.LMJ.BLO.ContentObjects;
+@{
+    ViewBag.Title = "EventDetail";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<style>
+    .articles-details .hero-wrap {
+        margin-top: 8rem !important;
+    }
+
+    textarea {
+        position: absolute;
+        left: -100%;
+    }
+
+    .btn-secondary:hover {
+        color: #fff;
+        background-color: #f11a21;
+        border-color: #f11a21;
+    }
+
+    .btn-secondary {
+        color: #808080;
+        background-color: #ffffff;
+        border-color: #808080;
+    }
+
+    #modal-share .modal-header .close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    #modal-share .modal-title {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    #modal-share li {
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+        #modal-share li a {
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: 700;
+            width: 100%;
+            max-width: 300px;
+        }
+
+            #modal-share li a.btn-facebook {
+                background: #3b5998;
+            }
+
+            #modal-share li a.btn-twitter {
+                background: #00acee;
+            }
+
+            #modal-share li a.btn-linkedin {
+                background: #0e76a8;
+            }
+
+            #modal-share li a.btn-email {
+                background: #ddd;
+                color: #444;
+            }
+
+    .copy-text {
+        width: 100%;
+        height: auto;
+    }
+
+    .csl-wrapper a.copy__btn, .csl-wrapper a.download__btn {
+        color: #f11a21;
+        margin: 0 4px;
+        font-size: 14px;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .visibility-hidden {
+        visibility: hidden;
+    }
+
+    .list--inline {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: inline;
+    }
+
+        .list--inline > li {
+            display: inline-block;
+        }
+
+        .list--inline.separator > li {
+            border: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+</style>
+
+<div class="modal fade" id="ReviewModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="services-2 col-md-12 d-flex w-100">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <span class="flaticon-diet">A</span>
+                    </div>
+                    <div class="media-body pl-3">
+                        <h3 class="heading">Name</h3>
+                        <p>Your review will be posted publicly on the web.</p>
+                        <section class='rating-widget'>
+                            <div class='rating-stars'>
+                                <ul id='stars'>
+                                    <li class='star' title='Poor' data-value='1'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Fair' data-value='2'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Good' data-value='3'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Excellent' data-value='4'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='WOW!!!' data-value='5'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" id="message" cols="100" rows="4" placeholder="Write here..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel </button>
+                <button type="button" class="btn btn-primary">Post review</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="articles-details">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('/Images/@ViewBag.detail.MainImg')" data-stellar-background-ratio="0.5">
+        <div class="overlay">
+            <div class="container">
+
+                <div class="row no-gutters slider-text align-items-center justify-content-center">
+                    <div class="col-md-9 text-center">
+
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <section class="ftco-section ArticleDetails padding-top-btm">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-12">
+                    <div class="d-flex align-items-center">
+                        <div class="align-self-stretch">
+                            <div class="text">
+                                <h2>@ViewBag.detail.MainTitle</h2>
+                                <div class="meta mb-2">
+                                    <p><span></span>  @ViewBag.detail.EventDate  <span>&#183;</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section blogDetails">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 d-flex">
+                    <div class="d-block services-wrap text-center">
+                        <p class="pt-1">
+                            @ViewBag.detail.MainDesc
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 grey-box-article">
+                    <div class="heading-section py-2 text-center">
+                        <h4>related Event</h4>
+                        <div class="about-border"></div>
+                    </div>
+                    <div class="relatedItem">
+
+                        @foreach (Events item in (List<Events>)(ViewBag.Events))
+                        {
+
+                            <div class="item-block">
+                                <div class="d-block services-wrap text-center">
+                                    <img class="img" src="~/Images/Events/@item.MainImg">
+                                </div>
+                                <div class="media-body py-2">
+                                    <h5>@item.MainTitle</h5>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="shareBlock"></div>
+
+
+    <section class="ftco-section testimony-section bg-light padding-top-btm" style=" margin-top: 44px;">
+        <div class="container">
+            <div class="row justify-content-center mb-3">
+                <div class="col-md-7 heading-section text-center">
+                    <h2>Event Image</h2>
+                    <div class="about-border"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="carousel-testimony owl-carousel">
+                        @foreach (String item in (List<String>)(ViewBag.detail.SubImg))
+                        {
+
+                            <div class="item">
+                                <div class="testimony-wrap d-flex">
+                                    <div class="align-self-stretch">
+                                        <a href="#" class="block-180 rounded" style="background-image: url('/Images/@item')"></a>
+                                        <div class="text">
+                                            @*<h3 class="heading">@item.Title</h3>
+                                                <div class="meta">
+                                                    <p>@item.SubTitle</p>
+                                                </div>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+<script src="~/Content/lib/jquery/jquery.min.js"></script>
+<script src="~/Content/lib/jquery/jquery.c-share.js"></script>
+<script>
+
+
+
+    $(".copy__btn").on("click", function () {
+        copyFunction();
+
+    });
+
+    function copyFunction() {
+        const copyText = document.getElementById("copy-text").textContent;
+        const textArea = document.createElement('textarea');
+        textArea.textContent = copyText;
+        document.body.append(textArea);
+        textArea.select();
+        document.execCommand("copy");
+    }
+
+    $(".download__btn").on("click", function () {
+        var text = document.getElementById("copy-text").textContent;
+        var dt = new Date();
+        var time = "citation_file_" + dt.getHours() + "_" + dt.getMinutes() + "_" + dt.getSeconds();
+        download(time, text);
+    });
+
+    function copyToClipboard(elem) {
+        // create hidden text element, if it doesn't already exist
+        var targetId = "_hiddenCopyText_";
+        var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+        var origSelectionStart, origSelectionEnd;
+        if (isInput) {
+            // can just use the original source element for the selection and copy
+            target = elem;
+            origSelectionStart = elem.selectionStart;
+            origSelectionEnd = elem.selectionEnd;
+        } else {
+            // must use a temporary form element for the selection and copy
+            target = document.getElementById(targetId);
+            if (!target) {
+                var target = document.createElement("textarea");
+                target.style.position = "absolute";
+                target.style.left = "-9999px";
+                target.style.top = "0";
+                target.id = targetId;
+                document.body.appendChild(target);
+            }
+            target.textContent = elem.textContent;
+        }
+        // select the content
+        var currentFocus = document.activeElement;
+        target.focus();
+        target.setSelectionRange(0, target.value.length);
+
+        // copy the selection
+        var succeed;
+        try {
+            succeed = document.execCommand("copy");
+        } catch (e) {
+            succeed = false;
+        }
+        // restore original focus
+        if (currentFocus && typeof currentFocus.focus === "function") {
+            currentFocus.focus();
+        }
+
+        if (isInput) {
+            // restore prior selection
+            elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+        } else {
+            // clear temporary content
+            target.textContent = "";
+        }
+        return succeed;
+    }
+
+
+    function download(filename, text) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    }
+
+    $("document").ready(function () {
+
+        $("#btn-share").click(function () {
+            var shareHtml = "",
+                shareUrl = window.location.href,
+                el = $(this),
+                shareModalTitle = el.data("modal-title"),
+                shareModalDescription = el.data("modal-description"),
+                shareFacebookLabel = el.data("facebook-label"),
+                shareTwitterLabel = el.data("twitter-label"),
+                shareTwitterText = el.data("twitter-text"),
+                shareLinkedInLabel = el.data("linkedin-label"),
+                shareLinkedInTitle = encodeURIComponent(el.data("linkedin-title")),
+                shareLinkedInSummary = encodeURIComponent(el.data("linkedin-summary")),
+                shareLinkedInSource = window.location.protocol + "//" + window.location.hostname,
+                shareEmailLabel = el.data("email-label"),
+                shareEmailSubject = el.data("email-subject");
+
+            shareHtml += '<div class="modal fade in text-center" id="modal-share" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">' +
+                '<div class="modal-dialog modal-dialog-centered" >' +
+                '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>' +
+                '<h3 class="modal-title" id="myModalLabel">' + shareModalTitle + '</h3>';
+
+            if (shareModalDescription != undefined) {
+                shareHtml += '<p>' + shareModalDescription + '</p>';
+            }
+
+            shareHtml += '</div>' + '<div class="modal-body">' + '<ul class="list-unstyled">';
+
+            if (shareFacebookLabel != undefined) {
+                shareHtml += '<li><a href="https://www.facebook.com/sharer/sharer.php?u=' + shareUrl + '" title="' + shareFacebookLabel + '" target="_blank" class="btn btn-facebook"><i class="icon-facebook"></i> ' + shareFacebookLabel + '</a></li>';
+            }
+            if (shareTwitterLabel != undefined) {
+                shareHtml += '<li><a href="https://twitter.com/intent/tweet?text=' + shareTwitterText + '&url=' + shareUrl + '" title="' + shareTwitterLabel + '" target="_blank" class="btn btn-twitter"><i class="icon-twitter"></i> ' + shareTwitterLabel + '</a></li>';
+            }
+            if (shareLinkedInLabel != undefined) {
+                shareHtml += '<li><a href="https://www.linkedin.com/shareArticle?mini=true&url=' + shareUrl + '&title=' + shareLinkedInTitle + '&summary=' + shareLinkedInSummary + '&source=' + shareLinkedInSource + '" title="' + shareLinkedInLabel + '" target="_blank" class="btn btn-linkedin"><i class="icon-linkedin"></i> ' + shareLinkedInLabel + '</a></li>';
+            }
+            if (shareEmailLabel != undefined) {
+                shareHtml += '<li><a href="mailto:hudaabumayha.ham@gmail.com?subject=subject&body=body' + shareEmailSubject + '" title="' + shareEmailLabel + '" class="btn btn-email"><i class="icon-mail"></i> ' + shareEmailLabel + '</a></li>';
+            }
+
+            '</ul>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+
+            $("body").append(shareHtml);
+
+            $('#modal-share').modal()
+        });
+
+
+
+
+
+        $("#stars li")
+            .on("mouseover", function () {
+                var onStar = parseInt($(this).data("value"), 10);
+                $(this)
+                    .parent()
+                    .children("li.star")
+                    .each(function (e) {
+                        if (e < onStar) {
+                            $(this).addClass("hover");
+                        } else {
+                            $(this).removeClass("hover");
+                        }
+                    });
+            })
+            .on("mouseout", function () {
+                $(this)
+                    .parent()
+                    .children("li.star")
+                    .each(function (e) {
+                        $(this).removeClass("hover");
+                    });
+            });
+
+        $("#stars li").on("click", function () {
+            var onStar = parseInt($(this).data("value"), 10);
+            var stars = $(this).parent().children("li.star");
+
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass("selected");
+            }
+
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass("selected");
+            }
+
+            var ratingValue = parseInt(
+                $("#stars li.selected").last().data("value"),
+                10
+            );
+            var msg = "";
+            if (ratingValue > 1) {
+                msg = "Thanks! You rated this " + ratingValue + " stars.";
+            } else {
+                msg =
+                    "We will improve ourselves. You rated this " + ratingValue + " stars.";
+            }
+            responseMessage(msg);
+        });
+    });
+
+    function responseMessage(msg) {
+        $(".success-box").fadeIn(200);
+        $(".success-box div.text-message").html("<span>" + msg + "</span>");
+    }
+
+</script>
+
+

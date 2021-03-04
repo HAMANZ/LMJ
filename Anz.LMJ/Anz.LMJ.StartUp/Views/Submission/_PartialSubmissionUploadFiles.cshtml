@@ -1,0 +1,92 @@
+﻿
+@using Anz.LMJ.BLO.LogicObjects.Submission
+@model List<SubmissionFilesLO>
+
+
+@{
+    var modeladd = @ViewBag.model;
+    var Add = "ModelAdd" + @ViewBag.model;
+}
+
+<div class="modal fade GGGGGGGGGGGGGGGG" id="@Add" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="AddFiles-@modeladd"> Add </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                    <span aria-hidden="true">×</span>
+
+                </button>
+
+            </div>
+            <div class="modal-body @modeladd-model">
+
+                <div class="modal-body">
+                    <form id="form-@modeladd" method="post" action="/Submission/AddSubmissionFiles" enctype="multipart/form-data">
+
+                        <input type="hidden" name="submissionid" value="@ViewBag.submissionid" />
+                        <input type="hidden" name="attr" value="@ViewBag.attr" />
+                        <div id="@modeladd-files-container">
+
+                            <div class="@modeladd-files row">
+
+                                <div class="col-xs-3 col-sm-3 col-md-5 col-lg-3">
+
+                                    <div class="form-group">
+
+                                        <div class="input-group" id="@modeladd-component-reference">
+
+                                            <select onchange="OnChangeFileTypeSelectForm('@modeladd' ,this,true)" class="@modeladd form-control input-md" name="TypesId">
+                                                <option value="" selected="selected">File Type</option>
+                                                <option value="1">Manuscript</option>
+                                                <option value="2">Figure</option>
+                                                <option value="2">Table</option>
+                                                <option value="2">CopyRight</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    <div class="form-group">
+                                        <input class="form-control input-md @modeladd-name" name="FilesToUpload" type="file">
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-sm-5 col-md-5 col-lg-4">
+                                    <div class="Captiondiv">
+                                        <input class="form-control input-md @modeladd-Caption" placeholder="Caption" name="Captions" type="text">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                        <button type="button" class="btn btn-secondary add-files" onclick="AddFilesForm('@modeladd' , true )" id="add_model_files"> add files</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="ssubmit('@modeladd ')" class="btn btn-primary  Add-@modeladd">Add @modeladd</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<script>
+
+   function ssubmit(model){
+
+        $("#form-" +model).submit();
+    }
+
+
+
+   
+
+
+</script>

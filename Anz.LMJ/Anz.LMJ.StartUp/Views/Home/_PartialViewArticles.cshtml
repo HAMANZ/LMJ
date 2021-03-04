@@ -1,0 +1,60 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@using Anz.LMJ.BLO.LogicObjects.User;
+
+@model List<SubmissionLO>
+
+@if (Model != null)
+{
+    <section class="ftco-section EditorsPickSection ArticlesPage">
+        <div class="container">
+            @if (@ViewBag.issuedata != null)
+            {
+                <div class="row justify-content-center mb-3">
+                    <div class="col-md-7 heading-section text-center">
+                        <h2>@ViewBag.issuedata.IssuePrintNo</h2>
+                        <div class="about-border"></div>
+
+                    </div>
+                </div>
+            }
+            <div class="row d-flex">
+                @foreach (SubmissionLO item in (List<SubmissionLO>)Model)
+                {
+                    string[] issno = @item.IssueNO.Split('(');
+                    <div class="col-md-3 d-flex">
+                        <a href="/Home/ArticleDetails/@item.Id" class="align-self-stretch">
+                            <div class="block-160 rounded" style="background-image: url('/Images/Articles/@item.Photo')">
+                            </div>
+                            <div class="text">
+                                <button class="btn btn-secondary"> @(item.Specialit!=null ?  @item.Specialit : "Section")</button>
+                                <h3 class="heading">  @(item.Title.Length > 29 ? item.Title.Substring(0, 29) + "..." : item.Title)</h3>
+                                <div class="meta">
+                                    <div>@item.Type | @item.Specialit</div>
+                                    <div>Author: @item.Author.FirstName  @item.Author.LastName | Date: @item.PublishDate.ToString("dd. MM. yyyy")</div>
+                                    <div>@item.Volume | @issno[0]</div>
+                                    <br />
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="error-template">
+                    <h2>
+                        Not Found
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+}

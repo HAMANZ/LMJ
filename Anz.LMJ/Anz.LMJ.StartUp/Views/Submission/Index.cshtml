@@ -1,0 +1,1472 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@using Anz.LMJ.BLO.LogicObjects.User
+@model SubmissionLO
+
+@{
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+    var User = (UserQueueLO)ViewBag.queue;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <style>
+
+        .btn-primary.active, .btn-primary:active, .btn-primary:hover, .open > .dropdown-toggle.btn-primary {
+            color: #fff;
+            background-color: #AD0202;
+            border-color: #AD0202;
+        }
+        .btn-primary.active, .btn-primary:active, .btn-primary:hover, .open > .dropdown-toggle.btn-primary {
+            color: #fff;
+            background-color: #AD0202;
+            border-color: #AD0202;
+        }
+
+        .btn-primary.focus, .btn-primary:focus {
+            color: #fff;
+            background-color: #AD0202;
+            border-color: #AD0202;
+        }
+
+        .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover {
+            color: #fff;
+            background-color: #AD0202;
+            border-color: #AD0202;
+        }
+
+        .process-btn {
+            margin-left: 459px;
+        }
+        .process-buttons, .SkipSubmission {
+            padding: 5px 16px;
+            margin-left: 0px;
+            margin-top: -13px;
+        }
+            .metadata, .History {
+            margin-top: 10px;
+        }
+        .editPen {
+            color: #fff;
+        }
+
+        .smart-timeline-list:after {
+            left: 14px !important;
+        }
+
+.smart-timeline-icon {
+    left: 0px !important;
+}
+
+.smart-timeline-content {
+    margin-left: 55px;
+}
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------Time line style----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/* Timeline holder */
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+    /* Timeline vertical line */
+    ul.timeline:before {
+        content: ' ';
+        background: #ddd;
+        display: inline-block;
+        position: absolute;
+        left: 16px;
+        width: 4px;
+        height: 100%;
+        z-index: 400;
+        border-radius: 1rem;
+    }
+
+section .col-sub-title.odd span {
+    color: #fff;
+}
+
+.timeline-section span.odd a {
+    color: #fff;
+}
+
+.timeline-section span.odd {
+    color: #fff;
+    text-decoration: none;
+}
+
+li.timeline-item.odd {
+    color: white;
+    background: #AF0001;
+}
+
+li.timeline-item.even {
+    background: #fff;
+    border-left: 2px solid #474544;
+    border-bottom: 2px solid #474544;
+}
+
+li.timeline-item {
+    margin: 20px 0 0 20px;
+    border-radius: 12px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+}
+/* Timeline item arrow */
+.timeline-arrow {
+    border-top: 0.5rem solid transparent;
+    border-right: 0.5rem solid #fff;
+    border-bottom: 0.5rem solid transparent;
+    display: block;
+    position: absolute;
+    left: 2rem;
+}
+
+/* Timeline item circle marker */
+li.timeline-item::before {
+    content: ' ';
+    background: #ddd;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #333333bf;
+    left: 11px;
+    width: 14px;
+    height: 14px;
+    z-index: 400;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.text-gray {
+    color: #999;
+}
+
+.card {
+    background-color: dodgerblue;
+    color: white;
+    padding: 1rem;
+    height: 4rem;
+}
+
+.cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+}
+
+.TimeLineheader .columns {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    margin: 5px 0;
+}
+
+.columns {
+    display: flex;
+    flex-flow: row;
+    justify-content: left;
+    margin: 5px 0;
+}
+
+.section .col-title {
+    width: 115px;
+}
+
+.section .col-sub-title {
+    width: 47px;
+    font-size: 14px;
+}
+
+.section .column {
+    /*flex: 1;*/
+    margin: 2px;
+    &:first-child
+
+{
+    margin-left: 0;
+}
+
+&:last-child {
+    margin-right: 0;
+}
+
+}
+
+@@media screen and (max-width: 980px) {
+    .columns .column {
+        margin-bottom: 5px;
+        flex-basis: auto;
+        &:nth-last-child(2)
+
+{
+    margin-right: 0;
+}
+
+&:first-child {
+    flex-basis: auto;
+    margin: 0;
+}
+
+&:last-child {
+    flex-basis: 100%;
+    margin: 0;
+}
+
+}
+}
+
+@@media screen and (max-width: 980px) {
+    .columns .column {
+        margin-bottom: 5px;
+        flex-basis: auto;
+        &:nth-last-child(2)
+
+{
+    margin-right: 0;
+}
+
+&:first-child {
+    flex-basis: 10%;
+    margin: 0;
+}
+
+&:last-child {
+    flex-basis: 100%;
+    margin: 0;
+}
+
+}
+}
+
+
+@@media screen and (max-width: 680px) {
+    .columns .column {
+        /*flex-basis: 100%;*/
+        margin: 0 0 5px 0;
+    }
+
+    .timeLine-header .columns .column {
+        /*flex-basis: 100%;*/
+        margin: 0 0 5px 0;
+    }
+}
+
+hr {
+    display: block;
+    margin-before: 0.5em;
+    margin-after: 0.5em;
+    margin-start: auto;
+    margin-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}
+
+
+section .col-sub-title span {
+    color: #333;
+    display: inline-block;
+    vertical-align: 1px;
+    padding-right: 10px;
+}
+
+
+.section span i {
+    font-size: 9px;
+    padding-right: 16px;
+}
+
+.section span {
+    font-size: 16px;
+    color: #5e5e5e;
+    display: inline-block;
+    vertical-align: 1px;
+    margin-right: 30px;
+}
+
+.timeline-section span {
+    font-size: 14px;
+    color: #5e5e5e;
+    display: inline-block;
+    vertical-align: 1px;
+    margin-right: 12px;
+}
+
+    .timeline-section span a {
+        text-decoration: underline;
+    }
+
+
+
+#add_participant {
+    color: white;
+    background: #AF0001;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    text-transform: capitalize !important;
+    padding: 9px 9px !important;
+}
+#submit_form {
+    color: white;
+    background: #AF0001;
+    text-transform: capitalize !important;
+    padding: 13px 19px !important;
+    font-size: 16px !important;
+}
+
+.jarviswidget-color-blue > header {
+    border-color: #AF0001 !important;
+    background: #AF0001 !important;
+    color: #fff !important;
+}
+        .jarviswidget-editbox {
+            display: block;
+            padding: 10px;
+        }
+
+        .discussion-cell {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" role="main">
+
+
+        <div id="ribbon">
+
+            <span class="ribbon-button-alignment">
+                <span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh" rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
+                    <i class="fa fa-refresh"></i>
+                </span>
+            </span>
+
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li>Submission</li>
+            </ol>
+
+
+        </div>
+
+
+        <div id="main-content">
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                    <h1 class="page-title txt-color-blueDark">
+                        <i class="fa-fw fa fa-home"></i> Submission
+                        <span>> Submission Details</span>
+                    </h1>
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+
+                    <div class="btn-header pull-right">
+                        <button class="btn btn-default metadata" data-target="#ModelMetadata" data-toggle="modal">Metadata</button>
+                        @Html.Partial("_PartialModelMetadata", Model, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "MetaData"), new KeyValuePair<string, object>("User", User) })
+
+                    </div>
+                    <div class="btn-header pull-right">
+                        <button class="btn btn-default History" id="History">History</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+                    <div class="btn-header pull-right">
+                    </div>
+                    <div class="btn-header pull-right">
+                        @*<div class="process-div  pull-right">
+                        @Html.Partial("_PartialSubmissionDetailProcessButtons", Model.NextProcesses)
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+
+                @{ var active = "";}
+                <!-- widget grid -->
+                <section id="widget-grid" class="">
+                    <!-- row -->
+                    <div class="row" style="margin: 0 !important;">
+                        <article class="col-sm-12">
+                            <!-- new widget -->
+                            <div class="jarviswidget" id="wid-id-0" data-widget-togglebutton="false" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+                                <header>
+                                    <ul class="nav nav-tabs in" id="myTab">
+                                        @if (User.isEditor == true || User.isAuthor == true)
+                                        {
+                                            active = "active";
+                                            <li class="@active">
+                                                <a data-toggle="tab" href="#submission" onclick="GetDataOfTabs('submission')"><i class="fa fa-clock-o"></i> <span class="hidden-mobile hidden-tablet">Submission</span></a>
+                                            </li>
+                                        }
+                                        @if (User.isEditor == true || User.isReviewer == true)
+                                        {
+                                            active = "";
+                                            if (User.isReviewer == true)
+                                            {
+                                                //active = "active";
+                                            }
+                                            <li class="@active">
+                                                <a data-toggle="tab" href="#review" onclick="GetDataOfTabs('review')"> <i class="fa fa-clock-o"></i> <span class="hidden-mobile hidden-tablet">Review</span></a>
+                                            </li>
+                                        }
+                                        @if (User.isEditor == true || User.isCopyEditor == true)
+                                        {
+                                            active = "";
+                                            if (User.isCopyEditor == true)
+                                            {
+                                               // active = "active";
+                                            }
+                                            <li class="@active">
+                                                <a data-toggle="tab" href="#copyediting" onclick="GetDataOfTabs('copyediting')"> <i class="fa fa-clock-o"></i> <span class="hidden-mobile hidden-tablet">Copyediting</span></a>
+                                            </li>
+                                        }
+                                        @if (User.isEditor == true || User.isProofReader == true)
+                                        {
+                                            active = "";
+                                            if (User.isProofReader == true)
+                                            {
+                                               // active = "active";
+                                            }
+                                            <li class="@active">
+                                                <a data-toggle="tab" href="#production" onclick="GetDataOfTabs('production')"><i class="fa fa-clock-o"></i> <span class="hidden-mobile hidden-tablet">Production</span></a>
+                                            </li>
+
+                                        }
+
+                                    </ul>
+
+
+                                </header>
+
+                                <!-- widget div-->
+                                <div class="no-padding">
+                                    <!-- end widget edit box -->
+                                    <div class="widget-body">
+                                        <!-- content -->
+                                        <div id="myTabContent" class="tab-content">
+
+                                            @if (User.isEditor == true || User.isAuthor == true)
+                                            {
+                                                <div class="tab-pane fade active in padding-10 no-padding-bottom" id="submission">
+                                                    <!-- MAIN CONTENT -->
+                                                    <div class="tab-content">
+                                                        <div class="SubmissionContent"></div>
+                                                        @Html.Partial("_PartialSubmissionDetailDiscussionDataTable", Model.PreReviewDiscussion, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "Pre-Review Discussion"), new KeyValuePair<string, object>("Stage", "PreReview") })
+                                                       
+                                                        @Html.Partial("_PartialSubmissionUploadFiles", new ViewDataDictionary { new KeyValuePair<string, object>("model", "Submission"), new KeyValuePair<string, object>("submissionid", Model.Id), new KeyValuePair<string, object>("attr", "isSubmission") } )
+
+
+                                                        @if (Model.Stage == "Un-Assigned" || Model.Stage == "Editing")
+                                                        {
+                                                            @Html.Partial("_PartialSubmissionDetailProcessButtons", Model.NextProcesses)
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
+
+
+                                            @if (User.isEditor == true || User.isReviewer == true)
+                                            {
+
+                                                <div class="tab-pane fade  in padding-10 no-padding-bottom" id="review">
+                                                    <!-- MAIN CONTENT -->
+                                                    <div class="tab-content">
+                                                        <div class="ReviwerContent"></div>
+                                                        @Html.Partial("_PartialSubmissionDetailReviewersDataTable", Model.Reviewers, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "Reviewers") })
+
+                                                        @Html.Partial("_PartialSubmissionUploadFiles", new ViewDataDictionary { new KeyValuePair<string, object>("model", "Review"), new KeyValuePair<string, object>("submissionid", Model.Id), new KeyValuePair<string, object>("attr", "isRevision") })
+                                                        
+
+                                                        @if (Model.Stage == "Need Reviewers" || Model.Stage == "Review")
+                                                        {
+                                                            @Html.Partial("_PartialSubmissionDetailProcessButtons", Model.NextProcesses)
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            }
+                                            @if (User.isEditor == true || User.isCopyEditor == true)
+                                            {
+                                                <div class="tab-pane fade in padding-10 no-padding-bottom" id="copyediting">
+                                                    <!-- MAIN CONTENT -->
+                                                    <div class="tab-content">
+                                                        <div class="CopyEditorContent"></div>
+                                                        @* @Html.Partial("_PartialSubmissionDetailCopyEditorsDataTable", Model.CopyEditors, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "CopyEditors") })*@
+                                                        @Html.Partial("_PartialSubmissionDetailDiscussionDataTable", Model.CopyEditedDiscussion, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "CopyEdited Discussion"), new KeyValuePair<string, object>("Stage", "CopyEditingReview") })
+
+
+                                                        @Html.Partial("_PartialSubmissionUploadFiles", new ViewDataDictionary { new KeyValuePair<string, object>("model", "CopyEditor"), new KeyValuePair<string, object>("submissionid", Model.Id), new KeyValuePair<string, object>("attr", "isCopyedited") })
+                                                  
+                                                        @if (Model.Stage == "Need Copyeditors" || Model.Stage == "Copyediting")
+                                                        {
+                                                            @Html.Partial("_PartialSubmissionDetailProcessButtons", Model.NextProcesses)
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
+                                            @if (User.isEditor == true || User.isProofReader == true)
+                                            {
+                                                <div class="tab-pane fade  in padding-10 no-padding-bottom" id="production">
+                                                    <!-- MAIN CONTENT -->
+                                                    <div class="tab-content">
+                                                        <div class="ProductionContent"></div>
+                                                      @*  @Html.Partial("_PartialSubmissionDetailProofreadingDataTable", Model.ProofReaders, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "Proofreading") })*@
+                                                        @Html.Partial("_PartialSubmissionDetailDiscussionDataTable", Model.ProofReadingDiscussion, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "ProofReading Discussion"), new KeyValuePair<string, object>("Stage", "ProofReadingReview") })
+                                                        @Html.Partial("_PartialSubmissionDetailGalleysDataTable", Model.Galleys, new ViewDataDictionary { new KeyValuePair<string, object>("Title", "Galleys ") })
+
+                                                        @if (Model.Stage == "Production" || Model.Stage == "un-production" || Model.Stage == "pre-production" || Model.Stage == "publication" || Model.Stage == "Need Proofreaders")
+                                                        {
+                                                            @Html.Partial("_PartialSubmissionDetailProcessButtons", Model.NextProcesses)
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </div>
+</body>
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+
+
+    function getSchecduleForPublication(model) {
+        var tmp = null;
+         $.ajax({
+		    type: 'POST',
+		    url: '@Url.Action("GetNewsLetter")',
+		    async: false,
+		    success: function (result) {
+			    if (result.HttpStatusCode != 200) {
+				    alert(result.Message);
+			    } else {
+                    var modelForm = '<div class="modal fade" id="Model' + model + '" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">';
+                    modelForm += '<div class="modal-dialog modal-dialog-centered" role="document">';
+                    modelForm += '<div class="modal-content">';
+                    modelForm += '<div class="modal-header">';
+                    modelForm += '<h5 class="modal-title" id="AddFiles' + model + '">Publication </h5>';
+                    modelForm += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+                    modelForm += '<span aria-hidden="true">×</span>';
+                    modelForm += '</button>';
+                    modelForm += '</div>';
+                    modelForm += '<div class="modal-body">';
+                    modelForm += '<select class="' + model + '_component form-control input-md" name="' + model + '_component_id">';
+                    modelForm += '<option value="" selected="selected">Select NewsLetter</option>';
+                    for (var i = 0; i < result.Data.length; i++) {
+                        modelForm += ' <option value="' + result.Data[i].Id + '">' + result.Data[i].Name + '</option>';
+                    }
+                    modelForm += '</select>';
+
+                    modelForm += '</div>';
+                    modelForm += '<div class="modal-footer">';
+                    modelForm += '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
+                    modelForm += '<button type="button" onclick="AddLinkNewsLetter()" class="btn btn-primary "> Done </button>';
+                    modelForm += '</div></div></div></div>';
+                    tmp = modelForm;
+                }
+            },
+            error: function (ex) {
+
+            }
+        });
+        return tmp;
+    }
+
+
+    //get the Add Model For Adding Files in Specific stage
+
+
+    function AddLinkNewsLetter() {
+
+       var url = window.location.href;
+        var array = url.split('/');
+        var submissionid = array[array.length - 1];
+        var processid = 10014;
+        var id = $("select[name='production_component_id']").val();
+             $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("AddProcessToSubmission")',
+                              data: { processid:processid,submissionid: submissionid},
+                            success: function (result) {
+                                if (result.HttpStatusCode != 200) {
+                                    alert(result.Message);
+                                }
+                                else {
+                                $.ajax({
+		                        type: 'POST',
+		                        url: '@Url.Action("LinkToNewsletter")',
+		                        data: {submissionid: submissionid,newsletterid: id},
+		                        success: function (result) {
+			                        if (result.HttpStatusCode != 200) {
+				                        alert(result.Message);
+			                        } else {
+				                        location.reload(true);
+			                        }
+		                        },
+		                        error: function (ex) {
+
+		                        }
+	                        });
+                            location.reload(true);
+                            }
+                            },
+                            error: function (ex) {
+
+                            }
+        });
+
+    }
+
+    function getAddModel(model) {
+        var modelForm = '<div class="modal fade" id="ModelAdd' + model + '" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">';
+        modelForm += '<div class="modal-dialog modal-dialog-centered" role="document">';
+        modelForm += '<div class="modal-content">';
+        modelForm += '<div class="modal-header">';
+        modelForm += '<h5 class="modal-title" id="AddFiles' + model + '">Add ' + model + '</h5>';
+        modelForm += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+        modelForm += '<span aria-hidden="true">×</span>';
+        modelForm += '</button>';
+        modelForm += '</div>';
+        modelForm += '<div class="modal-body ' + model + '-model">';
+        modelForm += '<div class="modal-body">';
+        modelForm += '<div id="' + model + '_files_container">';
+        modelForm += '<div class="' + model + '_files row">';
+        modelForm += '<div class="col-xs-3 col-sm-3 col-md-5 col-lg-3">';
+        modelForm += '<div class="form-group">';
+        modelForm += '<div class="input-group" id="' + model + '_component_reference">';
+        modelForm += '<select onchange="OnChangeFileTypeSelectForm(' + "'" + model + "',this" + "," + true + ')" class="' + model + '_component form-control input-md" name="' + model + '_component_id">';
+        modelForm += '<option value="" selected="selected">File Type</option>';
+        modelForm += '<option value="1">Manuscript</option>';
+        modelForm += '<option value="2">Figure</option>';
+        modelForm += '<option value="2">Table</option>';
+        modelForm += '<option value="2">CopyRight</option>';
+        modelForm += '</select>';
+        modelForm += '</div>';
+        modelForm += '</div>';
+        modelForm += '</div>';
+        modelForm += '<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">';
+        modelForm += '<div class="form-group">';
+        modelForm += '<input class="form-control input-md ' + model + '-name" name="FilesToUpload" type="file">';
+        modelForm += '</div></div>';
+        modelForm += '<div class="col-xs-4 col-sm-5 col-md-5 col-lg-4">';
+        modelForm += '<div class="Captiondiv">';
+        modelForm += '<input class="form-control input-md ' + model + '-Caption" placeholder="Caption" name="' + model +'-Caption" type="text">';
+        modelForm += '</div></div></div></div>';
+        modelForm += '<button type="button" class="btn btn-secondary add-files" onclick="AddFilesForm(' + "'" + model + "'," + true + ')" id="add_' + model + '_files"> add files</button>';
+        modelForm += '</div>';
+        modelForm += '<div class="modal-footer">';
+        modelForm += '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
+        modelForm += '<button type="button" onclick="AddFilesFunction(' + "'" + model + "'" + ')" class="btn btn-primary  Add' + model + '">Add ' + model + '</button>';
+        modelForm += '</div></div></div></div>';
+        return modelForm;
+    }
+
+    function AddFilesForm(model, iscaption) {
+        var caption = "";
+        var inputfile = "";
+        if (iscaption) {
+            caption = '<div class="col-xs-4 col-sm-5 col-md-5 col-lg-4">' +
+                '<div class="Captiondiv"></div >' +
+                '</div>';
+            inputfile = '<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"><div class="uploadType"></div></div>';
+        }
+        else {
+            inputfile = '<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"><div class="uploadType"></div></div>';
+        }
+        var select = $("#" + model + "-component-reference");
+        $("#" + model + "-files-container").append('<div class="' + model + '_files row">' +
+            '<div class="col-xs-3 col-sm-3 col-md-5 col-lg-3">' +
+            '<div class="form-group">' +
+            select.clone().attr('class', model + '_component', 'name', 'TypeId').html() + '</div></div>' +inputfile + caption);
+
+
+
+        $("." + model + "-files").last().append('</div>');
+    }
+
+    function OnChangeFileTypeSelectForm(model, select, iscaption) {
+        $(select).parent().parent().parent().parent().find('.uploadType').html('<input class="form-control input-md ' + model + '-name" name="FilesToUpload" type="file">');
+        if (iscaption)
+        $(select).parent().parent().parent().parent().find('.Captiondiv').html('<input class="form-control input-md ' + model + '-Caption" placeholder="Caption" name="' + model +'-Caption" type="text">');
+    }
+
+
+    function AddFilesFunction(model) {
+
+        //var FilesToUpload = {}
+        var files = {}
+        var FilesToUpload = {}
+        var single_file = {}
+
+        var data = new FormData();
+	    var component = $("select[name='" + model + "_component_id']");
+        var file = $("." + model + "-name");
+        var Caption = $("." + model + "-Caption");
+	    for (var i = 0; i < file.length; i++) {
+            single_file = {};
+            file_to_upload = {};
+            filee= {};
+            single_file['TypeId'] = component[i].value;
+            single_file['Name'] = file[i].value.replace(/.*(\/|\\)/, '');
+            single_file['Caption'] = Caption[i].value;
+            filee['FileName'] = file[i].value;
+            filee['ContentLength'] = file[i].value;
+            filee['ContentType'] = file[i].value;
+            filee['ContentType'] = file[i].value;
+            
+            file_to_upload = filee;
+          
+            single_file['File'] = file_to_upload;
+            data.append("FilesToUpload", $("." + model + "-name")[0].files[i]);
+            single_file['FilesToUpload'] = data;
+            console.log(data);
+            files[i] = single_file;
+          
+
+        }
+
+       
+        
+	    if (model === "CopyEditor")
+		    filetype = "isCopyedited";
+	    if (model === "Submission")
+		    filetype = "isSubmission";
+	    if (model === "Review")
+		    filetype = "isRevision";
+
+
+        if (model ==="Galleys")
+            AddGalleys(files);
+        else AddFiles(files, filetype);
+    }
+
+        function AddGalleys(files) {
+	    var url = window.location.href;
+	    var array = url.split('/');
+	    var submissionid = array[array.length - 1];
+	    $.ajax({
+		    type: 'POST',
+		    url: '@Url.Action("AddGalleys")',
+		    data: {
+			    filestoupload: files,
+			    submissionid: submissionid,
+		    },
+		    success: function (result) {
+			    if (result.HttpStatusCode != 200) {
+				    alert(result.Message);
+                } else {
+
+				    location.reload(true);
+			    }
+		    },
+		    error: function (ex) {
+
+		    }
+	    });
+    }
+
+    function AddFiles(files, attr) {
+	    var url = window.location.href;
+	    var array = url.split('/');
+	    var submissionid = array[array.length - 1];
+	    $.ajax({
+		    type: 'POST',
+		    url: '@Url.Action("AddSubmissionFiles")',
+            data: {
+                files: files,
+			    submissionid: submissionid,
+			    attr: attr
+		    },
+		    success: function (result) {
+			    if (result.HttpStatusCode != 200) {
+				    alert(result.Message);
+			    } else {
+				    location.reload(true);
+			    }
+		    },
+		    error: function (ex) {
+
+		    }
+	    });
+    }
+
+
+     //get the  Files Data Table in Specific stage
+    function GetFiles(submissionid, isSubmission, isRevision, isCopyEdited, title, model) {
+	    var tmp = null;
+	    $.ajax({
+		    type: 'POST',
+		    url: '@Url.Action("GetFiles")',
+		    async: false,
+		    data: {
+			    submissionid: submissionid,
+			    isSubmission: isSubmission,
+			    isRevision: isRevision,
+			    isCopyEdited: isCopyEdited
+		    },
+		    success: function (result) {
+			    if (result.HttpStatusCode != 200) {
+				    alert(result.Message);
+			    } else {
+
+				    var table = '<div class="jarviswidget-editbox jarviswidget-color-darken" data-widget-colorbutton="false"><header>';
+				    table += '<div class="jarviswidget-ctrls"><a data-target="#ModelAdd' + model + '" class="get' + model + '" data-toggle="modal">Add ' + model + ' Files</a></div>';
+				    table += '<h2>' + title + '</h2></header>';
+				    table += '<div>';
+				    table += '<div class="widget-body no-padding">';
+				    table += '        <table class="table table-striped table-bordered table-hover" width="100%">';
+				    table += '           <thead>';
+				    table += '               <tr>';
+				    table += '                   <th>#</th>';
+				    table += '                    <th>Name</th>';
+				    table += '                    <th>File Type</th>';
+				    table += '                 </tr>';
+				    table += '           </thead>';
+				    table += '<tbody>';
+
+
+				    for (var i = 0; i < result.Data.length; i++) {
+					    table += ' <tr>';
+					    table += ' <td>' + (i + 1) + '</td>';
+					    table += ' <td>' + result.Data[i].Name + '</td>';
+					    table += ' <td>' + result.Data[i].TypeName + '</td>';
+					    table += ' </tr>';
+				    }
+				    table += '</tbody>';
+				    table += '</table></div></div></div>';
+				    tmp = table;
+
+
+			    }
+		    },
+		    error: function (ex) {
+
+		    }
+	    });
+	    return tmp;
+    }
+
+    //get the Acceptance Files Data Table in Specific stage
+    function GetAcceptanceFiles(submissionid, isAcceptedforReview, isAcceptedforCopyEditing, isAcceptedforProduction, title) {
+	    var tmp = null;
+	    $.ajax({
+		    type: 'POST',
+		    url: '@Url.Action("GetAcceptanceFiles")',
+		    async: false,
+		    data: {
+			    submissionid: submissionid,
+			    isAcceptedforReview: isAcceptedforReview,
+			    isAcceptedforCopyEditing: isAcceptedforCopyEditing,
+			    isAcceptedforProduction: isAcceptedforProduction
+		    },
+		    success: function (result) {
+			    if (result.HttpStatusCode != 200) {
+				    alert(result.Message);
+			    } else {
+
+				    var table = '<div class="jarviswidget-editbox jarviswidget-color-darken" data-widget-colorbutton="false">';
+				    table += '<header><h2>' + title + '</h2></header>';
+				    table += '<div>';
+				    table += '<div class="widget-body no-padding">';
+				    table += '        <table class="table table-striped table-bordered table-hover" width="100%">';
+				    table += '           <thead>';
+				    table += '               <tr>';
+				    table += '                   <th>#</th>';
+				    table += '                    <th>Name</th>';
+				    table += '                    <th>File Type</th>';
+				    table += '                 </tr>';
+				    table += '           </thead>';
+				    table += '<tbody>';
+
+
+				    for (var i = 0; i < result.Data.length; i++) {
+					    table += ' <tr>';
+					    table += ' <td>' + (i + 1) + '</td>';
+					    table += ' <td>' + result.Data[i].Name + '</td>';
+					    table += ' <td>' + result.Data[i].TypeName + '</td>';
+					    table += ' </tr>';
+				    }
+				    table += '</tbody>';
+				    table += '</table></div></div></div>';
+				    tmp = table;
+
+
+			    }
+		    },
+		    error: function (ex) {
+
+		    }
+	    });
+	    return tmp;
+    }
+
+    //Edit the attribute of acceptance for file in the process
+    function EditAcceptedForFiles(files, submissionid, attr, processid) {
+	    $.ajax({
+		    type: 'POST',
+		    url: '@Url.Action("EditAcceptedForFiles")',
+		    data: {
+			    filesid: files,
+			    submissionid: submissionid,
+			    attr: attr,
+			    processid: processid
+		    },
+		    success: function (result) {
+			    if (result.HttpStatusCode != 200) {
+				    alert(result.Message);
+			    } else {
+				    location.reload(true);
+			    }
+		    },
+		    error: function (ex) {
+
+		    }
+	    });
+    }
+
+
+    
+        function AddProcessToSubmission(processid, submissionid) {
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddProcessToSubmission")',
+                data: {
+                    processid: processid,
+                    submissionid: submissionid
+                },
+                success: function (result) {
+                    if (result.HttpStatusCode != 200) {
+                        alert(result.Message);
+                    } else {
+                       
+                    }
+                },
+                error: function (ex) {
+
+                }
+            });
+    }
+
+    function getusers(role) {
+        var filesckhd = [];
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetUserByRole")',
+            data: { role: role},
+            async: false,
+            success: function (result) {
+                if (result.HttpStatusCode != 200) {
+                    alert(result.Message);
+                }
+                else {
+                    for (var i = 0; i < result.Data.length; i++) {
+                        filesckhd.push(result.Data[i].Id);
+                    }
+
+                }
+            }
+        });
+
+        return filesckhd;
+    }
+
+        function AddUserRole(role, processidinmodel) {
+        var url = window.location.href;
+        var array = url.split('/');
+        var submissionid = array[array.length - 1];
+
+        var t=getusers(role);
+       
+             $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("AddReveiwers")',
+                 data: {
+                     userids: t, submissionid: submissionid, role: role , processidinmodel: processidinmodel},
+                            success: function (result) {
+                                if (result.HttpStatusCode != 200) {
+                                    alert(result.Message);
+                                }
+                                else {
+                                    location.reload(true);
+                                }
+                            },
+                            error: function (ex) {
+
+                            }
+                        });}
+
+    //Edit IsAcceptance for Files in specific stage
+    function AcceptFile(stage, isAcceptedFor) {
+        var processid = "";
+        var filesckhd = [];
+        var url = window.location.href;
+        var array = url.split('/');
+        var submissionid = array[array.length - 1];
+
+	    $("input:checkbox[name=accpted" + stage + "files]:checked").each(function () {
+		    filesckhd.push($(this).attr("value"));
+        });
+
+        var role;
+        
+        if (isAcceptedFor === "isAcceptedforCopyEditing") {
+            processid = 10009;
+            role = "copyediting";
+            AddUserRole(role, processid);
+            processid = $(".process-buttons").attr('id');
+            EditAcceptedForFiles(filesckhd, submissionid, isAcceptedFor, processid);
+        } 
+        if (isAcceptedFor === "isAcceptedforProduction") {
+            processid = 10012;
+            role = "proofreading";
+            AddUserRole(role, processid);
+            processid = $(".process-buttons").attr('id');
+            EditAcceptedForFiles(filesckhd, submissionid, isAcceptedFor, processid);
+        }
+        
+        if (isAcceptedFor === "isAcceptedforReview") {
+            processid = 10002;
+            EditAcceptedForFiles(filesckhd, submissionid, isAcceptedFor, processid);
+            AddProcessToSubmission(processid, submissionid)
+        }
+       
+        
+
+    }
+
+    //get Acceptance Files in Model for specific stage
+    function GetAcceptanceFilesModel(submissionid, isSubmission, isRevision, isCopyEdited, stage, isAcceptedFor) {
+	    var tmp = null;
+	        $.ajax({
+		        type: 'POST',
+		        url: '@Url.Action("GetFiles")',
+		        data: {
+			        submissionid: submissionid,
+			        isSubmission: isSubmission,
+			        isRevision: isRevision,
+			        isCopyEdited: isCopyEdited
+		        },
+		        async: false,
+		        success: function (result) {
+			        if (result.HttpStatusCode != 200) {
+				        alert(result.Message);
+			        } else {
+
+				        var table = '<div class="modal fade ModelAddAccept' + stage + 'Files" style = "display:none" id = "ModelAddAccept' + stage + 'Files" tabindex = "-1" role = "dialog" aria - labelledby="exampleModalCenterTitle" aria - hidden="true" >';
+				        table += '<div class="modal-dialog modal-dialog-centered" role="document">';
+				        table += '<div class="modal-content">';
+				        table += '<div class="modal-header">'
+				        table += '<h5 class="modal-title" id="exampleModalLongTitle">Files To Acceptance For ' + stage + '</h5>';
+				        table += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+				        table += '<span aria-hidden="true">×</span>';
+				        table += '</button>';
+				        table += '</div>';
+				        table += '<div class="modal-body acceptence-' + stage + '-files">';
+				        table += '<div class="jarviswidget-editbox jarviswidget-color-darken" data-widget-colorbutton="false">';
+				        table += '<header><h2>' + stage + ' Files for Acceptance</h2></header>';
+				        table += '<div>';
+				        table += '<div class="widget-body no-padding">';
+				        table += '        <table class="table table-striped table-bordered table-hover" width="100%">';
+				        table += '           <thead>';
+				        table += '               <tr>';
+				        table += '                   <th>#</th>';
+				        table += '                    <th>Name</th>';
+				        table += '                    <th>File Type</th>';
+				        table += '                 </tr>';
+				        table += '           </thead>';
+				        table += '<tbody>';
+
+
+				        for (var i = 0; i < result.Data.length; i++) {
+					        table += ' <tr>';
+					        table += ' <td><input type="checkbox" name="accpted' + stage + 'files" value="' + result.Data[i].Id + '"/></td>';
+					        table += ' <td>' + result.Data[i].Name + '</td>';
+					        table += ' <td>' + result.Data[i].TypeName + '</td>';
+					        table += ' </tr>';
+				        }
+				        table += '</tbody>';
+				        table += '</table></div></div></div>';
+				        table += '</div>';
+				        table += '<div class="modal-footer">';
+				        table += '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
+				        table += '<button type="button"  onclick = "AcceptFile(' + "'" + stage + "','" + isAcceptedFor + "'" + ')" class="btn btn-primary accpted' + stage + 'filesbtn">Accepted For ' + stage + '</button>';
+				        table += '</div></div></div></div>';
+				        tmp = table;
+			        }
+		        },
+		        error: function (ex) {
+
+		        }
+	        });
+	    return tmp;
+    }
+    function formatedate(date) {
+        var fullDate = new Date(date);
+        var twoDigitMonth = ((fullDate.getMonth().length + 1) === 1) ? (fullDate.getMonth() + 1) : '0' + (fullDate.getMonth() + 1);
+        var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+        return currentDate;
+    }
+
+
+    function timeLineform(color, title, data, files) {
+        var timeline = '<div class="timeline-section">';
+        timeline += '<section class="columns">';
+        timeline += '<div class="column col-sub-title ' + color + '">';
+        timeline += '<span ' + color + '>' + title + ': </span>';
+        timeline += '</div>';
+        timeline += '<div class="column">';
+        timeline += '<span class="' + color + '">' + data + '</span>';
+        timeline += '</div>';
+        timeline += '</section>';
+        timeline += '</div>';
+
+
+
+        if (files != null) {
+            timeline += '<div class="timeline-section">';
+            timeline += '<section class="columns">';
+            timeline += '<div class="column col-sub-title ' + color + '">';
+            timeline += '<span ' + color + '> Attach:</span>';
+            timeline += '</div>';
+            if (files.length == 0) {
+                timeline += '<div class="timeline-section">';
+                timeline += '<div class="column">';
+                timeline += '<span class="' + color + '"> no Attachment</span>';
+                timeline += '</div></div>';
+            }
+            else {
+                for (var j = 0; j < files.length; j++) {
+                    if (j > 0) {
+                        timeline += '<div class="timeline-section">';
+                        timeline += '<section class="columns">';
+                        timeline += '<div class="column col-sub-title ' + color + '">';
+                        timeline += '</div>';
+                    }
+                    timeline += '<div class="timeline-section">';
+                    timeline += '<div class="column">';
+                    timeline += '<span class="' + color + '"> <i class="fa-fw fa fa-paperclip" style="font-size: 12px;"></i><a onclick="OpenFile(' + files[j].Name + ')">Attach_' + (j + 1) + ": " + files[j].Name + '</a></span>';
+                    timeline += '</div></div>';
+                    timeline += '</section>';
+                    timeline += '</div>';
+
+                }
+            }
+    }
+
+        return timeline;
+    }
+
+
+
+    function GetDiscussionModelDetail(discussionid, stagee, isClosed) {
+        stage = 'DiscussionDetail-' + stagee;
+
+	    var tmp = null;
+	        $.ajax({
+		        type: 'POST',
+		        url: '@Url.Action("GetDiscussionDetail")',
+		        data: {discussionId: discussionid},
+		        async: false,
+		        success: function (result) {
+                    if (result.HttpStatusCode != 200) {
+                        alert(result.Message);
+                    } else {
+
+                        if (isClosed!=null) {
+                            var model = '<div class="modal fade ' + stage + '-Files-' + discussionid + '" style = "display:none" id = "ModelForm' + stage + '-Files-' + discussionid + '" tabindex = "-1" role = "dialog" aria - labelledby="exampleModalCenterTitle" aria - hidden="true" >';
+                            model += '<div class="modal-dialog modal-dialog-centered" role="document">';
+                            model += '<div class="modal-content">';
+                            model += '<div class="modal-header">'
+                            model += '<h5 class="modal-title" id="exampleModalLongTitle"> Discussion Detail </h5>';
+                            model += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+                            model += '<span aria-hidden="true">×</span>';
+                            model += '</button>';
+                            model += '</div>';
+                            model += '<div class="modal-body acceptence-' + stage + '-files">';
+                            var modelbody;
+                            modelbody = '<div class="section">';
+                            modelbody += '<section class="columns">';
+                            modelbody += '<div class="column col-title">';
+                            modelbody += '<span> Participants:</span>';
+                            modelbody += '</div>';
+                            for (var i = 0; i < result.Data.Participants.length; i++) {
+                                modelbody += '<div class="column">';
+                                modelbody += '<span><i class="fa-fw fa fa-circle-o"></i>' + result.Data.Participants[i].Email + '</span>';
+                                modelbody += '</div>';
+                            }
+                            modelbody += '</section>';
+                            modelbody += '<div class="section">';
+                            modelbody += '<section class="columns">';
+                            modelbody += '<div class="column col-title">';
+                            modelbody += '<span> Subject: </span>';
+                            modelbody += '</div>';
+                            modelbody += '<div class="column">';
+                            modelbody += '<span>' + result.Data.Subject + '</span>';
+                            modelbody += '</div>';
+                            modelbody += '<div class="column">';
+                            modelbody += '<span><i class="fa fa-bell" style="font-size:18px;"></i></span>';
+                            modelbody += '</div>';
+                            modelbody += ' </section>';
+                            modelbody += '<hr />';
+
+                            modelbody += '<div class="row">';
+                            modelbody += '<div class="col-lg-12 mx-auto">';
+                            modelbody += '<ul class="timeline">';
+
+                            modelbody += '<li class="timeline-item even bg-white rounded ml-3 p-4 shadow">';
+                            modelbody += '<div class="timeline-arrow"></div>';
+                            modelbody += timeLineform(color, 'From', result.Data.MainSender.FirstName + " " + result.Data.MainSender.LastName, null);
+                            modelbody += timeLineform(color, 'Date', formatedate(parseInt(result.Data.DiscussionDate.substr(6))), null);
+                            modelbody += timeLineform(color, 'Body', result.Data.Message, result.Data.Files);
+                            modelbody += '</li>';
+                            if (result.Data.Discussions.length > 0) {
+
+                                var n = 0;
+                                for (var i = 0; i < result.Data.Discussions.length; i++) {
+                                    var color;
+                                    n++;
+                                    if (n % 2 == 0) {
+                                        color = "even";
+                                    }
+                                    else {
+                                        color = "odd";
+                                    }
+                                    modelbody += '<li class="timeline-item ' + color + ' bg-white rounded ml-3 p-4 shadow">';
+                                    modelbody += '<div class="timeline-arrow"></div>';
+                                    modelbody += timeLineform(color, 'From', result.Data.Discussions[i].Sender.FirstName + " " + result.Data.Discussions[i].Sender.LastName, null);
+                                    modelbody += timeLineform(color, 'Date', formatedate(parseInt(result.Data.Discussions[0].SentDate.substr(6))), null);
+                                    modelbody += timeLineform(color, 'Body', result.Data.Discussions[i].Body, result.Data.Discussions[i].Files);
+                                    modelbody += '</li>';
+
+                                }
+
+                            }
+                            modelbody += '</ul>';
+                            modelbody += ' </div>';
+                            modelbody += '</div>';
+                            modelbody += '<hr />';
+                            modelbody += '<div class="form-group">';
+                            modelbody += '<textarea class="form-control" placeholder="Reply" name="' + stage + 'Reply" style="width:100%; height:150px;"></textarea>';
+                            modelbody += '</div>';
+                            model += modelbody;
+                            model += '<div id="' + stage + '_files_container">';
+                            model += '<div class="' + stage + '_files row">';
+                            model += '<div class="col-sm-3">';
+                            model += '<div class="form-group">';
+                            model += '<div class="input-group" id="' + stage + '_component_reference">';
+                            model += '<select onchange="OnChangeFileTypeSelectForm(' + "'" + stage + "',this," + false + ')" class="' + stage + '_component form-control input-md" name="' + stage + '_component_id">';
+                            model += '<option value="" selected="selected">File Type</option>';
+                            model += '<option value="1">Manuscript</option>';
+                            model += '<option value="2">Figure</option>';
+                            model += '<option value="2">Table</option>';
+                            model += '<option value="2">CopyRight</option>';
+                            model += '</select>';
+                            model += '</div>';
+                            model += '</div>';
+                            model += '</div>';
+                            model += '<div class="col-sm-8">';
+                            model += '<div class="uploadType">';
+                            model += '<input class="form-control input-md ' + stage + '-name" name="FilesToUpload" type="file">';
+                            model += '</div></div></div></div>';
+                            model += '<button type="button" class="btn btn-secondary add-files" onclick="AddFilesForm(' + "'" + stage + "'," + false + ')" id="add_' + stage + '_files"> add files</button> </div></div>';
+                            model += '<div class="modal-footer">';
+                            model += '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
+                            model += '<button type="button"  style="background: #AD0202;"  onclick="AddDiscussion(' + false + ",'" + stagee + "','" + discussionid + "'," + isClosed + ')"  class="btn btn-primary btn">Reply</button>';
+                            model += '<button type="button"  style="background: #AD0202;" data-dismiss="modal" onclick="AddDiscussion(' + true + ",'" + stagee + "','" + discussionid + "'," + isClosed + ')"  class="btn btn-primary btn">Reply & Close</button>';
+                            model += '</div></div></div></div>';
+                            tmp = model;
+                            //    //AcceptFile(' + "'" + stage + "','" + isAcceptedFor + "'" + ')
+                        }
+                        else {
+                            tmp = result.Data.isClosed
+                        }
+                    }
+		        },
+		        error: function (ex) {
+
+		        }
+	        });
+	    return tmp;
+    }
+
+
+    function GetDataOfTabs(tab) {
+        
+        var url = window.location.href;
+        var array = url.split('/');
+        var submissionid = array[array.length - 1];
+        var table;
+        var model;
+       
+        if (tab === "copyediting") {
+            model = "CopyEditor";
+            table = GetAcceptanceFiles(submissionid, false, true, false, "Ready for CopyEditor ");
+            $(".CopyEditorContent").html(table);
+            table = GetFiles(submissionid, false, false, true, "CopyEditor Files", model);
+            $(".CopyEditorContent").append(table);
+            //table = getAddModel(model);
+            //$(".CopyEditorContent").append(table);
+           
+        }
+        if (tab === "review") {
+            model = "Review";
+            table = GetAcceptanceFiles(submissionid, true, false, false, "Ready for Reviwers ", "RevisionFiles");
+            $(".ReviwerContent").html(table);
+            table = GetFiles(submissionid, false, true, false, "Revision Files", model);
+            $(".ReviwerContent").append(table);
+            //table = getAddModel(model);
+            //$(".ReviwerContent").append(table);
+        }
+        if (tab === "production") {
+            model = "Production";
+            table = GetAcceptanceFiles(submissionid, false, false, true, "Ready for production", "ProductionsFiles");
+            $(".ProductionContent").html(table);
+        }
+
+        if (tab === "submission") {
+            model = "Submission";
+            table = GetFiles(submissionid, true, false, false, "Submission Files", model);
+            $(".SubmissionContent").html(table);
+           // table = getAddModel(model);
+            //$(".SubmissionContent").append(table);
+         
+        }
+    }
+
+
+    $("document").ready(function () {
+    $('.nav li a').first().trigger('click');
+    GetDataOfTabs("submission");
+	var url = window.location.href;
+	var array = url.split('/');
+	var submissionid = array[array.length - 1];
+
+      
+
+        $(".discussion-cell").click(function () {
+            var discussionid = $(this).attr("id").split('-')[1];
+            var result = GetDiscussionModelDetail(discussionid, stage,null);
+             var stage = $(this).attr("stage");
+            var model = GetDiscussionModelDetail(discussionid, stage, result);
+            if ($('#ModelFormDiscussionDetail-' + stage + '-Files-' + discussionid).length == 0)
+                $(".DiscussionModel-" + stage).html(model);
+      
+	});
+
+
+
+	$('.nav li a').click(function () {
+        var tab = $(this).attr("href").split("#")[1];
+        //alert(tab);
+        GetDataOfTabs(tab);
+       
+	});
+
+
+	$(".process-buttons").click(function () {
+		//check if the button requires model
+        var processid = $(".process-buttons").attr('id');
+ 
+		if (this.className.indexOf("modal-required") >= 0) {
+			//check if review
+			if (this.className.indexOf("review-model") >= 0) {
+				var model = GetAcceptanceFilesModel(submissionid, true, false, false, "Reviewer", "isAcceptedforReview");
+				$(".SubmissionContent").append(model);
+				$('.process-buttons').attr('data-target', '#ModelAddAcceptReviewerFiles');
+				$('.process-buttons').attr('data-toggle', 'modal');
+			}
+
+			//check if copy editing
+			if (this.className.indexOf("copyedting-model") >= 0) {
+				var model = GetAcceptanceFilesModel(submissionid, false, true, false, "CopEditor", "isAcceptedforCopyEditing");
+				$(".ReviwerContent").append(model);
+				$('.process-buttons').attr('data-target', '#ModelAddAcceptCopEditorFiles');
+				$('.process-buttons').attr('data-toggle', 'modal');
+			}
+
+			//check if proof reading
+			if (this.className.indexOf("proofreading-model") >= 0) {
+                var model = GetAcceptanceFilesModel(submissionid, false, false, true, "Proofreading", "isAcceptedforProduction");
+                $(".CopyEditorContent").append(model);
+                $('.process-buttons').attr('data-target', '#ModelAddAcceptProofreadingFiles');
+                $('.process-buttons').attr('data-toggle', 'modal');
+            }
+            if (this.className.indexOf("production-model") >= 0) {
+              
+                $('.process-buttons').attr('data-target', '#Modelproduction');
+                $('.process-buttons').attr('data-toggle', 'modal');
+                var model = getSchecduleForPublication("production");
+                $(".ProductionContent").append(model);
+
+            }
+
+        } else {
+		
+            AddProcessToSubmission(processid, submissionid);
+            location.reload(true);
+		}
+	});
+
+
+    $(".SkipSubmission").click(function () {
+       
+        var url = window.location.href;
+        var array = url.split('/');
+        var submissionid = array[array.length - 1];
+
+        	$.ajax({
+				type: 'POST',
+				url: '@Url.Action("AddSubmissionStatu")',
+				data: {submissionid: submissionid
+				},
+				success: function (result) {
+					if (result.HttpStatusCode != 200) {
+						alert(result.Message);
+                    } else {
+                        alert('skiped submission');
+						location.reload(true);
+					}
+				},
+				error: function (ex) {
+
+				}
+			});
+    });
+
+
+	$("#metadata").click(function () {
+		alert("not implemented yet");
+	});
+
+
+	$("#History").click(function () {
+		alert("not implemented yet");
+    });
+
+});
+</script>

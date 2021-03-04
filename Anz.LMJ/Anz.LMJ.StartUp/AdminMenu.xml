@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+
+
+
+  <TopLevelMenu name="Home" link="#" icon="fa fa-lg fa-fw fa-home" class="home">
+    <MenuItem name="Banner" link="/admin/HomeBanner" class="banner"/>
+    <MenuItem name="About Us" link="/admin/AboutUs_Section" class="AboutUs"/>
+    <MenuItem name="Our Mission" link="/admin/OurMission_Section" class="OurMission"/>
+    <MenuItem name="Our Events" link="/admin/OurEvents_Section" class="OurEvents"/>
+    <MenuItem name="Analytics" link="/admin/Analytics_Section" class="analytics"/>
+
+  </TopLevelMenu>
+
+  <TopLevelMenu name="Aboutus_Page" link="/admin/AboutPage" icon="fa fa-lg fa-fw fa-dropbox" class="aboutuspage">
+  </TopLevelMenu>
+
+  <TopLevelMenu name="Members" link="/Admin/Members" icon="fa fa-lg fa-fw fa-user" class="members">
+  </TopLevelMenu>
+
+
+  <TopLevelMenu name="News" link="/admin/News" icon="fa fa-lg fa-fw fa-dropbox" class="news">
+  </TopLevelMenu>
+
+  <TopLevelMenu name="Events" link="/admin/Events" icon="fa fa-lg fa-fw fa-dropbox" class="events">
+  </TopLevelMenu>
+
+  <TopLevelMenu name="Videos" link="/admin/Videos" icon="fa fa-lg fa-fw fa-dropbox" class="videos">
+  </TopLevelMenu>
+
+  <TopLevelMenu name="Team" link="/admin/Team" icon="fa fa-lg fa-fw fa-dropbox" class="team">
+  </TopLevelMenu>
+
+
+  <TopLevelMenu name="Articles" link="/admin/Articles" icon="fa fa-lg fa-fw fa-dropbox" class="articles">
+  </TopLevelMenu>
+
+  <TopLevelMenu name="Issue Filter" link="/admin/IssueFilter" icon="fa fa-lg fa-fw fa-dropbox" class="Filter">
+  </TopLevelMenu>
+  
+</root>

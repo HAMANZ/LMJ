@@ -1,0 +1,214 @@
+﻿@{
+    ViewBag.Title = "IssueFilter";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model Anz.LMJ.BLO.ContentObjects.IssueFilter
+<style>
+    .input {
+        position: relative;
+        display: block;
+        font-weight: 400;
+    }
+
+    .icon-append {
+        color: #A2A2A2;
+    }
+
+    .icon-append {
+        border-color: #BDBDBD;
+        transition: border-color .3s;
+        -o-transition: border-color .3s;
+        -ms-transition: border-color .3s;
+        -moz-transition: border-color .3s;
+        -webkit-transition: border-color .3s;
+    }
+
+    .icon-append {
+        right: 5px;
+        padding-left: 3px;
+        border-left-width: 1px;
+        border-left-style: solid;
+    }
+
+    .icon-append {
+        position: absolute;
+        top: 5px;
+        width: 22px;
+        height: 22px;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: center;
+    }
+
+    .input img {
+        /*width: 50%;*/
+    }
+
+    .ImgClick {
+        background-image: url(/Images/delete.png);
+        background-repeat: no-repeat;
+        width: 2em;
+        background-color: transparent;
+        border: 0;
+        vertical-align: middle;
+        background-position: center;
+        background-size: contain;
+    }
+
+    .list-inline {
+        position: relative;
+    }
+
+        .list-inline input[type=file] {
+            position: absolute;
+            top: 2rem;
+        }
+</style>
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @using (Html.BeginForm("IssueFilter", "Admin", FormMethod.Post, new { @class = "IssueFilter", enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label">
+                                    <strong>Current Issue</strong>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                            <div class="form-group">
+                                <label class="input">
+                                    <i class="icon-append fa fa-calendar"></i>
+                                    <input type="text" name="CurrentFromDate" class="form-control" id="dateinput" value="@Model.CurrentFromDate" placeholder=" From Date">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                            <div class="form-group">
+                                <label class="input">
+                                    <i class="icon-append fa fa-calendar"></i>
+                                    <input type="text" name="CurrentToDate" class="form-control" id="dateinput" value="@Model.CurrentToDate" placeholder=" From Date">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label">
+                                    <strong>Recent Issue</strong>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                            <div class="form-group">
+                                <label class="input">
+                                    <i class="icon-append fa fa-calendar"></i>
+                                    <input type="text" name="RecentFromDate" class="form-control" id="dateinput" value="@Model.RecentFromDate" placeholder=" From Date">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                            <div class="form-group">
+                                <label class="input">
+                                    <i class="icon-append fa fa-calendar"></i>
+                                    <input type="text" name="RecentToDate" class="form-control" id="dateinput" value="@Model.RecentToDate" placeholder=" From Date">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label">
+                                    <strong>Archive Issue</strong>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                            <div class="form-group">
+                                <label class="input">
+                                    <i class="icon-append fa fa-calendar"></i>
+                                    <input type="text" name="ArchiveFromDate" class="form-control" id="dateinput" value="@Model.ArchiveFromDate" placeholder=" From Date">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                            <div class="form-group">
+                                <label class="input">
+                                    <i class="icon-append fa fa-calendar"></i>
+                                    <input type="text" name="ArchiveToDate" class="form-control" id="dateinput" value="@Model.ArchiveToDate" placeholder=" From Date">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label">
+                                    <strong>Index Issue</strong>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                            <div class="form-group">
+                                <label class="input">
+                                    <i class="icon-append fa fa-calendar"></i>
+                                    <input type="text" name="IndexFromDate" class="form-control" id="dateinput" value="@Model.IndexFromDate" placeholder=" From Date">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                            <div class="form-group">
+                                <label class="input">
+                                    <i class="icon-append fa fa-calendar"></i>
+                                    <input type="text" name="IndexToDate" class="form-control" id="dateinput" value="@Model.IndexToDate" placeholder=" From Date">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-1">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="~/Scripts/cms/CmsJquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="~/Scripts/cms/app.config.js"></script>
+<script src="~/Scripts/cms/app.min.js"></script>
+<script src="~/Scripts/cms/CmsJquery.js"></script>
+<script src="~/Scripts/cms/plugin/jquery-form/jquery-form.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $('#dateinput').datepicker({
+            dateFormat: 'mm/dd/yy',
+            prevText: '<i class="fa fa-chevron-left"></i>',
+            nextText: '<i class="fa fa-chevron-right"></i>',
+        });
+
+    });
+</script>

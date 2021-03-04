@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewBag.Title = "GetVideos";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .input {
+        position: relative;
+        display: block;
+        font-weight: 400;
+    }
+
+    .icon-append {
+        color: #A2A2A2;
+    }
+
+    .icon-append {
+        border-color: #BDBDBD;
+        transition: border-color .3s;
+        -o-transition: border-color .3s;
+        -ms-transition: border-color .3s;
+        -moz-transition: border-color .3s;
+        -webkit-transition: border-color .3s;
+    }
+
+    .icon-append {
+        right: 5px;
+        padding-left: 3px;
+        border-left-width: 1px;
+        border-left-style: solid;
+    }
+
+    .icon-append {
+        position: absolute;
+        top: 5px;
+        width: 22px;
+        height: 22px;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: center;
+    }
+</style>
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+            @using (Html.BeginForm("EditVideos", "Admin", FormMethod.Post, new { @class = "EditVideos", enctype = "multipart/form-data" }))
+            {
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <label class="col-sm-12 control-label">
+                            <strong>Title</strong>
+                        </label>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <input class="form-control input__beautify" type="text" name="Name" value="@ViewBag.Videos.Name" />
+                        <input type="hidden" name="Pos" value="@ViewBag.Videos.Pos" />
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>MainDesc</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <div class="form-group">
+                            <textarea rows="10" cols="50" class="form-control input__beautify" type="text" name="MainDesc">@ViewBag.Videos.MainDesc</textarea>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>SubDesc</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input-md SubDesc" value="@ViewBag.Videos.SubDesc" name="SubDesc" type="text" placeholder="Title">
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Date</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <div class="form-group">
+                            <label class="input">
+                                <i class="icon-append fa fa-calendar"></i>
+                                <input type="text" name="VideoDate" value="@ViewBag.Videos.VideoDate" class="form-control" id="dateinput" placeholder="Expected start date">
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Image</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <input type="file" name="PostedFileImage" id="imgInp" class="custom-file-input" style="width:50%;">
+                    </div>
+
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Video</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <input type="hidden" name="Src" id="SrcVideo" value="@ViewBag.Videos.Src" />
+                        <input type="file" name="PostedFileVideo" id="VideoInp" class="custom-file-input" style="width:50%;">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <input type="hidden" name="Image" id="BackGroundImage" value="@ViewBag.Videos.Image" />
+                        <img src="~/Images/Videos/@ViewBag.Videos.Image" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
+                        <br />
+                        <span>Recommended Size: 195*195</span>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <video width="320" height="240" controls id="videoPlayer">
+                            <source id="InpVideo" src="~/Images/Videos/@ViewBag.Videos.Src" type="video/mp4">
+                        </video>
+                    </div>
+
+                </div>
+
+
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-8">
+                    <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
+                    <input type="hidden" name="Id" value="@ViewBag.Videos.Id" />
+                </div>
+
+
+            }
+
+
+          
+
+        </div>
+
+    </div>
+
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="~/Scripts/cms/app.config.js"></script>
+<script src="~/Scripts/cms/app.min.js"></script>
+<script src="~/Scripts/cms/CmsJquery.js"></script>
+<script src="~/Scripts/cms/plugin/jquery-form/jquery-form.min.js"></script>
+<script>
+    $('#dateinput').datepicker({
+        dateFormat: 'dd.mm.yy',
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+    });
+
+    $(document).ready(function () {
+        $(document).on('change', '#VideoInp', function () {
+            if (this.files && this.files[0]) {
+                $("#SrcVideo").attr("value", this.files[0].name);
+                var player = document.getElementById("videoPlayer");
+                var currentVID = document.getElementById("InpVideo");
+                var selectedLocalVID = document.getElementById("VideoInp").files[0];
+                currentVID.setAttribute("src", URL.createObjectURL(selectedLocalVID));
+                player.load();
+                player.play();
+            }
+
+        });
+    });
+</script>

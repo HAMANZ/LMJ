@@ -1,0 +1,63 @@
+﻿
+@using Anz.LMJ.BLO.LogicObjects.Submission
+@model List<NewsletterLO>
+
+@{
+    ViewBag.Title = "NewsletterForm";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <style>
+        #newsletter-form {
+            width: 80%;
+        }
+    </style>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Newsletter</title>
+</head>
+<body>
+    <div id="main" role="main">
+        <form method="post" action="newsletter" enctype="multipart/form-data" id="newsletter-form">
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Add Newsletter</h4>
+                <div>
+                    @Html.ActionLink("Go to list", "Newsletters")
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Cover</label>
+                    <div class="col-md-10">
+                        <input type="file" name="Image" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control input-md" placeholder="Name" name="Name" type="text">
+                </div>
+                <div class="form-group">
+                    <input class="form-control input-md" placeholder="ISSN" name="Issn" type="text">
+                </div>
+                <div class="form-group">
+                    <input class="form-control input-md" placeholder="EISSN" name="Eissn" type="text">
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control" name="PublishDate" />
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</body>
+</html>

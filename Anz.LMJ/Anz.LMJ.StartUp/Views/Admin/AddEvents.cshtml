@@ -1,0 +1,363 @@
+﻿
+@{
+    ViewBag.Title = "AddEventsSectionForm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .input {
+        position: relative;
+        display: block;
+        font-weight: 400;
+    }
+
+    .icon-append {
+        color: #A2A2A2;
+    }
+
+    .icon-append {
+        border-color: #BDBDBD;
+        transition: border-color .3s;
+        -o-transition: border-color .3s;
+        -ms-transition: border-color .3s;
+        -moz-transition: border-color .3s;
+        -webkit-transition: border-color .3s;
+    }
+
+    .icon-append {
+        right: 5px;
+        padding-left: 3px;
+        border-left-width: 1px;
+        border-left-style: solid;
+    }
+
+    .icon-append {
+        position: absolute;
+        top: 5px;
+        width: 22px;
+        height: 22px;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: center;
+    }
+
+    .input img {
+        /*width: 50%;*/
+    }
+
+    .ImgClick {
+        background-image: url(/Images/delete.png);
+        background-repeat: no-repeat;
+        width: 2em;
+        background-color: transparent;
+        border: 0;
+        vertical-align: middle;
+        background-position: center;
+        background-size: contain;
+    }
+
+    .list-inline {
+        position: relative;
+    }
+
+        .list-inline input[type=file] {
+            position: absolute;
+            top: 2rem;
+        }
+</style>
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+
+            @using (Html.BeginForm("AddEvents", "Admin", FormMethod.Post, new { @class = "AddEvents", enctype = "multipart/form-data" }))
+            {
+
+
+
+
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <label class="col-sm-12 control-label">
+                            <strong>Title</strong>
+                        </label>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <input class="form-control input__beautify" type="text" name="MainTitle" />
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>MainDesc</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <div class="form-group">
+                            <textarea rows="10" cols="50" class="form-control input__beautify" type="text" name="MainDesc"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Date</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <div class="form-group">
+                            <label class="input">
+                                <i class="icon-append fa fa-calendar"></i>
+                                <input type="text" name="EventDate" class="form-control" id="dateinput" placeholder="Event Date">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Image</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <input type="file" name="PostedFileMainImg" id="imgInp" class="custom-file-input" style="width:50%;">
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-6">
+                        <div class="smart-timeline-content">
+                            <p>
+                                <strong>Gallery Images</strong>
+                            </p>
+
+                            <ul class="list-inline">
+                                <p><strong>*To delete an image, simply press on it or on the trash can*</strong></p>
+                                <div class="form-group" style="width:100%;">
+                                    <section>
+                                        <label class="label">
+                                            Recommended Images (300x300)
+                                        </label>
+                                        <br />
+
+                                        <ul class="list-inline ImagesGallery">
+                                            <li>
+                                                <button type="button" name="Add Image" class="btn btn-default addImage">Add Image</button>
+                                            </li>
+                                        </ul>
+                                        <label class="input" style=" display: flex; flex-wrap: wrap; width: 100%;">
+
+                                        </label>
+                                    </section>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <input type="hidden" name="MainImg" id="BackGroundImage" id="imgInp" />
+                        <img src="" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
+                        <br />
+                        <span>Recommended Size: 195*195</span>
+                    </div>
+
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-8">
+                    <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
+                </div>
+
+
+
+
+
+
+
+                <!--<div class="well well-sm">-->
+                    <!-- Timeline Content -->
+                    <!--<div class="smart-timeline">
+                        <ul class="smart-timeline-list">
+                            <li>
+
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>MainTitle</strong>
+
+                                    </p>
+                                    <p>
+                                        <input class="input__beautify" type="text" name="MainTitle" value="" required />
+
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>MainDesc</strong>
+
+                                    </p>
+                                    <p>
+                                        <input class="input__beautify" type="text" name="MainDesc" value="" required />
+
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>SubDesc</strong>
+
+                                    </p>
+                                    <p>
+                                        <input class="input__beautify" type="text" name="SubDesc" value="" required />
+
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>EventDate</strong>
+
+                                    </p>
+                                    <p>
+                                        <input class="input__beautify" type="text" name="EventDate" value="" required />
+
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>Background Image</strong>
+                                    </p>
+
+                                    <ul class="list-inline">
+                                        <li>
+                                            <input type="hidden" name="MainImg" id="BackGroundImage" value="" />
+                                            <img src="" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
+                                            <br />
+                                            <span>Recommended Size: 540*320</span>
+
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="smart-timeline-content">
+                                    <input type="file" name="PostedFileMainImg" id="imgInp" class="custom-file-input" style="width:50%;" required>
+                                </div>
+                            </li>
+                            <br />
+
+                            <li style="margin-bottom: 9rem; height: 40em;">
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>Gallery Images</strong>
+                                    </p>
+
+                                    <ul class="list-inline">
+                                        <p><strong>*To delete an image, simply press on it or on the trash can*</strong></p>
+                                        <div class="form-group" style="width:100%;">
+                                            <section>
+                                                <label class="label">
+                                                    Recommended Images (300x300)
+                                                </label>
+                                                <br />
+
+                                                <ul class="list-inline ImagesGallery">
+                                                    <li>
+                                                        <button type="button" name="Add Image" class="btn btn-default addImage">Add Image</button>
+                                                    </li>
+                                                </ul>
+                                                <label class="input" style=" display: flex; flex-wrap: wrap; width: 100%;">
+
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="text-center">
+                                <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>-->
+            }
+
+        </div>
+
+    </div>
+
+</div>
+<script src="~/Scripts/cms/CmsJquery.js"></script>
+<script src="~/Scripts/cms/Admin/jquery-3.3.1.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="~/Scripts/cms/app.config.js"></script>
+<script src="~/Scripts/cms/app.min.js"></script>
+<script src="~/Scripts/cms/CmsJquery.js"></script>
+<script src="~/Scripts/cms/plugin/jquery-form/jquery-form.min.js"></script>
+<script>
+    $('#dateinput').datepicker({
+        dateFormat: 'dd.mm.yy',
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+    });
+
+
+    $("document").ready(function () {
+
+        $(".ImgClick").on("click", function () {
+            var selected = $(this).val();
+            console.log(selected);
+
+            $("#oldBackgroundImage_" + selected).val("");
+
+            $(".updateImage_" + selected).css("display", "none");
+
+        });
+
+        var count1 = 0;
+
+        $(".addImage").on("click", function () {
+            console.log("pressed");
+            $(".ImagesGallery").append("<br><li><input type='file' multiple='multiple' name='PostedFile' class='selectImage custom-file-input1' id=File-" + count1 + " style='width: 150px;'/></li>");
+            count1++;
+        });
+
+        $(document).on('change', '.selectImage', function () {
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                $(".ImagesGallery").append("<br><li><img src='' width='150' id='imgI-" + count1 + "'><input type='hidden' name='SubImg' value=" + this.files[0].name + "></li>");
+                reader.onload = function (e) {
+                    $('#imgI-' + count1).attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+                var newc = count1 - 1;
+                $("#File-" + newc).css("display", "none");
+                console.log(newc);
+            }
+        });
+
+    });
+</script>

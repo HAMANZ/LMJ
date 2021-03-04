@@ -1,0 +1,233 @@
+﻿@{
+    ViewBag.Title = "Banner";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model Anz.LMJ.BLO.ContentObjects.Hero_Banner
+<style>
+    .input img {
+        width: 50%;
+    }
+
+    .ImgClick {
+        background-image: url(/Images/delete.png);
+        background-repeat: no-repeat;
+        width: 2em;
+        background-color: transparent;
+        border: 0;
+        vertical-align: middle;
+        background-position: center;
+        background-size: contain;
+    }
+</style>
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @using (Html.BeginForm("HomeBanner", "Admin", FormMethod.Post, new { @class = "HomeBanner", enctype = "multipart/form-data" }))
+                {
+                    <div class="well well-sm">
+                        <!-- Timeline Content -->
+                        <div class="smart-timeline">
+                            <ul class="smart-timeline-list">
+                                <li>
+
+                                    <div class="smart-timeline-content">
+                                        <p>
+                                            <strong>Title</strong>
+
+                                        </p>
+                                        <p>
+                                            <input class="input__beautify" type="text" name="Title" value="@Model.Title" />
+
+                                        </p>
+
+                                    </div>
+                                </li>
+                                <li>
+
+                                    <div class="smart-timeline-content">
+                                        <p>
+                                            <strong>Sub Title</strong>
+
+                                        </p>
+                                        <p>
+                                            <input class="input__beautify" type="text" name="SubTitle" value="@Model.SubTitle" />
+
+                                        </p>
+
+                                    </div>
+                                </li>
+
+
+
+
+
+
+
+
+
+                                <li style="margin-bottom: 9rem; height: 40em;">
+                                    <div class="smart-timeline-content">
+                                        <p>
+                                            <strong>Background Image</strong>
+                                        </p>
+
+                                        <ul class="list-inline">
+                                            <p><strong>*To delete an image, simply press on it or on the trash can*</strong></p>
+                                            <div class="form-group" style="width:100%;">
+                                                <section>
+                                                    <label class="label">
+                                                        Recommended Images (1900*855)
+                                                    </label>
+                                                    <br />
+
+                                                    <ul class="list-inline ImagesGallery">
+                                                        <li>
+                                                            <button type="button" name="Add Image" class="btn btn-default addImage">Add Image</button>
+                                                        </li>
+                                                    </ul>
+
+
+                                                    <label class="input" style=" display: flex; flex-wrap: wrap; width: 100%;">
+
+
+                                                        @for (int i = 0; i < Model.BackgroundImage.Count; i++)
+                                                        {
+                                                            <br />
+                                                            <input type="hidden" name="BackgroundImage" id="oldBackgroundImage_@i" value="@Model.BackgroundImage[i]" />
+                                                            <div class="image_dlt_container">
+                                                                <img src="~/Images/@Model.BackgroundImage[i]" alt="img" width="150" id="blah" name="blah" class="updateImage_@i">
+                                                                <input type="button" class="custom-file-input ImgClick updateImage_@i" style="" value="@i">
+                                                            </div>
+                                                        }
+                                                    </label>
+                                                </section>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                @*<li>
+                                        <div class="smart-timeline-content">
+                                            <p>
+                                                <strong>Background Image</strong>
+                                            </p>
+
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <input type="hidden" name="BackGroundImage" id="BackGroundImage" value="@Model.BackgroundImage" />
+                                                    <img src="/Images/@Model.BackgroundImage" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
+                                                    <br />
+                                                    <span>Recommended Size: 1900*855</span>
+
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="smart-timeline-content">
+                                            <input type="file" name="PostedFileBackgroundImage" id="imgInp" class="custom-file-input" style="width:50%;">
+                                        </div>
+                                    </li>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <br />
+                                <li class="text-center">
+                                    <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="~/Scripts/cms/Admin/jquery-3.3.1.js"></script>
+<script src="~/Scripts/cms/CmsJquery.js"></script>
+<script>
+    $(".banner").addClass("active");
+    $(".Sentence").html($("input[name=Sentence]").val());
+    $(".SubTitle").html($("input[name=SubTitle]").val());
+    $(".Title").html($("input[name=Title]").val());
+
+
+
+    $(document).ready(function () {
+
+        $(".ImgClick").on("click", function () {
+            var selected = $(this).attr("value");
+            console.log(selected);
+            alert(selected);
+            $("#oldBackgroundImage_" + selected).val("");
+
+            $(".updateImage_" + selected).css("display", "none");
+
+        });
+
+        var count1 = 0;
+
+        $(".addImage").on("click", function () {
+            console.log("pressed");
+            $(".ImagesGallery").append("<br><li><input type='file' multiple='multiple' name='PostedFileBackgroundImage' class='selectImage custom-file-input1' id=File-" + count1 + " style='width: 150px;'/></li>");
+            count1++;
+        });
+
+        $(document).on('change', '.selectImage', function () {
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                $(".ImagesGallery").append("<br><li><img src='' width='150' id='imgI-" + count1 + "'><input type='hidden' name='Images' value=" + this.files[0].name + "></li>");
+                reader.onload = function (e) {
+                    $('#imgI-' + count1).attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+                var newc = count1 - 1;
+                $("#File-" + newc).css("display", "none");
+                console.log(newc);
+            }
+        });
+
+    });
+</script>

@@ -1,0 +1,495 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@{
+    ViewBag.Title = "SubmissionForm";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/Scripts/cms/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="~/Scripts/cms/plugin/fuelux/wizard/wizard.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    .select-form .has-error {
+        border: 1px solid #b94a48;
+    }
+    .select-form .has-success{
+        border: 1px solid green;
+    }
+    .jarviswidget-ctrls a {
+        color: #fff !important;
+    }
+        .jarviswidget-ctrls .button-icon {
+        min-width: 30px;
+        height: 32px;
+        float: none !important;
+    }
+        .widget-toolbar > .color-box {
+    display:none !important;
+    }
+    .jarviswidget-fullscreen-btn, .jarviswidget-delete-btn {
+        display: none !important;
+    }
+    .jarviswidget > header {
+        border-color: #ad0202 !important;
+        background: #ad0202 !important;
+        color: #fff;
+    }
+    .bootstrapWizard li .step i {
+        font-size: 14px !important;
+        font-weight: 400;
+        position: relative;
+        top: -1.5px;
+    }
+
+    .finish {
+        float: right;
+    }
+
+    body {
+        font-family: "Lato", sans-serif;
+    }
+
+    .tablink {
+        background-color: #555;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        width: 18%;
+    }
+
+        .tablink:hover {
+            background-color: #777;
+        }
+
+    /* Style the tab content */
+    .tabcontent {
+        color: black;
+        display: none;
+        padding: 50px;
+        text-align: center;
+    }
+
+    #London {
+        background-color: red;
+    }
+
+    #Paris {
+        background-color: green;
+    }
+
+    #Tokyo {
+        background-color: blue;
+    }
+
+    #Oslo {
+        background-color: orange;
+    }
+
+    .bootstrapWizard li {
+        width: 20%;
+    }
+
+    .submission-form {
+        float: none;
+        margin: 0 auto;
+    }
+
+    section {
+        margin-top: 10px;
+    }
+</style>
+
+<div id="main" role="main">
+
+    <div id="ribbon">
+
+        <span class="ribbon-button-alignment">
+            <span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh" rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
+                <i class="fa fa-refresh"></i>
+            </span>
+        </span>
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>Submission Form</li>
+        </ol>
+    </div>
+    <section id="widget-grid-customized" class="">
+        <div class="row">
+            <article class="submission-form col-xs-8 col-sm-9 col-md-8 col-lg-8">
+                <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-check"></i> </span>
+                        <h2>Submission Form </h2>
+                    </header>
+                    <div>
+                        <div class="widget-body">
+                            <div class="row">
+                                <form id="wizard-1" novalidate="novalidate" method="post" action="/Submission/AddSubmission" enctype="multipart/form-data">
+                                    <div id="bootstrap-wizard-1" class="col-sm-12">
+                                        <div class="form-bootstrapWizard">
+                                            <ul class="bootstrapWizard form-wizard">
+                                                <li class="active" data-target="#step1">
+                                                    <a href="#tab1" data-toggle="tab"> <span class="step"><i class="fa fa-check fa-4x fa-fw"></i></span> <span class="title">Start</span> </a>
+                                                </li>
+                                                <li data-target="#step2">
+                                                    <a href="#tab2" data-toggle="tab"> <span class="step"><i class="glyphicon glyphicon-folder-open"></i></span> <span class="title">Upload</span> </a>
+                                                </li>
+                                                <li data-target="#step3">
+                                                    <a href="#tab3" data-toggle="tab"> <span class="step"><i class="fa fa-pencil fa-lg fa-fw"></i></span> <span class="title">Info</span> </a>
+                                                </li>
+                                                <li data-target="#step4">
+                                                    <a href="#tab4" data-toggle="tab"> <span class="step"><i class="fa fa-check fa-lg fa-fw"></i></span> <span class="title">Authors</span> </a>
+                                                </li>
+                                                <li data-target="#step5">
+                                                    <a href="#tab5" data-toggle="tab"> <span class="step"><i class="fa fa-check fa-lg fa-fw"></i></span> <span class="title"> Data</span> </a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="tab-content">
+
+                                            @Html.Partial("_PartialSubmistionFormTab1")
+
+                                            @Html.Partial("_PartialSubmistionFormTab2")
+
+                                            @Html.Partial("_PartialSubmistionFormTab3")
+
+                                            @Html.Partial("_PartialSubmistionFormTab4")
+
+                                            @Html.Partial("_PartialSubmistionFormTab5")
+
+                                            <div class="form-actions">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <ul class="pager wizard no-margin">
+                                                            <li class="previous disabled">
+                                                                <a href="javascript:void(0);" class="btn btn-lg btn-default"> Previous </a>
+                                                            </li>
+                                                            <li class="next onnext">
+                                                                <a href="javascript:void(0);" class="btn btn-lg txt-color-darken"> Next </a>
+                                                            </li>
+                                                            <li class="finish">
+                                                                <input type="hidden" name="isApproved" value="false" />
+                                                                <input type="hidden" name="isDraft" value="false" />
+                                                                <a class="btn btn-lg txt-color-darken finish isApprovedbtn" href="javascript:;">Build Pdf For Approved</a>
+                                                                <a class="btn btn-lg txt-color-darken finish isDraftbtn" href="javascript:;">Save & Submit Later</a>
+                                                                @*<a class="btn btn-lg txt-color-darken finish" href="javascript:;">Finish</a>*@
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- WIDGET END -->
+
+        </div>
+
+        <!-- end row -->
+
+    </section>
+    <!-- end widget grid -->
+
+</div>
+
+
+
+
+
+
+
+
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
+<script>
+
+    $("document").ready(function () {
+
+        $("#wid-id-1").addClass("jarviswidget-collapsed");
+        $("#wid-id-2").addClass("jarviswidget-collapsed");
+        $("#wid-id-3").addClass("jarviswidget-collapsed");
+
+        $("#defaultOpen").click();
+
+        $("a").click(function () {
+            $(this).addClass('clicked');
+            });
+
+        $("#add_keywords").click(function () {
+            if ($('input[name*="keywords"]').length == 5) {
+                alert("The max Keywords 6");
+            }
+            else {
+               // if ($('input[name*="keywords"]').length == 1 || $('input[name*="keywords"]').length == 2 )
+                    $("#keywords_container .row").append('<div class="col-xs-3 col-sm-3 col-md-5 col-lg-3"></div>');
+                $("#keywords_container .row").append('<div class="col-xs-7 col-sm-4 col-md-6 col-lg-4"> <div class="form-group">' +
+                    '<input class="form-control input-md keywords" placeholder="Keywords" type = "text" name="keywords" id="keyword" ></div></div>');
+
+            }
+        });
+
+
+        var i = 1;
+
+       
+
+     
+                //Bootstrap Wizard Validations
+
+        var $validator = $("#wizard-1").validate({
+            multipleInputSharedName: {
+                Caption: true,
+                FilesToUpload: true,
+                ArticleComponentId: true,
+                Order: true,
+                Keywords: true,
+                ContributorFnameModel:true
+            },
+            ignore:'select2',
+            rules: {
+                Order: {
+                    required: true
+                },
+                Caption: {
+                    required: true
+                },
+                Title: {
+                    required: true
+                },
+                SubTitle: {
+                    required: true
+                },
+                TitlePrefix: {
+                    required: true
+                },
+                SectionId: {
+                    required: true
+                },
+                SubjectId: {
+                    required: true
+                },
+                ResearchId: {
+                    required: true
+                },
+                QuestionId: {
+                    required: true
+                },
+                ArticleTypeId: {
+                    required: true
+                },
+                FilesToUpload: {
+                    required: true,
+                },
+                CommentsForEditor: {
+                    required: true,
+                },
+                AbstractText: {
+                    required: true,
+                },
+                Keywords: {
+                    required: true,
+                },
+                Agree: {
+                    required: true,
+                },
+                ArticleComponentId: {
+                    required: true,
+                },
+                SourceOfFunding: {
+                    required: true,
+                    maxlength: 20000,
+                },
+                ConflictsOfInterests: {
+                    required: true,
+                    maxlength: 20000,
+                },
+                Significance: {
+                    required: true,
+                    maxlength: 20000,
+                },
+                isConfirmed:{
+                required: true
+                },
+                ContributorFnameModel: {
+                    required: true
+                },
+                ContributoMnameModel: {
+                    required: true
+                },
+                ContributorLnameModel: {
+                    required: true
+                },
+                Degrees: {
+                    required: true
+                },
+                ContributorAffilationModel: {
+                    required: true
+                },
+                ContributorEmailModel: {
+                    required: true
+                },
+                ORCIDModel: {
+                    required: true
+                },
+                InstitutionModel: {
+                    required: true
+                },
+                DepartmentModel: {
+                    required: true
+                },
+                CityModel: {
+                    required: true
+                },
+                CountryModel: {
+                    required: true
+                },
+                IsCorspondingModel: {
+                    required: true
+                },
+                DegreesModel: {
+                    required: true
+                },
+                DepartmentModel: {
+                    required: true
+                },
+                CityModel: {
+                    required: true
+                },
+                CountryModel: {
+                    required: true
+                }
+               },       
+            messages: {
+                        FilesToUpload: "Required",
+                        ArticleComponentId: "Required",
+                        Caption: "Required",
+                        Title: "Required",
+                        Keywords: "Required",
+                        SubTitle: "Required",
+                        TitlePrefix: "Required",
+                        ContributoMname: "Required", 
+                        ContributorAffilation: "Required",
+                        ContributorLname: "Required",
+                        ContributorFname: "Required",
+                        ContributorEmail: {
+                            required: "We need your email address to contact you",
+                            email: "Your email address must be in the format of name@domain.com"
+                        },
+                        SubjectId: "Required",
+                        SectionId: "Required",
+                        ResearchId: "Required",
+                        QuestionId: "Required",
+                        SubmissionRequirmentId: "Required",
+                        ArticleComponentId: "Required",
+                    },
+
+                    highlight: function (element) {
+                        $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+                    },
+                    unhighlight: function (element) {
+                        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    },
+                    errorElement: 'span',
+                    errorClass: 'help-block',
+                    errorPlacement: function () {
+                        return false;
+                    }
+                });
+        
+                $('#bootstrap-wizard-1').bootstrapWizard({
+                    'tabClass': 'form-wizard',
+                    'onNext': function (tab, navigation, index) {
+                        var $valid = $("form").valid();
+                        if (index == 2) {
+                            var $isempty = false;
+                            $('#dtt-files tr').each(function () {
+                                if ($(this).has(".dataTables_empty").length) {
+                                    $isempty = true;
+                                }
+                                else {
+                                    $isempty = false;
+                                }
+                            });
+                            if ($isempty) { alert("Please Add Submission File"); }}
+                        if (index == 4) {
+                            var $isempty = false;
+                            $('#dtt-files tr').each(function () {
+                                if ($(this).has(".dataTables_empty").length) {
+                                    $isempty = true;
+                                }
+                                else {
+                                    $isempty = false;
+                                }
+                            });
+                            if ($isempty) { alert("Please Add Authors"); }
+                        }
+                        if (!$valid) {
+                            $validator.focusInvalid();
+                            return false;
+                        } else {
+                            //$('textarea[name ="SubmissionFileEditor"]').each(function (idx, elem) {
+                            //    var id=$(elem).attr('id');
+                            //    editor = CKEDITOR.instances[id];
+                            //    Html = editor.getData();
+                            //    HtmlToPdf(Html, id);
+                            //});
+                            $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass('complete');
+                            $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step').html('<i class="fa fa-check"></i>');
+                        }
+                    },
+                    'onFinish': function (tab, navigation, index) {
+                        var $valid = $("#wizard-1").valid();
+                        if (!$valid) {
+                            $validator.focusInvalid();
+                            return false;
+                        } else {
+                            if ($('.isApprovedbtn').hasClass('clicked')) {
+                                $('input[name ="isApproved"]').val(true);
+                            }
+                            if ($('.isDraftbtn').hasClass('clicked')) {
+                                $('input[name ="isDraft"]').val(true);
+                            }
+                            $("#wizard-1").submit();
+                        }
+                       
+                    },
+                    //'onTabClick': function (activeTab, navigation, currentIndex, nextIndex) {
+                    //    if (nextIndex <= currentIndex) {
+                    //        return;
+                    //    }
+                    //    var $valid = $("#wizard-1").valid();
+                    //    if (!$valid) {
+                    //        $validator.focusInvalid();
+                    //        return false;
+                    //    }
+                    //    if (nextIndex > currentIndex + 1) {
+                    //        return false;
+                    //    }
+                    //}
+                });
+
+
+          
+
+            });
+
+</script>
+

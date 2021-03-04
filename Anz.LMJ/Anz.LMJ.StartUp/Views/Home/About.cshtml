@@ -1,0 +1,77 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@using Anz.LMJ.BLO.ContentObjects
+@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    ViewBag.Title = "About Us";
+}
+<style>
+    .owl-item {
+        text-align: justify;
+    }
+</style>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.min.css">
+@Html.Partial("_SearchModel", (SelectLO)ViewBag.options)
+<div class="AboutUsPage">
+    <section class="hero-wrap hero-wrap-2" style="background: #808080;" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 text-center">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section about-section padding-top-btm">
+        <div class="container">
+            <div class="row no-gutters justify-content-center mb-3">
+                <div class="col-md-7 heading-section text-center">
+                    <h2>@ViewBag.about.Title</h2>
+                    <div class="about-border"></div>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-md-12 wrap-about">
+                    <p>@ViewBag.about.Txt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+      @*<section class="ftco-section ftco-no-pt HiringSection">
+        <div class="container border-top-black padding-top-btm">
+            <div class="row no-gutters justify-content-center mb-3">
+                <div class="col-md-7 heading-section text-center">
+                    <h2>We are hiring</h2>
+                    <div class="about-border"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="media-body pl-3">
+                        <h2>Marketing Team</h2>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="media-body">
+                        <div class="HiringHeader">
+                            <i>Managing Editor</i>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                    <button class="btn btn-primary">Contact Us</button>
+                </div>
+
+            </div>
+        </div>
+    </section>*@
+
+</div>

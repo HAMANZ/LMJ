@@ -1,0 +1,15 @@
+﻿.editPen {
+    color: #fff;
+}
+
+.smart-timeline-list:after {
+    left: 14px !important;
+}
+
+.smart-timeline-icon {
+    left: 0px !important;
+}
+
+.smart-timeline-content {
+    margin-left: 55px;
+}

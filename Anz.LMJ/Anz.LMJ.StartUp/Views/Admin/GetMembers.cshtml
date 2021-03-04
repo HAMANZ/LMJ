@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "GetMembers";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+            @using (Html.BeginForm("EditMembers", "Admin", FormMethod.Post, new { @class = "EditMembers", enctype = "multipart/form-data" }))
+            {
+                <div class="well well-sm">
+                    <!-- Timeline Content -->
+                    <div class="smart-timeline">
+                        <ul class="smart-timeline-list">
+                            <li>
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>Image</strong>
+                                    </p>
+
+                                    <ul class="list-inline">
+                                        <li>
+                                            <input type="hidden" name="Image" id="BackGroundImage" value="@ViewBag.Members.Image" />
+                                            <img src="~/Images/Members/@ViewBag.Members.Image" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
+                                            <br />
+                                            <span>Recommended Size: 500*300</span>
+
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="smart-timeline-content">
+                                    <input type="file" name="PostedFileImage" id="imgInp" class="custom-file-input" style="width:50%;">
+                                </div>
+                            </li>
+                            <br />
+                            <li>
+
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>Name</strong>
+
+                                    </p>
+                                    <p>
+                                        <input class="input__beautify" type="text" name="Name" value="@ViewBag.Members.Name" />
+                                        <input type="hidden" name="Pos" value="@ViewBag.Members.Pos" />
+                                    </p>
+
+                                </div>
+                            </li>
+
+                            <li>
+
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>Position</strong>
+
+                                    </p>
+                                    <p>
+                                        <textarea rows="10" cols="50" class="input__beautify" type="text" name="Position">@ViewBag.Members.Position</textarea>
+
+                                    </p>
+
+                                </div>
+                            </li>
+
+
+                            <li>
+
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>MainDesc</strong>
+
+                                    </p>
+                                    <p>
+                                        <textarea rows="10" cols="50" class="input__beautify" type="text" name="MainDesc">@ViewBag.Members.MainDesc</textarea>
+
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>SubDesc</strong>
+
+                                    </p>
+                                    <p>
+                                        <textarea rows="10" cols="50" class="input__beautify" type="text" name="SubDesc">@ViewBag.Members.SubDesc</textarea>
+
+                                    </p>
+
+                                </div>
+                            </li>
+
+
+
+                            <li class="text-center">
+                                <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
+                                <input type="hidden" name="Id" value="@ViewBag.Members.Id" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            }
+
+
+            <script src="~/Scripts/cms/CmsJquery.js"></script>
+            <script src="~/Scripts/cms/Admin/jquery-3.3.1.js"></script>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,145 @@
+﻿@using Anz.LMJ.BLO.ContentObjects;
+
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/rowreorder/1.2.7/css/rowReorder.dataTables.min.css" rel="stylesheet">
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li> Events</li>
+        </ol>
+    </div>
+    <div id="content">
+
+        <div class="jarviswidget jarviswidget-color-darken" id="IngredientsTable" data-widget-editbutton="false">
+
+
+            <div>
+                <div class="jarviswidget-editbox">
+                </div>
+                <div class="widget-body no-padding">
+                    <a class="btn btn-primary addbtn" href="/admin/AddEventsSectionForm"><i class="fa fa-plus"></i> Add Events</a>
+
+                    <table id="dt" class="display" width="100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Background Image</th>
+                                <th>EventDate</th>
+                                <th>MainDesc</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.Events != null)
+                            {
+                                var i = 0;
+
+                                foreach (var item in (List<Events>)ViewBag.Events)
+                                {
+
+                                    i = i + 1;
+
+                                <tr id="@i">
+                                    <td>@item.MainTitle</td>
+                                    <td>@item.MainDesc</td>
+                                    <td>
+                                        <div class="smart-timeline-content">
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <input type="hidden" name="MainImg" id="BackGroundImage" value="=@item.MainImg" />
+                                                    <img src="~/Images/Events/@item.MainImg" alt="img" width="150" id="blah">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>@item.EventDate</td>
+                                    <td>@item.MainDesc</td>
+                                    <td>
+                                        <a href="/Admin/GetEvents/@item.Id" class="fa fa-pencil btn btn-sm btn-primary"> Edit</a>
+                                        <a name="delete" class="btn btn-sm btn-danger fa fa-trash-o delete-events" data-row-id="@item.Id" href="/Admin/DeleteEventsSection/@item.Id"> Delete</a>
+                                    </td>
+
+                                </tr>
+
+                            }
+                                }
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding-left: 2%;">
+                    Delete The Selected News
+                    <input type="hidden" name="id" value="" id="id" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary confim-delete-events">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js"></script>
+<script>
+    var count = 0;
+    $("document").ready(function () {
+        table = $('#dt').DataTable({
+            rowReorder: true,
+        });
+    });
+
+
+    $(".events").addClass("active");
+    $(".Sentence").html($("input[name=Sentence]").val());
+    $(".SubTitle").html($("input[name=SubTitle]").val());
+    $(".Title").html($("input[name=Title]").val());
+
+
+
+
+
+    $(".delete-events").on("click", function (event) {
+        event.preventDefault();
+        var id = $(this).attr("data-row-id");
+        $("#myModal").find("#id").val(id);
+        $('#myModal').modal('show');
+    });
+
+    $(".confim-delete-events").on("click", function (event) {
+        event.preventDefault();
+        var id = $("#myModal").find("#id").val();
+        console.log(id);
+        location.href = "/Admin/DeleteEventsSection/" + id;
+        $('#myModal').modal('hide');
+    });
+
+</script>

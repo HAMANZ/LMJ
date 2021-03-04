@@ -1,0 +1,388 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission.Discussion
+@model List<DiscussionLO>
+
+
+@{ var modelDiscussion = "ModelAddDiscussion" + @ViewBag.Stage;
+    var list = "participant-dicussion-list" + @ViewBag.Stage;
+    var table = "TableDiscussion" + @ViewBag.Stage;
+}
+<input type="hidden" class="discussion-stage" value="@ViewBag.Stage" />
+<div class="@table">
+    <div class="jarviswidget-editbox jarviswidget-color-darken" data-widget-colorbutton="false"
+         data-widget-editbutton="false"
+         data-widget-togglebutton="false"
+         data-widget-deletebutton="false"
+         data-widget-fullscreenbutton="false"
+         data-widget-custombutton="false"
+         data-widget-collapsed="false"
+         data-widget-sortable="false">
+        <header>
+        
+            <div class="jarviswidget-ctrls">
+                <a class="AddDiscussionModel" onclick="checkdiscussion('@modelDiscussion', '@ViewBag.Stage',this)">Add Discussion</a>
+            </div>
+            <h2>@ViewBag.Title</h2>
+        </header>
+        <div>
+
+            <div class="widget-body no-padding">
+                <table class="table table-striped table-bordered table-hover" width="100%">
+                    <thead>
+
+                        <tr>
+                            <th>#</th>
+                            <th>Subject</th>
+                            <th>From</th>
+                            <th>Last Replier</th>
+                            <th>Replies</th>
+                            <th>Closed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            int counter = 1;
+
+
+                            <!-- content goes here -->
+                            foreach (DiscussionLO item in Model)
+                            {
+
+                        <tr>
+                            <td>@counter</td>
+                            <td class="discussion-cell" stage="@ViewBag.Stage" data-target="#ModelFormDiscussionDetail-@ViewBag.Stage-Files-@item.Id" data-toggle="modal" id="disc-@item.Id">@item.Subject</td>
+                            <td>@item.MainSender.FirstName @item.MainSender.LastName</td>
+                            @if (item.LastSender != null)
+                            {
+                                <td>@item.LastSender.FirstName @item.LastSender.LastName</td>
+                            }
+                            else
+                            {
+                                <td> - </td>
+                            }
+                            <td>@item.NumberOfReplies</td>
+                            <td>@item.isClosed</td>
+
+                            @{ counter++;}
+                        </tr>
+
+                            }
+                            <!-- end content -->
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+
+<div class="DiscussionModel-@ViewBag.Stage">
+
+</div>
+
+<script type="text/javascript">
+
+        var url = window.location.href;
+        var array = url.split('/');
+        var submissionid = array[array.length - 1];
+
+    //$(".add-discussion-btn").click(function () {
+    //     AddDiscussion(false);
+    //});
+
+    //$(".add-close-discussion-btn").click(function () {
+    //     AddDiscussion(true);
+    //});
+    function checkdiscussion(modelDiscussion,stage, select) {
+        var options = OpenModel(stage);
+        
+        if (options !=null) {
+            Discussionstage = "Discussion" + stage;
+            $("." + Discussionstage + "participant-dicussion-list").html(options);
+            $(select).attr("data-target", "#" + modelDiscussion);
+            $(select).attr("data-toggle", "modal");
+        }
+        else {
+            alert('Cant add discussion');
+        }
+        
+    }
+
+    function AddDiscussion(isClosed, stage, channelId, statusofdiscussion) {
+
+        var userids = {};
+        var discussion = {};
+        if (channelId == 'Null') {
+            //alert(stage);
+            var files = {}
+            var single_file = {}
+            var component = $("select[name='" + stage + "_component_id']");
+            var file = $("." + stage + "-name");
+            for (var i = 0; i < file.length; i++) {
+                single_file = {};
+                single_file['Type'] = component[i].value;
+                single_file['Name'] = file[i].value.replace(/.*(\/|\\)/, '');
+                files_to_upload = file[i].value;
+                files[i] = single_file;
+            }
+            var participants = $("." + stage + "participant-dicussion-list").val();
+            for (var i = 0; i < participants.length; i++) {
+                userids[i] = participants[i];
+            }
+            discussion['Participantids'] = userids;
+            discussion['Files'] = files;
+            discussion['Subject'] = $("[name ='" + stage + "Subject']").val();
+            discussion['Body'] = $("[name ='" + stage + "Body']").val();
+            discussion['isClosed'] = isClosed;
+            discussion['ChannelId'] = 'null';
+            stage = stage.split("Discussion")[1];
+            if (stage.trim() === "PreReview") {
+                discussion['isPreReview'] = true;
+            }
+            else {
+                discussion['isPreReview'] = false;
+            }
+
+            if (stage.trim() === "Review") {
+                discussion['isReview'] = true;
+            }
+            else {
+                discussion['isReview'] = false;
+            }
+
+            if (stage.trim() === "CopyEditingReview") {
+                discussion['isCopyEditingReview'] = true;
+            }
+            else {
+                discussion['isCopyEditingReview'] = false;
+            }
+
+            if (stage.trim() === "ProofReadingReview") {
+                discussion['isProofReadingReview'] = true;
+            }
+            else {
+                discussion['isProofReadingReview'] = false;
+            }
+
+
+            AddDiscussionFunction(discussion, submissionid)
+        }
+        else {
+            if (statusofdiscussion) { alert("This discussion is closed we cant add reply"); } else {
+                stage = 'DiscussionDetail-' + stage;
+                var files = {}
+                var component = $("select[name='" + stage + "_component_id']");
+                var file = $("." + stage + "-name");
+                
+                    for (var i = 0; i < file.length; i++) {
+                        if (file[i].value.replace(/.*(\/|\\)/, '') != "") {
+                            single_file = {};
+                            single_file['Type'] = component[i].value;
+                            single_file['Name'] = file[i].value.replace(/.*(\/|\\)/, '');
+                            files_to_upload = file[i].value;
+                            files[i] = single_file;
+                        }
+                      
+                    }
+                discussion['Participantids'] = {};
+                discussion['Files'] = files;
+                discussion['Subject'] = null;
+                discussion['Body'] = $("[name ='" + stage + "Reply']").val();
+                discussion['isClosed'] = isClosed;
+                discussion['ChannelId'] = channelId;
+                console.log(discussion);
+                stage = stage.split("DiscussionDetail-")[1];
+                if (stage.trim() === "PreReview") {
+                    discussion['isPreReview'] = true;
+                }
+                else {
+                    discussion['isPreReview'] = false;
+                }
+
+                if (stage.trim() === "Review") {
+                    discussion['isReview'] = true;
+                }
+                else {
+                    discussion['isReview'] = false;
+                }
+
+                if (stage.trim() === "CopyEditingReview") {
+                    discussion['isCopyEditingReview'] = true;
+                }
+                else {
+                    discussion['isCopyEditingReview'] = false;
+                }
+
+                if (stage.trim() === "ProofReadingReview") {
+                    discussion['isProofReadingReview'] = true;
+                }
+                else {
+                    discussion['isProofReadingReview'] = false;
+                }
+
+
+                AddDiscussionFunction(discussion, submissionid)
+               
+            }
+        }
+    }
+
+
+    function AddDiscussionFunction(discussion, submissionid) {
+
+  $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("AddDiscussion")',
+                data: { toAdd: discussion, submissionid: submissionid },
+                            success: function (result) {
+                                if (result.HttpStatusCode != 200) {
+                                    alert(result.Message);
+                                }
+                                else {
+                                    location.reload(true);
+                                }
+                            },
+                            error: function (ex) {
+
+                            }
+                        });
+    }
+    function getDiscussionModel(stage) {
+
+
+        var Model = '<div class="modal fade" id="ModelAdd' + stage+'" tabindex="-1" role="dialog" aria-labelledby="AddDiscussion" aria-hidden="true">';
+        Model += '<div class="modal-dialog modal-dialog-centered" role="document">';
+        Model += '<div class="modal-content">';
+        Model += '<div class="modal-header">';
+        Model += ' <h5 class="modal-title" id="AddDiscussion">Add Discussion</h5>';
+        Model += ' <button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+        Model += '<span aria-hidden="true">&times;</span>';
+        Model += '</button>';
+        Model += '</div>';
+        Model += '<div class="modal-body">';
+        Model += '<div class="form-group">';
+        Model += '<div class="row">';
+        Model += '<div class="col-sm-2">';
+        Model += '<label>Participants</label>';
+        Model += '</div>';
+        Model += '<div class="col-lg-8">';
+        Model += '<select multiple style="width:100%" class="select2  ' + stage+'participant-dicussion-list">';
+        Model += '</select>';
+        Model += '</div>';
+
+        Model += '</div>';
+        Model += '</div>';
+        Model += '<div class="form-group">';
+        Model += '<input class="form-control input-md" placeholder="Subject" name="' + stage +'Subject" type="text">';
+        Model += '</div>';
+        Model += '<div class="form-group">';
+        Model += '<textarea class="form-control" placeholder="Body" name="' + stage +'Body" style="width:100%;height:150px;"></textarea>';
+        Model += '</div>';
+        Model += '<div>';
+        Model += '<div id="' + stage + '_files_container">';
+        Model += '<div class="' + stage + '_files row">';
+        Model += '<div class="col-sm-3">';
+        Model += '<div class="form-group">';
+        Model += '<div class="input-group" id="' + stage + '_component_reference">';
+        Model += '<select onchange="OnChangeFileTypeSelectForm(' + "'" + stage + "',this," + false+')" class="' + stage + '_component form-control input-md" name="' + stage + '_component_id">';
+        Model += '<option value="" selected="selected">File Type</option>';
+        Model += '<option value="1">Manuscript</option>';
+        Model += '<option value="2">Figure</option>';
+        Model += '<option value="2">Table</option>';
+        Model += '<option value="2">CopyRight</option>';
+        Model += '</select>';
+        Model += '</div>';
+        Model += '</div>';
+        Model += '</div>';
+        Model += '<div class="col-sm-7">';
+        Model += '<div class="uploadType">';
+        Model += '<input class="form-control input-md ' + stage + '-name" name="files_to_upload" type="file"></div></div>';
+        Model += '<div class="col-sm-2">';
+        Model += '<button type="button"  class="btn btn-secondary add-files" onclick="AddFilesForm(' + "'" + stage + "'," + false + ')" id="add_' + stage + '_files"> add files</button> </div></div>';
+        Model += '</div></div>';
+        Model += '';
+        Model += '<div class="modal-footer">';
+        Model += '<button type="button" onclick="AddDiscussion(' + false + ",'" + stage + "','Null','Null'" +')" class="btn btn-secondary add-discussion-btn" >Send</button>';
+        Model += '<button type="button" onclick="AddDiscussion(' + true + ",'" + stage + "','Null','Null'" +')" class="btn btn-primary add-close-discussion-btn" data-dismiss="modal">Send & Close </button>';
+        Model += '</div></div></div></div>';
+        return Model;
+    }
+
+    function OpenModel(stage) {
+
+        Discussionstage = "Discussion" + stage;
+        //$("div.tab-pane.active").find('.AddDiscussionModel').attr('data-target', '#ModelAddDiscussion');
+        var model = getDiscussionModel(Discussionstage);
+
+
+        var role;
+        if (stage === "PreReview") {
+            role = "editor";;
+            $(".DiscussionModel-" + stage).html(model);
+        }
+
+        if (stage === "Review") {
+            role = "reviewer";
+            $(".DiscussionModel-" + stage).html(model);
+        }
+
+        if (stage === "CopyEditingReview") {
+            role = "copyediting";
+            $(".DiscussionModel-" + stage).html(model);
+        }
+
+        if (stage === "ProofReadingReview") {
+            role = "proofreading";
+            $(".DiscussionModel-" + stage).html(model);
+        }
+
+
+        var options = getlistofparticipants(role);
+
+        return options;
+  
+
+    }
+
+    function getlistofparticipants(role) {
+        var tmp = null;
+        var url = window.location.href;
+        var array = url.split('/');
+        var submissionid = array[array.length - 1];
+          $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetParticipant")',
+                            data: { submissionid: submissionid },
+                            async: false,
+                              success: function (result) {
+                                if (result.HttpStatusCode != 200) {
+                                    alert(result.Message);
+                                }
+                                else {
+                                    if (result.Data.length == 0) { var options = null; }
+                                    else {
+                                        for (var i = 0; i < result.Data.length; i++) {
+
+                                            options += ' <option value="' + result.Data[i].Id + '">' + result.Data[i].FirstName + " " + result.Data[i].LastName + " " + result.Data[i].Email + '</option>';
+                                        }
+                                    }
+                                 
+                                    tmp = options   ;
+
+                                }
+                            },
+                            error: function (ex) {
+
+                            }
+        });
+        return tmp;
+    }
+
+
+
+</script>

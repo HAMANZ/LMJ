@@ -1,0 +1,13 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@using Anz.LMJ.BLO.LogicObjects.User;
+@using Anz.LMJ.BLO.LookUpObjects;
+@using Anz.LMJ.BLO.ContentObjects;
+@{
+    ViewBag.Title = "Articles";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+@Html.Partial("~/Views/Home/_PartialViewArticles.cshtml", (List<SubmissionLO>)ViewBag.articles);
+
+

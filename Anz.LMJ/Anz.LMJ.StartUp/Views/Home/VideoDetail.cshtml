@@ -1,0 +1,201 @@
+﻿@using Anz.LMJ.BLO.ContentObjects;
+@{
+    ViewBag.Title = "EventDetail";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<style>
+    .articles-details .hero-wrap {
+        margin-top: 0rem !important;
+    }
+
+    textarea {
+        position: absolute;
+        left: -100%;
+    }
+
+    .btn-secondary:hover {
+        color: #fff;
+        background-color: #f11a21;
+        border-color: #f11a21;
+    }
+
+    .btn-secondary {
+        color: #808080;
+        background-color: #ffffff;
+        border-color: #808080;
+    }
+
+    #modal-share .modal-header .close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    #modal-share .modal-title {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    #modal-share li {
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+        #modal-share li a {
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: 700;
+            width: 100%;
+            max-width: 300px;
+        }
+
+            #modal-share li a.btn-facebook {
+                background: #3b5998;
+            }
+
+            #modal-share li a.btn-twitter {
+                background: #00acee;
+            }
+
+            #modal-share li a.btn-linkedin {
+                background: #0e76a8;
+            }
+
+            #modal-share li a.btn-email {
+                background: #ddd;
+                color: #444;
+            }
+
+    .copy-text {
+        width: 100%;
+        height: auto;
+    }
+
+    .csl-wrapper a.copy__btn, .csl-wrapper a.download__btn {
+        color: #f11a21;
+        margin: 0 4px;
+        font-size: 14px;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .visibility-hidden {
+        visibility: hidden;
+    }
+
+    .list--inline {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: inline;
+    }
+
+        .list--inline > li {
+            display: inline-block;
+        }
+
+        .list--inline.separator > li {
+            border: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+    #videoPlayer {
+        position: relative;
+        right: 0;
+        bottom: 0;
+        min-width: 00%;
+        min-height: 100%;
+        left: 25%;
+        /* width: auto;
+        height: auto;*/
+        top: 1%;
+        /*left: 50%;
+        z-index: 4;
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);*/
+    }
+</style>
+
+
+<div class="articles-details">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('')" data-stellar-background-ratio="0.5">
+        <video autoplay controls id="videoPlayer">
+            <source id="InpVideo" src="/Images/Videos/@ViewBag.detail.Src" type="video/mp4">
+        </video>
+       
+    </section>
+
+    <section class="ftco-section ArticleDetails padding-top-btm">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-12">
+                    <div class="d-flex align-items-center">
+                        <div class="align-self-stretch">
+                            <div class="text">
+                                <h2>@ViewBag.detail.Name</h2>
+                                <div class="meta mb-2">
+                                    <p><span></span>  @ViewBag.detail.VideoDate  <span>&#183;</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section blogDetails">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 d-flex">
+                    <div class="d-block services-wrap text-center">
+                        <p class="pt-1">
+                            @ViewBag.detail.MainDesc
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 grey-box-article">
+                    <div class="heading-section py-2 text-center">
+                        <h4>Related Videos</h4>
+                        <div class="about-border"></div>
+                    </div>
+                    <div class="relatedItem">
+
+                        @foreach (Videos item in (List<Videos>)(ViewBag.Videos))
+                        {
+
+                            <div class="item-block">
+                                <div class="d-block services-wrap text-center">
+                                  
+                                    <a href="/Home/VideoDetail/@item.Id">  <img class="img" src="~/Images/Videos/@item.Image"></a>
+                                </div>
+                                <div class="media-body py-2">
+                                    <h5>@item.Name</h5>
+                                    <a href="/Home/VideoDetail/@item.Id"></a>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="shareBlock"></div>
+
+
+
+
+</div>
+<script src="~/Content/lib/jquery/jquery.min.js"></script>
+<script src="~/Content/lib/jquery/jquery.c-share.js"></script>
+<script>
+
+
+</script>
+
+

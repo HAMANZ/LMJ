@@ -1,0 +1,723 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@using Anz.LMJ.BLO.LogicObjects.Review
+@using Anz.LMJ.DAL.Accessors
+@{
+    ViewBag.Title = "ArticleDetail";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<style>
+    .articles-details .hero-wrap {
+        margin-top: 0rem !important;
+    }
+
+
+
+    .btn-secondary:hover {
+        color: #fff;
+        background-color: #f11a21;
+        border-color: #f11a21;
+    }
+
+    .btn-secondary {
+        color: #808080;
+        background-color: #ffffff;
+        border-color: #808080;
+    }
+
+    #modal-share .modal-header .close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    #modal-share .modal-title {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    #modal-share li {
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+        #modal-share li a {
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: 700;
+            width: 100%;
+            max-width: 300px;
+        }
+
+            #modal-share li a.btn-facebook {
+                background: #3b5998;
+            }
+
+            #modal-share li a.btn-twitter {
+                background: #00acee;
+            }
+
+            #modal-share li a.btn-linkedin {
+                background: #0e76a8;
+            }
+
+            #modal-share li a.btn-email {
+                background: #ddd;
+                color: #444;
+            }
+
+    .copy-text {
+        width: 100%;
+        height: auto;
+    }
+
+    .csl-wrapper a.copy__btn, .csl-wrapper a.download__btn {
+        color: #f11a21;
+        margin: 0 4px;
+        font-size: 14px;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .visibility-hidden {
+        visibility: hidden;
+    }
+
+    .list--inline {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: inline;
+    }
+
+        .list--inline > li {
+            display: inline-block;
+        }
+
+        .list--inline.separator > li {
+            border: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+</style>
+<input type="hidden" id="articleid" value="@ViewBag.detail.Id" />
+<div class="modal fade" id="ReviewModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="services-2 col-md-12 d-flex w-100">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <span class="flaticon-diet">A</span>
+                    </div>
+                    <div class="media-body pl-3">
+                        @*<h3 class="heading">@ViewBag.User.FirstName  @ViewBag.User.LastName</h3>*@
+                        <p>Your review will be posted publicly on the web.</p>
+                        <section class='rating-widget'>
+                            <div class='rating-stars'>
+                                <ul id='stars'>
+                                    <li class='star' title='Poor' data-value='1'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Fair' data-value='2'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Good' data-value='3'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Excellent' data-value='4'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='WOW!!!' data-value='5'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" id="reviewtext" cols="100" rows="4" placeholder="Write here..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel </button>
+                <button type="button" class="btn btn-primary btn-review">Post review</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<section class="hero-wrap hero-wrap-2" style="background: #808080;" data-stellar-background-ratio="0.5">
+    <div class="overlay" style="background-image: url('/Images/Articles/@ViewBag.detail.Photo')"></div>
+</section>
+
+
+<div class="articles-details">
+
+
+    <section class="ftco-section ArticleDetails padding-top-btm">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-12">
+                    <div class="d-flex align-items-center">
+                        <div class="align-self-stretch">
+                            <div class="text">
+                                @if (@ViewBag.detail.Specialit != null)
+                                {
+                                    <button class="btn btn-secondary">@ViewBag.detail.Specialit</button>
+                                }
+                                @{string[] issno = @ViewBag.detail.IssueNO.Split('('); }
+                                <h2>@ViewBag.detail.Title</h2>
+
+                                <div class="meta mb-2">
+                                    <p></p>
+                                    <div>@ViewBag.detail.Type | By @ViewBag.detail.Author.FirstName  @ViewBag.detail.Author.LastName |  @ViewBag.detail.PublishDate.ToString("MMM.dd.yyyy") | @ViewBag.detail.Volume | @issno[0]</div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section blogDetails">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 d-flex">
+                    <div class="d-block services-wrap text-center">
+                        <p class="pt-1">
+                            @ViewBag.detail.AbstractText
+                        </p>
+                        <input type="hidden" value="@ViewBag.detail.FileName" id="articlefile" />
+                        <div style="text-align: left;">
+                            <button class="btn btn-secondary" onclick="downloadPDF('@ViewBag.detail.FileName')"><i class="fa fa-file"></i> PDF</button>
+                            <button class="btn btn-secondary" onclick="DowloadXML('@ViewBag.detail.FileName','@ViewBag.detail.Id')"> <i class="fa fa-file"></i> Xml</button>
+                            <button class="btn btn-secondary" onclick="DowloadHtml('@ViewBag.detail.FileName')"><i class="fa fa-file"></i> html</button>
+                            <a href="#" class="btn btn-secondary" id="btn-share" data-modal-title="Share" data-modal-description="" data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text" data-linkedin-label="Share on LinkedIn" data-linkedin-title="LinkedIn Title" data-linkedin-summary="LinkedIn Summary" data-email-label="Share via Email" data-email-subject="Email Subject"><i class="fa fa-file"></i>Share</a>
+                            @* <button class="btn btn-secondary"><i class="fa fa-file"></i> Print</button>*@
+                            <button data-title="Export Citation" data-toggle="modal" data-target="#exportCitation" class="btn btn-secondary"><i class="fa fa-file"></i> Export for Citation</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 grey-box-article">
+                    <div class="heading-section py-2 text-center">
+                        <h4>Related Articles</h4>
+
+                        <div class="about-border"></div>
+                    </div>
+                    <div class="relatedItem">
+                        @foreach (SubmissionLO item in (List<SubmissionLO>)(ViewBag.relatedissue))
+                        {<a href="/Home/ArticleDetails/@item.Id">
+                                <div class="item-block">
+                                    <div class="d-block services-wrap text-center">
+                                        <img class="img" src="~/Images/Articles/@item.Photo">
+                                    </div>
+                                    <div class="media-body py-2">
+                                        <h5>@(item.Title.Length > 52 ? item.Title.Substring(0, 52) + "..." : item.Title)</h5>
+
+
+                                    </div>
+                                </div>
+                            </a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="shareBlock"></div>
+
+
+
+    <section class="ftco-section padding-top-btm reviews-ratings">
+        <div class="container">
+            <div class="row no-gutters justify-content-center pb-5 mb-3">
+                <div class="col-md-7 heading-section text-center">
+                    <h2>reviews & ratings</h2>
+                    <div class="about-border"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="media-body pl-3">
+                        <div class="row">
+                            <div class="col-md-1 d-flex rating">
+                                @{ int ratingscore = 0;}
+                                @if (ViewBag.detail.MaxStars.Count != 0)
+                                {
+                                    List<star> s = new List<star>();
+                                    s = (List<star>)ViewBag.detail.MaxStars;
+                                    star maxValue = s.OrderByDescending(x => x.nbstars).ToList()[0];
+                                    ratingscore = maxValue.nbstars;
+                                }
+                                @if (ViewBag.rating != null)
+                                {
+                                    <h1 class="ratingScore">@ViewBag.rating</h1>
+                                }
+
+                            </div>
+                            <div class="col-md-4 d-flex stars">
+                                <section class='rating-widget'>
+                                    <div class='rating-stars'>
+                                        <ul id='stars'>
+                                            <li class='star' title='Poor' data-value='1'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='Fair' data-value='2'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='Good' data-value='3'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='Excellent' data-value='4'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='WOW!!!' data-value='5'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col-md-2 d-flex reviews">
+                                <p>@ViewBag.detail.Reviews.Count reviews</p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#ReviewModal" style=" margin-top: 22px;">Write a review</button>
+
+                </div>
+            </div>
+
+            @if (ViewBag.detail.Reviews.Count != 0)
+            {
+                <div class="row">
+
+                    @foreach (ReviewLO item in (List<ReviewLO>)(ViewBag.detail.Reviews))
+                    {
+                        DateTime end = (DateTime)item.Date;
+                        DateTime now = DateTime.Now;
+                        TimeSpan diff = end.Subtract(now);
+                        <div class="services-2 col-md-12 d-flex w-100">
+                            <div class="icon d-flex justify-content-center align-items-center">
+                                <span class="flaticon-diet">A</span>
+                            </div>
+                            <div class="media-body pl-3">
+                                <h3 class="heading">@item.User.FirstName @item.User.LastName</h3>
+                                <span> @diff.ToString(@"hh\:mm\:ss")  ago </span>
+                                <p>@item.Text</p>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>}
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    <div class="modal fade exportCitation" id="exportCitation" tabindex="-1" role="dialog" aria-labelledby="ModelAddReviwer" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Export Citation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+                    <div class="csl-wrapper copy__text-wrapper">
+                        <form action="/action/exportCiteProcCitation" method="post" target="_blank">
+                            <input type="hidden" name="content" value="" />
+                            <input type="hidden" name="dois" value="" />
+                            <input type="hidden" name="format" value="" />
+                            <fieldset class="input-group">
+                                <div class="form-group">
+                                    <select id="citation-format" class="select2">
+                                        <option value="bibtex" data-format="bibTex">BibTeX</option>
+                                        <option value="endNote" data-format="endNote">EndNote</option>
+                                        <option value="acm" data-format="text">ACM Ref</option>
+                                    </select>
+                                </div>
+                                <span class="select-arrow"><i class="icon-bottom-arrow"></i></span>
+                            </fieldset>
+
+                            <pre id="copy-text">article{@ViewBag.detail.Type},<br />author{@ViewBag.detail.Author.FirstName, @ViewBag.detail.Author.LastName},<br />title {@ViewBag.detail.Title},<br />Date  { @ViewBag.detail.PublishDate.ToString("MMM.dd.yyyy")},<br>Volume {@ViewBag.detail.Volume},<br>Issn {@ViewBag.detail.Issn},<br />Year {@ViewBag.detail.Year.ToString("yyyy")},
+
+                              </pre>
+                            <div id="export-warning"></div>
+                            <div class="pull-right">
+                                <ul class="list--inline separator">
+                                    <li><a href="javascript:void(0)" role="menuitem" title="Download citation" class="download__btn"><i aria-hidden="true" class="fa fa-download"></i></a></li>
+                                    <li>
+                                        <a href="javascript:void(0)" role="menuitem" title="Copy citation" class="copy__btn"><i aria-hidden="true" class="fa fa-copy"></i><input type="hidden" id="doisLimitNumber" value="-1" /></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script src="~/Content/lib/jquery/jquery.min.js"></script>
+<script src="~/Content/lib/jquery/jquery.c-share.js"></script>
+<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+
+
+<script>
+
+
+
+    $("document").ready(function () {
+
+
+
+        function copyme(textarea) {
+            $('span[id^="success-alert"]').remove();
+            $(textarea).select();
+            $(textarea).focus();
+            document.execCommand("copy");
+            document.getSelection().removeAllRanges();
+            $(textarea).after('<span id="success-alert"><br>Copied to clipboard</span>');
+            $('#success-alert').css("color", "green");
+        }
+
+
+
+        $('.copy__btn').click(function () {
+            var copyText = $("#copy-text").html();
+            $("body").append("<textarea id='copy-textarea'>"+copyText+"</textarea>");
+            copyme("#copy-textarea");
+        });
+
+
+    });
+
+
+    $(".btn-review").click(function () {
+        articleid=$("#articleid").attr("value");
+        text = $("#reviewtext").val();
+        nbofstars=$("#stars .selected:last").attr("data-value");
+
+        $.ajax({
+
+            type: 'POST',
+            url: '@Url.Action("AddReviewByUser")',
+           data: { text: text, nbofstars: nbofstars, articleid: articleid},
+            success: function (result) {
+                if (result.responseMessage !== "error") { location.reload(); }
+                else {
+                    location.href('/{Home}/LoginForm');
+                }
+           }
+        });
+
+
+    });
+
+    function DowloadHtml(file) {
+   $.ajax({
+            type: 'POST',
+            url: '@Url.Action("savefile")',
+            data: { fileName:file},
+       success: function (result) {
+           alert('The file downloaded');
+       }
+        });
+
+
+    }
+
+        function DowloadXML(file,articleid){
+   $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SaveXml")',
+       data: { fileName: file, articleid: articleid},
+       success: function (result) {
+           alert('The file downloaded');
+       }
+        });
+
+
+    }
+
+    function downloadPDF(fileName) {    
+        var src = 'http://localhost:52397/files/' + fileName;
+
+        $.ajax({
+            url: src,
+            method: 'GET',
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (data) {
+                var a = document.createElement('a');
+                url = URL.createObjectURL(data);
+                a.href = url;
+                a.download = fileName;
+                document.body.append(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+            }
+        });
+    }
+
+
+    function copyFunction() {
+
+        alert($("#copyytt").select());
+        document.execCommand("copy");
+    }
+
+
+    function copyFlunction() {
+        alert("ddd");
+        const copyText = document.getElementById("myInput").textContent;
+        const textArea = document.createElement('textarea');
+        textArea.textContent = copyText;
+        document.body.append(textArea);
+        textArea.select();
+        document.execCommand("copy");
+    }
+
+    function formaCitation(){
+    }
+
+    $("#citation-format").on("change", function () {
+        //$("#citation-format").val();
+    });
+
+    $(".download__btn").on("click", function () {
+        var text = document.getElementById("copy-text").textContent;
+        var dt = new Date();
+        var filname = "citation_file_" + dt.getHours() + "_" + dt.getMinutes() + "_" + dt.getSeconds();
+        DownloadCitationPDF(filname, text);
+    });
+
+    function DownloadCitationPDF(filename, text) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    }
+
+    function copyToClipboard(elem) {
+        // create hidden text element, if it doesn't already exist
+        var targetId = "_hiddenCopyText_";
+        var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+        var origSelectionStart, origSelectionEnd;
+        if (isInput) {
+            // can just use the original source element for the selection and copy
+            target = elem;
+            origSelectionStart = elem.selectionStart;
+            origSelectionEnd = elem.selectionEnd;
+        } else {
+            // must use a temporary form element for the selection and copy
+            target = document.getElementById(targetId);
+            if (!target) {
+                var target = document.createElement("textarea");
+                target.style.position = "absolute";
+                target.style.left = "-9999px";
+                target.style.top = "0";
+                target.id = targetId;
+                document.body.appendChild(target);
+            }
+            target.textContent = elem.textContent;
+        }
+        // select the content
+        var currentFocus = document.activeElement;
+        target.focus();
+        target.setSelectionRange(0, target.value.length);
+
+        // copy the selection
+        var succeed;
+        try {
+            succeed = document.execCommand("copy");
+        } catch (e) {
+            succeed = false;
+        }
+        // restore original focus
+        if (currentFocus && typeof currentFocus.focus === "function") {
+            currentFocus.focus();
+        }
+
+        if (isInput) {
+            // restore prior selection
+            elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+        } else {
+            // clear temporary content
+            target.textContent = "";
+        }
+        return succeed;
+    }
+
+
+
+    $("document").ready(function () {
+
+
+
+        $("#btn-share").click(function () {
+            var shareHtml = "",
+                shareUrl = window.location.href,
+                el = $(this),
+                shareModalTitle = el.data("modal-title"),
+                shareModalDescription = el.data("modal-description"),
+                shareFacebookLabel = el.data("facebook-label"),
+                shareTwitterLabel = el.data("twitter-label"),
+                shareTwitterText = el.data("twitter-text"),
+                shareLinkedInLabel = el.data("linkedin-label"),
+                shareLinkedInTitle = encodeURIComponent(el.data("linkedin-title")),
+                shareLinkedInSummary = encodeURIComponent(el.data("linkedin-summary")),
+                shareLinkedInSource = window.location.protocol + "//" + window.location.hostname,
+                shareEmailLabel = el.data("email-label"),
+                shareEmailSubject = el.data("email-subject");
+
+            shareHtml += '<div class="modal fade in text-center" id="modal-share" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">' +
+                '<div class="modal-dialog modal-dialog-centered" >' +
+                '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>' +
+                '<h3 class="modal-title" id="myModalLabel">' + shareModalTitle + '</h3>';
+
+            if (shareModalDescription != undefined) {
+                shareHtml += '<p>' + shareModalDescription + '</p>';
+            }
+
+            shareHtml += '</div>' + '<div class="modal-body">' + '<ul class="list-unstyled">';
+
+            if (shareFacebookLabel != undefined) {
+                shareHtml += '<li><a href="https://www.facebook.com/sharer/sharer.php?u=' + shareUrl + '" title="' + shareFacebookLabel + '" target="_blank" class="btn btn-facebook"><i class="icon-facebook"></i> ' + shareFacebookLabel + '</a></li>';
+            }
+            if (shareTwitterLabel != undefined) {
+                shareHtml += '<li><a href="https://twitter.com/intent/tweet?text=' + shareTwitterText + '&url=' + shareUrl + '" title="' + shareTwitterLabel + '" target="_blank" class="btn btn-twitter"><i class="icon-twitter"></i> ' + shareTwitterLabel + '</a></li>';
+            }
+            if (shareLinkedInLabel != undefined) {
+                shareHtml += '<li><a href="https://www.linkedin.com/shareArticle?mini=true&url=' + shareUrl + '&title=' + shareLinkedInTitle + '&summary=' + shareLinkedInSummary + '&source=' + shareLinkedInSource + '" title="' + shareLinkedInLabel + '" target="_blank" class="btn btn-linkedin"><i class="icon-linkedin"></i> ' + shareLinkedInLabel + '</a></li>';
+            }
+            if (shareEmailLabel != undefined) {
+                shareHtml += '<li><a href="mailto:hudaabumayha.ham@gmail.com?subject=subject&body=body' + shareEmailSubject + '" title="' + shareEmailLabel + '" class="btn btn-email"><i class="icon-mail"></i> ' + shareEmailLabel + '</a></li>';
+            }
+
+            '</ul>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+
+            $("body").append(shareHtml);
+
+            $('#modal-share').modal()
+        });
+
+
+
+
+
+        $("#stars li")
+            .on("mouseover", function () {
+                var onStar = parseInt($(this).data("value"), 10);
+                $(this)
+                    .parent()
+                    .children("li.star")
+                    .each(function (e) {
+                        if (e < onStar) {
+                            $(this).addClass("hover");
+                        } else {
+                            $(this).removeClass("hover");
+                        }
+                    });
+            })
+            .on("mouseout", function () {
+                $(this)
+                    .parent()
+                    .children("li.star")
+                    .each(function (e) {
+                        $(this).removeClass("hover");
+                    });
+            });
+
+        $("#stars li").on("click", function () {
+            var onStar = parseInt($(this).data("value"), 10);
+            var stars = $(this).parent().children("li.star");
+
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass("selected");
+            }
+
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass("selected");
+            }
+
+            var ratingValue = parseInt(
+                $("#stars li.selected").last().data("value"),
+                10
+            );
+            var msg = "";
+            if (ratingValue > 1) {
+                msg = "Thanks! You rated this " + ratingValue + " stars.";
+            } else {
+                msg =
+                    "We will improve ourselves. You rated this " + ratingValue + " stars.";
+            }
+            responseMessage(msg);
+        });
+    });
+
+    function responseMessage(msg) {
+        $(".success-box").fadeIn(200);
+        $(".success-box div.text-message").html("<span>" + msg + "</span>");
+    }
+
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+

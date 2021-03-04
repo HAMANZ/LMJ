@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d7c2cb976e654f8f84b5077d93537147" Name="Diagram1">
+        <EntityTypeShape EntityType="LMJModel.ArticleType" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.City" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.ContactU" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Contributor" Width="1.5" PointX="3" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Country" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.DiscussionParticipant" Width="1.5" PointX="8.25" PointY="38.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Discussion" Width="1.5" PointX="6" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.DiscussionsFile" Width="1.5" PointX="8.25" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.EmailLog" Width="1.5" PointX="3" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Galley" Width="1.5" PointX="3" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Issue" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Journal" Width="1.5" PointX="4.5" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Language" Width="1.5" PointX="2.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Library" Width="1.5" PointX="6.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Logger_Admin" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Logger_CyberSource" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Logger_Error" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Logger_User" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.LookUp" Width="1.5" PointX="3" PointY="46" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.LookUpMedia" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.LookUpMultiLanguage" Width="1.5" PointX="5.25" PointY="46.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.LookUpTable" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Medium" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Newsletter" Width="1.5" PointX="3" PointY="50" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Payment" Width="1.5" PointX="6" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Process" Width="1.5" PointX="9" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.ProcessStage" Width="1.5" PointX="11.25" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Question" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Requirment" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Research" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Review" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Section" Width="1.5" PointX="6.75" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Speciality" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Subject" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.SubmissionFile" Width="1.5" PointX="6" PointY="34.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.SubmissionInProcess" Width="1.5" PointX="14.25" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.SubmissionKeyword" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Submission" Width="1.5" PointX="9" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.SubmissionStatu" Width="1.5" PointX="11.25" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Subscription" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.sysdiagram" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.Tag" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.UserResponsibleInProcess" Width="1.5" PointX="16.5" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.UserRole" Width="1.5" PointX="6.75" PointY="50.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.UserRolesInJournal" Width="1.5" PointX="9" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.User" Width="1.5" PointX="0.75" PointY="28" IsExpanded="true" />
+        <AssociationConnector Association="LMJModel.FK_City_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Contributors_Submissions" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Contributors_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Participants_Discussions" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Discussions_Discussions" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Discussions_Submissions" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Discussions_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_DiscussionsFiles_Discussions" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_EmailLogs_Submissions" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_EmailLogs_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_EmailLogs_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Galleys_Submissions" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Galleys_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Journals_Languages" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Library_Journals" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Payments_Journals" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Sections_Journals" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Submissions_Library" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_LookUp_LookUp" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_LookUp_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_LookUpMultiLanguage_LookUp" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Newsletter_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Payments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Subscriptions_Payments" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Processes_Processes" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Processes_UserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Processes_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_ProcessStages_Processes" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_ProcessStages_Processes1" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_SubmissionInProcess_Processes" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_ProcessStages_UserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Submissions_Sections" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_UserRolesInJournal_Sections" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_SubmissionFiles_Submissions" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_SubmissionFiles_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_SubmissionInProcess_Submissions" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_UserResponsibleInProcess_SubmissionInProcess" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_Submissions_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_SubmissionStatus_Submissions" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_SubmissionStatus_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_UserResponsibleInProcess_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_UserRolesInJournal_UserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="LMJModel.FK_UserRolesInJournal_Users1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "AddMembersForm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+
+            @using (Html.BeginForm("AddMembers", "Admin", FormMethod.Post, new { @class = "AddMembers", enctype = "multipart/form-data" }))
+            {
+                <div class="well well-sm">
+                    <!-- Timeline Content -->
+                    <div class="smart-timeline">
+                        <ul class="smart-timeline-list">
+                            <li>
+
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>Name</strong>
+
+                                    </p>
+                                    <p>
+                                        <input class="input__beautify" type="text" name="Name" value="" required />
+
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>MainDesc</strong>
+
+                                    </p>
+                                    <p>
+                                        <input class="input__beautify" type="text" name="MainDesc" value="" required />
+
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+                            <li>
+
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>SubDesc</strong>
+
+                                    </p>
+                                    <p>
+                                        <input class="input__beautify" type="text" name="SubDesc" value="" required />
+
+                                    </p>
+
+                                </div>
+                            </li>
+                            <div class="smart-timeline-content">
+                                <p>
+                                    <strong>Position</strong>
+
+                                </p>
+                                <p>
+                                    <input class="input__beautify" type="text" name="Position" value="" required />
+
+                                </p>
+
+                            </div>
+                            </li>
+                            <li>
+                                <div class="smart-timeline-content">
+                                    <p>
+                                        <strong>Image</strong>
+                                    </p>
+
+                                    <ul class="list-inline">
+                                        <li>
+                                            <input type="hidden" name="Image" id="BackGroundImage" value="" />
+                                            <img src="" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
+                                            <br />
+                                            <span>Recommended Size: 195*195</span>
+
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="smart-timeline-content">
+                                    <input type="file" name="PostedFileImage" id="imgInp" class="custom-file-input" style="width:50%;" required>
+                                </div>
+                            </li>
+                            <br />
+
+
+
+
+
+                            <li class="text-center">
+                                <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
+<script src="~/Scripts/cms/CmsJquery.js"></script>

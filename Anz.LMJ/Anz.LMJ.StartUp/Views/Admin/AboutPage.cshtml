@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "About Us";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model Anz.LMJ.BLO.ContentObjects.About_Page
+
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @using (Html.BeginForm("AboutPage", "Admin", FormMethod.Post, new { @class = "AboutPage", enctype = "multipart/form-data" }))
+                {
+                    <div class="well well-sm">
+                        <!-- Timeline Content -->
+                        <div class="smart-timeline">
+                            <ul class="smart-timeline-list">
+                                
+                                <li>
+
+                                    <div class="smart-timeline-content">
+                                        <p>
+                                            <strong>Title</strong>
+
+                                        </p>
+                                        <p>
+                                            <input class="input__beautify" type="text" name="Title" value="@Model.Title" required />
+
+                                        </p>
+
+                                    </div>
+                                </li>
+                                <li>
+
+                                    <div class="smart-timeline-content">
+                                        <p>
+                                            <strong>Text</strong>
+
+                                        </p>
+                                        <p>
+                                            <textarea rows="10" cols="50" class="input__beautify" type="text" name="Txt" required>@Model.Txt</textarea>
+
+                                        </p>
+
+                                    </div>
+                                </li>
+                               
+                                <li>
+                                    <div class="smart-timeline-content">
+                                        <p>
+                                            <a href="javascript:void(0);"><strong>ObjImgOne</strong></a>
+                                        </p>
+
+                                        <ul class="list-inline">
+                                            <li>
+                                                <input type="hidden" name="Img" id="BackGroundImage" value="@Model.Img" />
+                                                <img src="~/Images/@Model.Img" alt="img" width="150" id="blah">
+                                                <br />
+                                                <input type="file" name="PostedFileImg" id="imgInp" class="custom-file-input" style="width:150px; required">
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                              
+
+                                <li class="text-center">
+                                    <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="~/Scripts/cms/Admin/jquery-3.3.1.js"></script>
+<script src="~/Scripts/cms/CmsJquery.js"></script>
+<script>
+    $(".aboutuspage").addClass("active");
+    $(".Sentence").html($("input[name=Sentence]").val());
+    $(".SubTitle").html($("input[name=SubTitle]").val());
+    $(".Title").html($("input[name=Title]").val());
+
+</script>

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF178793-AD4F-46B2-B5D2-EE0C958CE0D5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Anz.LMJ.BLO</RootNamespace>
+    <AssemblyName>Anz.LMJ.BLO</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ContentObjects\About_Page.cs" />
+    <Compile Include="ContentObjects\EditorsPick.cs" />
+    <Compile Include="ContentObjects\IssueFilter.cs" />
+    <Compile Include="ContentObjects\Events.cs" />
+    <Compile Include="ContentObjects\Hero_Banner.cs" />
+    <Compile Include="ContentObjects\News.cs" />
+    <Compile Include="ContentObjects\Team.cs" />
+    <Compile Include="ContentObjects\Contactus.cs" />
+    <Compile Include="ContentObjects\Videos.cs" />
+    <Compile Include="ContentObjects\Members.cs" />
+    <Compile Include="LogicObjects\CommonObjects\DynamicResponse.cs" />
+    <Compile Include="LogicObjects\Issue\IssueLO.cs" />
+    <Compile Include="LogicObjects\Review\ReviewLO.cs" />
+    <Compile Include="LogicObjects\Review\star.cs" />
+    <Compile Include="LogicObjects\Submission\NewsletterLO.cs" />
+    <Compile Include="LogicObjects\Submission\SelectLO.cs" />
+    <Compile Include="LogicObjects\Submission\SelectValues.cs" />
+    <Compile Include="LogicObjects\Submission\Discussion\DiscussionContentLO.cs" />
+    <Compile Include="LogicObjects\Submission\Discussion\DiscussionFileLO.cs" />
+    <Compile Include="LogicObjects\Submission\Discussion\DiscussionLO.cs" />
+    <Compile Include="LogicObjects\Submission\Discussion\DiscussionParticipantsLO.cs" />
+    <Compile Include="LogicObjects\Submission\FileTypeLogic.cs" />
+    <Compile Include="LogicObjects\Submission\ProcessLO.cs" />
+    <Compile Include="LogicObjects\Submission\SubmissionFilesLO.cs" />
+    <Compile Include="LogicObjects\Submission\SubmissionLO.cs" />
+    <Compile Include="LogicObjects\Submission\ArticleTypeLO.cs" />
+    <Compile Include="LogicObjects\Submission\StudyTypeLO.cs" />
+    <Compile Include="LogicObjects\Submission\SubSelectValues.cs" />
+    <Compile Include="LogicObjects\Submission\SubSubSelectValues.cs" />
+    <Compile Include="LogicObjects\User\UserLO.cs" />
+    <Compile Include="LogicObjects\User\UserQueueLO.cs" />
+    <Compile Include="LookUpObjects\GeneralContents.cs" />
+    <Compile Include="LookUpObjects\LookUpAttributes.cs" />
+    <Compile Include="LookUpObjects\Options.cs" />
+    <Compile Include="LookUpObjects\ProcessLookUpLogic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Anz.LMJ.DAL\Anz.LMJ.DAL.csproj">
+      <Project>{6554F184-BDFA-4FEC-A7CF-CE03996CB0DB}</Project>
+      <Name>Anz.LMJ.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
