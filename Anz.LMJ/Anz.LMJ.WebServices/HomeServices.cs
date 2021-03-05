@@ -10,6 +10,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Anz.LMJ.BLL;
+using Anz.LMJ.BLO.ContentObjects;
 
 namespace Anz.LMJ.WebServices
 {
@@ -178,6 +180,17 @@ namespace Anz.LMJ.WebServices
 
             return response;
         }
+
+        public void ContactUs(Contactus c)
+        {
+            UserLogic _UserLogic = new UserLogic();
+            DynamicResponse<long> response = new DynamicResponse<long>();
+            UserLO user = new UserLO();
+
+            Tools.sendEmail(c.Email, c.Subject, c.Message);
+
+        }
+        
 
     }
 }

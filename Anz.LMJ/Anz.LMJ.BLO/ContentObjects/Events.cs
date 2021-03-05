@@ -18,6 +18,8 @@ namespace Anz.LMJ.BLO.ContentObjects
         public string MainTitle { get; set; }
         public string EventDate { get; set; }
         public string MainDesc { get; set; }
+        public string Location { get; set; }
+        
 
     }
 }

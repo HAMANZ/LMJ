@@ -1900,7 +1900,7 @@ namespace Anz.LMJ.BLL.Logic
                     Newsletter.Issn = item.ISSN;
                     Newsletter.Eissn = item.EISSN;
                     Newsletter.Volume = item.Volume;
-                    Newsletter.CoverImage.Name = item.CoverImage;
+                    Newsletter.Image = item.CoverImage;
                     Newsletter.PublishDate = (DateTime)item.PublishDate;
                     NewsletterList.Add(Newsletter);
                 }
@@ -1956,15 +1956,18 @@ namespace Anz.LMJ.BLL.Logic
                 }
 
                 for (int i = 0; i < _Issue.Count; i++) {
+                    issue = new IssueLO();
                     issue.Id = _Issue[i].Id;
+                    issue.IssuePrintNo = _Issue[i].IssuePrintNo;
                     issue.IssueNo = (long)_Issue[i].IssueNo;
                     issue.CoverImage = _Issue[i].CoverImage;
                     issue.Date = (DateTime)_Issue[i].SysDate;
                     issue.Title = _Issue[i].Title;
                     issue.SubTitle = _Issue[i].SubTitle;
+                    _Issues.Add(issue);
                 }
            
-                _Issues.Add(issue);
+                
                 response.Data = _Issues;
                 response.HttpStatusCode = HttpStatusCode.OK;
                 return response;
@@ -2000,6 +2003,7 @@ namespace Anz.LMJ.BLL.Logic
                     response.ServerMessage = "issue not found";
                 }
                 issue.Id = _Issue.Id;
+                issue.IssuePrintNo = _Issue.IssuePrintNo;
                 issue.IssueNo = (long)_Issue.IssueNo;
                 issue.CoverImage = _Issue.CoverImage;
                 issue.Date = (DateTime)_Issue.SysDate;
@@ -2508,7 +2512,7 @@ namespace Anz.LMJ.BLL.Logic
                 _Newsletter.Name = toEdit.Name;
                 _Newsletter.ISSN = toEdit.Issn;
                 _Newsletter.EISSN = toEdit.Eissn;
-                _Newsletter.CoverImage = toEdit.CoverImage.Name;
+                _Newsletter.CoverImage = toEdit.CoverImage.FileName;
                 _Newsletter.Volume = toEdit.Volume;
                 _Newsletter.PublishDate = toEdit.PublishDate;
                 _Newsletter.UserId = userid;
@@ -2550,7 +2554,7 @@ namespace Anz.LMJ.BLL.Logic
                 _Newsletter.Name = toAdd.Name;
                 _Newsletter.ISSN = toAdd.Issn;
                 _Newsletter.EISSN = toAdd.Eissn;
-                _Newsletter.CoverImage = toAdd.CoverImage.Name;
+                _Newsletter.CoverImage = toAdd.CoverImage.FileName;
                 _Newsletter.PublishDate = toAdd.PublishDate;
                 _Newsletter.UserId = userid;
                 _Newsletter.isDeleted =false;

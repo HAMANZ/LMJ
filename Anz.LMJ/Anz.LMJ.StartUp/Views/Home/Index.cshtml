@@ -22,7 +22,14 @@
     <title>LMJ | JML</title>
 
     <style>
-        .slick-slide {
+        .block-20 {
+            overflow: hidden;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 291px;
+        }
+            .slick-slide {
             display: none;
             float: left;
             height: 450px !important;
@@ -704,15 +711,17 @@
                                             <a href="/Home/ArticleDetails/@item.Id" class="block-20 rounded" style="background-image: url('/Images/Articles/@item.Photo')"></a>
                                             <div class="text">
                                                 <button class="btn btn-secondary">@item.Specialit</button>
-                                                <h2 href="/Home/ArticleDetails/@item.Id">
-                                                    @(item.Title.Length > 38 ? item.Title.Substring(0,38) + "..." : item.Title)
-                                                </h2>
-                                                <div class="meta mb-2">
-                                                    <div>By @item.Author.FirstName  @item.Author.LastName</div>
-                                                    <div>@item.PublishDate.ToString("MMM .dd . yyyy") | @item.Type</div>
-                                                    <div>@item.Volume |  @item.IssueNO.Split('(')[0]</div>
-                                                </div>
-                                                <button href="/Home/ArticleDetails/@item.Id" class="btn btn-grey">Read More</button>
+                                                <a href="/Home/ArticleDetails/@item.Id">
+                                                    <h2 href="/Home/ArticleDetails/@item.Id">
+                                                        @(item.Title.Length > 38 ? item.Title.Substring(0,38) + "..." : item.Title)
+                                                    </h2>
+                                                    <div class="meta mb-2">
+                                                        <div>By @item.Author.FirstName  @item.Author.LastName</div>
+                                                        <div>@item.PublishDate.ToString("MMM .dd . yyyy") | @item.Type</div>
+                                                        <div>@item.Volume |  @item.IssueNO.Split('(')[0]</div>
+                                                    </div>
+                                                </a>
+                                                    <button href="/Home/ArticleDetails/@item.Id" class="btn btn-grey">Read More</button>
                                             </div>
                                         </div>
                                     </div>
@@ -729,13 +738,13 @@
                                                 <h3>
                                                     @(item.Title.Length > 38 ? item.Title.Substring(0,38) + "..." : item.Title)
                                                 </h3>
+                                                <div class="meta mb-2">
+                                                    <p> @item.SubTitle</p>
+                                                    <div>By @item.Author.FirstName  @item.Author.LastName</div>
+                                                    <div>@item.PublishDate.ToString("MMM .dd . yyyy") | @item.Type</div>
+                                                    <div>@item.Volume | @issno[0]</div>
+                                                </div>
                                             </a>
-                                            <div class="meta mb-2">
-                                                <p> @item.SubTitle</p>
-                                                <div>By @item.Author.FirstName  @item.Author.LastName</div>
-                                                <div>@item.PublishDate.ToString("MMM .dd . yyyy") | @item.Type</div>
-                                                <div>@item.Volume | @issno[0]</div>
-                                            </div>
                                         </div>
                                     </div>
                                 }
@@ -749,20 +758,19 @@
                             }
                             j++;
                         }
-                            <div class="col-md-3 d-flex grey-box">
-                                <a href="/Home/ArticlesByIssueId?issueid=@ViewBag.latestIssues.Id">
-                                    <div class="align-self-stretch">
-                                        <h1>Latest issue</h1>
-                                        <a href="/Home/ArticlesByIssueId?issueid=@ViewBag.latestIssues.Id"><h5>@ViewBag.latestIssues.Title </h5></a>
-                                        <p>@ViewBag.latestIssues.SubTitle</p>
-                                        <img src="/Images/Articles/@ViewBag.latestIssues.CoverImage">
-
-                                    </div>
-                                </a>
+                    <div class="col-md-3 d-flex grey-box">
+                        <a href="/Home/ArticlesByIssueId?issueid=@ViewBag.latestIssues.Id">
+                            <div class="align-self-stretch">
+                                <h1>Latest issue</h1>
+                                <h5>@ViewBag.latestIssues.Title </h5>
+                                <h5>@ViewBag.latestIssues.IssuePrintNo </h5>
+                                <h6>@ViewBag.latestIssues.Date.ToString("MMM .dd . yyyy") </h6>
+                                <img src="/Images/Articles/@ViewBag.latestIssues.CoverImage">
                             </div>
+                        </a>
                         </div>
-
                     </div>
+                        </div>
                 </section>
                 <section class="ftco-section testimony-section bg-light TopReadArticlesSection padding-top-btm">
                     <div class="container">
@@ -786,7 +794,7 @@
                                                         <button class="btn btn-grey">@item.Type</button>
                                                         <a href="/Home/ArticleDetails/@item.Id">
                                                             <p class="name">
-                                                                @(item.Title.Length > 35 ? item.Title.Substring(0,35) + "..." : item.Title)
+                                                                @(item.Title.Length > 28 ? item.Title.Substring(0, 28) + "..." : item.Title)
                                                             </p>
                                                         </a>
                                                         <div>By @item.Author.FirstName  @item.Author.LastName</div>
@@ -1065,8 +1073,18 @@
                                 {
                                     classfilter = "filter-lmj";
                                 }
-                            }
+                                <div class="col-lg-4 col-md-6 portfolio-item @classfilter @datawowdelay">
+                                    <div class="room-wrap d-md-flex bg-grey">
+                                        <div class="half d-flex align-items-center">
+                                            <div class="text p-4">
+                                                <h3>@item.IssuePrintNo</h3>
+                                                <p>@item.SubTitle  @dateValue.ToString("MM/dd/yyyy")</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            }
+                        </div>
                       </section>
 
             </main>

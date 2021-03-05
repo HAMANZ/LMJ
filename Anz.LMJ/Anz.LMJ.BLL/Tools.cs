@@ -40,11 +40,6 @@ namespace Anz.LMJ.BLL
                 mail.Body = body;
                 mail.IsBodyHtml = true;
 
-
-
-
-
-
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential("", "LMJ_2021");
                 SmtpServer.EnableSsl = true;

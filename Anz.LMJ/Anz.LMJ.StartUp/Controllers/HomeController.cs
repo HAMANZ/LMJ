@@ -169,7 +169,10 @@ namespace Anz.LMJ.StartUp.Controllers
         {
             try
             {
-                return View();
+                Contact contact = _ContentServices.GetContent<Contact>(ContentServices.ServiceTables.Contact, 1).Contents.FirstOrDefault();
+                c.Email = contact.Email;
+                _HomeServices.ContactUs(c);
+                return View("Contact");
             }
             catch (Exception ex)
             {

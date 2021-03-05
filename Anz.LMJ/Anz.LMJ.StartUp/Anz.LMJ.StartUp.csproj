@@ -169,9 +169,14 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cms\download.js" />
+    <Content Include="Content\css\cheditor.css" />
     <Content Include="Content\css\stylecss.css" />
     <Content Include="Content\editor.css" />
+    <Content Include="Content\js\build-config.js" />
+    <Content Include="Content\js\ckeditor.js" />
+    <Content Include="Content\js\config.js" />
     <Content Include="Content\js\mainjs.js" />
+    <Content Include="Content\js\styles.js" />
     <Content Include="Content\lib\copyme.js" />
     <Content Include="Content\lib\jquery\jquery-3.5.1.min.js" />
     <Content Include="Content\lib\jquery\jquery-1.11.0.min.js" />
@@ -835,6 +840,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Articles\" />
+    <Folder Include="Images\NewsletterImages\" />
     <Folder Include="Images\Videos\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Discussion\" />

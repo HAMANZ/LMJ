@@ -344,8 +344,8 @@ namespace Anz.LMJ.StartUp.Controllers
 
 
 
-        [HttpPost]
         [CheckUserSession]
+        [HttpPost, ValidateInput(false)]
         public ActionResult AboutPage(About_Page toAdd)
         {
             string json = "";

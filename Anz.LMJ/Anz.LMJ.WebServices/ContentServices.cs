@@ -30,7 +30,14 @@ namespace Anz.LMJ.WebServices
             Team,
             News,
             EditorsPick,
-            IssueFilter
+            IssueFilter,
+            Contact,
+            Position,
+            Role,
+            Policy,
+            Terms,
+            CopyRight,
+            Citation
 
         }
 
@@ -52,7 +59,14 @@ namespace Anz.LMJ.WebServices
                 _SharedTables[ServiceTables.Team] = LookUpLogic.AdminTables.Team;
                 _SharedTables[ServiceTables.News] = LookUpLogic.AdminTables.News;
                 _SharedTables[ServiceTables.IssueFilter] = LookUpLogic.AdminTables.IssueFilter;
-
+                _SharedTables[ServiceTables.Contact] = LookUpLogic.AdminTables.Contact;
+                _SharedTables[ServiceTables.Role] = LookUpLogic.AdminTables.Role;
+                _SharedTables[ServiceTables.Position] = LookUpLogic.AdminTables.Position;
+                _SharedTables[ServiceTables.Policy] = LookUpLogic.AdminTables.Policy;
+                _SharedTables[ServiceTables.Terms] = LookUpLogic.AdminTables.Terms;
+                _SharedTables[ServiceTables.CopyRight] = LookUpLogic.AdminTables.CopyRight;
+                _SharedTables[ServiceTables.Citation] = LookUpLogic.AdminTables.Citation;
+                
             }
         }
         #endregion

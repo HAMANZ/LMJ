@@ -551,7 +551,20 @@ namespace Anz.LMJ.StartUp.Controllers
             long userId = long.Parse(Session["userId"].ToString());
             try
             {
-                response= _SubmissionLogic.AddNewsletter(toAdd, userId);
+                string path_images = Server.MapPath("~/NewsletterImages/");
+                if (!Directory.Exists(path_images))
+                {
+                    Directory.CreateDirectory(path_images);
+                }
+
+                if (toAdd.CoverImage != null)
+                {
+                    string extension = Path.GetExtension(toAdd.CoverImage.FileName);
+                    string Name = Path.GetFileNameWithoutExtension(toAdd.CoverImage.FileName);
+                    string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+                    toAdd.CoverImage.SaveAs(path_images + newName);
+                }
+                response = _SubmissionLogic.AddNewsletter(toAdd, userId);
                 return Json(response, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

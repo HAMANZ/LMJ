@@ -3,7 +3,17 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @model Anz.LMJ.BLO.ContentObjects.About_Page
+<style>
 
+    /* Style the CKEditor element to look like a textfield */
+    .cke_textarea_inline {
+        padding: 10px;
+        height: 200px;
+        overflow: auto;
+        border: 1px solid gray;
+        -webkit-appearance: textfield;
+    }
+</style>
 <div id="main" role="main">
     <div id="ribbon" style="display: block;">
         <ol class="breadcrumb">
@@ -22,7 +32,7 @@
                         <!-- Timeline Content -->
                         <div class="smart-timeline">
                             <ul class="smart-timeline-list">
-                                
+
                                 <li>
 
                                     <div class="smart-timeline-content">
@@ -45,13 +55,14 @@
 
                                         </p>
                                         <p>
-                                            <textarea rows="10" cols="50" class="input__beautify" type="text" name="Txt" required>@Model.Txt</textarea>
+                                            <textarea name="Txt" style="display:none" id="txteditorvalue">@Model.Txt</textarea>
+                                            <textarea style="height: 200px" name="txtAboutEditor"></textarea>
 
                                         </p>
 
                                     </div>
                                 </li>
-                               
+
                                 <li>
                                     <div class="smart-timeline-content">
                                         <p>
@@ -70,7 +81,7 @@
                                     </div>
                                 </li>
 
-                              
+
 
                                 <li class="text-center">
                                     <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
@@ -89,9 +100,53 @@
 </div>
 
 
-<script src="~/Scripts/cms/Admin/jquery-3.3.1.js"></script>
-<script src="~/Scripts/cms/CmsJquery.js"></script>
+<script src="~/Scripts/cms/plugin/ckeditor/ckeditor.js"></script>
 <script>
+
+    var bodyEditor;
+
+   
+
+    function SetContents() {
+        // Get the editor instance that we want to interact with.
+        var editor = CKEDITOR.instances.txtAboutEditor;
+        // Set editor contents (replace current contents).
+        // http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-setData
+        editor.setData($("#txteditorvalue").text());
+    }
+
+    function GetContents() {
+        // Get the editor instance that you want to interact with.
+        var editor = CKEDITOR.instances.txtAboutEditor;
+        // Get editor contents
+        // http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-getData
+        $("#txteditorvalue").html(editor.getData());
+    }
+
+    $(document).ready(function () {
+        //alert($("#txteditorvalue").html());
+        //$("#txtEditor").Editor();
+        bodyEditor=CKEDITOR.replace('txtAboutEditor');
+        SetContents();
+
+        // Handle when the Source changes.
+        bodyEditor.on('mode', function () {
+            if (this.mode == 'source') {
+                var editable = bodyEditor.editable();
+                editable.attachListener(editable, 'input', function () {
+                    GetContents()
+                });
+            }
+        });
+
+        // Handle when the HTML changes.
+        bodyEditor.on('change', function () {
+            GetContents()
+        });
+    });
+
+
+    GetContents
     $(".aboutuspage").addClass("active");
     $(".Sentence").html($("input[name=Sentence]").val());
     $(".SubTitle").html($("input[name=SubTitle]").val());

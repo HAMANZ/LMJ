@@ -47,7 +47,13 @@ namespace Anz.LMJ.BLL.Content
                 __SharedTableIds[AdminTables.Team] = 8;
                 __SharedTableIds[AdminTables.News] = 9;
                 __SharedTableIds[AdminTables.IssueFilter] = 10;
-                
+                __SharedTableIds[AdminTables.Role] = 11;
+                __SharedTableIds[AdminTables.Position] = 12;
+                __SharedTableIds[AdminTables.Contact] = 13;
+                __SharedTableIds[AdminTables.Policy] = 14;
+                __SharedTableIds[AdminTables.Terms] = 15;
+                __SharedTableIds[AdminTables.CopyRight] = 16;
+                __SharedTableIds[AdminTables.Citation] = 17; 
 
             }
 
@@ -62,7 +68,13 @@ namespace Anz.LMJ.BLL.Content
                 __SharedClassesForeachTable[AdminTables.Team] = typeof(Team);
                 __SharedClassesForeachTable[AdminTables.News] = typeof(News);
                 __SharedClassesForeachTable[AdminTables.IssueFilter] = typeof(IssueFilter);
-                
+                __SharedClassesForeachTable[AdminTables.Role] = typeof(Role);
+                __SharedClassesForeachTable[AdminTables.Position] = typeof(Position);
+                __SharedClassesForeachTable[AdminTables.Contact] = typeof(Contact);
+                __SharedClassesForeachTable[AdminTables.Policy] = typeof(Data);
+                __SharedClassesForeachTable[AdminTables.Terms] = typeof(Data);
+                __SharedClassesForeachTable[AdminTables.CopyRight] = typeof(Data);
+                __SharedClassesForeachTable[AdminTables.Citation] = typeof(Data);
             }
 
 
@@ -85,7 +97,14 @@ namespace Anz.LMJ.BLL.Content
             Team,
             News,
             EditorsPick,
-            IssueFilter
+            IssueFilter,
+            Contact,
+            Role,
+            Position,
+            Policy,
+            Terms,
+            CopyRight,
+            Citation
         };
 
         #endregion

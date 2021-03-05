@@ -50,7 +50,7 @@
                             <tr>
                                 <td>@counter</td>
                                 <td><strong>ID #@item.Id</strong></td>
-                                <td>@item.Title</td>
+                                <td>@(item.Title.Length > 88 ? item.Title.Substring(0,88) + "..." : item.Title)</td>
                                 <td>@item.Stage</td>
                                 <td><a href="/Submission/index/@item.Id" class="font-xs">More Details</a></td>
 

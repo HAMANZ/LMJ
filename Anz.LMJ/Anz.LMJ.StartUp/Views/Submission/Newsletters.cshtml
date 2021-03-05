@@ -73,10 +73,11 @@
                                         <tr>
                                             <th>#</th>
                                             <th> Name </th>
-                                            <th>Number</th>
+                                            @*<th>Number</th>*@
                                             <th>ISSN</th>
                                             <th> EISSN</th>
                                             <th> Volume</th>
+                                            <th>Cover Image</th>
                                             <th>PublishDate</th>
 
                                         </tr>
@@ -91,19 +92,29 @@
                                             foreach (NewsletterLO item in Model)
                                             {
                                         <tr>
-                                            <td>@counter<input type="hidden" id="id" value="@item.Id"/></td>
+                                            <td>@counter<input type="hidden" id="id" value="@item.Id" /></td>
                                             <td class="newsname">@item.Name</td>
-                                            <td class="newsnb">@item.Number</td>
+                                            @*<td class="newsnb">@item.Number</td>*@
                                             <td class="newsissn">@item.Issn</td>
                                             <td class="newseissn">@item.Eissn</td>
                                             <td class="newsvol">@item.Volume</td>
-                                            <td class="newsdate">@item.PublishDate.ToString("M/d/yyyy")<input type="hidden" id="newsimg" value="@item.CoverImage" /></td>
-                                            
+                                            <td class="newsimg">
+                                                <div class="smart-timeline-content">
+                                                    <ul class="list-inline">
+                                                        <li>
+                                                            <input type="hidden" name="newsimg" id="newsimg" value="@item.Image" />
+                                                            <img src="~/Images/NewsletterImages/@item.Image" alt="img" width="150" id="blah">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td class="newsdate">@item.PublishDate.ToString("M/d/yyyy")</td>
+
                                             <td>
-                                                <a  data-target="#ModelAddNewsletter" data-toggle="modal" class="fa fa-pencil btn btn-sm btn-primary EditNews"> Edit</a>
+                                                <a data-target="#ModelAddNewsletter" data-toggle="modal" class="fa fa-pencil btn btn-sm btn-primary EditNews"> Edit</a>
                                             </td>
 
-                                            
+
                                             @{ counter++;}
                                         </tr>
                                             }
@@ -138,9 +149,9 @@
                     <input class="form-control input-md" placeholder="Name" name="Name" type="text">
                     <input class="form-control input-md" name="Id" type="hidden">
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <input class="form-control input-md" placeholder="Number" name="Number" type="text">
-                </div>
+                </div>*@
                 <div class="form-group">
                     <input class="form-control input-md" placeholder="ISSN" name="Issn" type="text">
                 </div>
@@ -152,6 +163,9 @@
                 </div>
                 <div class="form-group">
                     <input type="date" class="form-control" name="PublishDate" />
+                </div
+                <div class="form-group">
+                    <img class="form-control" name="CoverImage"  />
                 </div>
                 <input class="form-control input-md Cover" name="CoverImage" type="file">
             </div>
@@ -175,12 +189,13 @@
         var row = $(this).closest("tr");
         var td = row.find("td");
         $("[name ='Name']").val(row.find("td:nth-child(2)").text());
-        $("[name ='Number']").val(row.find("td:nth-child(3)").text());;
-        $("[name ='Issn']").val(row.find("td:nth-child(4)").text());
-        $("[name ='Eissn']").val(row.find("td:nth-child(5)").text());
-        $("[name ='PublishDate']").val(row.find("td:nth-child(7)").text());
-        $("[name ='Volume']").val(row.find("td:nth-child(6)").text());
-        $(".Cover").val(row.find("#newsimg").val());
+        //$("[name ='Number']").val(row.find("td:nth-child(3)").text());;
+        $("[name ='Issn']").val(row.find("td:nth-child(3)").text());
+        $("[name ='Eissn']").val(row.find("td:nth-child(4)").text());
+        alert(row.find("td:nth-child(7)").text());
+        $("[name ='PublishDate']").text(row.find("td:nth-child(7)").text());
+        $("[name ='Volume']").val(row.find("td:nth-child(5)").text());
+        $(".CoverImage").attr("src",row.find("#newsimg").val());
         $("[name ='Id']").val(row.find("#id").val());
 
     });
