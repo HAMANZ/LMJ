@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Anz.LMJ.BLO.ContentObjects
 {
-    public class Role
+    public class FooterMenu
     {
+    
         public long Id { get; set; }
         public string Title { get; set; }
-        public string Desc { get; set; }
+        public string Text { get; set; }
+        public string Img { get; set; }
+        public string IsEnabled { get; set; }
     }
 }

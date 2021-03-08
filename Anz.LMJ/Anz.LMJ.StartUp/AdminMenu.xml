@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <root>
 
-
-
   <TopLevelMenu name="Home" link="#" icon="fa fa-lg fa-fw fa-home" class="home">
     <MenuItem name="Banner" link="/admin/HomeBanner" class="banner"/>
     <MenuItem name="About Us" link="/admin/AboutUs_Section" class="AboutUs"/>
@@ -10,6 +8,12 @@
     <MenuItem name="Our Events" link="/admin/OurEvents_Section" class="OurEvents"/>
     <MenuItem name="Analytics" link="/admin/Analytics_Section" class="analytics"/>
 
+  </TopLevelMenu>
+  
+  <TopLevelMenu name="Define Types" link="#" icon="fa fa-lg fa-fw fa-home" class="Types">
+    <MenuItem name="Role" link="/admin/FormType?FormName=Role" class="Role"/>
+    <MenuItem name="Position" link="/admin/FormType?FormName=Position" class="Position"/>
+    <MenuItem name="IndexType" link="/admin/FormType?FormName=IndexType" class="IndexType"/>
   </TopLevelMenu>
 
   <TopLevelMenu name="Aboutus_Page" link="/admin/AboutPage" icon="fa fa-lg fa-fw fa-dropbox" class="aboutuspage">

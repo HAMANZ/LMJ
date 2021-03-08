@@ -19,11 +19,12 @@ namespace Anz.LMJ.StartUp
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
+
             routes.MapRoute(
-            name: "Admin",
-            url: "Admin/{action}/{id}",
-            defaults: new { controller = "Admin", action = "Index", locationId = UrlParameter.Optional }
-        );
+           name: "Admin",
+           url: "Admin/{action}/{id}",
+           defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
+       );
 
         }
     }

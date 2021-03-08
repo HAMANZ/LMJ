@@ -31,7 +31,7 @@ namespace Anz.LMJ.BLL.Content
 
         #region Static Shared Variables
         private static Dictionary<AdminTables, long> __SharedTableIds = new Dictionary<AdminTables, long>();
-        private static Dictionary<AdminTables, Type> __SharedClassesForeachTable = new Dictionary<AdminTables, Type>();
+        private static Dictionary<AdminTables, System.Type> __SharedClassesForeachTable = new Dictionary<AdminTables, System.Type>();
         #endregion
 
         #region Constructors
@@ -50,10 +50,10 @@ namespace Anz.LMJ.BLL.Content
                 __SharedTableIds[AdminTables.Role] = 11;
                 __SharedTableIds[AdminTables.Position] = 12;
                 __SharedTableIds[AdminTables.Contact] = 13;
-                __SharedTableIds[AdminTables.Policy] = 14;
-                __SharedTableIds[AdminTables.Terms] = 15;
-                __SharedTableIds[AdminTables.CopyRight] = 16;
-                __SharedTableIds[AdminTables.Citation] = 17; 
+                __SharedTableIds[AdminTables.FooterMenu] = 14;
+                __SharedTableIds[AdminTables.Citation] = 17;
+                __SharedTableIds[AdminTables.Index] = 18;
+                __SharedTableIds[AdminTables.IndexType] = 19;
 
             }
 
@@ -68,13 +68,14 @@ namespace Anz.LMJ.BLL.Content
                 __SharedClassesForeachTable[AdminTables.Team] = typeof(Team);
                 __SharedClassesForeachTable[AdminTables.News] = typeof(News);
                 __SharedClassesForeachTable[AdminTables.IssueFilter] = typeof(IssueFilter);
-                __SharedClassesForeachTable[AdminTables.Role] = typeof(Role);
-                __SharedClassesForeachTable[AdminTables.Position] = typeof(Position);
+                __SharedClassesForeachTable[AdminTables.Role] = typeof(DataType);
+                __SharedClassesForeachTable[AdminTables.Position] = typeof(DataType);
                 __SharedClassesForeachTable[AdminTables.Contact] = typeof(Contact);
-                __SharedClassesForeachTable[AdminTables.Policy] = typeof(Data);
-                __SharedClassesForeachTable[AdminTables.Terms] = typeof(Data);
-                __SharedClassesForeachTable[AdminTables.CopyRight] = typeof(Data);
+                __SharedClassesForeachTable[AdminTables.FooterMenu] = typeof(Data);
                 __SharedClassesForeachTable[AdminTables.Citation] = typeof(Data);
+                __SharedClassesForeachTable[AdminTables.Index] = typeof(Data);
+                __SharedClassesForeachTable[AdminTables.IndexType] = typeof(DataType);
+             
             }
 
 
@@ -101,10 +102,11 @@ namespace Anz.LMJ.BLL.Content
             Contact,
             Role,
             Position,
-            Policy,
-            Terms,
+            FooterMenu,
             CopyRight,
-            Citation
+            Citation,
+            Index,
+            IndexType
         };
 
         #endregion
@@ -293,7 +295,7 @@ namespace Anz.LMJ.BLL.Content
                 List<LookUp> selectedRowsThatHaveCodeOfMainChild = new List<LookUp>();
                 List<LookUp> contents = new List<LookUp>();
 
-                Type UsedClass = __SharedClassesForeachTable[table];
+                System.Type UsedClass = __SharedClassesForeachTable[table];
                 var UsedObject = Activator.CreateInstance(UsedClass);
 
                 List<string> images = new List<string>();

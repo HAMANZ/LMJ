@@ -17,6 +17,10 @@ namespace Anz.LMJ.BLO.ContentObjects
         public string MainDesc { get; set; }
         public string SubDesc { get; set; }
         public string Pos { get; set; }
+        public long RoleId { get; set; }
+        public long PositionId { get; set; }
+        public string IsMember { get; set; }
+        public string IsTeam { get; set; }
 
     }
 }

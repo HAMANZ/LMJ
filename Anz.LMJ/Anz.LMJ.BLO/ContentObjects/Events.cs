@@ -21,5 +21,6 @@ namespace Anz.LMJ.BLO.ContentObjects
         public string Location { get; set; }
         
 
+
     }
 }

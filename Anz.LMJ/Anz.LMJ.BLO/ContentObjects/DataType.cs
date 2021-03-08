@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Anz.LMJ.BLO.ContentObjects
 {
-    public class Position
+    public class DataType
     {
         public long Id { get; set; }
         public string Title { get; set; }

@@ -65,9 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentObjects\About_Page.cs" />
+    <Compile Include="ContentObjects\FooterMenu.cs" />
     <Compile Include="ContentObjects\Data.cs" />
-    <Compile Include="ContentObjects\Position.cs" />
-    <Compile Include="ContentObjects\Role.cs" />
+    <Compile Include="ContentObjects\CitationVariable.cs" />
+    <Compile Include="ContentObjects\DataType.cs" />
     <Compile Include="ContentObjects\Contact.cs" />
     <Compile Include="ContentObjects\EditorsPick.cs" />
     <Compile Include="ContentObjects\IssueFilter.cs" />

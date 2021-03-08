@@ -1,6 +1,6 @@
-﻿
+﻿@using Anz.LMJ.BLO.ContentObjects;
 @{
-    ViewBag.Title = "AddEventsSectionForm";
+    ViewBag.Title = "Add New";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -24,7 +24,74 @@
                         </label>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
-                        <input class="form-control input__beautify" type="text" name="Name"  />
+                        <input class="form-control input__beautify" type="text" name="Name" />
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-2">
+                        <div class="form-group">
+
+                            <strong>IsMember</strong><input type="checkbox"  id="IsMember" name="IsEditorsPick" />
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-2">
+                        <div class="form-group">
+                            <strong>IsTeam</strong><input type="checkbox" value="" id="IsTeam" name="IsTeam" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Role</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <select class="form-control " name="RoleId" id="RoleId">
+                                <option value="0">Roles</option>
+                                @foreach (DataType item in (List<DataType>)(ViewBag.roles))
+                                {
+                                    var sel = "";
+                                    if (@ViewBag.roles.Id == @item.Id)
+                                    { sel = "selected"; }
+                                    <option value="@item.Id" @sel>@item.Title</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Role</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <select class="form-control " name="PostionId" id="PostionId">
+                                <option value="0">Postion</option>
+                                @foreach (DataType item in (List<DataType>)(ViewBag.position))
+                                {
+                                    var sel = "";
+                                    if (@ViewBag.position.Id == @item.Id)
+                                    { sel = "selected"; }
+                                    <option value="@item.Id" @sel>@item.Title</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Image</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <input type="file" name="PostedFileImage" id="imgInp" class="custom-file-input" style="width:50%;">
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                         <div class="form-group">
@@ -40,32 +107,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                        <div class="form-group">
-                            <label class="col-sm-12 control-label">
-                                <strong>Position</strong>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
-                        <div class="form-group">
-                            <input class="form-control input__beautify" type="text" name="Position"  />
 
-                        </div>
-                    </div>
-                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                        <div class="form-group">
-                            <label class="col-sm-12 control-label">
-                                <strong>Image</strong>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
-                        <input type="file" name="PostedFileImage" id="imgInp" class="custom-file-input" style="width:50%;">
-                    </div>
-
-                </div>
 
 
                 <div class="row">
@@ -101,5 +143,5 @@
 <script src="~/Scripts/cms/CmsJquery.js"></script>
 <script src="~/Scripts/cms/plugin/jquery-form/jquery-form.min.js"></script>
 <script>
-    
+
 </script>

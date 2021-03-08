@@ -1,0 +1,81 @@
+﻿@using Anz.LMJ.BLO.ContentObjects;
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/rowreorder/1.2.7/css/rowReorder.dataTables.min.css" rel="stylesheet">
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+
+        <div class="jarviswidget jarviswidget-color-darken" id="IngredientsTable" data-widget-editbutton="false">
+
+
+            <div>
+                <div class="jarviswidget-editbox">
+                </div>
+                <div class="widget-body no-padding">
+                    <a class="btn btn-primary addbtn" href="/admin/AddDataTypeForm?FormName=@ViewBag.Title"><i class="fa fa-plus"></i> Add @ViewBag.Title</a>
+
+                    <table id="dt" class="display" width="100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Desc</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.DataType != null)
+                            {
+                                var i = 0;
+
+                                foreach (var item in (List<DataType>)ViewBag.DataType)
+                                {
+
+                                    i = i + 1;
+
+                                    <tr id="@i">
+                                        <td>@i</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Desc</td>
+                                        <td>
+                                            <a href="/Admin/GetFormType?Id=@item.Id&FormName=@ViewBag.Title" class="fa fa-pencil btn btn-sm btn-primary"> Edit</a>
+                                            <a name="delete" class="btn btn-sm btn-danger fa fa-trash-o delete-events" data-row-id="@item.Id" href="/Admin/DeleteFormTye?Id=@item.Id&FormName=@ViewBag.Title">Delete</a>
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js"></script>
+<script>
+
+    $("document").ready(function () {
+        table = $('#dt').DataTable({
+            rowReorder: true,
+        });
+    });
+</script>

@@ -48,7 +48,7 @@ namespace Anz.LMJ.StartUp.Controllers
             }
         }
 
-        public ActionResult SignIn(string email, string password,string view)
+        public ActionResult SignIn(string email, string password, string view)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace Anz.LMJ.StartUp.Controllers
 
         #endregion
 
-        
+
 
         #region IssueFilter
 
@@ -239,7 +239,7 @@ namespace Anz.LMJ.StartUp.Controllers
                 #region Logger
 
                 ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:HomeBanner", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
-               // _LoggerServices.Error("HomeBanner", LoggerServices.ActionTypes.Add, "home banner inputs:" + json, "<p>Error: " + ex.Message + "</p>");
+                // _LoggerServices.Error("HomeBanner", LoggerServices.ActionTypes.Add, "home banner inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
             }
@@ -279,8 +279,8 @@ namespace Anz.LMJ.StartUp.Controllers
         {
             try
             {
-              
-                List<SubmissionLO> editorspick= _AdminServices.GetAllArticles();
+
+                List<SubmissionLO> editorspick = _AdminServices.GetAllArticles();
                 ViewBag.editorspick = editorspick;
 
 
@@ -298,7 +298,7 @@ namespace Anz.LMJ.StartUp.Controllers
         }
 
 
-        
+
         public ActionResult GetArticle(long id)
         {
             try
@@ -324,15 +324,15 @@ namespace Anz.LMJ.StartUp.Controllers
 
 
         [CheckUserSession]
-        public JsonResult EditArticle(long submissionid, long userId, bool isEditorsPick, bool isTopReader,List<long> tagsid)
+        public JsonResult EditArticle(long submissionid, long userId, bool isEditorsPick, bool isTopReader, List<long> tagsid)
         {
             try
             {
                 DynamicResponse<long> response;
                 response = _HomeServices.UpdateSubmission(submissionid, userId, isEditorsPick, isTopReader, tagsid);
                 if (response.HttpStatusCode != HttpStatusCode.OK) {
-                   return Json("error");
-                }  
+                    return Json("error");
+                }
                 return Json(response, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -366,7 +366,7 @@ namespace Anz.LMJ.StartUp.Controllers
                 }
 
 
-              
+
                 if (toAdd.PostedFileImg != null)
                 {
                     string extension = Path.GetExtension(toAdd.PostedFileImg.FileName);
@@ -429,7 +429,14 @@ namespace Anz.LMJ.StartUp.Controllers
             try
             {
 
-                json = Newtonsoft.Json.JsonConvert.SerializeObject(new { img = toAdd.MainImg, title = toAdd.MainTitle, desc = toAdd.MainDesc, date = toAdd.EventDate,images=toAdd.SubImg });
+                json = Newtonsoft.Json.JsonConvert.SerializeObject(new { 
+                    MainImg = toAdd.MainImg,
+                    SubImg = toAdd.SubImg,
+                    Location =toAdd.Location,
+                    MainTitle = toAdd.MainTitle,
+                    MainDesc = toAdd.MainDesc, 
+                    EventDate = toAdd.EventDate,
+                });
 
                 string path = Server.MapPath("~/Images/Events/");
                 if (!Directory.Exists(path))
@@ -473,10 +480,7 @@ namespace Anz.LMJ.StartUp.Controllers
             try
             {
 
-                // edit position
-                //public bool UpdatePosition(string positionCode, long tableId, string currentPosition, bool isAdd, long? recordId)
-                bool result = _AdminServices.UpdatePosition("EVENTS_POSITION", 20, false, id);
-
+               
                 _AdminServices.DeleteContent(id);
 
             }
@@ -492,12 +496,12 @@ namespace Anz.LMJ.StartUp.Controllers
             return RedirectToAction("Events");
 
         }
-        
+
         public ActionResult GetEvents(long id)
         {
             try
             {
-                
+            
                 Events events = _ContentServices.GetContentOfItem<Events>(ContentServices.ServiceTables.Events, 1, id).Contents.FirstOrDefault();
                 ViewBag.Events = events;
             }
@@ -515,13 +519,21 @@ namespace Anz.LMJ.StartUp.Controllers
 
         }
 
-        
+
         public ActionResult EditEventsSection(Events toedit)
         {
             string json = "";
             try
             {
-                json = Newtonsoft.Json.JsonConvert.SerializeObject(new { img = toedit.MainImg, title = toedit.MainTitle, desc = toedit.MainDesc, date = toedit.EventDate,images=toedit.SubImg });
+                json = Newtonsoft.Json.JsonConvert.SerializeObject(new
+                {
+                    MainImg = toedit.MainImg,
+                    SubImg = toedit.SubImg,
+                    Location = toedit.Location,
+                    MainTitle = toedit.MainTitle,
+                    MainDesc = toedit.MainDesc,
+                    EventDate = toedit.EventDate,
+                });
 
                 string path = Server.MapPath("~/Images/Events/");
                 if (!Directory.Exists(path))
@@ -550,7 +562,7 @@ namespace Anz.LMJ.StartUp.Controllers
                 }
 
                 //PostedFileMainImg
-              
+
                 if (toedit.PostedFileMainImg != null)
                 {
 
@@ -728,6 +740,11 @@ namespace Anz.LMJ.StartUp.Controllers
 
         }
 
+        //RoleId = toAdd.RoleId,
+        //            PositionId = toAdd.PositionId,
+        //            IsMember = toAdd.IsMember,
+        //            IsTeam = toAdd.IsTeam
+
         [CheckUserSession]
         public ActionResult Members()
         {
@@ -833,6 +850,10 @@ namespace Anz.LMJ.StartUp.Controllers
         {
             try
             {
+                List<DataType> roles = _ContentServices.GetContent<DataType>(ContentServices.ServiceTables.Role, 9999).Contents.ToList();
+                ViewBag.roles = roles;
+                List<DataType> position = _ContentServices.GetContent<DataType>(ContentServices.ServiceTables.Position, 9999).Contents.ToList();
+                ViewBag.position = position;
                 return View("AddTeam");
             }
             catch (Exception ex)
@@ -855,9 +876,11 @@ namespace Anz.LMJ.StartUp.Controllers
 
                     Name = toAdd.Name,
                     Image = toAdd.Image,
-                    Position = toAdd.Position,
+                    PositionId = toAdd.PositionId,
+                    RoleId = toAdd.RoleId,
                     MainDesc = toAdd.MainDesc,
                     Pos = toAdd.Pos
+
 
 
                 });
@@ -931,6 +954,7 @@ namespace Anz.LMJ.StartUp.Controllers
         {
             try
             {
+
                 List<Team> ourTeam = _ContentServices.GetContent<Team>(ContentServices.ServiceTables.Team, 9999).Contents.ToList();
                 ourTeam = ourTeam.OrderBy(e => long.Parse(e.Pos)).ToList();
                 ViewBag.Team = ourTeam;
@@ -954,6 +978,10 @@ namespace Anz.LMJ.StartUp.Controllers
         {
             try
             {
+                List<DataType> roles = _ContentServices.GetContent<DataType>(ContentServices.ServiceTables.Role, 9999).Contents.ToList();
+                ViewBag.roles = roles;
+                List<DataType> position = _ContentServices.GetContent<DataType>(ContentServices.ServiceTables.Position, 9999).Contents.ToList();
+                ViewBag.position = position;
                 Team members = _ContentServices.GetContentOfItem<Team>(ContentServices.ServiceTables.Team, 1, id).Contents.FirstOrDefault();
                 ViewBag.Team = members;
             }
@@ -970,57 +998,200 @@ namespace Anz.LMJ.StartUp.Controllers
 
         }
 
+
+        #endregion
+
+        #region  DataType
         [CheckUserSession]
-        public ActionResult EditTeamSection(Team toedit)
+        [HttpGet]
+        public ActionResult FormType(string FormName)
         {
-            string json = "";
             try
             {
-                json = Newtonsoft.Json.JsonConvert.SerializeObject(new
+                List<DataType> Datatype=new List<DataType>();
+                if (FormName == "Role")
                 {
-
-                    Name = toedit.Name,
-                    Image = toedit.Image,
-                    Position = toedit.Position,
-                    MainDesc = toedit.MainDesc,
-                    Pos = toedit.Pos
-
-
-                });
-                string path = Server.MapPath("~/Images/Team/");
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
+                    Datatype = _ContentServices.GetContent<DataType>(ContentServices.ServiceTables.Role, 9999).Contents.ToList(); 
                 }
-
-
-                if (toedit.PostedFileImage != null)
+                if (FormName == "Position")
                 {
-                    string extension = Path.GetExtension(toedit.PostedFileImage.FileName);
-                    string Name = Path.GetFileNameWithoutExtension(toedit.PostedFileImage.FileName);
-                    string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
-                    toedit.PostedFileImage.SaveAs(path + newName);
-                    toedit.Image = newName;
+                    Datatype = _ContentServices.GetContent<DataType>(ContentServices.ServiceTables.Position, 9999).Contents.ToList();
                 }
-                _AdminServices.DeleteContent(toedit.Id);
-                _AdminServices.AddContent<Team>(toedit, AdminServices.ServiceAdminTables.Team);
+                if (FormName == "IndexType")
+                {
+                    Datatype = _ContentServices.GetContent<DataType>(ContentServices.ServiceTables.IndexType, 9999).Contents.ToList();
+                }
+                ViewBag.Title = FormName;
+                ViewBag.Datatype = Datatype;
 
             }
             catch (Exception ex)
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditTeam", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
-                _LoggerServices.Error("EditTeam", LoggerServices.ActionTypes.Update, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
+                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:Type", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                _LoggerServices.Error("Type", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
             }
-            return RedirectToAction("Team");
+            return View("ViewTypeData");
+        }
+
+        [CheckUserSession]
+        public ActionResult GetFormType(long id,string FormName)
+        {
+            try
+            {
+                DataType Datatype = new DataType();
+                if (FormName == "Role")
+                {
+                    Datatype = _ContentServices.GetContentOfItem<DataType>(ContentServices.ServiceTables.Role, 1, id).Contents.FirstOrDefault();
+                }
+                if (FormName == "Position")
+                {
+                    Datatype = _ContentServices.GetContentOfItem<DataType>(ContentServices.ServiceTables.Position, 1, id).Contents.FirstOrDefault();
+                }
+                if (FormName == "IndexType")
+                {
+                    Datatype = _ContentServices.GetContentOfItem<DataType>(ContentServices.ServiceTables.IndexType, 1, id).Contents.FirstOrDefault();
+                }
+                ViewBag.Title = FormName;
+                ViewBag.Datatype = Datatype;
+            }
+            catch (Exception ex)
+            {
+                #region Logger
+
+                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:GetType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                _LoggerServices.Error("GetType", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
+
+                #endregion;
+            }
+            return View();
 
         }
+
+        public ActionResult DeleteFormTye(long id,string FormName)
+        {
+            try
+            {
+               _AdminServices.DeleteContent(id);
+                ViewBag.Title = FormName;
+               
+            }
+            catch (Exception ex)
+            {
+                #region Logger
+
+                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:DeleteTeam", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                _LoggerServices.Error("DeleteTypeData", LoggerServices.ActionTypes.Delete, "id:" + id, "<p>Error: " + ex.Message + "</p>");
+
+                #endregion;
+            }
+            return RedirectToAction("ViewTypeData", new { FormName = FormName });
+        }
+
+        [CheckUserSession]
+        public ActionResult AddDataTypeForm(string FormName)
+        {
+            try
+            {
+                ViewBag.Title = FormName;
+                return View("AddDataTypeForm");
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [CheckUserSession]
+        public ActionResult AddDataType(DataType toAdd,string FormName)
+        {
+            string json = "";
+            try
+            {
+
+                json = Newtonsoft.Json.JsonConvert.SerializeObject(new
+                {
+                    Title = toAdd.Title,
+                    Desc = toAdd.Desc
+                });
+
+                if (FormName == "Role")
+                {
+                    _AdminServices.AddContent<DataType>(toAdd, AdminServices.ServiceAdminTables.Role);
+                }
+                if (FormName == "Position")
+                {
+                    _AdminServices.AddContent<DataType>(toAdd, AdminServices.ServiceAdminTables.Position);
+                }
+                if (FormName == "IndexType")
+                {
+                    _AdminServices.AddContent<DataType>(toAdd, AdminServices.ServiceAdminTables.IndexType);
+                }
+
+                ViewBag.Title = FormName;
+            }
+            catch (Exception ex)
+            {
+                #region Logger
+
+                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:AddDataType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                _LoggerServices.Error("AddDataType", LoggerServices.ActionTypes.Add, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
+
+                #endregion;
+            }
+            return RedirectToAction("FormType", new { FormName = FormName });
+        }
+
+
+        [CheckUserSession]
+        public ActionResult EditDataType(DataType toedit,string FormName)
+        {
+
+            string json = "";
+            try
+            {
+
+                json = Newtonsoft.Json.JsonConvert.SerializeObject(new
+                {
+                    Title = toedit.Title,
+                    Desc = toedit.Desc
+                });
+
+                if (FormName == "Role")
+                {
+                    _AdminServices.DeleteContent(toedit.Id);
+                    _AdminServices.AddContent<DataType>(toedit, AdminServices.ServiceAdminTables.Role);
+                }
+                if (FormName == "Position")
+                {
+                    _AdminServices.DeleteContent(toedit.Id);
+                    _AdminServices.AddContent<DataType>(toedit, AdminServices.ServiceAdminTables.Position);
+                }
+                if (FormName == "IndexType")
+                {
+                    _AdminServices.DeleteContent(toedit.Id);
+                    _AdminServices.AddContent<DataType>(toedit, AdminServices.ServiceAdminTables.IndexType);
+                }
+
+                ViewBag.Title = FormName;
+
+            }
+            catch (Exception ex)
+            {
+                #region Logger
+
+                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditMembers", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                _LoggerServices.Error("EditMembers", LoggerServices.ActionTypes.Update, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
+
+                #endregion;
+            }
+            return RedirectToAction("FormType", new { FormName = FormName });
+        }
         #endregion
-
-
 
         #region Videos
 

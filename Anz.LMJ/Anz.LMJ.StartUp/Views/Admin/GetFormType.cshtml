@@ -1,0 +1,118 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .input {
+        position: relative;
+        display: block;
+        font-weight: 400;
+    }
+
+    .icon-append {
+        color: #A2A2A2;
+    }
+
+    .icon-append {
+        border-color: #BDBDBD;
+        transition: border-color .3s;
+        -o-transition: border-color .3s;
+        -ms-transition: border-color .3s;
+        -moz-transition: border-color .3s;
+        -webkit-transition: border-color .3s;
+    }
+
+    .icon-append {
+        right: 5px;
+        padding-left: 3px;
+        border-left-width: 1px;
+        border-left-style: solid;
+    }
+
+    .icon-append {
+        position: absolute;
+        top: 5px;
+        width: 22px;
+        height: 22px;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: center;
+    }
+
+    .input img {
+        /*width: 50%;*/
+    }
+
+    .ImgClick {
+        background-image: url(/Images/delete.png);
+        background-repeat: no-repeat;
+        width: 2em;
+        background-color: transparent;
+        border: 0;
+        vertical-align: middle;
+        background-position: center;
+        background-size: contain;
+    }
+
+    .list-inline {
+        position: relative;
+    }
+
+        .list-inline input[type=file] {
+            position: absolute;
+            top: 2rem;
+        }
+</style>
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+            @using (Html.BeginForm("EditDataType", "Admin", FormMethod.Post, new { @class = "EditDataType", enctype = "multipart/form-data" }))
+            {
+
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <label class="col-sm-12 control-label">
+                            <strong>Title</strong>
+                        </label>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <input class="form-control input__beautify" type="text" name="Title" value="@ViewBag.DataType.Title" />
+                    </div>
+                   
+                </div>
+                <br />
+                <div class="row">
+                    
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Desc</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <div class="form-group">
+                            <textarea rows="10" cols="50" class="form-control input__beautify" type="text" name="Desc">@ViewBag.DataType.Desc</textarea>
+
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="FormName" value="@ViewBag.Title" />
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-8">
+                    <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
+                    <input type="hidden" name="Id" value="@ViewBag.DataType.Id" />
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>

@@ -38,8 +38,14 @@ namespace Anz.LMJ.WebServices
                 __SharedConvetTable[ServiceAdminTables.Videos] = LookUpLogic.AdminTables.Videos;
                 __SharedConvetTable[ServiceAdminTables.Team] = LookUpLogic.AdminTables.Team;
                 __SharedConvetTable[ServiceAdminTables.News] = LookUpLogic.AdminTables.News;
-                __SharedConvetTable[ServiceAdminTables.EditorsPick] = LookUpLogic.AdminTables.EditorsPick;
                 __SharedConvetTable[ServiceAdminTables.IssueFilter] = LookUpLogic.AdminTables.IssueFilter;
+                __SharedConvetTable[ServiceAdminTables.Contact] = LookUpLogic.AdminTables.Contact;
+                __SharedConvetTable[ServiceAdminTables.Role] = LookUpLogic.AdminTables.Role;
+                __SharedConvetTable[ServiceAdminTables.Position] = LookUpLogic.AdminTables.Position;
+                __SharedConvetTable[ServiceAdminTables.FooterMenu] = LookUpLogic.AdminTables.FooterMenu;
+                __SharedConvetTable[ServiceAdminTables.Citation] = LookUpLogic.AdminTables.Citation;
+                __SharedConvetTable[ServiceAdminTables.Index] = LookUpLogic.AdminTables.Index;
+                __SharedConvetTable[ServiceAdminTables.IndexType] = LookUpLogic.AdminTables.IndexType;
             }
 
 
@@ -51,15 +57,26 @@ namespace Anz.LMJ.WebServices
 
             public enum ServiceAdminTables
             {
-                About_Page,
-                Home_Banner,
-                Events,
-                Members,
-                Videos,
-                Team,
-                News,
-                EditorsPick,
+            Home_Banner,
+            About_Page,
+            Hero_Banner,
+            Events,
+            Members,
+            Videos,
+            Team,
+            News,
+            EditorsPick,
             IssueFilter,
+            Contact,
+            Position,
+            Role,
+            Policy,
+            Terms,
+            CopyRight,
+            Citation,
+            Index,
+            IndexType,
+            FooterMenu,
         }
 
         #endregion

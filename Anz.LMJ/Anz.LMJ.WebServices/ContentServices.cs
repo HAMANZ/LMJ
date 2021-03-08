@@ -37,7 +37,10 @@ namespace Anz.LMJ.WebServices
             Policy,
             Terms,
             CopyRight,
-            Citation
+            Citation,
+            Index,
+            IndexType,
+            FooterMenu,
 
         }
 
@@ -62,11 +65,11 @@ namespace Anz.LMJ.WebServices
                 _SharedTables[ServiceTables.Contact] = LookUpLogic.AdminTables.Contact;
                 _SharedTables[ServiceTables.Role] = LookUpLogic.AdminTables.Role;
                 _SharedTables[ServiceTables.Position] = LookUpLogic.AdminTables.Position;
-                _SharedTables[ServiceTables.Policy] = LookUpLogic.AdminTables.Policy;
-                _SharedTables[ServiceTables.Terms] = LookUpLogic.AdminTables.Terms;
-                _SharedTables[ServiceTables.CopyRight] = LookUpLogic.AdminTables.CopyRight;
+                _SharedTables[ServiceTables.FooterMenu] = LookUpLogic.AdminTables.FooterMenu;
                 _SharedTables[ServiceTables.Citation] = LookUpLogic.AdminTables.Citation;
-                
+                _SharedTables[ServiceTables.Index] = LookUpLogic.AdminTables.Index;
+                _SharedTables[ServiceTables.IndexType] = LookUpLogic.AdminTables.IndexType;
+
             }
         }
         #endregion
