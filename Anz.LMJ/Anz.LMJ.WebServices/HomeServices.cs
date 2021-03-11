@@ -3,7 +3,6 @@ using Anz.LMJ.BLO.LogicObjects.CommonObjects;
 using Anz.LMJ.BLO.LogicObjects.Submission;
 using Anz.LMJ.BLO.LogicObjects.Issue;
 using Anz.LMJ.BLO.LogicObjects.User;
-using Anz.LMJ.BLO.LookUpObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Anz.LMJ.BLL;
 using Anz.LMJ.BLO.ContentObjects;
+using Anz.LMJ.BLO.LogicObjects.Review;
 
 namespace Anz.LMJ.WebServices
 {
@@ -37,13 +37,29 @@ namespace Anz.LMJ.WebServices
             return _SubmissionLogic.GetArticlesType();
 
         }
+        public DynamicResponse<List<Options>> GetArticlesType(List<long> Ids)
+        {
+            #region Logic
+            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
+            #endregion
+            return _SubmissionLogic.GetArticlesType(Ids);
 
+        }
         public DynamicResponse<List<SubmissionLO>> GetSubmissionLatestArticles(int limit)
         {
             #region Logic
             SubmissionLogic _SubmissionLogic = new SubmissionLogic();
             #endregion
             return _SubmissionLogic.GetSubmissionLatestArticles(limit);
+
+        }
+
+        public DynamicResponse<List<SubmissionLO>> GetArticles(List<long> Ids)
+        {
+            #region Logic
+            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
+            #endregion
+            return _SubmissionLogic.GetArticles(Ids);
 
         }
 
@@ -170,13 +186,13 @@ namespace Anz.LMJ.WebServices
             return response;
         }
 
-        public DynamicResponse<long> AddReviewByUser(long userid, string text, int nbofstars, long articleid)
+        public DynamicResponse<long> AddReviewByUser(ReviewLO toAdd)
         {
             UserLogic _UserLogic = new UserLogic();
             DynamicResponse<long> response = new DynamicResponse<long>();
             UserLO user = new UserLO();
 
-            response = _UserLogic.AddReviewByUser(userid, text, nbofstars, articleid);
+            response = _UserLogic.AddReviewByUser(toAdd);
 
             return response;
         }

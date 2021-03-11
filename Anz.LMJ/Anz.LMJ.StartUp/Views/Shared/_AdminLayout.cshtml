@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 
     <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    @*<script src="~/Scripts/cms/libs/jquery-2.1.1.min.js"></script>*@
     @Styles.Render("~/Content/cms/bootstrap.min.css")
     @Styles.Render("~/Content/cms/font-awesome.min.css")
     @Styles.Render("~/Content/cms/smartadmin-production-plugins.min.css")
@@ -25,14 +25,21 @@
     @Styles.Render("~/Content/cms/smartadmin-rtl.min.css")
     @*@Styles.Render("~/Content/editor.css")*@
 
-    @*@Styles.Render("~/Scripts/cms/Admin/jquery.dataTables.min.css")*@
 
+    <link href="~/Scripts/cms/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="~/Scripts/cms/rowReorder.dataTables.min.css" rel="stylesheet">
 
     <script src="~/Scripts/cms/Admin/jquery.min.js"></script>
     <script src="~/Scripts/cms/Admin/modernizr.js"></script>
 
 
     <style>
+        .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover {
+            color: #fff;
+            background-color: #AD0202 !important;
+            border-color: #AD0202 !important;
+        }
+
         .dataTables_length {
             margin-top: 20px;
         }
@@ -303,26 +310,6 @@
 
 </html>
 
-
-
-<!--================================================== -->
-<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
-<script data-pace-options='{ "restartOnRequestAfter": true }' src="~/Scripts/cms/plugin/pace/pace.min.js"></script>
-
-<script>
-    if (!window.jQuery) {
-        document.write('<script src="Scripts/js/libs/jquery-2.1.1.min.js"><\/script>');
-    }
-</script>
-
-
-<script>
-    if (!window.jQuery.ui) {
-        document.write('<script src="Scripts/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
-    }
-</script>
-
-
 <script src="~/Scripts/cms/Admin/jquery-3.3.1.js"></script>
 <script src="~/Scripts/cms/Admin/jquery-ui.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
@@ -346,7 +333,39 @@
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 
+@*<script src="~/Scripts/cms/Admin/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/cms/Admin/jquery-ui.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/cms/Admin/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/cms/app.config.js"></script>
+    <script src="~/Scripts/cms/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
+    <script src="~/Scripts/cms/notification/SmartNotification.min.js"></script>
+    <script src="~/Scripts/cms/smartwidgets/jarvis.widget.min.js"></script>
+    <script src="~/Scripts/cms/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+    <script src="~/Scripts/cms/plugin/sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/Scripts/cms/plugin/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/Scripts/cms/plugin/masked-input/jquery.maskedinput.min.js"></script>
+    <script src="~/Scripts/cms/plugin/select2/select2.min.js"></script>
+    <script src="~/Scripts/cms/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+    <script src="~/Scripts/cms/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+    <script src="~/Scripts/cms/plugin/fastclick/fastclick.min.js"></script>
+    <script src="~/Scripts/cms/app.min.js"></script>
+    <script src="~/Scripts/cms/plugin/datatables/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/cms/plugin/datatables/jszip.min.js"></script>
+    <script src="~/Scripts/cms/plugin/datatables/buttons.html5.min.js"></script>
+    <script src="~/Scripts/cms/plugin/ckeditor/ckeditor.js"></script>*@
+@*<script src="~/Scripts/cms/libs/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/cms/libs/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/cms/libs/dataTables.rowReorder.min.js"></script>*@
 
+
+@*<script src="~/Scripts/cms/CmsJquery.js"></script>
+<script src="~/Scripts/cms/Admin/jquery-ui.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="~/Scripts/cms/app.config.js"></script>
+<script src="~/Scripts/cms/app.min.js"></script>
+<script src="~/Scripts/cms/CmsJquery.js"></script>
+<script src="~/Scripts/cms/plugin/jquery-form/jquery-form.min.js"></script>*@
 <script type="text/javascript">
 
     $(document).ready(function () {

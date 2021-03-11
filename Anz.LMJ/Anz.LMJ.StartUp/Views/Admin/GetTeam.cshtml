@@ -1,6 +1,6 @@
-﻿
+﻿@using Anz.LMJ.BLO.ContentObjects;
 @{
-    ViewBag.Title = "GetEventsSection";
+    ViewBag.Title = "GetTeam";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <style>
@@ -74,9 +74,8 @@
     <div id="content">
         <!-- row -->
         <div class="row">
-            @using (Html.BeginForm("EditTeamSection", "Admin", FormMethod.Post, new { @class = "EditTeamSection", enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("EditTeam", "Admin", FormMethod.Post, new { @class = "EditTeam", enctype = "multipart/form-data" }))
             {
-
                 <div class="row">
                     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                         <label class="col-sm-12 control-label">
@@ -86,6 +85,189 @@
                     <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
                         <input class="form-control input__beautify" type="text" name="Name" value="@ViewBag.Team.Name" />
                         <input type="hidden" name="Pos" value="@ViewBag.Team.Pos" />
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-2">
+                        <div class="form-group">
+                            <strong>IsTeam</strong><input type="checkbox" id="IsTeamchk" />
+                        </div>
+                        <input type="hidden" name="IsTeam" id="IsTeamcheck" checked="@ViewBag.Team.IsTeam" value="False" />
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-2">
+                        <div class="form-group">
+                            <strong>IsMember</strong><input type="checkbox" checked="@ViewBag.Team.IsMember" id="IsMemberchk" />
+                        </div>
+                        <input type="hidden" name="IsMember" id="IsMembercheck" value="False" />
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Role</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <select class="form-control " name="RoleId" id="RoleId">
+                                <option value="0">Roles</option>
+                                @foreach (DataType item in (List<DataType>)(ViewBag.roles))
+                                {
+                                    var sel = "";
+                                    if (int.Parse(@ViewBag.Team.RoleId) == @item.Id)
+                                    { sel = "selected"; }
+                                    <option value="@item.Id" @sel>@item.Title</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Postion</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <select class="form-control" name="PositionId" id="PositionId">
+                                <option value="0">Postion</option>
+                                @foreach (DataType item in (List<DataType>)(ViewBag.position))
+                                {
+                                    var sel = "";
+                                    if (int.Parse(@ViewBag.Team.PositionId) == @item.Id)
+                                    { sel = "selected"; }
+                                    <option value="@item.Id" @sel>@item.Title</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Phone 1</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="Phone1" value="@ViewBag.Team.Phone1" />
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Phone 2</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="Phone2" value="@ViewBag.Team.Phone2" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Mobile 1</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="MPhone1" value="@ViewBag.Team.MPhone1" />
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Mobile 2</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="MPhone2"  value="@ViewBag.Team.MPhone2"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Email 1</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="Eamil1" value="@ViewBag.Team.Eamil1" />
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Eamil 2</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="Eamil2"  value="@ViewBag.Team.Eamil2" />
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>POB</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="Pob"   value="@ViewBag.Team.Pob"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>ORCID</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="Orcid"  value="@ViewBag.Team.Orcid"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Image</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                        <input type="file" name="PostedFileImage" id="imgInp" class="custom-file-input" style="width:50%;">
+                        <input type="hidden" name="Image" id="BackGroundImage" id="imgInp" value="@ViewBag.Team.Image" />
+                        <img src="~/Images/Team/@ViewBag.Team.Image" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
+                        <br />
+                        <span>Recommended Size: 195*195</span>
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                         <div class="form-group">
@@ -101,58 +283,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                        <div class="form-group">
-                            <label class="col-sm-12 control-label">
-                                <strong>Position</strong>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
-                        <div class="form-group">
-                            <input class="form-control input__beautify" type="text" name="Position" value="@ViewBag.Team.Position" />
-
-                        </div>
-                    </div>
-                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                        <div class="form-group">
-                            <label class="col-sm-12 control-label">
-                                <strong>Image</strong>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
-                        <input type="file" name="PostedFileImage" id="imgInp" class="custom-file-input" style="width:50%;">
-                    </div>
-
-                </div>
-
-
-                <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-6">
-
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
-                        <input type="hidden" name="Image" id="BackGroundImage" id="imgInp" value="@ViewBag.Team.Image" />
-                        <img src="~/Images/Team/@ViewBag.Team.Image" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
-                        <br />
-                        <span>Recommended Size: 195*195</span>
-                    </div>
-
-                </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-8">
                     <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
                     <input type="hidden" name="Id" value="@ViewBag.Team.Id" />
                 </div>
-
-
-
             }
-
-
-
-
         </div>
 
     </div>
@@ -160,18 +295,43 @@
 </div>
 <script src="~/Scripts/cms/CmsJquery.js"></script>
 <script src="~/Scripts/cms/Admin/jquery-3.3.1.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="~/Scripts/cms/app.config.js"></script>
-<script src="~/Scripts/cms/app.min.js"></script>
-<script src="~/Scripts/cms/CmsJquery.js"></script>
-<script src="~/Scripts/cms/plugin/jquery-form/jquery-form.min.js"></script>
 <script>
-   
 
-    $(document).ready(function () {
+    $("document").ready(function () {
+        if ($("#IsMemberchk").is(":checked")) {
+            $("#IsMembercheck").attr("value", "True");
+        }
+        else {
+            s
+            $("#IsMembercheck").attr("value", "False");
+        }
+        if ($("#IsTeamchk").is(":checked")) {
+            $("#IsTeamcheck").attr("value", "True");
+        }
+        else {
+            $("#IsTeamcheck").attr("value", "False");
+        }
 
+        $('#IsMemberchk').change(function () {
+            if ($("#IsMemberchk").is(":checked")) {
+                $("#IsMembercheck").attr("value", "True");
+            }
+            else {
+                s
+                $("#IsMembercheck").attr("value", "False");
+            }
+
+        });
+        $('#IsTeamchk').change(function () {
+            if ($("#IsTeamchk").is(":checked")) {
+                $("#IsTeamcheck").attr("value", "True");
+            }
+            else {
+                $("#IsTeamcheck").attr("value", "False");
+            }
+
+        });
 
     });
-
 
 </script>

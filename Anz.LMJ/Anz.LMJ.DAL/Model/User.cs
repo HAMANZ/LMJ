@@ -34,14 +34,26 @@ namespace Anz.LMJ.DAL.Model
         }
     
         public long Id { get; set; }
-        public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FirstName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string Username { get; set; }
         public string Affiliation { get; set; }
         public string ProfilePicture { get; set; }
         public bool IsAdmin { get; set; }
+        public string Email2 { get; set; }
+        public string Phone1 { get; set; }
+        public string Phone2 { get; set; }
+        public string Mobile1 { get; set; }
+        public string Mobile2 { get; set; }
+        public string POB { get; set; }
+        public string ORCID { get; set; }
+        public Nullable<long> PositionId { get; set; }
+        public string DegreeIds { get; set; }
+        public string Desc { get; set; }
+        public Nullable<int> Pos { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contributor> Contributors { get; set; }

@@ -1,11 +1,15 @@
 ﻿@using Anz.LMJ.BLO.LogicObjects.Submission
 @using Anz.LMJ.BLO.LogicObjects.Review
+@using Anz.LMJ.BLO.ContentObjects
 @using Anz.LMJ.DAL.Accessors
 @{
     ViewBag.Title = "ArticleDetail";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 <style>
+    .hero-wrap.hero-wrap-2 .overlay {
+        opacity: 1;
+    }
     .articles-details .hero-wrap {
         margin-top: 0rem !important;
     }
@@ -137,6 +141,14 @@
                 </div>
                 <div class="container">
                     <div class="row">
+                        <div class="col-xs-4">
+                            <input class="form-control " type="text" placeholder="FName"  id="FName"  value="" />
+                        </div>
+                        <div class="col-xs-4">
+                            <input class="form-control " type="text" placeholder="LName" id="LName"   value="" />
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="form-group">
                             <textarea name="message" class="form-control" id="reviewtext" cols="100" rows="4" placeholder="Write here..."></textarea>
                         </div>
@@ -188,7 +200,7 @@
             </div>
         </div>
     </section>
-
+    <input type="hidden" value="@ViewBag.detail.Id" id="articleid" />
     <section class="ftco-section blogDetails">
         <div class="container">
             <div class="row">
@@ -263,7 +275,8 @@
                                 }
                                 @if (ViewBag.rating != null)
                                 {
-                                    <h1 class="ratingScore">@ViewBag.rating</h1>
+                                    <h1 class="ratingScore"></h1>
+                                    @*<h1 class="ratingScore">@ViewBag.rating</h1>*@
                                 }
 
                             </div>
@@ -320,7 +333,7 @@
                                 <span class="flaticon-diet">A</span>
                             </div>
                             <div class="media-body pl-3">
-                                <h3 class="heading">@item.User.FirstName @item.User.LastName</h3>
+                                <h3 class="heading">@item.FName @item.LName</h3>
                                 <span> @diff.ToString(@"hh\:mm\:ss")  ago </span>
                                 <p>@item.Text</p>
                             </div>
@@ -351,34 +364,37 @@
                 </div>
                 <div class="modal-body ">
                     <div class="csl-wrapper copy__text-wrapper">
-                        <form action="/action/exportCiteProcCitation" method="post" target="_blank">
-                            <input type="hidden" name="content" value="" />
-                            <input type="hidden" name="dois" value="" />
-                            <input type="hidden" name="format" value="" />
-                            <fieldset class="input-group">
-                                <div class="form-group">
-                                    <select id="citation-format" class="select2">
-                                        <option value="bibtex" data-format="bibTex">BibTeX</option>
-                                        <option value="endNote" data-format="endNote">EndNote</option>
-                                        <option value="acm" data-format="text">ACM Ref</option>
-                                    </select>
+                        @if (@ViewBag.CitationType != null)
+                        {
+
+                            <form action="/action/exportCiteProcCitation" method="post" target="_blank">
+                                <input type="hidden" name="content" value="" />
+                                <input type="hidden" name="dois" value="" />
+                                <input type="hidden" name="format" value="" />
+                                <fieldset class="input-group">
+                                    <div class="form-group">
+                                        <select id="citation-format" class="select2">
+                                            <option value="0" data-format="">citation type</option>
+                                            @foreach (CitationType item in (List<CitationType>)ViewBag.CitationType)
+                                            {
+                                                <option value="@item.Id" data-format="@item.Title">@item.Title</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <span class="select-arrow"><i class="icon-bottom-arrow"></i></span>
+                                </fieldset>
+                       
+                                <pre id="copy-text"></pre>
+                                <div id="export-warning"></div>
+                                <div class="pull-right">
+                                    <ul class="list--inline separator">
+                                        <li><a href="javascript:void(0)" role="menuitem" title="Download citation" class="download__btn"><i aria-hidden="true" class="fa fa-download"></i></a></li>
+                                        <li>
+                                            <a href="javascript:void(0)" role="menuitem" title="Copy citation" class="copy__btn"><i aria-hidden="true" class="fa fa-copy"></i><input type="hidden" id="doisLimitNumber" value="-1" /></a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <span class="select-arrow"><i class="icon-bottom-arrow"></i></span>
-                            </fieldset>
-
-                            <pre id="copy-text">article{@ViewBag.detail.Type},<br />author{@ViewBag.detail.Author.FirstName, @ViewBag.detail.Author.LastName},<br />title {@ViewBag.detail.Title},<br />Date  { @ViewBag.detail.PublishDate.ToString("MMM.dd.yyyy")},<br>Volume {@ViewBag.detail.Volume},<br>Issn {@ViewBag.detail.Issn},<br />Year {@ViewBag.detail.Year.ToString("yyyy")},
-
-                              </pre>
-                            <div id="export-warning"></div>
-                            <div class="pull-right">
-                                <ul class="list--inline separator">
-                                    <li><a href="javascript:void(0)" role="menuitem" title="Download citation" class="download__btn"><i aria-hidden="true" class="fa fa-download"></i></a></li>
-                                    <li>
-                                        <a href="javascript:void(0)" role="menuitem" title="Copy citation" class="copy__btn"><i aria-hidden="true" class="fa fa-copy"></i><input type="hidden" id="doisLimitNumber" value="-1" /></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </form>
+                            </form>}
                     </div>
                 </div>
             </div>
@@ -415,7 +431,8 @@
 
         $('.copy__btn').click(function () {
             var copyText = $("#copy-text").html();
-            $("body").append("<textarea id='copy-textarea'>"+copyText+"</textarea>");
+
+            $("body").append("<textarea  id='copy-textarea'>" + copyText.replace(/(<([^>]+)>)/ig, "")+"</textarea>");
             copyme("#copy-textarea");
         });
 
@@ -423,16 +440,40 @@
     });
 
 
+   
+    $("#citation-format").change(function () {
+      
+        id = $("#citation-format").val();
+        articleid=$("#articleid").val();
+        
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetCitationForm")',
+            data: { id: id, articleid: articleid},
+            success: function (result) {
+                $("#copy-text").remove();
+                if (result != "error") {
+                    $(".copy__text-wrapper fieldset ").after(`<pre id="copy-text">`+result+`</pre>`);
+                }
+                else {
+                    $(".copy__text-wrapper fieldset ").after(`<pre id="copy-text"></pre>`);
+                }
+            }
+        });
+        });
+
     $(".btn-review").click(function () {
         articleid=$("#articleid").attr("value");
         text = $("#reviewtext").val();
         nbofstars=$("#stars .selected:last").attr("data-value");
-
+        FName = $("#FName").val();
+        LName = $("#LName").val();
         $.ajax({
 
             type: 'POST',
             url: '@Url.Action("AddReviewByUser")',
-           data: { text: text, nbofstars: nbofstars, articleid: articleid},
+            contentType:'application/json',
+            data: JSON.stringify({ 'FName': FName, 'LName': LName, 'text': text, 'NbOfStars': nbofstars, 'SubmissionId': articleid }),
             success: function (result) {
                 if (result.responseMessage !== "error") { location.reload(); }
                 else {
@@ -470,7 +511,7 @@
 
     }
 
-    function downloadPDF(fileName) {    
+    function downloadPDF(fileName) {
         var src = 'http://localhost:52397/files/' + fileName;
 
         $.ajax({

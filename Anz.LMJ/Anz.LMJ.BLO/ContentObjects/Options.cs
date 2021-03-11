@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Anz.LMJ.BLO.LookUpObjects
+namespace Anz.LMJ.BLO.ContentObjects
 {
     public class Options
     {

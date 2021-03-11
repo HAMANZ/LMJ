@@ -13,16 +13,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using star = Anz.LMJ.BLO.LogicObjects.Review.star;
+using System.ComponentModel;
+using System.Linq.Expressions;
+using System.Web.ModelBinding;
+using System.Web.Mvc;
 
 namespace Anz.LMJ.BLO.LogicObjects.Submission
 {
 
- 
-    public class SubmissionLO
+    [AttributeUsage(AttributeTargets.All)]
+    public class SubmissionLO : Attribute
     {
+        [DisplayName("Title")]
         public long Id { get; set; }
         public long UserId { get; set; }
         public string Prefix { get; set; }
+
+        [DisplayName("Title")]
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public DateTime SubmissionDate { get; set; }
@@ -35,7 +42,7 @@ namespace Anz.LMJ.BLO.LogicObjects.Submission
         public bool isDraft { get; set; }
 
         public bool isApproved { get; set; }
-        
+        public string AuthorInfo { get; set; }
         public bool isTopReader { get; set; }
         public bool isEditorsPick { get; set; }
         public ArticleTypeLO ArticleType { get; set; }
@@ -69,10 +76,18 @@ namespace Anz.LMJ.BLO.LogicObjects.Submission
         public string Type { get; set; }
         public string Issn { get; set; }
         public DateTime Year { get; set; }
+
+        public string year { get; set; }
+
         public string Volume { get; set; }
+
+        [DisplayName("IssueNO")]
         public string IssueNO { get; set; }
+
+        [DisplayName("PublishDate")]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime PublishDate { get; set; }
+        public string Date { get; set; }
         public long ArticleTypeId { get; set; }
         public long OrderFile { get; set; }
         public long SectionId { get; set; }
@@ -117,5 +132,7 @@ namespace Anz.LMJ.BLO.LogicObjects.Submission
         public long[] Department { get; set; }
         public long[] Country { get; set; }
         public bool[] isCorresponding { get; set; }
+
+
     }
 }

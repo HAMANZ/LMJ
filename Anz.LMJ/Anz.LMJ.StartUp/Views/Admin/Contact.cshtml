@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model Anz.LMJ.BLO.ContentObjects.Contact
+<style>
+    #content {
+        text-align: right;
+    }
+</style>
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @using (Html.BeginForm("Contact", "Admin", FormMethod.Post, new { @class = "Contact", enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-2  col-lg-1">
+                            <label class="col-sm-12 control-label">
+                                <strong>Phone1</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input__beautify" type="text" value="@Model.Phone1" name="Phone1" />
+                        </div>
+                        <div class="col-xs-3 col-sm-2  col-lg-2">
+                            <label class="col-sm-12 control-label">
+                                <strong>Phone2</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input__beautify" type="text" value="@Model.Phone2" name="Phone1" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-2  col-lg-1">
+                            <label class="col-sm-12 control-label">
+                                <strong>Mobile</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input__beautify" type="text" value="@Model.Mobile1" name="Mobile1" />
+                        </div>
+                        <div class="col-xs-3 col-sm-2  col-lg-2">
+                            <label class="col-sm-12 control-label">
+                                <strong>Mobile2</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input__beautify" type="text" value="@Model.Mobile2" name="Mobile2" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-2  col-lg-1">
+                            <label class="col-sm-12 control-label">
+                                <strong>Email</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input__beautify" type="text" value="@Model.Email" name="Email" />
+                        </div>
+                        <div class="col-xs-3 col-sm-2  col-lg-2">
+                            <label class="col-sm-12 control-label">
+                                <strong>AdditionalEmail</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input__beautify" type="text" value="@Model.AdditionalEmail" name="AdditionalEmail" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-2  col-lg-1">
+                            <label class="col-sm-12 control-label">
+                                <strong>Address</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input__beautify" type="text" value="@Model.Address" name="Address" />
+                        </div>
+                        <div class="col-xs-3 col-sm-2  col-lg-2">
+                            <label class="col-sm-12 control-label">
+                                <strong>POBOX</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input__beautify" type="text" value="@Model.POBox" name="POBOX" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-2  col-lg-1">
+                            <label class="col-sm-12 control-label">
+                                <strong>Facebook</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input__beautify" type="text" value="@Model.Facebook" name="Facebook" />
+                        </div>
+                        <div class="col-xs-3 col-sm-2  col-lg-2">
+                            <label class="col-sm-12 control-label">
+                                <strong>Twiter</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input__beautify" type="text" value="@Model.Twiter" name="Twiter" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-2  col-lg-1">
+                            <label class="col-sm-12 control-label">
+                                <strong>Desc</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input__beautify" type="text" value="@Model.Desc" name="Desc" />
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="col-sm-12 col-lg-11">
+                        <button type="submit" class="btn btn-sm btn-primary pull-right"> Publish </button>
+                        <input type="hidden" name="Id" value="" />
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+</script>

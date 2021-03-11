@@ -115,6 +115,64 @@ namespace Anz.LMJ.DAL.Accessors
             }
         }
 
+        public List<UserRolesInJournal> GetList(long userId,List<int> rolesid)
+        {
+            try
+            {
+                List<UserRolesInJournal> data = new List<UserRolesInJournal>();
+                using (LMJEntities db = new LMJEntities())
+                {
+                    data = db.UserRolesInJournals.Where(e => e.UserId == userId && rolesid.Contains((int)e.RoleId) && e.isDeleted == false)
+                        .ToList();
+                }
+                return data;
+            }
+            catch (Exception ex)
+            {
 
+                throw;
+            }
+        }
+
+        public List<UserRolesInJournal> Add(List<UserRolesInJournal> toAdd)
+        {
+
+            try
+            {
+                using (LMJEntities db = new LMJEntities())
+                {
+                    db.UserRolesInJournals.AddRange(toAdd);
+                    db.SaveChanges();
+                    return toAdd;
+                }
+                return toAdd;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        public List<UserRolesInJournal> Edit(long userid)
+        {
+            try
+            {
+                using (LMJEntities db = new LMJEntities())
+                {
+                    List<UserRolesInJournal> rolesjournal = db.UserRolesInJournals.Where(e => e.UserId == userid).ToList();
+                    rolesjournal.ForEach(a => a.isDeleted = true);
+                    db.SaveChanges();
+                    return rolesjournal;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
     }
 }

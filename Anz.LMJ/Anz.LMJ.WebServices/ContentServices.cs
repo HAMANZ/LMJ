@@ -33,7 +33,7 @@ namespace Anz.LMJ.WebServices
             IssueFilter,
             Contact,
             Position,
-            Role,
+            Degree,
             Policy,
             Terms,
             CopyRight,
@@ -41,6 +41,7 @@ namespace Anz.LMJ.WebServices
             Index,
             IndexType,
             FooterMenu,
+            Footer
 
         }
 
@@ -63,17 +64,40 @@ namespace Anz.LMJ.WebServices
                 _SharedTables[ServiceTables.News] = LookUpLogic.AdminTables.News;
                 _SharedTables[ServiceTables.IssueFilter] = LookUpLogic.AdminTables.IssueFilter;
                 _SharedTables[ServiceTables.Contact] = LookUpLogic.AdminTables.Contact;
-                _SharedTables[ServiceTables.Role] = LookUpLogic.AdminTables.Role;
+                _SharedTables[ServiceTables.Degree] = LookUpLogic.AdminTables.Degree;
                 _SharedTables[ServiceTables.Position] = LookUpLogic.AdminTables.Position;
                 _SharedTables[ServiceTables.FooterMenu] = LookUpLogic.AdminTables.FooterMenu;
                 _SharedTables[ServiceTables.Citation] = LookUpLogic.AdminTables.Citation;
                 _SharedTables[ServiceTables.Index] = LookUpLogic.AdminTables.Index;
                 _SharedTables[ServiceTables.IndexType] = LookUpLogic.AdminTables.IndexType;
+                _SharedTables[ServiceTables.Footer] = LookUpLogic.AdminTables.Footer;
+                
 
             }
         }
         #endregion
 
+
+      
+
+             public List<string> GetAttributes(ServiceTables table)
+        {
+            try
+            {
+                List<LookUpAttributes> result = new List<LookUpAttributes>();
+                List<string> attrName=new List<string>();
+                result = _LookUpLogic.GetAttributes(_SharedTables[table], "en");
+                foreach (LookUpAttributes item in (List<LookUpAttributes>)result) {
+                    attrName.Add(item.Name);
+                }
+                return attrName;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
 
         public GeneralContents<T> GetContent<T>(ServiceTables table, int limit)
         {
@@ -91,6 +115,11 @@ namespace Anz.LMJ.WebServices
                 throw;
             }
         }
+
+
+        List<LookUpAttributes> attributes = new List<LookUpAttributes>();
+
+        public object ConfigurationManager { get; private set; }
 
         public GeneralContents<T> GetContentOfItem<T>(ServiceTables table, int limit, long mainId)
         {

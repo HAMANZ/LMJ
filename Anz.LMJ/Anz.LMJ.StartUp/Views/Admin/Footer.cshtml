@@ -1,0 +1,167 @@
+﻿@using Anz.LMJ.BLO.ContentObjects;
+@using Anz.LMJ.BLO.LogicObjects.Submission;
+@{
+    ViewBag.Title = "Footer section";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model Anz.LMJ.BLO.ContentObjects.Footer
+<style>
+    #content {
+        text-align: right;
+    }
+</style>
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @using (Html.BeginForm("Footer", "Admin", FormMethod.Post, new { @class = "Footer", enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        <div class="col-xs-2">
+                                <label class="col-sm-12 control-label">
+                                    <strong>Articles Types</strong>
+                                </label>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                                <select multiple class="form-control select2 CategoryIds" id="CategoryIds" name="CategoryIdss">
+                                    @foreach (Options article in (List<Options>)(ViewBag.articlestypes))
+                                    {
+                                        var sel = "";
+                                        if (@Model != null)
+                                        {
+                                            if (@Model.CategoryIds != null)
+                                            {
+                                                string[] arr = Model.CategoryIds.Split(',');
+                                                List<int> lst = new List<int>();
+                                                for (int i = 0; i < arr.Length; i++)
+                                                {
+                                                    lst.Add(int.Parse(arr[i]));
+                                                }
+                                                foreach (int id in (List<int>)(lst))
+                                                {
+
+                                                    if (id == @article.Id)
+                                                    { sel = "selected"; }
+
+                                                }
+                                            }
+                                        }
+                                        <option value="@article.Id" @sel>@article.Value</option>
+                                    }
+                                </select>
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <label class="col-sm-12 control-label">
+                                <strong>Articles</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                                <select multiple class="form-control select2 RecentArticleIds" id="RecentArticleIds" name="RecentArticleIdss">
+                                    @foreach (SubmissionLO article in (List<SubmissionLO>)(@ViewBag.articles))
+                                    {
+                                        var sel = "";
+                                        if (@Model != null)
+                                        {
+
+                                            if (@Model.RecentArticleIds != null)
+                                            {
+                                                string[] arr = Model.RecentArticleIds.Split(',');
+                                                List<int> lst = new List<int>();
+                                                for (int i = 0; i < arr.Length; i++)
+                                                {
+                                                    lst.Add(int.Parse(arr[i]));
+                                                }
+                                                foreach (int id in (List<int>)(lst))
+                                                {
+
+                                                    if (id == @article.Id)
+                                                    { sel = "selected"; }
+
+                                                }
+                                            }
+
+                                        }
+                                        <option value="@article.Id" @sel>@article.Title</option>
+                                    }
+                                </select>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-2">
+                                <label class="col-sm-12 control-label">
+                                    <strong>Contact data</strong>
+                                </label>
+                        </div>
+                        <div class="col-xs-4">
+                                <select multiple class="form-control select2 ContactIds" id="ContactIds" name="ContactIdss">
+                                    @{
+                                        List<string> attrName = (List<string>)(ViewBag.attrName);
+                                        Contact cont = (Contact)ViewBag.contact;
+                                        String s = cont.ToString();
+                                        string[] arrcontactvaluu = s.Split(',');
+                                        for (int i = 0; i < arrcontactvaluu.Length; i++)
+                                        {
+
+                                            var sel = "";
+                                            if (@Model != null)
+                                            {
+                                                if (@Model.ContactIds != null)
+                                                {
+                                                    string[] arr = Model.ContactIds.Split(',');
+                                                    foreach (string c in (arr))
+                                                    {
+
+                                                        if (c.Trim() == @attrName[i].Trim())
+                                                        { sel = "selected"; }
+
+                                                    }
+                                                }
+                                            }
+                                            <option value="@attrName[i]" @sel>@attrName[i]</option>
+                                        }
+                                    }
+                                </select>
+                        </div>
+                        <div class="col-xs-5">
+                                <button type="submit" class="btn btn-sm btn-primary pull-right"> Publish </button>
+                                <input type="hidden" name="Id" value="" />
+                            </div>
+                        </div>
+                       
+                        }
+
+                    </div>
+
+                </div>
+
+    </div>
+
+</div>
+
+<script>
+    $("document").ready(function () {
+
+        $("#RecentArticleIds").on('change', function (e) {
+            if (Object.keys($(this).val()).length > 3) {
+                $('option[value="' + $(this).val().toString().split(',')[3] + '"]').prop('selected', false);
+                alert("select only 3 articles");
+            }
+        });
+
+        $("#CategoryIds").on('change', function (e) {
+            if (Object.keys($(this).val()).length > 16) {
+                $('option[value="' + $(this).val().toString().split(',')[3] + '"]').prop('selected', false);
+            }
+        });
+    });
+</script>

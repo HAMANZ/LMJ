@@ -10,31 +10,65 @@
 
   </TopLevelMenu>
   
+  <TopLevelMenu name="Aboutus Page" link="/admin/AboutPage" icon="fa fa-lg fa-fw fa-dropbox" class="aboutuspage">
+  </TopLevelMenu>
+
+  <TopLevelMenu name="Contact Info" link="/admin/Contact" icon="fa fa-lg fa-fw fa-dropbox" class="contactinfo">
+  </TopLevelMenu>
+
+  <TopLevelMenu name="Footer section" link="/admin/Footer" icon="fa fa-lg fa-fw fa-dropbox" class="footerpage">
+  </TopLevelMenu>
+  
+  <TopLevelMenu name="Footer Menu" link="/admin/FooterMenu" icon="fa fa-lg fa-fw fa-dropbox" class="footermenupage">
+  </TopLevelMenu>
+    
+    <TopLevelMenu name="Indexation" link="/admin/Indexation" icon="fa fa-lg fa-fw fa-dropbox" class="indexationpage">
+  </TopLevelMenu>
+  
   <TopLevelMenu name="Define Types" link="#" icon="fa fa-lg fa-fw fa-home" class="Types">
     <MenuItem name="Role" link="/admin/FormType?FormName=Role" class="Role"/>
     <MenuItem name="Position" link="/admin/FormType?FormName=Position" class="Position"/>
     <MenuItem name="IndexType" link="/admin/FormType?FormName=IndexType" class="IndexType"/>
+
   </TopLevelMenu>
 
-  <TopLevelMenu name="Aboutus_Page" link="/admin/AboutPage" icon="fa fa-lg fa-fw fa-dropbox" class="aboutuspage">
+ 
+  <TopLevelMenu name="Role" link="/admin/Footer" icon="fa fa-lg fa-fw fa-dropbox" class="footerpage">
   </TopLevelMenu>
 
-  <TopLevelMenu name="Members" link="/Admin/Members" icon="fa fa-lg fa-fw fa-user" class="members">
+  <TopLevelMenu name="Position" link="/admin/FormType?FormName=Position"  icon="fa fa-lg fa-fw fa-dropbox" class="footermenupage">
+  </TopLevelMenu>
+
+  <TopLevelMenu name="IndexType" link="/admin/FormType?FormName=IndexType" icon="fa fa-lg fa-fw fa-dropbox" class="indexationpage">
+  </TopLevelMenu>
+  
+  
+  
+  <TopLevelMenu name="Admit Reviews" link="/admin/Review" icon="fa fa-lg fa-fw fa-dropbox" class="Review">
+  </TopLevelMenu>
+  
+  <TopLevelMenu name="Authors" link="/admin/Users?Role=author" icon="fa fa-lg fa-fw fa-dropbox" class="Users">
   </TopLevelMenu>
 
 
-  <TopLevelMenu name="News" link="/admin/News" icon="fa fa-lg fa-fw fa-dropbox" class="news">
+  <TopLevelMenu name="Members" link="/admin/Users?Role=member" icon="fa fa-lg fa-fw fa-dropbox" class="Users">
   </TopLevelMenu>
+
+  <TopLevelMenu name="Team" link="/admin/Users?Role=team" icon="fa fa-lg fa-fw fa-dropbox" class="Users">
+  </TopLevelMenu>
+  
+  <TopLevelMenu name="Managment" link="/admin/Users?Role=management" icon="fa fa-lg fa-fw fa-dropbox" class="Users">
+  </TopLevelMenu>
+
+  <TopLevelMenu name="Citation Type" link="/admin/CitationType" icon="fa fa-lg fa-fw fa-dropbox" class="citationpage">
+  </TopLevelMenu>
+  
 
   <TopLevelMenu name="Events" link="/admin/Events" icon="fa fa-lg fa-fw fa-dropbox" class="events">
   </TopLevelMenu>
 
   <TopLevelMenu name="Videos" link="/admin/Videos" icon="fa fa-lg fa-fw fa-dropbox" class="videos">
   </TopLevelMenu>
-
-  <TopLevelMenu name="Team" link="/admin/Team" icon="fa fa-lg fa-fw fa-dropbox" class="team">
-  </TopLevelMenu>
-
 
   <TopLevelMenu name="Articles" link="/admin/Articles" icon="fa fa-lg fa-fw fa-dropbox" class="articles">
   </TopLevelMenu>

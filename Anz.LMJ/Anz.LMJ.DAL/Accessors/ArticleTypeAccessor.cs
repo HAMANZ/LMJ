@@ -27,6 +27,24 @@ namespace Anz.LMJ.DAL.Accessors
             }
         }
 
+        public List<ArticleType> GetList(List<long> Ids)
+        {
+            List<ArticleType> response = new List<ArticleType>();
+            try
+            {
+                using (LMJEntities db = new LMJEntities())
+                {
+                    response = db.ArticleTypes.Where(e => e.isDeleted == false & Ids.Contains(e.Id)).ToList();
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         public ArticleType Get(long articleid)
         {
             ArticleType response = new ArticleType();

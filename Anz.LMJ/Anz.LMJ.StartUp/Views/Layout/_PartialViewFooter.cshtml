@@ -1,6 +1,6 @@
 ﻿@using Anz.LMJ.BLO.LogicObjects.Submission
 @using Anz.LMJ.BLO.LogicObjects.User;
-@using Anz.LMJ.BLO.LookUpObjects;
+@using Anz.LMJ.BLO.ContentObjects;
 <style>
     #footer .footer-top .footer-links ul li {
         padding: 0px 0 !important;
@@ -127,18 +127,14 @@
                                     Contact Information
                                 </h4>
                                 <p>
-                                    A108 Adam Street <br>
-                                    New York, NY 535022<br>
-                                    United States <br>
-                                    <strong>Phone:</strong> +961 77 855 422<br>
-                                    <strong>Email:</strong> info@lmj.com<br>
+                                    @Html.Raw(ViewBag.contactdata)
                                 </p>
                             </div>
                             <div class="social-links">
-                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                                <a href="@ViewBag.contact.Twiter" class="twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="@ViewBag.contact.Facebook" class="facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="@ViewBag.contact.Facebook" class="instagram"><i class="fa fa-instagram"></i></a>
+                                <a href="@ViewBag.contact.Facebook" class="linkedin"><i class="fa fa-linkedin"></i></a>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -228,6 +224,40 @@
             </div>
 
 </footer>
+
+ <section class="footer-second">
+        <div class="container">
+            <div class="logo">
+                <a href="/Home" class="scrollto"><img src="~/Content/img/LMJ-logo.jpg" alt="LMJ-LOGO" class="img-fluid img-logo"></a>
+            </div>
+            <div class="copyright">
+                &copy; Copyright <strong>JML / LMJ</strong>. All Rights Reserved
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="credits">
+                          @foreach (FooterMenu item in (List<FooterMenu>)@ViewBag.footerlinks)
+                                        {
+                                            
+                                                <a href="/Home/FooterLink/@item.Id">@item.Title |</a> 
+                                        }
+                       
+                        <a href="/Home/Contact">Contact Us</a> |
+                        <a href="#">ISSN : 0023-9852</a> |
+                        <a href="#">E-ISSN NB</a>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="cards">
+                        <a href="#"><img src="~/Images/mastercard-logo.svg" /></a>
+                        <a href="#"><img src="~/Images/visa-logo.svg" /></a>
+                        <a href="#"><img src="~/Images/paypal-logo.svg" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 <script type="text/javascript" src="~/Content/lib/jquery/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="~/Content/lib/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">

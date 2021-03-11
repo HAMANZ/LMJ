@@ -65,12 +65,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentObjects\About_Page.cs" />
+    <Compile Include="ContentObjects\CitationType.cs" />
+    <Compile Include="ContentObjects\Footer.cs" />
+    <Compile Include="ContentObjects\Index.cs" />
     <Compile Include="ContentObjects\FooterMenu.cs" />
     <Compile Include="ContentObjects\Data.cs" />
     <Compile Include="ContentObjects\CitationVariable.cs" />
     <Compile Include="ContentObjects\DataType.cs" />
     <Compile Include="ContentObjects\Contact.cs" />
     <Compile Include="ContentObjects\EditorsPick.cs" />
+    <Compile Include="ContentObjects\Helper.cs" />
     <Compile Include="ContentObjects\IssueFilter.cs" />
     <Compile Include="ContentObjects\Events.cs" />
     <Compile Include="ContentObjects\Hero_Banner.cs" />
@@ -102,7 +106,7 @@
     <Compile Include="LogicObjects\User\UserQueueLO.cs" />
     <Compile Include="LookUpObjects\GeneralContents.cs" />
     <Compile Include="LookUpObjects\LookUpAttributes.cs" />
-    <Compile Include="LookUpObjects\Options.cs" />
+    <Compile Include="ContentObjects\Options.cs" />
     <Compile Include="LookUpObjects\ProcessLookUpLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

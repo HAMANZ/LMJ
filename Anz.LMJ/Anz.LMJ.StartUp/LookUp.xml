@@ -4,18 +4,18 @@
   <LookUpNodes Name="Hero_Banner">
     <LookUpAttr Name="Title" Code="HERO_BANNER_TITLE" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="SubTitle" Code="HERO_BANNER_SUBTITLE" isLangNull="False" isMedia ="False" isMain="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="BackgroundImage" Code="HERO_BANNER_BACKGROUND_IMAGE" isLangNull="True" isMedia ="True" isMain ="False" isList="True" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="BackgroundImage" Code="HERO_BANNER_BACKGROUND_IMAGE" isLangNull="False" isMedia ="True" isMain ="False" isList="True" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
 
   <LookUpNodes Name="Transformations">
-    <LookUpAttr Name="Name" Code="CLIENT_NAME" isLangNull="True" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Name" Code="CLIENT_NAME" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="Description" Code="BODY_DESCRIPTION" isLangNull="False" isMedia ="False" isMain="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="ImageBefore" Code="IMAGE_BEFORE" isLangNull="True" isMedia ="True" isMain="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="ImageAfter" Code="IMAGE_AFTER" isLangNull="True" isMedia ="True" isMain="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="WeightBefore" Code="WEIGHT_BRFORE" isLangNull="True" isMedia ="False" isMain="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="WeightAfter" Code="WEIGHT_AFTER" isLangNull="True" isMedia ="False" isMain="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="TimeFrame" Code="TIME_FRAME" isLangNull="True" isMedia ="False" isMain="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="ImageBefore" Code="IMAGE_BEFORE" isLangNull="False" isMedia ="True" isMain="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="ImageAfter" Code="IMAGE_AFTER" isLangNull="False" isMedia ="True" isMain="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="WeightBefore" Code="WEIGHT_BRFORE" isLangNull="False" isMedia ="False" isMain="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="WeightAfter" Code="WEIGHT_AFTER" isLangNull="False" isMedia ="False" isMain="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="TimeFrame" Code="TIME_FRAME" isLangNull="False" isMedia ="False" isMain="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
   <LookUpNodes Name="About_Page">
@@ -26,24 +26,27 @@
 
   <LookUpNodes Name="IndexType">
     <LookUpAttr Name="Title" Code="INDEX_TYPE_TITLE" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Desc" Code="INDEX_TYPE_DESC" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Desc" Code="INDEX_TYPE_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
   <LookUpNodes Name="Index">
     <LookUpAttr Name="Title" Code="INDEX_TITLE" isLangNull="False" isMedia ="False" isMain="True" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Txt" Code="INDEX_TXT" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="IndexTypeId" Code="INDEX_IMG" isLangNull="True" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Txt" Code="INDEX_TXT" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="IndexTypeId" Code="INDEX_TYPE_IDS" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
   
   <LookUpNodes Name="Contact">
-    <LookUpAttr Name="Phone" Code="PHONE" isLangNull="False" isMedia ="False" isMain="True" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Address" Code="ADDRESS" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="POBox" Code="POBOX" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Email" Code="EMAIL" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="AdditionalEmail" Code="ADDITIONAL_EMAIL" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-      <LookUpAttr Name="Facebook" Code="FACEBOOK" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name ="Twiter" Code="TWITER" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Desc " Code="DESC" isLangNull="True" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Phone1" Code="PHONE1" isLangNull="False" isMedia ="False" isMain="True" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Phone2" Code="PHONE2" isLangNull="False" isMedia ="False" isMain="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Mobile1" Code="MOBILE1" isLangNull="False" isMedia ="False" isMain="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Mobile2" Code="MOBILE2" isLangNull="False" isMedia ="False" isMain="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Address" Code="ADDRESS" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="POBox" Code="POBOX" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Email" Code="EMAIL" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="AdditionalEmail" Code="ADDITIONAL_EMAIL" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Facebook" Code="FACEBOOK" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name ="Twiter" Code="TWITER" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Desc" Code="DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
   
   <LookUpNodes Name="Events">
@@ -51,8 +54,8 @@
     <LookUpAttr Name="MainImg" Code="EVENTS_MAIN_IMG" isLangNull="False" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="EventDate" Code="EVENTS_MAIN_DATE" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="MainDesc" Code="EVENTS_MAIN_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="SubImg" Code="EVENTS_SUB_IMAGE" isLangNull="True" isMedia ="True" isMain ="False" isList="True" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Location" Code="EVENTS_LOCATION" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="SubImg" Code="EVENTS_SUB_IMAGE" isLangNull="False" isMedia ="True" isMain ="False" isList="True" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Location" Code="EVENTS_LOCATION" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
   <LookUpNodes Name="IssueFilter">
@@ -70,27 +73,28 @@
   <LookUpNodes Name="Members">
     <LookUpAttr Name="Name" Code="MEMBERS_NAME" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="Image" Code="MEMBERS_IMG" isLangNull="False" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Position" Code="MEMBERS_POSITION" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="MainDesc" Code="MEMBERS_MAIN_DESC" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="SubDesc" Code="MEMBERS_SUB_DESC" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Position" Code="MEMBERS_POSITION" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="MainDesc" Code="MEMBERS_MAIN_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="SubDesc" Code="MEMBERS_SUB_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="Pos" Code="MEMBERS_POS" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
 
-  <LookUpNodes Name="Role">
-    <LookUpAttr Name="Title" Code="ROLE_TITLE" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Desc" Code="ROLE_DESC" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+  <LookUpNodes Name="Degree">
+    <LookUpAttr Name="Title" Code="DEGREE_TITLE" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Desc" Code="DEGREE_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
   <LookUpNodes Name="Position">
     <LookUpAttr Name="Title" Code="POSITION_TITLE" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Desc" Code="POSITION_DESC" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Desc" Code="POSITION_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
  </LookUpNodes>
 
 
   <LookUpNodes Name="Citation">
     <LookUpAttr Name="Title" Code="CITATION_TITLE" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="Text" Code="CITATION_Text" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="IsEnabled" Code="CITATION_ISENABLED" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
   <LookUpNodes Name="CitationVariable">
@@ -101,8 +105,8 @@
   <LookUpNodes Name="FooterMenu">
     <LookUpAttr Name="Title" Code="FOOTER_TITLE" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="Text" Code="FOOTER_TEXT" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Img" Code="FOOTER_IMG" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="IsEnabled" Code="FOOTER_ISENABLED" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Img" Code="FOOTER_IMG" isLangNull="False" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="IsEnabled" Code="FOOTER_ISENABLED" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
   <LookUpNodes Name="Terms">
@@ -117,13 +121,21 @@
 
   <LookUpNodes Name="Team">
     <LookUpAttr Name="Name" Code="TEAM_NAME" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Image" Code="TEAM_IMG" isLangNull="True" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="PositionId" Code="TEAM_POSITION_ID" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="RoleId" Code="TEAM_ROLE_ID" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="MainDesc" Code="TEAM_DESC" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Pos" Code="TEAM_POS" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="IsTeam" Code="TEAM_IS_TEAM" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="IsMember" Code="TEAM_IS_MEMBER" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Image" Code="TEAM_IMG" isLangNull="False" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="PositionId" Code="TEAM_POSITION_ID" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="RoleId" Code="TEAM_ROLE_ID" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="MainDesc" Code="TEAM_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Pos" Code="TEAM_POS" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="IsTeam" Code="TEAM_IS_TEAM" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="IsMember" Code="TEAM_IS_MEMBER" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="TPhone1" Code="TEAM_TPHONE1" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="TPhone2" Code="TEAM_TPHONE2" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="MPhone1" Code="TEAM_MPHONE1" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="MPhone2" Code="TEAM_MPHONE2" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Email1" Code="TEAM_EMAIL1" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Email2" Code="TEAM_EMAIL2" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Pob" Code="TEAM_POB" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Orcid" Code="TEAM_ORCID" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
   
@@ -132,17 +144,17 @@
     <LookUpAttr Name="Image" Code="NEWS_IMG" isLangNull="False" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="NewsDate" Code="NEWS_DATE" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="MainDesc" Code="NEWS_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="SubDesc" Code="NEWS_SUB_DESC" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="SubDesc" Code="NEWS_SUB_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
   <LookUpNodes Name="Videos">
     <LookUpAttr Name="Name" Code="VIDEOS_NAME" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="Image" Code="VIDEOS_IMG" isLangNull="False" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="MainDesc" Code="VIDEOS_MAIN_DESC" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="SubDesc" Code="VIDEOS_SUB_DESC" isLangNull="True" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="MainDesc" Code="VIDEOS_MAIN_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="SubDesc" Code="VIDEOS_SUB_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="Pos" Code="VIDEOS_POS" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="VideoDate" Code="VIDEOS_DATE" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Src" Code="VIDEOS_SCR" isLangNull="True" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Src" Code="VIDEOS_SCR" isLangNull="False" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
   <LookUpNodes Name="Footer">

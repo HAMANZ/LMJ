@@ -10,9 +10,13 @@ namespace Anz.LMJ.BLO.LogicObjects.Review
     public class ReviewLO
     {
         public long Id { get; set; }
-        public UserLO User { get; set; }
+        public string FName { get; set; }
+        public string LName { get; set; }
         public int NbOfStars { get; set; }
         public string Text { get; set; }
+        public long SubmissionId { get; set; }
+
+        public bool IsAdmit { get; set; }
         public DateTime Date { get; set; }
     }
 }

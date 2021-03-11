@@ -8,6 +8,10 @@
         width: 50%;
     }
 
+    input {
+        width: 50%;
+    }
+
     .ImgClick {
         background-image: url(/Images/delete.png);
         background-repeat: no-repeat;
@@ -17,6 +21,26 @@
         vertical-align: middle;
         background-position: center;
         background-size: contain;
+    }
+
+    .hint {
+        color: #AD0202;
+        font-size: 12px;
+    }
+
+    .title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .ImageInfo {
+        font-size: 12px;
+    }
+
+    .DisplayImagePart {
+        float: left;
+        width: 50%;
+        display: inline-block;
     }
 </style>
 <div id="main" role="main">
@@ -33,6 +57,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 @using (Html.BeginForm("HomeBanner", "Admin", FormMethod.Post, new { @class = "HomeBanner", enctype = "multipart/form-data" }))
                 {
+
                     <div class="well well-sm">
                         <!-- Timeline Content -->
                         <div class="smart-timeline">
@@ -40,8 +65,8 @@
                                 <li>
 
                                     <div class="smart-timeline-content">
-                                        <p>
-                                            <strong>Title</strong>
+                                        <p class="title">
+                                            Title
 
                                         </p>
                                         <p>
@@ -54,10 +79,9 @@
                                 <li>
 
                                     <div class="smart-timeline-content">
-                                        <p>
-                                            <strong>Sub Title</strong>
+                                        <p class="title">
+                                            Sub Title
 
-                                        </p>
                                         <p>
                                             <input class="input__beautify" type="text" name="SubTitle" value="@Model.SubTitle" />
 
@@ -67,64 +91,43 @@
                                 </li>
 
 
-
-
-
-
-
-
-
-                                <li style="margin-bottom: 9rem; height: 40em;">
+                                <li>
                                     <div class="smart-timeline-content">
-                                        <p>
-                                            <strong>Background Image</strong>
+                                        <p class="title">
+                                            Background Image
                                         </p>
+                                        <div class="hint">
+                                            <p>To delete an image, simply press on it or on the trash can</p>
+                                        </div>
+                                        <div>
+                                            <section>
+                                                <label class="ImageInfo">
+                                                    Recommended Images (1900*855)
+                                                </label>
+                                                <br />
 
-                                        <ul class="list-inline">
-                                            <p><strong>*To delete an image, simply press on it or on the trash can*</strong></p>
-                                            <div class="form-group" style="width:100%;">
-                                                <section>
-                                                    <label class="label">
-                                                        Recommended Images (1900*855)
-                                                    </label>
-                                                    <br />
-
-                                                    <ul class="list-inline ImagesGallery">
-                                                        <li>
-                                                            <button type="button" name="Add Image" class="btn btn-default addImage">Add Image</button>
-                                                        </li>
-                                                    </ul>
-
-
-                                                    <label class="input" style=" display: flex; flex-wrap: wrap; width: 100%;">
+                                                <ul class="list-inline ImagesGallery">
+                                                    <li>
+                                                        <button type="button" name="Add Image" class="btn btn-default addImage">Add Image</button>
+                                                    </li>
+                                                </ul>
 
 
-                                                        @for (int i = 0; i < Model.BackgroundImage.Count; i++)
-                                                        {
-                                                            <br />
-                                                            <input type="hidden" name="BackgroundImage" id="oldBackgroundImage_@i" value="@Model.BackgroundImage[i]" />
-                                                            <div class="image_dlt_container">
-                                                                <img src="~/Images/@Model.BackgroundImage[i]" alt="img" width="150" id="blah" name="blah" class="updateImage_@i">
-                                                                <input type="button" class="custom-file-input ImgClick updateImage_@i" style="" value="@i">
-                                                            </div>
-                                                        }
-                                                    </label>
-                                                </section>
-                                            </div>
-                                        </ul>
+                                                <label class="input">
+                                                    @for (int i = 0; i < Model.BackgroundImage.Count; i++)
+                                                    {
+                                                        <input type="hidden" name="BackgroundImage" id="oldBackgroundImage_@i" value="@Model.BackgroundImage[i]" />
+                                                        <div class="DisplayImagePart">
+                                                            <img src="~/Images/@Model.BackgroundImage[i]" alt="img">
+                                                            <input type="button" class="custom-file-input ImgClick updateImage_@i" style="" value="@i">
+                                                        </div>
+                                                    }
+                                                </label>
+                                            </section>
+                                        </div>
+
                                     </div>
                                 </li>
-
-
-
-
-
-
-
-
-
-
-
 
 
                                 @*<li>
@@ -231,3 +234,4 @@
 
     });
 </script>
+

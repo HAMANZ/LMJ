@@ -3,8 +3,7 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/rowreorder/1.2.7/css/rowReorder.dataTables.min.css" rel="stylesheet">
+
 <div id="main" role="main">
     <div id="ribbon" style="display: block;">
         <ol class="breadcrumb">
@@ -29,8 +28,11 @@
                                 <th>#</th>
                                 <th>Title</th>
                                 <th>Desc</th>
-                                <th>Action</th>
-                            </tr>
+                                @if (@ViewBag.Title != "Role")
+                                {
+                                    <th>Action</th>
+                                    }
+                                </tr>
                         </thead>
                         <tbody>
                             @if (ViewBag.DataType != null)
@@ -42,15 +44,18 @@
 
                                     i = i + 1;
 
-                                    <tr id="@i">
-                                        <td>@i</td>
-                                        <td>@item.Title</td>
-                                        <td>@item.Desc</td>
-                                        <td>
-                                            <a href="/Admin/GetFormType?Id=@item.Id&FormName=@ViewBag.Title" class="fa fa-pencil btn btn-sm btn-primary"> Edit</a>
-                                            <a name="delete" class="btn btn-sm btn-danger fa fa-trash-o delete-events" data-row-id="@item.Id" href="/Admin/DeleteFormTye?Id=@item.Id&FormName=@ViewBag.Title">Delete</a>
-                                        </td>
-                                    </tr>
+                            <tr id="@i">
+                                <td>@i</td>
+                                <td>@item.Title</td>
+                                <td>@item.Desc</td>
+                                @if (@ViewBag.Title != "Role")
+                                {
+                                    <td>
+                                        <a href="/Admin/GetFormType?Id=@item.Id&FormName=@ViewBag.Title" class="fa fa-pencil btn btn-sm btn-primary"> Edit</a>
+                                        <a name="delete" class="btn btn-sm btn-danger fa fa-trash-o delete-events" data-row-id="@item.Id" href="/Admin/DeleteFormTye?Id=@item.Id&FormName=@ViewBag.Title">Delete</a>
+                                    </td>
+                                 }
+                                </tr>
 
                                 }
                             }
@@ -67,10 +72,6 @@
 </div>
 
 
-
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js"></script>
 <script>
 
     $("document").ready(function () {

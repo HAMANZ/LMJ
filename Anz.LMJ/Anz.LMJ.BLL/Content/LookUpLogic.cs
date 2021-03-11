@@ -47,13 +47,15 @@ namespace Anz.LMJ.BLL.Content
                 __SharedTableIds[AdminTables.Team] = 8;
                 __SharedTableIds[AdminTables.News] = 9;
                 __SharedTableIds[AdminTables.IssueFilter] = 10;
-                __SharedTableIds[AdminTables.Role] = 11;
+                __SharedTableIds[AdminTables.Degree] = 11;
                 __SharedTableIds[AdminTables.Position] = 12;
                 __SharedTableIds[AdminTables.Contact] = 13;
                 __SharedTableIds[AdminTables.FooterMenu] = 14;
                 __SharedTableIds[AdminTables.Citation] = 17;
                 __SharedTableIds[AdminTables.Index] = 18;
                 __SharedTableIds[AdminTables.IndexType] = 19;
+                __SharedTableIds[AdminTables.Footer] = 1010;
+                
 
             }
 
@@ -68,14 +70,14 @@ namespace Anz.LMJ.BLL.Content
                 __SharedClassesForeachTable[AdminTables.Team] = typeof(Team);
                 __SharedClassesForeachTable[AdminTables.News] = typeof(News);
                 __SharedClassesForeachTable[AdminTables.IssueFilter] = typeof(IssueFilter);
-                __SharedClassesForeachTable[AdminTables.Role] = typeof(DataType);
+                __SharedClassesForeachTable[AdminTables.Degree] = typeof(DataType);
                 __SharedClassesForeachTable[AdminTables.Position] = typeof(DataType);
                 __SharedClassesForeachTable[AdminTables.Contact] = typeof(Contact);
-                __SharedClassesForeachTable[AdminTables.FooterMenu] = typeof(Data);
-                __SharedClassesForeachTable[AdminTables.Citation] = typeof(Data);
-                __SharedClassesForeachTable[AdminTables.Index] = typeof(Data);
+                __SharedClassesForeachTable[AdminTables.FooterMenu] = typeof(FooterMenu);
+                __SharedClassesForeachTable[AdminTables.Citation] = typeof(CitationType);
+                __SharedClassesForeachTable[AdminTables.Index] = typeof(Index);
                 __SharedClassesForeachTable[AdminTables.IndexType] = typeof(DataType);
-             
+                __SharedClassesForeachTable[AdminTables.Footer] = typeof(Footer);
             }
 
 
@@ -100,13 +102,14 @@ namespace Anz.LMJ.BLL.Content
             EditorsPick,
             IssueFilter,
             Contact,
-            Role,
+            Degree,
             Position,
             FooterMenu,
             CopyRight,
             Citation,
             Index,
-            IndexType
+            IndexType,
+            Footer
         };
 
         #endregion
@@ -429,6 +432,32 @@ namespace Anz.LMJ.BLL.Content
             }
         }
 
+
+        public List<LookUpAttributes> GetAttributes(AdminTables table,string langCode)
+        {
+            LookUpAttributes main = new LookUpAttributes();
+            Language lang = new Language();
+            List<LookUpAttributes> attributes = new List<LookUpAttributes>();
+
+            try
+            {
+                string XMLPath = ConfigurationManager.AppSettings["XMLPath"]; // @"~\LookUp.xml";
+
+                lang = _LanguageAccessor.Get(langCode);
+
+                //Get class's attributes
+
+                attributes = Tools.GetAttributes(table.ToString(), XMLPath);
+
+                return attributes;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
 
         public GeneralContents<T> GetContent<T>(AdminTables table, string langCode, int offset, int limit, List<string> fields, bool isAll, long? LookUpId)
         {

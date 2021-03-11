@@ -1,0 +1,75 @@
+﻿@using Anz.LMJ.BLO.ContentObjects;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+
+        <div class="jarviswidget jarviswidget-color-darken" id="IngredientsTable" data-widget-editbutton="false">
+
+
+            <div>
+                <div class="jarviswidget-editbox">
+                </div>
+                <div class="widget-body no-padding">
+                    <a class="btn btn-primary addbtn" href="/admin/AddIndexForm"><i class="fa fa-plus"></i> Add @ViewBag.Title</a>
+
+                    <table id="dt" class="display" width="100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                @*<th>Desc</th>*@
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.Index != null)
+                            {
+                                var i = 0;
+
+                                foreach (var item in (List<Index>)ViewBag.Index)
+                                {
+
+                                    i = i + 1;
+
+                                    <tr id="@i">
+                                        <td>@i</td>
+                                        <td>@item.Title</td>
+                                        @*<td>@item.Txt</td>*@
+                                        <td>
+                                            <a href="/Admin/GetIndex/@item.Id" class="fa fa-pencil btn btn-sm btn-primary"> Edit</a>
+                                            <a name="delete" class="btn btn-sm btn-danger fa fa-trash-o delete-events" data-row-id="@item.Id" href="/Admin/DeleteIndex/@item.Id">Delete</a>
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    $("document").ready(function () {
+        table = $('#dt').DataTable({
+            rowReorder: true,
+        });
+    });
+</script>

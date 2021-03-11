@@ -212,7 +212,11 @@
     <Content Include="Scripts\bootstrap4-toggle.min.css" />
     <Content Include="Scripts\bootstrap4-toggle.min.js" />
     <Content Include="Scripts\cms\editor.js" />
+    <Content Include="Scripts\cms\jquery.dataTables.min.css" />
+    <Content Include="Scripts\cms\libs\dataTables.rowReorder.min.js" />
     <Content Include="Scripts\cms\libs\jquery-2.1.1.min.map" />
+    <Content Include="Scripts\cms\libs\jquery-3.5.1.js" />
+    <Content Include="Scripts\cms\libs\jquery.dataTables.min.js" />
     <Content Include="Scripts\cms\libs\jspdf.min.js" />
     <Content Include="Scripts\cms\plugin\bootstrap-tags\dist\bootstrap-tagsinput.min.js.map" />
     <Content Include="Scripts\cms\plugin\ckeditor\CHANGES.md" />
@@ -738,6 +742,7 @@
     <Content Include="Scripts\cms\plugin\x-editable\jquery.mockjax.min.js" />
     <Content Include="Scripts\cms\plugin\x-editable\moment.min.js" />
     <Content Include="Scripts\cms\plugin\x-editable\x-editable.min.js" />
+    <Content Include="Scripts\cms\rowReorder.dataTables.min.css" />
     <Content Include="Scripts\cms\smart-chat-ui\smart.chat.manager.min.js" />
     <Content Include="Scripts\cms\smart-chat-ui\smart.chat.ui.min.js" />
     <Content Include="Scripts\cms\smartwidgets\jarvis.widget.min.js" />
@@ -839,10 +844,28 @@
     <Content Include="Views\Admin\ViewTypeData.cshtml" />
     <Content Include="Views\Admin\AddDataTypeForm.cshtml" />
     <Content Include="Views\Admin\GetFormType.cshtml" />
+    <Content Include="Views\Admin\ViewUser.cshtml" />
+    <Content Include="Views\Admin\AddUser.cshtml" />
+    <Content Include="Views\Admin\GetUser.cshtml" />
+    <Content Include="Views\Admin\ViewFooterMenu.cshtml" />
+    <Content Include="Views\Admin\GetFooterMenu.cshtml" />
+    <Content Include="Views\Admin\AddFooterMenuForm.cshtml" />
+    <Content Include="Views\Admin\ViewCitationType.cshtml" />
+    <Content Include="Views\Admin\GetCitationType.cshtml" />
+    <Content Include="Views\Admin\AddCitationTypeForm.cshtml" />
+    <Content Include="Views\Admin\Footer.cshtml" />
+    <Content Include="Views\Admin\Contact.cshtml" />
+    <Content Include="Views\Admin\ViewIndex.cshtml" />
+    <Content Include="Views\Admin\AddIndexForm.cshtml" />
+    <Content Include="Views\Admin\GetIndex.cshtml" />
+    <Content Include="Views\Admin\ViewReview.cshtml" />
+    <Content Include="Views\Admin\GetReview.cshtml" />
+    <Content Include="Views\Home\FooterPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Articles\" />
+    <Folder Include="Images\FooterMenu\" />
     <Folder Include="Images\NewsletterImages\" />
     <Folder Include="Images\Videos\" />
     <Folder Include="Models\" />

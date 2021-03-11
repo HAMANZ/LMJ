@@ -10,7 +10,7 @@
     <div id="ribbon" style="display: block;">
         <ol class="breadcrumb">
             <li>Home</li>
-            <li> EditorPick</li>
+            <li> Articles</li>
         </ol>
     </div>
     <div id="content">
@@ -26,7 +26,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
+                                <th>Title</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -40,12 +40,13 @@
 
                                 i = i + 1;
 
-                                <tr id="@item.Id">
-                                    <td>@item.Title</td>
-                                    <td>
-                                        <a name="delete" class="btn btn-sm btn-danger fa fa-trash-o " data-row-id="@item.Id" href="/Admin/GetArticle/@item.Id">Edit</a>
-                                    </td>
-                                </tr>
+                            <tr id="@item.Id">
+                                <td>@i</td>
+                                <td>@item.Title</td>
+                                <td>
+                                    <a name="delete" class="btn btn-sm btn-danger fa fa-pencil " data-row-id="@item.Id" href="/Admin/GetArticle/@item.Id">Edit</a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -70,5 +71,10 @@
 <script src="~/Scripts/cms/Admin/jquery-3.3.1.js"></script>
 <script src="~/Scripts/cms/CmsJquery.js"></script>
 <script>
-  
+
+    $("document").ready(function () {
+        table = $('#dt').DataTable({
+            rowReorder: true,
+        });
+    });
 </script>

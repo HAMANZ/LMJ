@@ -10,6 +10,25 @@ namespace Anz.LMJ.DAL.Accessors
     public class ReviewAccessor
     {
 
+        public List<Review> GetList()
+        {
+            try
+            {
+                List<Review> data = new List<Review>();
+                using (LMJEntities db = new LMJEntities())
+                {
+                    data = db.Reviews.Where(e => e.IsDeleted == false).ToList();
+                }
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
 
         public List<Review> GetList(long submissionId)
         {
@@ -18,8 +37,7 @@ namespace Anz.LMJ.DAL.Accessors
                 List<Review> data = new List<Review>();
                 using (LMJEntities db = new LMJEntities())
                 {
-                    data = db.Reviews.Where(e => e.SubmissionId == submissionId
-                     && e.IsDeleted == false).ToList();
+                    data = db.Reviews.Where(e => e.SubmissionId == submissionId && e.IsDeleted == false && e.IsAdmit==true).ToList();
                 }
 
                 return data;
@@ -55,16 +73,19 @@ namespace Anz.LMJ.DAL.Accessors
                 throw;
             }
 }
-        public List<Review> GetList()
+
+
+        public Review Get(long id)
         {
             try
             {
-                List<Review> data = new List<Review>();
+                Review review = new Review();
                 using (LMJEntities db = new LMJEntities())
                 {
-                    data = db.Reviews.ToList();
+                    review = db.Reviews.Where(e => e.Id == id && e.IsDeleted == false).FirstOrDefault();
                 }
-                return data;
+
+                return review;
             }
             catch (Exception ex)
             {
@@ -95,6 +116,30 @@ namespace Anz.LMJ.DAL.Accessors
 
         }
 
+
+
+        #region Update
+
+        public long Admit(long reviewid,bool isAdmit)
+        {
+            try
+            {
+                using (LMJEntities db = new LMJEntities())
+                {
+                    Review review = db.Reviews.Where(e => e.Id == reviewid).FirstOrDefault();
+                    review.IsAdmit = isAdmit;
+                    db.SaveChanges();
+                    return reviewid;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        #endregion
 
     }
 }

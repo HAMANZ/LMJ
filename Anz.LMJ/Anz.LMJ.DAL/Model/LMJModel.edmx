@@ -375,10 +375,11 @@
           <Property Name="Text" Type="text" />
           <Property Name="NbOfStars" Type="int" />
           <Property Name="SysDate" Type="datetime" />
-          <Property Name="UserId" Type="bigint" />
+          <Property Name="FName" Type="varchar" MaxLength="150" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="SubmissionId" Type="bigint" Nullable="false" />
           <Property Name="IsAdmit" Type="bit" />
+          <Property Name="LName" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="Sections">
           <Key>
@@ -544,6 +545,7 @@
           <Property Name="isBlinded" Type="bit" />
           <Property Name="isDeleted" Type="bit" />
           <Property Name="SysDate" Type="datetime" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="UserRolesInJournal">
           <Key>
@@ -561,14 +563,26 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
           <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" />
           <Property Name="Username" Type="nvarchar" MaxLength="100" />
           <Property Name="Affiliation" Type="nvarchar" MaxLength="100" />
           <Property Name="ProfilePicture" Type="nvarchar" MaxLength="150" />
           <Property Name="IsAdmin" Type="bit" Nullable="false" />
+          <Property Name="Email2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone1" Type="nchar" MaxLength="50" />
+          <Property Name="Phone2" Type="nchar" MaxLength="50" />
+          <Property Name="Mobile1" Type="nchar" MaxLength="50" />
+          <Property Name="Mobile2" Type="nchar" MaxLength="50" />
+          <Property Name="POB" Type="nchar" MaxLength="50" />
+          <Property Name="ORCID" Type="nchar" MaxLength="50" />
+          <Property Name="PositionId" Type="bigint" />
+          <Property Name="DegreeIds" Type="nchar" MaxLength="50" />
+          <Property Name="Desc" Type="text" />
+          <Property Name="Pos" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <Association Name="FK_City_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
@@ -1724,10 +1738,11 @@
           <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="NbOfStars" Type="Int32" />
           <Property Name="SysDate" Type="DateTime" Precision="3" />
-          <Property Name="UserId" Type="Int64" />
+          <Property Name="FName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="SubmissionId" Type="Int64" Nullable="false" />
           <Property Name="IsAdmit" Type="Boolean" />
+          <Property Name="LName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Section">
           <Key>
@@ -1916,6 +1931,7 @@
           <Property Name="isBlinded" Type="Boolean" />
           <Property Name="isDeleted" Type="Boolean" />
           <Property Name="SysDate" Type="DateTime" Precision="3" />
+          <Property Name="Desc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Processes" Relationship="Self.FK_Processes_UserRoles" FromRole="UserRoles" ToRole="Processes" />
           <NavigationProperty Name="ProcessStages" Relationship="Self.FK_ProcessStages_UserRoles" FromRole="UserRoles" ToRole="ProcessStages" />
           <NavigationProperty Name="UserRolesInJournals" Relationship="Self.FK_UserRolesInJournal_UserRoles" FromRole="UserRoles" ToRole="UserRolesInJournal" />
@@ -1939,14 +1955,26 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Affiliation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ProfilePicture" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="Email2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone1" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Mobile1" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Mobile2" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="POB" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="ORCID" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="PositionId" Type="Int64" />
+          <Property Name="DegreeIds" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Pos" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Contributors" Relationship="Self.FK_Contributors_Users" FromRole="Users" ToRole="Contributors" />
           <NavigationProperty Name="Discussions" Relationship="Self.FK_Discussions_Users" FromRole="Users" ToRole="Discussions" />
           <NavigationProperty Name="EmailLogs" Relationship="Self.FK_EmailLogs_Users" FromRole="Users" ToRole="EmailLogs" />
@@ -2478,7 +2506,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LMJEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LMJEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ArticleTypes" EntityType="Self.ArticleType" />
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="ContactUs" EntityType="Self.ContactU" />
@@ -2703,7 +2731,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LMJModelStoreContainer" CdmEntityContainer="LMJEntities2">
+        <EntityContainerMapping StorageEntityContainer="LMJModelStoreContainer" CdmEntityContainer="LMJEntities1">
           <EntitySetMapping Name="ArticleTypes">
             <EntityTypeMapping TypeName="LMJModel.ArticleType">
               <MappingFragment StoreEntitySet="ArticleType">
@@ -3103,10 +3131,11 @@
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="NbOfStars" ColumnName="NbOfStars" />
                 <ScalarProperty Name="SysDate" ColumnName="SysDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="SubmissionId" ColumnName="SubmissionId" />
                 <ScalarProperty Name="IsAdmit" ColumnName="IsAdmit" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3285,6 +3314,7 @@
                 <ScalarProperty Name="isBlinded" ColumnName="isBlinded" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
                 <ScalarProperty Name="SysDate" ColumnName="SysDate" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3304,14 +3334,26 @@
             <EntityTypeMapping TypeName="LMJModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Affiliation" ColumnName="Affiliation" />
                 <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
                 <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Email2" ColumnName="Email2" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
+                <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
+                <ScalarProperty Name="POB" ColumnName="POB" />
+                <ScalarProperty Name="ORCID" ColumnName="ORCID" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="DegreeIds" ColumnName="DegreeIds" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Pos" ColumnName="Pos" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

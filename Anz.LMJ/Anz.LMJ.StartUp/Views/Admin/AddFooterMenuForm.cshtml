@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "Add Footer Menu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    #content {
+        text-align: right;
+    }
+</style>
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+
+            @using (Html.BeginForm("AddFooterMenu", "Admin", FormMethod.Post, new { @class = "AddFooterMenu", enctype = "multipart/form-data" }))
+            {
+                <div class="row">
+                    <div class="col-xs-1">
+                        <label class="col-sm-12 control-label">
+                            <strong>Title</strong>
+                        </label>
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control input__beautify" type="text" name="Title" />
+                    </div>
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>IsEnabled</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            <input type="checkbox" id="IsEnabledchk" />
+                            <input type="hidden" name="IsEnabled" id="IsEnabledcheck" value="False" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Body</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-10">
+                        <div class="form-group">
+                            <textarea name="Txt" style="display:none" id="txteditorvalue"></textarea>
+                            <textarea style="height: 200px" name="Text"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Image</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="file" name="PostedFileImg" id="imgInp" class="custom-file-input" style="">
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="form-group">
+                            <input type="hidden" name="Img" id="BackGroundImage" id="imgInp" value="" />
+                            <img src="" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
+                            <br />
+                            <span>Recommended Size: 195*195</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-12">
+                    <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="~/Scripts/cms/plugin/ckeditor/ckeditor.js"></script>
+<script>
+
+    var bodyEditor;
+
+
+
+    function SetContents() {
+        // Get the editor instance that we want to interact with.
+        var editor = CKEDITOR.instances.Text;
+        // Set editor contents (replace current contents).
+        // http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-setData
+        editor.setData($("#txteditorvalue").text());
+    }
+
+    function GetContents() {
+        // Get the editor instance that you want to interact with.
+        var editor = CKEDITOR.instances.Text;
+        // Get editor contents
+        // http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-getData
+        $("#txteditorvalue").html(editor.getData());
+    }
+
+    $(document).ready(function () {
+        //alert($("#txteditorvalue").html());
+        //$("#txtEditor").Editor();
+        bodyEditor = CKEDITOR.replace('Text');
+        SetContents();
+
+        // Handle when the Source changes.
+        bodyEditor.on('mode', function () {
+            if (this.mode == 'source') {
+                var editable = bodyEditor.editable();
+                editable.attachListener(editable, 'input', function () {
+                    GetContents()
+                });
+            }
+        });
+
+        // Handle when the HTML changes.
+        bodyEditor.on('change', function () {
+            GetContents()
+        });
+
+        $('#IsEnabledchk').change(function () {
+            if ($("#IsEnabledchk").is(":checked")) {
+                $("#IsEnabledcheck").attr("value", "True");
+            }
+            else {
+                $("#IsEnabledcheck").attr("value", "False");
+            }
+
+        });
+    });
+
+
+    GetContents();
+
+</script>

@@ -13,7 +13,7 @@ using System.Text;
 using System.Web;
 using System.Threading.Tasks;
 using static Anz.LMJ.BLL.Logic.Enums;
-using Anz.LMJ.BLO.LookUpObjects;
+using Anz.LMJ.BLO.ContentObjects;
 using Anz.LMJ.BLO.LogicObjects.Review;
 
 namespace Anz.LMJ.BLL.Logic
@@ -311,7 +311,9 @@ namespace Anz.LMJ.BLL.Logic
                 data.Volume = newsletter.Volume;
                 data.Issn = newsletter.ISSN;
                 data.Year = (DateTime)newsletter.PublishDate;
+                data.year = ((DateTime)newsletter.PublishDate).ToString("yyyy");
                 data.UserId = submission.UserId;
+                data.Date = ((DateTime)submission.PublishedDate).ToString("MMM.dd.yyyy");
                 issue = _IssueAccessor.Get((long)submission.IssueId);
                 if (submission.ArticleTypeId != null) {
                     articletype = _ArticleTypeAccessor.Get((long)submission.ArticleTypeId);
@@ -359,19 +361,14 @@ namespace Anz.LMJ.BLL.Logic
                         });
                     }
                     reviews = new List<ReviewLO>();
-                    UserLO user = new UserLO();
                 
                     foreach (Review item in review)
                     {
-                        User usr = new User();
-                        usr = _UserAccessor.Get((long)item.UserId);
-                        user.Id = usr.Id;
-                        user.FirstName = usr.FirstName;
-                        user.LastName = usr.LastName;
-                        user.Email = usr.Email;
                         reviews.Add(new ReviewLO
                         {
-                            User= user,
+                            Id=item.Id,
+                            FName= item.FName,
+                            LName=item.LName,
                             Text = item.Text,
                             NbOfStars = (int)item.NbOfStars,
                             Date = (DateTime)item.SysDate,
@@ -393,7 +390,7 @@ namespace Anz.LMJ.BLL.Logic
                 articleType.Name = "static";
 
                 data.ArticleType = articleType;
-
+                UserLO author = new UserLO();
                 if (!isBlinded)
                 {
                     //get the author
@@ -407,7 +404,7 @@ namespace Anz.LMJ.BLL.Logic
                         response.ServerMessage = "no author";
                         return response;
                     }
-                    UserLO author = new UserLO();
+                   
                     author.FirstName = userModel.FirstName;
                     author.LastName = userModel.LastName;
                     author.Email = userModel.Email;
@@ -486,8 +483,8 @@ namespace Anz.LMJ.BLL.Logic
 
                 }
 
-
-                response.Data = data;
+                data.AuthorInfo = author.FirstName + " " + author.LastName;
+               response.Data = data;
                 response.HttpStatusCode = HttpStatusCode.OK;
 
                 return response;
@@ -1207,6 +1204,48 @@ namespace Anz.LMJ.BLL.Logic
             }
         }
 
+        public DynamicResponse<List<Options>> GetArticlesType(List<long> Ids)
+        {
+            #region Accessors
+            ArticleTypeAccessor _ArticleTypeAccessor = new ArticleTypeAccessor();
+            #endregion
+            DynamicResponse<List<Options>> response = new DynamicResponse<List<Options>>();
+            List<ArticleType> articles = new List<ArticleType>();
+            List<Options> options = new List<Options>();
+
+            try
+            {
+
+
+
+                articles = _ArticleTypeAccessor.GetList(Ids);
+
+                foreach (ArticleType item in articles)
+                {
+
+                    options.Add(new Options
+                    {
+                        Id = item.Id,
+                        Value = item.Title
+                    });
+
+                }
+
+
+                response.Data = options;
+                response.HttpStatusCode = HttpStatusCode.OK;
+
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.ServerMessage = ex.Message;
+                response.Message = "Please try again later!";
+                return response;
+            }
+        }
 
 
         public DynamicResponse<List<Options>> GetArticlesType()
@@ -1326,6 +1365,45 @@ namespace Anz.LMJ.BLL.Logic
                 issue.IssuePrintNo = _Issue.IssuePrintNo;
                 response.Data = issue;
                 response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Please try again later.";
+                response.ServerMessage = ex.Message;
+
+                return response;
+            }
+        }
+
+        public DynamicResponse<List<SubmissionLO>> GetArticles(List<long> Ids)
+        {
+            DynamicResponse<List<SubmissionLO>> response = new DynamicResponse<List<SubmissionLO>>();
+            #region Accessors
+            SubmissionAccessor _SubmissionAccessor = new SubmissionAccessor();
+            UserRolesInJournalAccessor _UserRolesInJournalAccessor = new UserRolesInJournalAccessor();
+            #endregion
+            #region Logic
+            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
+            #endregion
+            List<Submission> submission = new List<Submission>();
+            try
+            {
+                submission = _SubmissionAccessor.GetArticles(Ids);
+                if (submission == null && submission.Count == 0)
+                {
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.Message = "Please try again later.";
+                    response.ServerMessage = "no articles ";
+
+                    return response;
+                }
+
+
+                List<long> submissionids = submission.Select(s => (long)s.Id).ToList();
+
+                response = _SubmissionLogic.GetListArticleBasicInfo(submissionids, false);
                 return response;
             }
             catch (Exception ex)
@@ -2023,7 +2101,42 @@ namespace Anz.LMJ.BLL.Logic
                 return response;
             }
         }
+        
+       public DynamicResponse<List<string>> GetSubmissionFieldName()
+        {
 
+            DynamicResponse<List<string>> response = new DynamicResponse<List<string>>();
+            #region Accessors
+            SubmissionAccessor _SubmissionAccessor = new SubmissionAccessor();
+            #endregion
+
+            List<string> data = new List<string>();
+            try
+            {
+
+
+                data = _SubmissionAccessor.GetSubmissionFieldName();
+
+                if (data.Count==0) {
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.Message = "Please try again later.";
+                    response.ServerMessage = "field name unable to get in submiaaion table";
+                }
+
+                
+                response.Data = data;
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.ServerMessage = ex.Message;
+                response.Message = "Please try again later!";
+                return response;
+            }
+        }
         public DynamicResponse<List<SubmissionLO>> GetSubmissionLatestArticles(int limit)
         {
 

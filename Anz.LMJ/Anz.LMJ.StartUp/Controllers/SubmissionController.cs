@@ -157,25 +157,12 @@ namespace Anz.LMJ.StartUp.Controllers
             #region Logics
             SubmissionLogic _SubmissionLogic = new SubmissionLogic();
             #endregion
-            DynamicResponse<SubmissionLO> response_1 = new DynamicResponse<SubmissionLO>();
-            DynamicResponse<SubmissionLO> response_2 = new DynamicResponse<SubmissionLO>();
+            DynamicResponse<SubmissionLO> response = new DynamicResponse<SubmissionLO>();
             long userId = long.Parse(Session["userId"].ToString());
             try
             {
-                response_1 = _SubmissionLogic.UpdateAcceptedForProcess(Filesid, submissionid, attr);
-                //if (response_1.HttpStatusCode == HttpStatusCode.OK)
-                //{
-                //    response_2 = _SubmissionLogic.AddProcessSubmission(submissionid, userId, processid);
-                //    if (response_1.HttpStatusCode == HttpStatusCode.OK)
-                //    {
-
-                //        return Json(response_2, JsonRequestBehavior.AllowGet);
-                //    }
-                //    return Json(response_2, JsonRequestBehavior.AllowGet);
-
-                //}
-
-                return Json(response_1, JsonRequestBehavior.AllowGet);
+                response = _SubmissionLogic.UpdateAcceptedForProcess(Filesid, submissionid, attr);
+                return Json(response, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

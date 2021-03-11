@@ -11,6 +11,8 @@ using System.Net;
 using static Anz.LMJ.BLL.Logic.Enums;
 using Anz.LMJ.BLO.LogicObjects.Submission;
 using Anz.LMJ.BLO.LogicObjects.User;
+using Anz.LMJ.BLO.ContentObjects;
+using Anz.LMJ.BLO.LogicObjects.Review;
 
 namespace Anz.LMJ.BLL.Logic
 {
@@ -55,10 +57,11 @@ namespace Anz.LMJ.BLL.Logic
         {
             #region Accessor
             UserAccessor _UserAccessor = new UserAccessor();
+            UserRolesInJournalAccessor _UserRolesInJournalAccessor = new UserRolesInJournalAccessor();
             #endregion
 
             DynamicResponse<UserLO> response = new DynamicResponse<UserLO>();
-
+            List<UserRolesInJournal> roles = new List<UserRolesInJournal>();
             try
             {
                 if(userModel == null)
@@ -73,14 +76,41 @@ namespace Anz.LMJ.BLL.Logic
 
                 #region basic info
                 data.Id = userModel.Id;
-                data.Email = userModel.Email;
                 data.FirstName = userModel.FirstName;
                 data.LastName = userModel.LastName;
+                data.Email = userModel.Email;
+                data.Username = userModel.Username;
+                data.Affiliation = userModel.Affiliation;
+                data.Image = userModel.ProfilePicture;
+                data.IsAdmin = userModel.IsAdmin;
+                data.Email2 = userModel.Email2;
+                data.TPhone1 = userModel.Phone1;
+                data.TPhone2 = userModel.Phone2;
+                data.Mobile1 = userModel.Mobile1;
+                data.Mobile2 = userModel.Mobile2;
+                data.Pob = userModel.POB;
+                data.Orcid = userModel.ORCID;
+                data.PositionId =(int)userModel.PositionId;
+                data.DegreeIds = userModel.DegreeIds;
+                data.Desc = userModel.Desc;
+                data.Pos =(int)userModel.Pos;
                 #endregion
 
+                List<int> degIds = new List<int>();
+                if (userModel.DegreeIds != null) {
+                    string[] arr = userModel.DegreeIds.Split(',');
+                    for (int i = 0; i < arr.Length - 1; i++)
+                    {
+                        degIds.Add(int.Parse(arr[i]));
+                    }
+                }
+               
+                
+                data.degIds = degIds;
+                roles = _UserRolesInJournalAccessor.GetList(userModel.Id);
+                List<int> roleIds = roles.Select(s => s.RoleId).ToList();
 
-
-
+                data.RoleIds = roleIds;
 
                 response.HttpStatusCode = HttpStatusCode.OK;
                 response.Data = data;
@@ -96,12 +126,203 @@ namespace Anz.LMJ.BLL.Logic
         }
 
 
-        
 
+
+        #endregion
+
+        #region review
+        public DynamicResponse<List<ReviewLO>> GetReviews()
+        {
+            #region Accessors
+            ReviewAccessor _ReviewAccessor = new ReviewAccessor();
+            #endregion
+            List<Review> review = new List<Review>();
+            List<ReviewLO> reviews = new List<ReviewLO>();
+            DynamicResponse<List<ReviewLO>> response = new DynamicResponse<List<ReviewLO>>();
+            try
+            {
+
+
+                review = _ReviewAccessor.GetList();
+                if (review.Count==0)
+                {
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.ServerMessage = "null review";
+                    response.Message = "Please try again later";
+
+                    return response;
+                }
+
+               
+                reviews = new List<ReviewLO>();
+
+                foreach (Review item in review)
+                {
+                    reviews.Add(new ReviewLO
+                    {
+                        Id = item.Id,
+                        SubmissionId = item.SubmissionId,
+                        FName =item.FName,
+                        LName=item.LName,
+                        Text = item.Text,
+                        IsAdmit = (bool)item.IsAdmit,
+                        NbOfStars = (int)item.NbOfStars,
+                        Date = (DateTime)item.SysDate,
+                    });
+                }
+
+                response.Data = reviews;
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Please try again later.";
+                response.ServerMessage = ex.Message;
+
+                return response;
+            }
+        }
+
+        public DynamicResponse<ReviewLO> GetReview(long id)
+        {
+            #region Accessors
+            ReviewAccessor _ReviewAccessor = new ReviewAccessor();
+            #endregion
+            Review review = new Review();
+            ReviewLO _reviews = new ReviewLO();
+            DynamicResponse<ReviewLO> response = new DynamicResponse<ReviewLO>();
+            try
+            {
+
+
+                review = _ReviewAccessor.Get(id);
+                if (review == null)
+                {
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.ServerMessage = "null review";
+                    response.Message = "Please try again later";
+
+                    return response;
+                }
+
+
+                _reviews = new ReviewLO();
+                _reviews.Id = review.Id;
+                _reviews.SubmissionId = review.SubmissionId;
+                _reviews.FName = review.FName;
+                _reviews.LName = review.LName;
+                _reviews.Text = review.Text;
+                _reviews.NbOfStars = (int)review.NbOfStars;
+                _reviews.IsAdmit = (bool)review.IsAdmit;
+                _reviews.Date = (DateTime)review.SysDate;
+
+                response.Data = _reviews;
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Please try again later.";
+                response.ServerMessage = ex.Message;
+
+                return response;
+            }
+        }
         #endregion
 
 
         #region Roles
+
+
+
+        public DynamicResponse<List<int>> GetRoles(List<string> roles)
+        {
+            #region Accessors
+            UserRoleAccessor _UserRoleAccessor = new UserRoleAccessor();
+            #endregion
+
+            DynamicResponse<List<int>> response = new DynamicResponse<List<int>>();
+            try
+            {
+
+                List<UserRole> rolemodel = new List<UserRole>();
+                rolemodel = _UserRoleAccessor.GetList(roles);
+                if (rolemodel == null)
+                {
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.ServerMessage = "null role";
+                    response.Message = "Please try again later";
+
+                    return response;
+                }
+
+                List<int> roleIds = new List<int>();
+                roleIds = rolemodel.Select(s => s.Id).ToList();
+                response.Data = roleIds;
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Please try again later.";
+                response.ServerMessage = ex.Message;
+
+                return response;
+            }
+        }
+
+
+        
+        public DynamicResponse<List<DataType>> GetRoles()
+        {
+            #region Accessors
+            UserRoleAccessor _UserRoleAccessor = new UserRoleAccessor();
+            #endregion
+
+            DynamicResponse<List<DataType>> response = new DynamicResponse<List<DataType>>();
+            List<UserRole> userroles = new List<UserRole>();
+            List<DataType> data=new List<DataType>();
+            try
+            {
+
+                UserRole rolemodel = new UserRole();
+                userroles = _UserRoleAccessor.GetList();
+                if (userroles == null || userroles.Count == 0)
+                {
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.ServerMessage = "null role";
+                    response.Message = "Please try again later";
+                    return response;
+                }
+
+                foreach (UserRole item in userroles)
+                {
+                    data.Add(new DataType
+                    {
+
+                        Id = item.Id,
+                        Title = item.Role,
+                        Desc=item.Desc
+                });
+            
+            }
+                response.Data = data;
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Please try again later.";
+                response.ServerMessage = ex.Message;
+
+                return response;
+            }
+        }
         public DynamicResponse<bool> CheckRole (long userId,Roles role,long journalId)
         {
             #region Accessors
@@ -771,12 +992,45 @@ namespace Anz.LMJ.BLL.Logic
                 return response;
             }
         }
+        public DynamicResponse<long> AdmitReview(bool isAdmit,long reviewid)
+        {
+            #region Accessor
+            ReviewAccessor _ReviewAccessor = new ReviewAccessor();
+            #endregion
+            DynamicResponse<long> response = new DynamicResponse<long>();
+            long id;
+            try
+            {
 
+                id = _ReviewAccessor.Admit(reviewid, isAdmit);
+                if (id == 0)
+                {
+
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.Message = "Check the review.";
+                    response.ServerMessage = "review cant admit";
+                    return response;
+                }
+
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.BadRequest;
+                response.Message = "Please try again later!";
+                response.ServerMessage = ex.Message;
+                return response;
+            }
+
+        }
         public DynamicResponse<List<UserLO>> GetUsers()
         {
-
+            
             #region Accessors
             UserAccessor _UserAccessor = new UserAccessor();
+            UserRolesInJournalAccessor _UserRolesInJournalAccessor = new UserRolesInJournalAccessor();
             #endregion
 
             List<User> _Users = new List<User>();
@@ -793,17 +1047,114 @@ namespace Anz.LMJ.BLL.Logic
                     return response;
                 }
 
-
+                List<UserRolesInJournal> roles = new List<UserRolesInJournal>();
+                List<int> roleIds = new List<int>();
                 List<UserLO> data = new List<UserLO>();
                 foreach (User item in _Users)
                 {
+                    roleIds = new List<int>();
+                    roles = new List<UserRolesInJournal>();
+
+                    roles = _UserRolesInJournalAccessor.GetList(item.Id);
+                    roleIds = roles.Select(s => s.RoleId).ToList();
                     data.Add(new UserLO
                     {
+
                         Id = item.Id,
                         FirstName = item.FirstName,
                         LastName = item.LastName,
-                        Email = item.Email
+                        Email = item.Email,
+                        Username = item.Username,
+                        Affiliation = item.Affiliation,
+                        Image = item.ProfilePicture,
+                        IsAdmin = item.IsAdmin,
+                        Email2 = item.Email2,
+                        TPhone1 = item.Phone1,
+                        TPhone2 = item.Phone2,
+                        Mobile1 = item.Mobile1,
+                        Mobile2 = item.Mobile2,
+                        Pob = item.POB,
+                        Orcid = item.ORCID,
+                        PositionId = (int)item.PositionId,
+                        DegreeIds = item.DegreeIds,
+                        Desc = item.Desc,
+                        Pos = (int)item.Pos,
+                        RoleIds = roleIds
                     });
+                }
+
+                response.Data = data;
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Please try again later!";
+                response.ServerMessage = ex.Message;
+
+                return response;
+            }
+        }
+        public DynamicResponse<List<UserLO>> GetUsers(List<int> rolesid)
+        {
+
+            #region Accessors
+            UserAccessor _UserAccessor = new UserAccessor();
+            UserRolesInJournalAccessor _UserRolesInJournalAccessor = new UserRolesInJournalAccessor();
+            #endregion
+
+            List<User> _Users = new List<User>();
+            DynamicResponse<List<UserLO>> response = new DynamicResponse<List<UserLO>>();
+
+            try
+            {
+                _Users = _UserAccessor.GetList();
+
+                if (_Users == null && _Users.Count() == 0)
+                {
+                    response.Data = null;
+                    response.HttpStatusCode = HttpStatusCode.OK;
+                    return response;
+                }
+
+                List<UserRolesInJournal> roles = new List<UserRolesInJournal>();
+                List<int> roleIds = new List<int>();
+                List<UserLO> data = new List<UserLO>();
+                foreach (User item in _Users)
+                {
+                    roleIds = new List<int>();
+                    roles = new List<UserRolesInJournal>();
+                   
+                    roles = _UserRolesInJournalAccessor.GetList(item.Id,rolesid);
+                    if (roles.Count != 0)
+                    {
+                        roleIds = roles.Select(s => s.RoleId).ToList();
+                        data.Add(new UserLO
+                        {
+
+                            Id = item.Id,
+                            FirstName = item.FirstName,
+                            LastName = item.LastName,
+                            Email = item.Email,
+                            Username = item.Username,
+                            Affiliation = item.Affiliation,
+                            Image = item.ProfilePicture,
+                            IsAdmin = item.IsAdmin,
+                            Email2 = item.Email2,
+                            TPhone1 = item.Phone1,
+                            TPhone2 = item.Phone2,
+                            Mobile1 = item.Mobile1,
+                            Mobile2 = item.Mobile2,
+                            Pob = item.POB,
+                            Orcid = item.ORCID,
+                            PositionId = (long)item.PositionId,
+                            DegreeIds = item.DegreeIds,
+                            Desc = item.Desc,
+                            Pos = (int)item.Pos,
+                            RoleIds = roleIds
+                        });
+                    }
                 }
 
                 response.Data = data;
@@ -886,45 +1237,287 @@ namespace Anz.LMJ.BLL.Logic
 }
 
 
+        #region edit   
+        public DynamicResponse<long> EditUser(UserLO toEdit)
+        {
+            #region Accessor
+            UserAccessor _UserAccessor = new UserAccessor();
+            UserRolesInJournalAccessor _UserRolesInJournalAccessor = new UserRolesInJournalAccessor();
+            #endregion
 
+            User user = new User();
+            DynamicResponse<long> response = new DynamicResponse<long>();
+            UserRolesInJournal userrole = new UserRolesInJournal();
+            List<UserRolesInJournal> userroles = new List<UserRolesInJournal>();
+            long id=0;
+
+            try
+            {
+                user = new User();
+                user.Id = toEdit.Id;
+                user.FirstName = toEdit.FirstName;
+                user.LastName = toEdit.LastName;
+                user.Email = toEdit.Email;
+                user.Password = toEdit.Password;
+                user.Username = toEdit.Username;
+                user.Affiliation = toEdit.Affiliation;
+                user.ProfilePicture = toEdit.Image;
+                user.IsAdmin = toEdit.IsAdmin;
+                user.Email2 = toEdit.Email2;
+                user.Phone1 = toEdit.TPhone1;
+                user.Phone2 = toEdit.TPhone2;
+                user.Mobile1 = toEdit.Mobile1;
+                user.Mobile2 = toEdit.Mobile2;
+                user.POB = toEdit.Pob;
+                user.ORCID = toEdit.Orcid;
+                user.PositionId = toEdit.PositionId;
+                user.Desc = toEdit.Desc;
+                user.Pos = toEdit.Pos;
+                user.IsDeleted = false;
+                string degree = "";
+                if (toEdit.degIds!=null) {
+                    foreach (int item in toEdit.degIds) {
+                        degree = degree + item.ToString() + ",";
+                    }
+                }
+
+                user.DegreeIds = degree;
+
+                id = _UserAccessor.Edit(user);
+
+                if (id == 0)
+                {
+
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.Message = "Check the user  .";
+                    response.ServerMessage = "use can't edit";
+                    return response;
+                }
+                if (toEdit.RoleIds != null) {
+
+                    for (int i = 0; i < toEdit.RoleIds.Count(); i++)
+                    {
+                        userrole = new UserRolesInJournal();
+                        userrole.UserId = id;
+                        userrole.RoleId = (int)toEdit.RoleIds[i];
+                        userrole.Section = null;
+                        userrole.isDeleted = false;
+                        userrole.SysDate = DateTime.Now;
+                        userroles.Add(userrole);
+
+                    }
+
+                    _UserRolesInJournalAccessor.Edit(user.Id);
+
+                    userroles = _UserRolesInJournalAccessor.Add(userroles);
+
+                    if (userroles == null)
+                    {
+                        response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                        response.Message = "Check the userroles.";
+                        response.ServerMessage = "user roles can't edit";
+                        return response;
+                    }
+                }
+
+                response.Data = id;
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.BadRequest;
+                response.Message = "Please try again later!";
+                response.ServerMessage = ex.Message;
+                return response;
+            }
+        }
+        #endregion
         #region Add
 
-        //public DynamicResponse<List<UserLO>> AddReviewers(List<long> userids,long roleid)
-        //{
+        public DynamicResponse<DataType> AddRole(DataType rol)
+        {
+            #region Accessors
+            UserRoleAccessor _UserRoleAccessor = new UserRoleAccessor();
+            #endregion
+
+            DynamicResponse<DataType> response = new DynamicResponse<DataType>();
+            UserRole role = new UserRole();
+           
+
+            try
+            {
+                role = new UserRole();
+                role.Role = rol.Title;
+                role.isSectionated = true;
+                role.isBlinded = true;
+                role.isDeleted =false;
+                role.SysDate = DateTime.Now;
+                role.Desc = rol.Desc;
 
 
-        //    try
-        //    {
+                role = _UserRoleAccessor.Add(role);
+
+                if (role == null)
+                {
+
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.Message = "Check the role  .";
+                    response.ServerMessage = "role can't added";
+                    return response;
+                }
 
 
+                response.Data = rol;
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Please try again later!";
+                response.ServerMessage = ex.Message;
+                return response;
+            }
+        }
 
-        //        return response;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        response.HttpStatusCode = HttpStatusCode.InternalServerError;
-        //        response.Message = "Please try again later!";
-        //        response.ServerMessage = ex.Message;
+        public DynamicResponse<UserLO> AddUser(UserLO usr)
+        {
+            #region Accessors
+            UserRoleAccessor _UserRoleAccessor = new UserRoleAccessor();
+            UserAccessor _UserAccessor = new UserAccessor();
+            UserRolesInJournalAccessor _UserRolesInJournalAccessor = new UserRolesInJournalAccessor();
+            #endregion
 
-        //        return response;
-        //    }
-        //}
+            DynamicResponse<UserLO> response = new DynamicResponse<UserLO>();
+            User user = new User();
+            UserRolesInJournal userrole = new UserRolesInJournal();
+            List<UserRolesInJournal> userroles = new List<UserRolesInJournal>();
 
+            try
+            {
+               
+                 user = new User();
+                user.FirstName = usr.FirstName;
+                user.LastName = usr.LastName;
+                user.Email = usr.Email;
+                user.Password = usr.Password;
+                user.Username = usr.Username;
+                user.Affiliation = usr.Affiliation;
+                user.ProfilePicture = usr.Image;
+                user.IsAdmin = usr.IsAdmin;
+                user.Email2 = usr.Email2;
+                user.Phone1 = usr.TPhone1;
+                user.Phone2 = usr.TPhone2;
+                user.Mobile1 = usr.Mobile1;
+                user.Mobile2 = usr.Mobile2;
+                user.POB = usr.Pob;
+                user.ORCID = usr.Orcid;
+                user.PositionId = usr.PositionId;
+                user.Desc = usr.Desc;
+                user.Pos = usr.Pos;
+                user.IsDeleted = false;
+                string degree = "";
+                if (usr.degIds!= null)
+                {
+                    foreach (int item in usr.degIds)
+                    {
+                        degree = degree + item.ToString() + ",";
+                    }
+                }
+
+                user.DegreeIds = degree;
+                user = _UserAccessor.Add(user);
+
+                    if (user == null)
+                    {
+
+                        response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                        response.Message = "Check the user  .";
+                        response.ServerMessage = "use can't get";
+                        return response;
+                    }
+                    if (usr.RoleIds != null)
+                    {
+                        for (int i = 0; i < usr.RoleIds.Count(); i++)
+                        {
+                            userrole.UserId = user.Id;
+                            userrole.RoleId = (int)usr.RoleIds[i];
+                            userrole.Section = null;
+                            userrole.isDeleted = false;
+                            userrole.SysDate = DateTime.Now;
+                            userroles.Add(userrole);
+
+                        }
+
+                        userroles = _UserRolesInJournalAccessor.Add(userroles);
+                    }
+                    response.Data = usr;
+                    response.HttpStatusCode = HttpStatusCode.OK;
+                    return response;
+                }
+                catch (Exception ex)
+                {
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.Message = "Please try again later!";
+                    response.ServerMessage = ex.Message;
+                    return response;
+               }
+          }
         #endregion
 
-        public DynamicResponse<long> AddReviewByUser(long userid, string text, int nbofstars, long articleid)
+        #region delete
+        public DynamicResponse<long> DeleteUser(long userid) {
+            #region Accessor
+            UserAccessor _UserAccessor = new UserAccessor();
+            UserRolesInJournalAccessor _UserRolesInJournalAccessor = new UserRolesInJournalAccessor();
+            #endregion
+            long id;
+            DynamicResponse<long> response =new  DynamicResponse<long>();
+           User user = new User();
+            try
+            {
+
+                id = _UserAccessor.Edit(userid);
+                if (id == 0) {
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.Message = "Check the user.";
+                    response.ServerMessage = "use can't delete user";
+                    return response;
+                }
+
+                response.Data = id;
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Please try again later!";
+                response.ServerMessage = ex.Message;
+                return response;
+            }
+
+        }
+        #endregion
+
+
+        #region 
+        public DynamicResponse<long> AddReviewByUser(ReviewLO toAdd)
         {
             #region Accessor
             ReviewAccessor _ReviewAccessor = new ReviewAccessor();
             #endregion
 
             Review review = new Review();
-            review.UserId = (long)userid;
-            review.Text = text;
-            review.NbOfStars =nbofstars;
+            review.FName = toAdd.FName;
+            review.LName = toAdd.LName;
+            review.Text = toAdd.Text;
+            review.NbOfStars =toAdd.NbOfStars;
             review.IsDeleted = false;
             review.SysDate = DateTime.Now;
-            review.SubmissionId = articleid;
+            review.IsAdmit = false;
+            review.SubmissionId = toAdd.SubmissionId;
             DynamicResponse<long> response = new DynamicResponse<long>();
             try
             {
@@ -1104,5 +1697,6 @@ namespace Anz.LMJ.BLL.Logic
                 throw;
             }
         }
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@using Anz.LMJ.BLO.LogicObjects.User
 @using Anz.LMJ.BLO.ContentObjects
 @{
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
@@ -51,18 +52,51 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="carousel-testimony owl-carousel">
-                        @foreach (Team item in (List<Team>)(ViewBag.teams))
+                        @foreach (UserLO item in (List<UserLO>)(ViewBag.teams))
                         {
                             <div class="item">
                                 <div class="testimony-wrap d-flex">
                                     <div class="align-self-stretch">
                                         <div class="header-section">
-                                            <h5>@item.Name </h5>
-                                            <i>@item.Position</i>
+                                            <h5>@item.FirstName @item.LastName </h5>
+
+                                            @if (@item.PositionId != 0)
+                                            {
+                                                string position = "";
+                                                foreach (DataType itempos in (List<DataType>)(@ViewBag.position))
+                                                {
+
+                                                    if (@item.PositionId == @itempos.Id)
+                                                    {
+                                                        position = @itempos.Title;
+                                                    }
+
+                                                }
+                                                <div>@position</div>
+                                            }
                                         </div>
-                                        <p>
-                                            @item.MainDesc
-                                        </p>
+                                        @if (@item.RoleIds.Count != 0)
+                                        {
+                                            string roles = "";
+                                            foreach (int id in (List<int>)(@item.RoleIds))
+                                            {
+                                                foreach (DataType role in (List<DataType>)(ViewBag.roles))
+                                                {
+
+                                                    if (@id == (int)@role.Id)
+                                                    {
+                                                        roles = @role.Title + ", " + roles;
+                                                    }
+                                                }
+                                            }
+                                            <p>
+                                                @roles
+                                            </p>
+                                        }
+
+                                    <p>
+                                        @(item.Desc.Length > 110 ? item.Desc.Substring(0, 110) + "..." : item.Desc)
+                                    </p>
                                     </div>
                                 </div>
                             </div>
@@ -85,105 +119,37 @@
                 </div>
             </div>
             <div class="row">
-                <div class="services-2 col-md-4 d-flex w-100">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                    </div>
-                    <div class="media-body pl-3">
-                        <h3 class="heading">Karl Jallad</h3>
-                        <p>(LAU) <br> OB/UROGYNECOLOGY PELVIC RECONSTRUCTIVE SURGERY</p>
-                    </div>
-                </div>
-                <div class="services-2 col-md-4 d-flex w-100">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                    </div>
-                    <div class="media-body pl-3">
-                        <h3 class="heading">Karl Jallad</h3>
-                        <p>(LAU) <br> OB/UROGYNECOLOGY PELVIC RECONSTRUCTIVE SURGERY</p>
-                    </div>
-                </div>
-                <div class="services-2 col-md-4 d-flex w-100">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                    </div>
-                    <div class="media-body pl-3">
-                        <h3 class="heading">Karl Jallad</h3>
-                        <p>(LAU) <br> OB/UROGYNECOLOGY PELVIC RECONSTRUCTIVE SURGERY</p>
-                    </div>
-                </div>
-                <div class="services-2 col-md-4 d-flex w-100">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                    </div>
-                    <div class="media-body pl-3">
-                        <h3 class="heading">Karl Jallad</h3>
-                        <p>(LAU) <br> OB/UROGYNECOLOGY PELVIC RECONSTRUCTIVE SURGERY</p>
-                    </div>
-                </div>
-                <div class="services-2 col-md-4 d-flex w-100">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                    </div>
-                    <div class="media-body pl-3">
-                        <h3 class="heading">Karl Jallad</h3>
-                        <p>(LAU) <br> OB/UROGYNECOLOGY PELVIC RECONSTRUCTIVE SURGERY</p>
-                    </div>
-                </div>
-                <div class="services-2 col-md-4 d-flex w-100">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                    </div>
-                    <div class="media-body pl-3">
-                        <h3 class="heading">Karl Jallad</h3>
-                        <p>(LAU) <br> OB/UROGYNECOLOGY PELVIC RECONSTRUCTIVE SURGERY</p>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </section>
-    <section class="ftco-section ftco-no-pt HiringSection">
-        <div class="container border-top-black padding-top-btm">
-            <div class="row no-gutters justify-content-center mb-3">
-                <div class="col-md-7 heading-section text-center">
-                    <h2>We are hiring</h2>
-                    <div class="about-border"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="media-body pl-3">
-                        <h2>Marketing Team</h2>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="media-body">
-                        <div class="HiringHeader">
-                            <i>Managing Editor</i>
+                @if (@ViewBag.member!=null) {
+                    foreach (UserLO item in (List<UserLO>)(ViewBag.member))
+                    {
+                    <div class="services-2 col-md-4 d-flex w-100">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <img  src="~/Images/Users/@item.Image"/>
                         </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+                        <div class="media-body pl-3">
+                            <h3 class="heading">@item.FirstName @item.LastName</h3>
+                            <p>@(item.Desc.Length > 90 ? item.Desc.Substring(0, 90) + "..." : item.Desc)</p>
+                        </div>
                     </div>
-                    <button class="btn btn-primary">Contact Us</button>
+                    }
+                }
                 </div>
-
-            </div>
         </div>
     </section>
+ 
 
 </div>
-<script src="~/Content/lib/jquery/jquery.min.js">
-</ script >
-< script src= "https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js" ></ script >
+<script src="~/Content/lib/jquery/jquery.min.js"></script >
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js" ></script>
 
-< script >
+<script>
                 $('.flickity').flickity({
-                                        cellAlign: 'left',
-                                        contain: true,
-                                        imagesLoaded: true,
-                                        lazyLoad: true,
-                                    });
-                                    $(".main-nav ul li").removeClass("active");
-                                    $("#AboutUs").addClass("active");
+                                            cellAlign: 'left',
+                                            contain: true,
+                                            imagesLoaded: true,
+                                            lazyLoad: true,
+                                        });
+                                        $(".main-nav ul li").removeClass("active");
+                                        $("#AboutUs").addClass("active");
 
 </script>

@@ -100,9 +100,7 @@ namespace Anz.LMJ.BLL
             }
         }
 
-
-
-
+       
         static public List<LookUpAttributes> GetAttributes(string ClassName, string XMLPath)
         {
             List<LookUpAttributes> attributes = new List<LookUpAttributes>();

@@ -2,6 +2,7 @@
 using Anz.LMJ.BLO.ContentObjects;
 using Anz.LMJ.BLO.LogicObjects.CommonObjects;
 using Anz.LMJ.BLO.LogicObjects.Submission;
+using Anz.LMJ.BLO.LogicObjects.Review;
 using Anz.LMJ.BLO.LogicObjects.Issue;
 using Anz.LMJ.BLO.LogicObjects.User;
 using Anz.LMJ.WebServices;
@@ -17,6 +18,7 @@ using System.Web.Mvc;
 using static Anz.LMJ.BLL.Logic.Enums;
 using Syroot.Windows.IO;
 using System.Xml.Linq;
+using System.Text;
 
 namespace Anz.LMJ.StartUp.Controllers
 {
@@ -29,10 +31,11 @@ namespace Anz.LMJ.StartUp.Controllers
         #region Services
         ContentServices _ContentServices = new ContentServices();
         HomeServices _HomeServices = new HomeServices();
+        AdminServices _AdminServices = new AdminServices();
         #endregion
 
-       
-      
+
+
         public ActionResult Index()
         {   
             DynamicResponse<SelectLO> options = new DynamicResponse<SelectLO>();
@@ -76,7 +79,25 @@ namespace Anz.LMJ.StartUp.Controllers
             return View(options);
         }
 
+        #region footerlinks
+        public ActionResult FooterLink(long id)
+        {
+            try
+            {
+                FooterMenu page = _ContentServices.GetContentOfItem<FooterMenu>(ContentServices.ServiceTables.FooterMenu, 1, id).Contents.FirstOrDefault();
+                ViewBag.page = page;
+                return View("FooterPage");
+            }
 
+
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Oops");
+            }
+
+        }
+
+        #endregion
         #region VideoDetail
 
         public ActionResult VideoDetail(long id)
@@ -104,6 +125,8 @@ namespace Anz.LMJ.StartUp.Controllers
         #endregion
         #region About
 
+
+      
         public ActionResult About()
         {
            try
@@ -138,6 +161,32 @@ namespace Anz.LMJ.StartUp.Controllers
                 List<Team> teams = _ContentServices.GetContent<Team>(ContentServices.ServiceTables.Team, 999).Contents.ToList();
                 teams = teams.OrderBy(e => e.Pos).ToList();
                 ViewBag.teams = teams;
+
+                List<DataType> degrees = _ContentServices.GetContent<DataType>(ContentServices.ServiceTables.Degree, 9999).Contents.ToList();
+                ViewBag.degrees = degrees;
+                List<DataType> position = _ContentServices.GetContent<DataType>(ContentServices.ServiceTables.Position, 9999).Contents.ToList();
+                ViewBag.position = position;
+                DynamicResponse<List<DataType>> response = _AdminServices.GetRoles();
+                if (response.HttpStatusCode != HttpStatusCode.OK)
+                {
+                    return RedirectToAction("Index", "Oops");
+                }
+                ViewBag.roles = response.Data;
+
+
+                List<int> ids = new List<int>();
+                List<string> roles = new List<string>();
+                roles.Add(Roles.management.ToString());
+                ids = _AdminServices.GetRoles(roles);
+                List<UserLO> users = _AdminServices.GetUsers(ids);
+                ViewBag.teams = users;
+
+                ids = new List<int>();
+                roles = new List<string>();
+                roles.Add(Roles.member.ToString());
+                ids = _AdminServices.GetRoles(roles);
+                 users = _AdminServices.GetUsers(ids);
+                ViewBag.member = users;
                 return View();
             }
 
@@ -157,7 +206,9 @@ namespace Anz.LMJ.StartUp.Controllers
         {
              try
             {
-               return View();
+                Contact contact = _ContentServices.GetContent<Contact>(ContentServices.ServiceTables.Contact, 1).Contents.FirstOrDefault();
+                ViewBag.contact = contact;
+                return View();
             }catch (Exception ex)
             {
                 return RedirectToAction("Index", "Oops");
@@ -221,9 +272,10 @@ namespace Anz.LMJ.StartUp.Controllers
                 ViewBag.detail = submission.Data;
                 if (submission.Data.MaxStars.Count != 0) {
                     ViewBag.rating = (double)GetRating(submission.Data.MaxStars[0].nbstars, submission.Data.MaxStars[0].nbstars, submission.Data.MaxStars[0].nbstars, submission.Data.MaxStars[0].nbstars, submission.Data.MaxStars[0].nbstars);
-
-                }
-
+                 }
+                List<CitationType> citation = new List<CitationType>();
+                citation = _ContentServices.GetContent<CitationType>(ContentServices.ServiceTables.Citation, 9999).Contents.ToList();
+                ViewBag.CitationType = citation;
                 DynamicResponse<SelectLO> options = new DynamicResponse<SelectLO>();
                 options = _HomeServices.GetOption();
                 ViewBag.options = options.Data;
@@ -231,18 +283,8 @@ namespace Anz.LMJ.StartUp.Controllers
                 ViewBag.relatedissue = data.Data;
                 UserLogic _UserLogic = new UserLogic();
                 DynamicResponse<UserLO> response = new DynamicResponse<UserLO>();
-                //UserLO user = new UserLO();
-
-                //response = _HomeServices.GetUserInfo(userId);
-                //if (response.HttpStatusCode != HttpStatusCode.OK)
-                //{
-                //    return RedirectToAction("LoginForm", "Home");
-                //}
-                //ViewBag.User = response.Data;
                 return View("ArticleDetail");
             }
-
-
             catch (Exception ex)
             {
                 return RedirectToAction("Index", "Oops");
@@ -398,6 +440,8 @@ namespace Anz.LMJ.StartUp.Controllers
             }
         }
         #endregion
+
+
         public JsonResult savefile(string fileName) {
             string name=fileName.Split('.')[0];
             string path = Server.MapPath("~/files/");
@@ -471,14 +515,51 @@ namespace Anz.LMJ.StartUp.Controllers
             return rating;
         }
 
-        public JsonResult AddReviewByUser(string text,int nbofstars,long articleid)
+        public JsonResult GetCitationForm(long id,long articleid)
+        {
+            try
+            {
+                if (id == 0) {
+                    return Json("error");
+                }
+                CitationType data = new CitationType();
+              
+                data = _ContentServices.GetContentOfItem<CitationType>(ContentServices.ServiceTables.Citation, 1, id).Contents.FirstOrDefault();
+                string source = data.Text;
+                List<string> attrname = source.EverythingBetween("[[[", "]]]");
+                List<string> attrvalue = new List<string>();
+
+                
+                DynamicResponse<SubmissionLO> submission = _HomeServices.GetArticle((long)articleid);
+               
+                string value = "";
+                var t = source;
+                //StringBuilder s = StringBuilder(source);
+                for (int i=0; i<attrname.Count;i++)
+                {
+                    value = Helper.GetPropValue<string>(submission.Data, attrname[i]);
+                    source = source.Replace("[[["+ attrname [i]+ "]]]", value);
+                }
+
+                return Json(source);
+            }
+            catch (Exception ex)
+            {
+                return Json("error");
+            }
+        }
+
+
+        
+
+        public JsonResult AddReviewByUser(ReviewLO toAdd)
         {
 
 
             try
             {
 
-                DynamicResponse<long> response = _HomeServices.AddReviewByUser(2, text,  nbofstars,  articleid);
+                DynamicResponse<long> response = _HomeServices.AddReviewByUser(toAdd);
 
                 return Json(response, JsonRequestBehavior.AllowGet);
             }
@@ -489,6 +570,23 @@ namespace Anz.LMJ.StartUp.Controllers
                 return Json("error");
             }
 
+        }
+
+        public string FindTextBetween(string text, string left, string right)
+        {
+            // TODO: Validate input arguments
+
+            int beginIndex = text.IndexOf(left); // find occurence of left delimiter
+            if (beginIndex == -1)
+                return string.Empty; // or throw exception?
+
+            beginIndex += left.Length;
+
+            int endIndex = text.IndexOf(right, beginIndex); // find occurence of right delimiter
+            if (endIndex == -1)
+                return string.Empty; // or throw exception?
+
+            return text.Substring(beginIndex, endIndex - beginIndex).Trim();
         }
         #region Logout
         public ActionResult Logout()

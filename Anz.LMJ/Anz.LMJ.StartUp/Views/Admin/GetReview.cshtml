@@ -1,0 +1,94 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.User;
+@{
+    ViewBag.Title = "Admit Review";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    #content {
+        text-align: right;
+    }
+</style>
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+            @using (Html.BeginForm("AdmitReview", "Admin", FormMethod.Post, new { @class = "AdmitReview", enctype = "multipart/form-data" }))
+            {
+                <div class="row">
+                    <div class="col-xs-1">
+                        <label class="col-sm-12 control-label">
+                            <strong>Title</strong>
+                        </label>
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control input__beautify" type="text" name="FName" disabled value="@ViewBag.Review.FName" />
+                    </div>
+                    <div class="col-xs-1">
+                        <label class="col-sm-12 control-label">
+                            <strong>LName</strong>
+                        </label>
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control input__beautify" type="text" name="LName" disabled value="@ViewBag.Review.LName" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>Text</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <textarea style="height: 200px; width:350px;" name="Text" disabled>@ViewBag.Review.Text</textarea>
+                        </div>
+                    </div>
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>IsAdmit</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-1">
+                        <div class="form-group">
+                            <input type="checkbox" id="IsAdmitchk" checked="@ViewBag.Review.IsAdmit" value="@ViewBag.Review.IsAdmit" />
+                            <input type="hidden" name="IsAdmit" id="IsAdmitcheck" value="False" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-11">
+                    <button type="submit" class="btn btn-sm btn-primary AdmitReview"> Admit Review </button>
+                    <input type="hidden" name="Id" value="@ViewBag.Review.Id" />
+                </div>
+            }
+            </div>
+
+    </div>
+
+</div>
+<script>
+    $("document").ready(function () {
+
+        $('#IsAdmitchk').change(function () {
+            if ($("#IsAdmitchk").is(":checked")) {
+                $("#IsAdmitcheck").attr("value", "True");
+            }
+            else {
+                $("#IsAdmitcheck").attr("value", "False");
+            }
+
+        });
+    });
+</script>

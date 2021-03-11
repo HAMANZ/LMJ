@@ -36,7 +36,8 @@ namespace Anz.LMJ.DAL.Accessors
                 List<UserRole> data = new List<UserRole>();
                 using (LMJEntities db = new LMJEntities())
                 {
-                    data = db.UserRoles.Where(e => Ids.Contains(e.Id) == true).ToList();
+                    data = db.UserRoles.Where(e => Ids.Contains(e.Id) == true 
+                    && e.isDeleted == false).ToList();
                 }
                 return data;
             }
@@ -47,5 +48,60 @@ namespace Anz.LMJ.DAL.Accessors
             }
         }
 
+        public List<UserRole> GetList()
+        {
+            try
+            {
+                List<UserRole> data = new List<UserRole>();
+                using (LMJEntities db = new LMJEntities())
+                {
+                    data = db.UserRoles.Where(e=>e.isDeleted == false).ToList();
+                }
+                return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+
+        public List<UserRole> GetList(List<string> names)
+        {
+            try
+            {
+                List<UserRole> data = new List<UserRole>();
+                using (LMJEntities db = new LMJEntities())
+                {
+                    data = db.UserRoles.Where(e => names.Contains(e.Role) == true).ToList();
+                }
+                return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+
+        public UserRole Add(UserRole toAdd)
+        {
+            try
+            {
+                using (LMJEntities db = new LMJEntities())
+                {
+                    db.UserRoles.Add(toAdd);
+                    db.SaveChanges();
+                    return toAdd;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
     }
 }

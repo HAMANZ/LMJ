@@ -187,7 +187,27 @@ namespace Anz.LMJ.DAL.Accessors
             }
         }
 
-        public List<Submission> GetArticles()
+      
+        public List<string> GetSubmissionFieldName()
+        {
+            try
+            {
+                List<string> data = new List<string>();
+                using (LMJEntities db = new LMJEntities())
+                {
+                    data = typeof(Submission).GetProperties().Select(property => property.Name).ToList();
+                }
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+            public List<Submission> GetArticles()
         {
             try
             {
@@ -206,8 +226,27 @@ namespace Anz.LMJ.DAL.Accessors
             }
         }
 
-        
-                public List<Submission> GetArticlesByIssue(long id)
+        public List<Submission> GetArticles(List<long> Ids)
+        {
+            try
+            {
+                List<Submission> data = new List<Submission>();
+                using (LMJEntities db = new LMJEntities())
+                {
+                    data = db.Submissions.Where(e => Ids.Contains(e.Id) && e.isDeleted == false & e.IssueId != null).ToList();
+                }
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+
+        public List<Submission> GetArticlesByIssue(long id)
         {
             try
             {

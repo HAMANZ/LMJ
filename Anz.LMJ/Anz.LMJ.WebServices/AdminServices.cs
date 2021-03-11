@@ -3,7 +3,7 @@ using Anz.LMJ.BLL.Logic;
 using Anz.LMJ.BLO.LogicObjects.CommonObjects;
 using Anz.LMJ.BLO.LogicObjects.Submission;
 using Anz.LMJ.BLO.LogicObjects.User;
-using Anz.LMJ.BLO.LookUpObjects;
+using Anz.LMJ.BLO.ContentObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using static Anz.LMJ.BLL.Logic.Enums;
+using Anz.LMJ.BLO.LogicObjects.Review;
 
 namespace Anz.LMJ.WebServices
 {
@@ -40,12 +41,14 @@ namespace Anz.LMJ.WebServices
                 __SharedConvetTable[ServiceAdminTables.News] = LookUpLogic.AdminTables.News;
                 __SharedConvetTable[ServiceAdminTables.IssueFilter] = LookUpLogic.AdminTables.IssueFilter;
                 __SharedConvetTable[ServiceAdminTables.Contact] = LookUpLogic.AdminTables.Contact;
-                __SharedConvetTable[ServiceAdminTables.Role] = LookUpLogic.AdminTables.Role;
+                __SharedConvetTable[ServiceAdminTables.Degree] = LookUpLogic.AdminTables.Degree;
                 __SharedConvetTable[ServiceAdminTables.Position] = LookUpLogic.AdminTables.Position;
                 __SharedConvetTable[ServiceAdminTables.FooterMenu] = LookUpLogic.AdminTables.FooterMenu;
                 __SharedConvetTable[ServiceAdminTables.Citation] = LookUpLogic.AdminTables.Citation;
                 __SharedConvetTable[ServiceAdminTables.Index] = LookUpLogic.AdminTables.Index;
                 __SharedConvetTable[ServiceAdminTables.IndexType] = LookUpLogic.AdminTables.IndexType;
+                __SharedConvetTable[ServiceAdminTables.Footer] = LookUpLogic.AdminTables.Footer;
+                
             }
 
 
@@ -69,7 +72,7 @@ namespace Anz.LMJ.WebServices
             IssueFilter,
             Contact,
             Position,
-            Role,
+            Degree,
             Policy,
             Terms,
             CopyRight,
@@ -77,6 +80,7 @@ namespace Anz.LMJ.WebServices
             Index,
             IndexType,
             FooterMenu,
+            Footer
         }
 
         #endregion
@@ -187,7 +191,7 @@ namespace Anz.LMJ.WebServices
 
         }
 
-        public List<Options> getListArticleOption() {
+            public List<Options> getListArticleOption() {
             HomeServices _HomeServices = new HomeServices();
             DynamicResponse<List<SubmissionLO>> submissions = _HomeServices.getListArticleOption();
             List<Options>  options = new List<Options>();
@@ -226,18 +230,48 @@ namespace Anz.LMJ.WebServices
             return submissions.Data;
         }
 
+        public DynamicResponse<UserLO> AddUser(UserLO user)
+        {
+            UserLogic _UserLogic = new UserLogic();
+            DynamicResponse<UserLO> response = new DynamicResponse<UserLO>();
+            response = _UserLogic.AddUser(user);
+            return response;
+        }
+
+        public DynamicResponse<DataType> AddRole(DataType rol)
+        {
+            UserLogic _UserLogic = new UserLogic();
+            DynamicResponse<DataType> response = new DynamicResponse<DataType>();
+            response = _UserLogic.AddRole(rol);
+            return response;
+        }
 
         
+        public DynamicResponse<long> DeleteUser(long userid)
+        {
+            UserLogic _UserLogic = new UserLogic();
+            DynamicResponse<long> response = new DynamicResponse<long>();
+            response = _UserLogic.DeleteUser(userid);
+            return response;
+        }
 
-        public List<UserLO> GetUsers()
+        public DynamicResponse<List<DataType>> GetRoles()
+        {
+            UserLogic _UserLogic = new UserLogic();
+            DynamicResponse<List<DataType>> response = new DynamicResponse<List<DataType>>();
+            response = _UserLogic.GetRoles();
+            return response;
+        }
+
+        public UserLO GetBasic(long usrid)
         {
             #region logics
-            DynamicResponse<List<UserLO>> uesrs =new DynamicResponse<List<UserLO>>();
-           UserLogic _UserLogic = new UserLogic();
+            DynamicResponse<UserLO> uesrs = new DynamicResponse<UserLO>();
+            UserLogic _UserLogic = new UserLogic();
             #endregion
             try
             {
-                uesrs=_UserLogic.GetUsers();
+                uesrs = _UserLogic.GetBasic(usrid);
                 return uesrs.Data;
             }
             catch (Exception ex)
@@ -247,6 +281,169 @@ namespace Anz.LMJ.WebServices
             }
 
         }
+        
+       public List<int> GetRoles(List<string> roles)
+        {
+            #region logics
+            DynamicResponse<List<int>> response = new DynamicResponse<List<int>>();
+            UserLogic _UserLogic = new UserLogic();
+            #endregion
+            try
+            {
+                response = _UserLogic.GetRoles(roles);
+                return response.Data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+        public List<UserLO> GetUsers(List<int> rolesid)
+        {
+            #region logics
+            DynamicResponse<List<UserLO>> uesrs =new DynamicResponse<List<UserLO>>();
+           UserLogic _UserLogic = new UserLogic();
+            #endregion
+            try
+            {
+                uesrs=_UserLogic.GetUsers(rolesid);
+                return uesrs.Data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
+        public DynamicResponse<UserLO> GetUser(long userid)
+            {
+                #region logics
+                
+                UserLogic _UserLogic = new UserLogic();
+                #endregion
+                try
+                {
+               return _UserLogic.GetBasic(userid);
+               
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
+
+            }
+
+        
+         public DynamicResponse<long> AdmitReview(bool isAdmit,long reivewid)
+        {
+            #region logics
+
+            UserLogic _UserLogic = new UserLogic();
+            #endregion
+            try
+            {
+                return _UserLogic.AdmitReview(isAdmit,reivewid);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        public DynamicResponse<ReviewLO> GetReview(long id)
+        {
+            #region logics
+
+            UserLogic _UserLogic = new UserLogic();
+            #endregion
+            try
+            {
+                return _UserLogic.GetReview(id);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
+        public DynamicResponse<List<ReviewLO>> GetReviews()
+        {
+            #region logics
+
+            UserLogic _UserLogic = new UserLogic();
+            #endregion
+            try
+            {
+                return _UserLogic.GetReviews();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        public DynamicResponse<long> EditUser(UserLO toEdit)
+        {
+            #region logics
+
+            UserLogic _UserLogic = new UserLogic();
+            #endregion
+            try
+            {
+                return _UserLogic.EditUser(toEdit);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+        
+        public List<UserLO> GetAllUsers()
+        {
+            #region logics
+            DynamicResponse<List<UserLO>> uesrs = new DynamicResponse<List<UserLO>>();
+            UserLogic _UserLogic = new UserLogic();
+            #endregion
+            try
+            {
+                uesrs = _UserLogic.GetUsers();
+                return uesrs.Data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
+        public DynamicResponse<List<string>> GetSubmissionFieldName()
+        {
+            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
+            DynamicResponse<List<string>> response = new DynamicResponse<List<string>>();
+            response = _SubmissionLogic.GetSubmissionFieldName();
+            return response;
+        }
+        
         #endregion
 
     }
