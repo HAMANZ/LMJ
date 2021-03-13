@@ -18,9 +18,10 @@ namespace Anz.LMJ.DAL.Model
         public string Text { get; set; }
         public Nullable<int> NbOfStars { get; set; }
         public Nullable<System.DateTime> SysDate { get; set; }
-        public Nullable<long> UserId { get; set; }
+        public string FName { get; set; }
         public bool IsDeleted { get; set; }
         public long SubmissionId { get; set; }
         public Nullable<bool> IsAdmit { get; set; }
+        public string LName { get; set; }
     }
 }

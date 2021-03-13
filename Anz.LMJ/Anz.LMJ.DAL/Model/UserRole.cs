@@ -28,6 +28,7 @@ namespace Anz.LMJ.DAL.Model
         public Nullable<bool> isBlinded { get; set; }
         public Nullable<bool> isDeleted { get; set; }
         public Nullable<System.DateTime> SysDate { get; set; }
+        public string Desc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Process> Processes { get; set; }
