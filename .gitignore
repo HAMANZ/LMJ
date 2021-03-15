@@ -351,3 +351,9 @@ MigrationBackup/
 
 Anz.LMJ/Anz.LMJ.StartUp/Anz.LMJ.StartUp.csproj
 Anz.LMJ/Anz.LMJ.StartUp/web.config
+*.edmx
+Anz.LMJ/Anz.LMJ.DAL/Model/LMJModel.edmx
+Anz.LMJ/Anz.LMJ.DAL/Model/LMJModel.edmx.diagram
+Anz.LMJ/Anz.LMJ.DAL/Model/LMJModel.edmx
+Anz.LMJ/Anz.LMJ.DAL/Model/LMJModel.edmx.diagram
+Anz.LMJ/Anz.LMJ.DAL/App.Config

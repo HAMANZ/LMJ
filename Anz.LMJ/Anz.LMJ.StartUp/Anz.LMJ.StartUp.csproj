@@ -861,6 +861,7 @@
     <Content Include="Views\Admin\ViewReview.cshtml" />
     <Content Include="Views\Admin\GetReview.cshtml" />
     <Content Include="Views\Home\FooterPage.cshtml" />
+    <Content Include="Views\Submission\GetNewsletter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

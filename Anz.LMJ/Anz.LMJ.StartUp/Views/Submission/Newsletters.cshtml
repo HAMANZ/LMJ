@@ -62,7 +62,7 @@
                          data-widget-sortable="false">
                         <header>
                             <div class="jarviswidget-ctrls">
-                                <a class="getCopyEditors" data-target="#ModelAddNewsletter" class="createnews" data-toggle="modal" >Create New</a>
+                                <a class="getCopyEditors"  href="/submission/AddNewsletterForm" class="createnews">Create New</a>
                             </div>
                             <h2>Newlettes</h2>
                         </header>
@@ -111,10 +111,8 @@
                                             <td class="newsdate">@item.PublishDate.ToString("M/d/yyyy")</td>
 
                                             <td>
-                                                <a data-target="#ModelAddNewsletter" data-toggle="modal" class="fa fa-pencil btn btn-sm btn-primary EditNews"> Edit</a>
+                                                <a href="/submission/GetNewsletter/@item.Id" class="fa fa-pencil btn btn-sm btn-primary"> Edit</a>
                                             </td>
-
-
                                             @{ counter++;}
                                         </tr>
                                             }

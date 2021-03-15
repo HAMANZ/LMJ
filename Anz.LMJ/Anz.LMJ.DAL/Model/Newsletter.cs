@@ -17,7 +17,7 @@ namespace Anz.LMJ.DAL.Model
         public long Id { get; set; }
         public string Name { get; set; }
         public Nullable<System.DateTime> SysDate { get; set; }
-        public Nullable<long> UserId { get; set; }
+        public long UserId { get; set; }
         public string CoverImage { get; set; }
         public string ISSN { get; set; }
         public string EISSN { get; set; }

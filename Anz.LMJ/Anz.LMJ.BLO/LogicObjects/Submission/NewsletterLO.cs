@@ -16,8 +16,9 @@ namespace Anz.LMJ.BLO.LogicObjects.Submission
         public string Issn { get; set; }
         public string Eissn { get; set; }
         public string Volume { get; set; }
+
         public DateTime PublishDate { get; set; }
-        public HttpPostedFileBase CoverImage { get; set; }
+        public HttpPostedFileBase PostedFileImage { get; set; }
 
         public string Image { get; set; }
     }

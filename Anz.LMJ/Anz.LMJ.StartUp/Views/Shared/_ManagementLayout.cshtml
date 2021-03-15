@@ -299,20 +299,20 @@
 <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 <script data-pace-options='{ "restartOnRequestAfter": true }' src="~/Scripts/cms/plugin/pace/pace.min.js"></script>
 
-<script>
+@*<script>
     if (!window.jQuery) {
-        document.write('<script src="Scripts/js/libs/jquery-2.1.1.min.js"><\/script>');
+        document.write('<script src="~/Scripts/cms/libs/jquery-2.1.1.min.js"></script>');
     }
 </script>
 
 
 <script>
     if (!window.jQuery.ui) {
-        document.write('<script src="Scripts/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+        document.write('<script src="~/Scripts/cms/libs/jquery-ui-1.10.3.min.js"></script>');
     }
-</script>
+</script>*@
 
-
+<script src="~/Scripts/cms/libs/jquery-2.1.1.min.js"></script>
 <script src="~/Scripts/cms/app.config.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/cms/Admin/jquery.dataTables.min.js"></script>
@@ -336,7 +336,7 @@
 <script src="~/Scripts/cms/app.min.js"></script>
 <script src="~/Scripts/cms/libs/jspdf.min.js"></script>
 <script src="~/Scripts/cms/editor.js"></script>
-
+<script src="~/Scripts/cms/CmsJquery.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 

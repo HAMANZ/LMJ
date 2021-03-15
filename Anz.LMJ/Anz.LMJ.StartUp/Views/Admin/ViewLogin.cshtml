@@ -209,18 +209,20 @@
 <script type="text/javascript" src="~/Content/lib/jquery/jquery-1.11.0.min.js"></script>
 <script src="~/Scripts/bootstrap4-toggle.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/cms/plugin/jquery-validate/jquery.validate.min.js"></script>
 <script>
 
     function hash() {
         var email = $("#email").val();
-        var password = $("#password").attr("value");
+        var password = $("#password").val();
 
         if (email == '') {
             document.getElementById("email").focus();
         } else if (password == '') {
             document.getElementById("password").focus();
         }
-        var hashedPassword = SHA256($("#password").attr("value"));
+
+        var hashedPassword = SHA256($("#password").val());
         $("#hpassword").attr("value", hashedPassword);
 
         $("form").submit();
@@ -228,8 +230,8 @@
     }
 
     $("document").ready(function () {
-        $("#password").attr(value, "");
-        $("#hpassword").attr(value, "");
+        $("#password").val("");
+        $("#hpassword").val("");
         $("#view").attr("value", $('#status').is(":checked"));
 
         $('.toggle').change(function () {
@@ -275,6 +277,7 @@
 
 
     function SHA256(s) {
+
         var chrsz = 8;
         var hexcase = 0;
 

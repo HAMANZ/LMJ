@@ -1947,6 +1947,56 @@ namespace Anz.LMJ.BLL.Logic
 
         }
 
+        public DynamicResponse<NewsletterLO> GetNewsLetter(long id)
+        {
+            #region Accessors
+            NewsletterAccessor _NewsletterAccessor = new NewsletterAccessor();
+            #endregion
+            NewsletterLO Newsletter = new NewsletterLO();
+            DynamicResponse<NewsletterLO> response = new DynamicResponse<NewsletterLO>();
+            try
+            {
+
+                Newsletter Newsletters = _NewsletterAccessor.Get(id);
+
+                if (Newsletters == null)
+                {
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.Message = "Check the Newsletters.";
+                    response.ServerMessage = "Newsletters can't finded";
+                    return response;
+                }
+
+
+            
+                    Newsletter = new NewsletterLO();
+                    Newsletter.Id = Newsletters.Id;
+                    Newsletter.Name = Newsletters.Name;
+                    Newsletter.Issn = Newsletters.ISSN;
+                    Newsletter.Eissn = Newsletters.EISSN;
+                    Newsletter.Volume = Newsletters.Volume;
+                    Newsletter.Image = Newsletters.CoverImage;
+                    Newsletter.PublishDate = (DateTime)Newsletters.PublishDate;
+               
+
+                response.Data = Newsletter;
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Please try again later.";
+                response.ServerMessage = ex.Message;
+                return response;
+            }
+
+        }
+
 
         public DynamicResponse<List<NewsletterLO>> GetNewsLetter()
         {
@@ -2612,7 +2662,7 @@ namespace Anz.LMJ.BLL.Logic
         }
 
         
-              public DynamicResponse<long> EditNewsletter(NewsletterLO toEdit, long userid)
+              public DynamicResponse<long> EditNewsletter(NewsletterLO toEdit)
         {
             #region Accessor
             NewsletterAccessor _NewsletterAccessor = new NewsletterAccessor();
@@ -2622,13 +2672,14 @@ namespace Anz.LMJ.BLL.Logic
             DynamicResponse<long> response = new DynamicResponse<long>();
             try
             {
+                _Newsletter.Id = toEdit.Id;
+                _Newsletter.UserId = toEdit.UserId;
                 _Newsletter.Name = toEdit.Name;
                 _Newsletter.ISSN = toEdit.Issn;
                 _Newsletter.EISSN = toEdit.Eissn;
-                _Newsletter.CoverImage = toEdit.CoverImage.FileName;
+                _Newsletter.CoverImage = toEdit.Image;
                 _Newsletter.Volume = toEdit.Volume;
                 _Newsletter.PublishDate = toEdit.PublishDate;
-                _Newsletter.UserId = userid;
                 _Newsletter.isDeleted = false;
                 _Newsletter.SysDate = DateTime.Now; 
                  id = _NewsletterAccessor.Edit(_Newsletter);
@@ -2667,7 +2718,7 @@ namespace Anz.LMJ.BLL.Logic
                 _Newsletter.Name = toAdd.Name;
                 _Newsletter.ISSN = toAdd.Issn;
                 _Newsletter.EISSN = toAdd.Eissn;
-                _Newsletter.CoverImage = toAdd.CoverImage.FileName;
+                _Newsletter.CoverImage = toAdd.PostedFileImage.FileName;
                 _Newsletter.PublishDate = toAdd.PublishDate;
                 _Newsletter.UserId = userid;
                 _Newsletter.isDeleted =false;

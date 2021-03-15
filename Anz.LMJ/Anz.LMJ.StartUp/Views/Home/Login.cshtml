@@ -1,8 +1,4 @@
-﻿@{
-    Layout = null;
-
-}
-<html>
+﻿<html>
 <head>
 
 
@@ -275,6 +271,8 @@
 
 
     function SHA256(s) {
+        alert(s);
+
         var chrsz = 8;
         var hexcase = 0;
 
@@ -386,7 +384,7 @@
             }
             return str;
         }
-
+      
 
         s = Utf8Encode(s);
         return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
