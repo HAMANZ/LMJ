@@ -219,9 +219,6 @@
     <Compile Include="Model\Subscription.cs">
       <DependentUpon>LMJModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\sysdiagram.cs">
-      <DependentUpon>LMJModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Tag.cs">
       <DependentUpon>LMJModel.tt</DependentUpon>
     </Compile>
