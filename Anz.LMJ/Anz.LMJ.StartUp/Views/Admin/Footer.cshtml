@@ -24,125 +24,132 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 @using (Html.BeginForm("Footer", "Admin", FormMethod.Post, new { @class = "Footer", enctype = "multipart/form-data" }))
                 {
+                    <br />
                     <div class="row">
                         <div class="col-xs-2">
-                                <label class="col-sm-12 control-label">
-                                    <strong>Articles Types</strong>
-                                </label>
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
-                                <select multiple class="form-control select2 CategoryIds" id="CategoryIds" name="CategoryIdss">
-                                    @foreach (Options article in (List<Options>)(ViewBag.articlestypes))
-                                    {
-                                        var sel = "";
-                                        if (@Model != null)
-                                        {
-                                            if (@Model.CategoryIds != null)
-                                            {
-                                                string[] arr = Model.CategoryIds.Split(',');
-                                                List<int> lst = new List<int>();
-                                                for (int i = 0; i < arr.Length; i++)
-                                                {
-                                                    lst.Add(int.Parse(arr[i]));
-                                                }
-                                                foreach (int id in (List<int>)(lst))
-                                                {
 
-                                                    if (id == @article.Id)
-                                                    { sel = "selected"; }
-
-                                                }
-                                            }
-                                        }
-                                        <option value="@article.Id" @sel>@article.Value</option>
-                                    }
-                                </select>
-                        </div>
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                             <label class="col-sm-12 control-label">
-                                <strong>Articles</strong>
+                                <strong>Articles Types</strong>
                             </label>
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
-                                <select multiple class="form-control select2 RecentArticleIds" id="RecentArticleIds" name="RecentArticleIdss">
-                                    @foreach (SubmissionLO article in (List<SubmissionLO>)(@ViewBag.articles))
+                            <select multiple class="form-control select2 CategoryIds" id="CategoryIds" name="CategoryIdss">
+                                @foreach (Options article in (List<Options>)(ViewBag.articlestypes))
+                                {
+                                    var sel = "";
+                                    if (@Model != null)
                                     {
-                                        var sel = "";
-                                        if (@Model != null)
+                                        if (@Model.CategoryIds != null)
                                         {
-
-                                            if (@Model.RecentArticleIds != null)
+                                            string[] arr = Model.CategoryIds.Split(',');
+                                            List<int> lst = new List<int>();
+                                            for (int i = 0; i < arr.Length; i++)
                                             {
-                                                string[] arr = Model.RecentArticleIds.Split(',');
-                                                List<int> lst = new List<int>();
-                                                for (int i = 0; i < arr.Length; i++)
-                                                {
-                                                    lst.Add(int.Parse(arr[i]));
-                                                }
-                                                foreach (int id in (List<int>)(lst))
-                                                {
-
-                                                    if (id == @article.Id)
-                                                    { sel = "selected"; }
-
-                                                }
+                                                lst.Add(int.Parse(arr[i]));
                                             }
+                                            foreach (int id in (List<int>)(lst))
+                                            {
 
+                                                if (id == @article.Id)
+                                                { sel = "selected"; }
+
+                                            }
                                         }
-                                        <option value="@article.Id" @sel>@article.Title</option>
                                     }
-                                </select>
+                                    <option value="@article.Id" @sel>@article.Value</option>
+                                }
+                            </select>
                         </div>
 
                     </div>
                     <br />
                     <div class="row">
                         <div class="col-xs-2">
-                                <label class="col-sm-12 control-label">
-                                    <strong>Contact data</strong>
-                                </label>
+                            <label class="col-sm-12 control-label">
+                                <strong>Articles</strong>
+                            </label>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                            <select multiple class="form-control select2 RecentArticleIds" id="RecentArticleIds" name="RecentArticleIdss">
+                                @foreach (SubmissionLO article in (List<SubmissionLO>)(@ViewBag.articles))
+                                {
+                                    var sel = "";
+                                    if (@Model != null)
+                                    {
+
+                                        if (@Model.RecentArticleIds != null)
+                                        {
+                                            string[] arr = Model.RecentArticleIds.Split(',');
+                                            List<int> lst = new List<int>();
+                                            for (int i = 0; i < arr.Length; i++)
+                                            {
+                                                lst.Add(int.Parse(arr[i]));
+                                            }
+                                            foreach (int id in (List<int>)(lst))
+                                            {
+
+                                                if (id == @article.Id)
+                                                { sel = "selected"; }
+
+                                            }
+                                        }
+
+                                    }
+                                    <option value="@article.Id" @sel>@article.Title</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <label class="col-sm-12 control-label">
+                                <strong>Contact data</strong>
+                            </label>
                         </div>
                         <div class="col-xs-4">
-                                <select multiple class="form-control select2 ContactIds" id="ContactIds" name="ContactIdss">
-                                    @{
-                                        List<string> attrName = (List<string>)(ViewBag.attrName);
-                                        Contact cont = (Contact)ViewBag.contact;
-                                        String s = cont.ToString();
-                                        string[] arrcontactvaluu = s.Split(',');
-                                        for (int i = 0; i < arrcontactvaluu.Length; i++)
+                            <select multiple class="form-control select2 ContactIds" id="ContactIds" name="ContactIdss">
+                                @{
+                                    List<string> attrName = (List<string>)(ViewBag.attrName);
+                                    Contact cont = (Contact)ViewBag.contact;
+                                    String s = cont.ToString();
+                                    string[] arrcontactvaluu = s.Split(',');
+                                    for (int i = 0; i < arrcontactvaluu.Length; i++)
+                                    {
+
+                                        var sel = "";
+                                        if (@Model != null)
                                         {
-
-                                            var sel = "";
-                                            if (@Model != null)
+                                            if (@Model.ContactIds != null)
                                             {
-                                                if (@Model.ContactIds != null)
+                                                string[] arr = Model.ContactIds.Split(',');
+                                                foreach (string c in (arr))
                                                 {
-                                                    string[] arr = Model.ContactIds.Split(',');
-                                                    foreach (string c in (arr))
-                                                    {
 
-                                                        if (c.Trim() == @attrName[i].Trim())
-                                                        { sel = "selected"; }
+                                                    if (c.Trim() == @attrName[i].Trim())
+                                                    { sel = "selected"; }
 
-                                                    }
                                                 }
                                             }
-                                            <option value="@attrName[i]" @sel>@attrName[i]</option>
                                         }
+                                        <option value="@attrName[i]" @sel>@attrName[i]</option>
                                     }
-                                </select>
+                                }
+                            </select>
                         </div>
-                        <div class="col-xs-5">
-                                <button type="submit" class="btn btn-sm btn-primary pull-right"> Publish </button>
-                                <input type="hidden" name="Id" value="" />
-                            </div>
-                        </div>
-                       
-                        }
 
                     </div>
+                    <br />
+                    <div class="col-xs-5">
+                        <button type="submit" class="btn btn-sm btn-primary pull-right"> Publish </button>
+                        <input type="hidden" name="Id" value="" />
+                    </div>
 
-                </div>
+                }
+
+            </div>
+
+        </div>
 
     </div>
 
