@@ -219,6 +219,9 @@
     <Compile Include="Model\Subscription.cs">
       <DependentUpon>LMJModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\sysdiagram.cs">
+      <DependentUpon>LMJModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Tag.cs">
       <DependentUpon>LMJModel.tt</DependentUpon>
     </Compile>
@@ -243,11 +246,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
     <EntityDeploy Include="Model\LMJModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LMJModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="App.Config" />
     <None Include="Model\LMJModel.edmx.diagram">
       <DependentUpon>LMJModel.edmx</DependentUpon>
     </None>
@@ -256,6 +259,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\LMJModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

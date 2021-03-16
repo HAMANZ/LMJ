@@ -34,37 +34,118 @@
         background-color: #fff !important;
         border-color: #AD0202;
     }
-    .sorting_1 {
-        color:#fff;
-        
-    }
+
+  /*  .sorting_1 {
+        color: #fff;
+    }*/
 </style>
 
 
-    
-    
-<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/rowreorder/1.2.7/css/rowReorder.dataTables.min.css" rel="stylesheet">
+
+
+<link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<link href="~/Scripts/cms/rowReorder.dataTables.min.css" rel="stylesheet">
 
 
 <div class="tab-pane" id="tab2">
     <br />
     <br />
     <br />
-    
+
+
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Seq.</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2</td>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>Edinburgh</td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>2011/07/25</td>
+                <td>$170,750</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Ashton Cox</td>
+                <td>Junior Technical Author</td>
+                <td>San Francisco</td>
+                <td>2009/01/12</td>
+                <td>$86,000</td>
+            </tr>
+        </tbody>
+    </table>
+
+
     <table id="dtt-files" class="display" style="width:100%">
         <thead>
             <tr>
-                <th></th>
+                <th>Seq</th>
                 <th>Type</th>
                 <th>Upload File</th>
                 <th>Caption</th>
+                <th>Captionq</th>
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody class="ttbody">
-
         <tbody>
+            <tr>
+                <td>2</td>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>Edinburgh</td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>2011/07/25</td>
+                <td>$170,750</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Ashton Cox</td>
+                <td>Junior Technical Author</td>
+                <td>San Francisco</td>
+                <td>2009/01/12</td>
+                <td>$86,000</td>
+            </tr>
+            <tr>
+                <td>41</td>
+                <td>Cedric Kelly</td>
+                <td>Senior Javascript Developer</td>
+                <td>Edinburgh</td>
+                <td>2012/03/29</td>
+                <td>$433,060</td>
+            </tr>
+            <tr>
+                <td>55</td>
+                <td>Airi Satou</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>2008/11/28</td>
+                <td>$162,700</td>
+            </tr>
+        </tbody>
 
     </table>
 
@@ -100,20 +181,31 @@
 
 
 
+
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<script src="~/Scripts/cms/libs/jquery-3.5.1.js"></script>
+<script src="~/Scripts/cms/libs/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/cms/libs/dataTables.rowReorder.min.js"></script>
 
 <script type="text/javascript">
     var count = 0;
-    $(document).ready(function () {
-         table = $('#dtt-files').DataTable({
-             rowReorder: true,
+
+
+    $("document").ready(function () {
+        table = $('#dtt-files').DataTable({
+            rowReorder: true,
         });
 
-        $("#add_submission_files").click(function () {
-           
-           
+        var table = $('#example').DataTable({
+            rowReorder: true
+        });
+
+        $("#add_submissionkkkkk_files").click(function () {
+
+
             count = count + 1;
             if (count % 2 == 0)
                 var cls = "even";
@@ -126,22 +218,22 @@
             select += '<option value="3">Table</option>';
             select += ' <option value="4">CopyRight</option> </select></div></td>';
             var File = '<td><div class="form-group"><input class="form-control input-md FileName" name="FilesToUpload" type="file"></div></td>';
-            var Order = '<td><div class="form-group"><input class="form-control input-md Order" name="Order" type="text" value="' + 1 + '"></div></td>';
+            var Order = '<td><div class="form-group"><input class="form-control input-md" name="Order" type="text" value="' + count + '"></div></td>';
             var Caption = '<td><div class="form-group"><input class="form-control input-md Caption"placeholder="Caption" name="Caption" type="text"></div></td>';
             var deleteaction = '<td><button name="delete" class="btn btn-sm btn-danger fa fa-trash-o delete-row" data-row-id="Id" > Delete</button></td>';
-            var d = '<td class="sorting_1">' + count +'</td>';
+            var d = '<td class="sorting_1">' + count + '</td>';
             //$("#dtt-files .ttbody").append("<tr role='row' class='" + cls +"'>" + d + select + File + Caption + deleteaction + "</tr>");
 
             table.row.add([
-                count,
+                d,
                 select,
                 File,
                 Caption,
                 deleteaction]
             ).draw().node();
 
-    
-    });
+
+        });
 
         $('#dtt-files').on('click', '.delete-row', function () {
             $(this).closest('tr').addClass("selected");

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\LENOVO\NewGit\Anz.LMJ\Anz.LMJ.DAL\Model\LMJModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\huda\Desktop\Anzimaty\Anz.LMJ\LMJ\Anz.LMJ\Anz.LMJ.DAL\Model\LMJModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

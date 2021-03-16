@@ -28,7 +28,7 @@
     <div id="main" role="main">
         <div id="content">
             <div class="row">
-                @using (Html.BeginForm("AddNewsletter", "submission", FormMethod.Post, new { @class = "AddSubmission", enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("AddNewsletter", "Management", FormMethod.Post, new { @class = "AddNewsletter", enctype = "multipart/form-data" }))
                 {<div class="row">
                         <div class="col-xs-3 col-sm-2 col-lg-1">
                             <label class="col-sm-12 control-label">

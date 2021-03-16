@@ -798,8 +798,8 @@
     <Content Include="Views\Submission\_PartialSubmissionDetailGalleysDataTable.cshtml" />
     <Content Include="Views\Submission\TimeLine.cshtml" />
     <Content Include="Views\Submission\_PartialModelMetadata.cshtml" />
-    <Content Include="Views\Submission\Newsletters.cshtml" />
-    <Content Include="Views\Submission\NewsletterForm.cshtml" />
+    <Content Include="Views\Management\Newsletters.cshtml" />
+    <Content Include="Views\Management\NewsletterForm.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Submission\_PartialSubmissionUploadFiles.cshtml" />
     <Content Include="Views\Submission\_PartialSubmistionFormTab3.cshtml" />
@@ -861,7 +861,8 @@
     <Content Include="Views\Admin\ViewReview.cshtml" />
     <Content Include="Views\Admin\GetReview.cshtml" />
     <Content Include="Views\Home\FooterPage.cshtml" />
-    <Content Include="Views\Submission\GetNewsletter.cshtml" />
+    <Content Include="Views\Management\GetNewsletter.cshtml" />
+    <Content Include="Views\Management\MainMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

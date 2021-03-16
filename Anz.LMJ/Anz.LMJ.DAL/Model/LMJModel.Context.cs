@@ -65,6 +65,7 @@ namespace Anz.LMJ.DAL.Model
         public virtual DbSet<Submission> Submissions { get; set; }
         public virtual DbSet<SubmissionStatu> SubmissionStatus { get; set; }
         public virtual DbSet<Subscription> Subscriptions { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<UserResponsibleInProcess> UserResponsibleInProcesses { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }

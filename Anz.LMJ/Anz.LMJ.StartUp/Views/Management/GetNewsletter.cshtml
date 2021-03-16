@@ -26,7 +26,7 @@
     <div id="main" role="main">
         <div id="content">
             <div class="row">
-                @using (Html.BeginForm("EditNewsletter", "submission", FormMethod.Post, new { @class = "AddSubmission", enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("EditNewsletter", "Management", FormMethod.Post, new { @class = "EditNewsletter", enctype = "multipart/form-data" }))
                 {<div class="row">
                         <div class="col-xs-3 col-sm-2 col-lg-1">
                             <label class="col-sm-12 control-label">
@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
                             <div class="form-group">
-                                <input type="date" class="form-control" name="PublishDate" value="@Model.Name" />
+                                <input type="date" class="form-control" id="dateinput" name="PublishDate" value="@string.Format("{0:yyyy-MM-dd}", @Model.PublishDate)" />
                             </div>
                         </div>
                     </div>

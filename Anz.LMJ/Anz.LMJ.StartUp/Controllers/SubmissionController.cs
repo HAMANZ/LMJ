@@ -34,8 +34,8 @@ namespace Anz.LMJ.StartUp.Controllers
             ManagementService _ManagementService = new ManagementService();
             #endregion
 
-            if (Session["userId"] == null)
-                return RedirectToAction("LoginForm", "Home");
+                if (Session["userId"] == null)
+                    return RedirectToAction("Index", "Admin");
 
             long userId = long.Parse(Session["userId"].ToString());
             
@@ -477,184 +477,6 @@ namespace Anz.LMJ.StartUp.Controllers
 
 
 
-        public JsonResult NewsLetter()
-        {
-            #region Logics
-            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
-            #endregion
-
-            try
-            {
-
-                DynamicResponse<List<NewsletterLO>> response = new DynamicResponse<List<NewsletterLO>>();
-                response = _SubmissionLogic.GetNewsLetter();
-                return Json(response, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-        }
-
-
-        [CheckUserSession]
-        public ActionResult GetNewsletter(long id)
-        {
-            try
-            {
-
-                #region Logics
-                SubmissionLogic _SubmissionLogic = new SubmissionLogic();
-                #endregion
-
-                if (Session["userId"] == null)
-                    return RedirectToAction("Index", "Admin");
-                DynamicResponse<NewsletterLO> response = new DynamicResponse<NewsletterLO>();
-                response = _SubmissionLogic.GetNewsLetter(id);
-                if (response.HttpStatusCode != HttpStatusCode.OK)
-                {
-                    return RedirectToAction("Index", "Oops");
-                }
-                return View(response.Data);
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction("Index", "Oops");
-            }
-           
-        }
-
-        [CheckUserSession]
-        public ActionResult Newsletters()
-        {
-            
-
-            #region Logics
-            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
-            #endregion
-
-            if (Session["userId"] == null)
-                return RedirectToAction("Index", "Admin");
-            try
-            {
-                DynamicResponse<List<NewsletterLO>> response = new DynamicResponse<List<NewsletterLO>>();
-                response = _SubmissionLogic.GetNewsLetter();
-                if (response.HttpStatusCode != HttpStatusCode.OK)
-                {
-                    return RedirectToAction("Index", "Oops");
-                }
-                
-                return View(response.Data);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
-
-        
-        [CheckUserSession]
-        public ActionResult AddNewsletterForm()
-        {
-            try
-            {
-                return View("NewsletterForm");
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
-
-        [CheckUserSession]
-        public ActionResult AddNewsletter(NewsletterLO toAdd)
-        {
-            #region Logics
-            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
-            #endregion
-            DynamicResponse<NewsletterLO> response = new DynamicResponse<NewsletterLO>();
-           
-            if (Session["userId"] == null)
-                 return Json("session-null");
-
-            long userId = long.Parse(Session["userId"].ToString());
-            try
-            {
-                string path_images = Server.MapPath("~/NewsletterImages/");
-                if (!Directory.Exists(path_images))
-                {
-                    Directory.CreateDirectory(path_images);
-                }
-
-                if (toAdd.PostedFileImage != null)
-                {
-                    string extension = Path.GetExtension(toAdd.PostedFileImage.FileName);
-                    string Name = Path.GetFileNameWithoutExtension(toAdd.PostedFileImage.FileName);
-                    string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
-                    toAdd.PostedFileImage.SaveAs(path_images + newName);
-                    toAdd.Image = newName;
-                }
-              
-                response = _SubmissionLogic.AddNewsletter(toAdd, userId);
-                if (response.HttpStatusCode != HttpStatusCode.OK) {
-                    return RedirectToAction("Index", "Oops");
-                }
-                return RedirectToAction("Newsletters");
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction("Index", "Oops");
-            }
-            
-        }
-
-        public ActionResult EditNewsletter(NewsletterLO toEdit)
-        {
-            #region Logics
-            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
-            #endregion
-            DynamicResponse<long> response = new DynamicResponse<long>();
-
-            if (Session["userId"] == null)
-                return RedirectToAction("Index", "Admin");
-
-            long userId = long.Parse(Session["userId"].ToString());
-          
-            try
-            {
-                string path_images = Server.MapPath("~/NewsletterImages/");
-                if (!Directory.Exists(path_images))
-                {
-                    Directory.CreateDirectory(path_images);
-                }
-
-                if (toEdit.PostedFileImage != null)
-                {
-                    string extension = Path.GetExtension(toEdit.PostedFileImage.FileName);
-                    string Name = Path.GetFileNameWithoutExtension(toEdit.PostedFileImage.FileName);
-                    string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
-                    toEdit.PostedFileImage.SaveAs(path_images + newName);
-                    toEdit.Image = newName;
-                }
-                toEdit.UserId = userId;
-                response = _SubmissionLogic.EditNewsletter(toEdit);
-                if (response.HttpStatusCode != HttpStatusCode.OK)
-                {
-                    return RedirectToAction("Index", "Oops");
-                }
-                return RedirectToAction("Newsletters");
-            }
-            catch (Exception ex)
-            {
-
-                return RedirectToAction("Index", "Oops");
-            }
-
-        }
 
         public JsonResult AddSubmissionStatu(long submissionid)
         {
@@ -681,6 +503,7 @@ namespace Anz.LMJ.StartUp.Controllers
         }
 
 
+        
 
 
     }

@@ -9,4 +9,7 @@
   </TopLevelMenu>
 
 
+  <TopLevelMenu name="Main" link="/Management/MainMenu/" icon="fa fa-lg fa-fw fa-book" class="main">
+  </TopLevelMenu>
+
 </root>

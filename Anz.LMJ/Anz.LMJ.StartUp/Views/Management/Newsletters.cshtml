@@ -1,0 +1,141 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.Submission
+@model List<NewsletterLO>
+
+
+@{
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .jarviswidget-editbox {
+            display: block;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" role="main">
+
+
+        <div id="ribbon">
+
+            <span class="ribbon-button-alignment">
+                <span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh" rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
+                    <i class="fa fa-refresh"></i>
+                </span>
+            </span>
+
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li>Home</li>
+                <li>Newsletter</li>
+            </ol>
+
+        </div>
+        <div id="content">
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                    <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-home"></i> Newsletter <span></span></h1>
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+
+                </div>
+            </div>
+            <!-- widget grid -->
+            <section id="widget-grid" class="">
+
+                <!-- row -->
+                <div class="row" style="margin: 0 !important;">
+                    <div class="jarviswidget-editbox jarviswidget-color-darken" data-widget-colorbutton="false"
+                         data-widget-editbutton="false"
+                         data-widget-togglebutton="false"
+                         data-widget-deletebutton="false"
+                         data-widget-fullscreenbutton="false"
+                         data-widget-custombutton="false"
+                         data-widget-collapsed="false"
+                         data-widget-sortable="false">
+                        <header>
+                            <div class="jarviswidget-ctrls">
+                                <a class="getCopyEditors"  href="/Management/AddNewsletterForm" class="createnews">Create New</a>
+                            </div>
+                            <h2>Newlettes</h2>
+                        </header>
+                        <div>
+                            <div class="widget-body no-padding">
+                                <table class="table table-striped table-bordered table-hover" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th> Name </th>
+                                            @*<th>Number</th>*@
+                                            <th>ISSN</th>
+                                            <th> EISSN</th>
+                                            <th> Volume</th>
+                                            <th>Cover Image</th>
+                                            <th>PublishDate</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @{ int counter = 1;}
+                                        <!-- content goes here -->
+                                        @if (Model != null)
+                                        {
+                                            foreach (NewsletterLO item in Model)
+                                            {
+                                        <tr>
+                                            <td>@counter<input type="hidden" id="id" value="@item.Id" /></td>
+                                            <td class="newsname">@item.Name</td>
+                                            @*<td class="newsnb">@item.Number</td>*@
+                                            <td class="newsissn">@item.Issn</td>
+                                            <td class="newseissn">@item.Eissn</td>
+                                            <td class="newsvol">@item.Volume</td>
+                                            <td class="newsimg">
+                                                <div class="smart-timeline-content">
+                                                    <ul class="list-inline">
+                                                        <li>
+                                                            <input type="hidden" name="newsimg" id="newsimg" value="@item.Image" />
+                                                            <img src="~/Images/NewsletterImages/@item.Image" alt="img" width="150" id="blah">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td class="newsdate">@item.PublishDate.ToString("M/d/yyyy")</td>
+
+                                            <td>
+                                                <a href="/Management/GetNewsletter/@item.Id" class="fa fa-pencil btn btn-sm btn-primary"> Edit</a>
+                                            </td>
+                                            @{ counter++;}
+                                        </tr>
+                                            }
+                                        }
+                                        <!-- end content -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+
+</body>
+</html>
+
+
+<script>
+
+    
+   
+
+</script>
