@@ -13,6 +13,23 @@
         border: 1px solid gray;
         -webkit-appearance: textfield;
     }
+    .title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    input {
+        width: 50%;
+    }
+    .DisplayImagePart {
+        float: left;
+        width: 50%;
+        display: inline-block;
+    }
+        .DisplayImagePart img {
+            width: 50%;
+        }
+    
+
 </style>
 <div id="main" role="main">
     <div id="ribbon" style="display: block;">
@@ -36,8 +53,8 @@
                                 <li>
 
                                     <div class="smart-timeline-content">
-                                        <p>
-                                            <strong>Title</strong>
+                                        <p class="title">
+                                            Title
 
                                         </p>
                                         <p>
@@ -50,8 +67,8 @@
                                 <li>
 
                                     <div class="smart-timeline-content">
-                                        <p>
-                                            <strong>Text</strong>
+                                        <p class="title">
+                                           Text
 
                                         </p>
                                         <p>
@@ -65,16 +82,23 @@
 
                                 <li>
                                     <div class="smart-timeline-content">
-                                        <p>
-                                            <a href="javascript:void(0);"><strong>ObjImgOne</strong></a>
+                                        <p class="title">
+                                           BannerImage
+
                                         </p>
 
                                         <ul class="list-inline">
                                             <li>
                                                 <input type="hidden" name="Img" id="BackGroundImage" value="@Model.Img" />
-                                                <img src="~/Images/@Model.Img" alt="img" width="150" id="blah">
+                                                <div class="insertfile">
+                                                    <input type="file" name="PostedFileImg" id="imgInp" class="custom-file-input" style="width:50%; required">
+                                                </div>
                                                 <br />
-                                                <input type="file" name="PostedFileImg" id="imgInp" class="custom-file-input" style="width:150px; required">
+                                                <div class="DisplayImagePart">
+                                                    <img src="~/Images/@Model.Img" alt="img" id="blah">
+
+                                                </div>
+
 
                                             </li>
                                         </ul>

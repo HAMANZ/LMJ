@@ -375,3 +375,5 @@ Anz.LMJ/Anz.LMJ.DAL/Model/LMJModel.edmx
 Anz.LMJ/Anz.LMJ.DAL/Model/LMJModel.Designer.cs
 Anz.LMJ/Anz.LMJ.DAL/Model/LMJModel.Context.cs
 Anz.LMJ/Anz.LMJ.DAL/App.Config
+
+Anz.LMJ/Anz.LMJ.StartUp/Web.config
