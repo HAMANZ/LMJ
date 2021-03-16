@@ -104,7 +104,11 @@ namespace Anz.LMJ.BLO.LogicObjects.Submission
         public string ConflictsOfInterests { get; set; }
         public string Significance { get; set; }
         public string Photo { get; set; }
+        public string Banner { get; set; }
         public HttpPostedFileBase CoverPhoto { get; set; }
+
+        public HttpPostedFileBase BannerImage { get; set; }
+        
         public DateTime SentDate { get; set; }
        
 

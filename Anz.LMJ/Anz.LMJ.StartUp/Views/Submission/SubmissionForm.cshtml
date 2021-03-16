@@ -3,7 +3,7 @@
     ViewBag.Title = "SubmissionForm";
     Layout = "~/Views/Shared/_ManagementLayout.cshtml";
 }
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/Scripts/cms/libs/jquery-3.5.1.js"></script>
 <script src="~/Scripts/cms/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 <script src="~/Scripts/cms/plugin/fuelux/wizard/wizard.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -117,6 +117,9 @@
         </ol>
     </div>
     <section id="widget-grid-customized" class="">
+
+
+
         <div class="row">
             <article class="submission-form col-xs-8 col-sm-9 col-md-8 col-lg-8">
                 <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
@@ -157,9 +160,9 @@
 
                                             @Html.Partial("_PartialSubmistionFormTab3")
 
-                                            @Html.Partial("_PartialSubmistionFormTab4")
+                                            @*@Html.Partial("_PartialSubmistionFormTab4")
 
-                                            @Html.Partial("_PartialSubmistionFormTab5")
+                                            @Html.Partial("_PartialSubmistionFormTab5")*@
 
                                             <div class="form-actions">
                                                 <div class="row">
@@ -212,13 +215,6 @@
 
 
 
-
-
-
-
-
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-
 <script>
 
     $("document").ready(function () {
@@ -250,7 +246,8 @@
         var i = 1;
 
        
-
+        
+			pageSetUp();
      
                 //Bootstrap Wizard Validations
 
@@ -277,7 +274,7 @@
                 SubTitle: {
                     required: true
                 },
-                TitlePrefix: {
+                Prefix: {
                     required: true
                 },
                 SectionId: {
@@ -417,7 +414,8 @@
                 $('#bootstrap-wizard-1').bootstrapWizard({
                     'tabClass': 'form-wizard',
                     'onNext': function (tab, navigation, index) {
-                        var $valid = $("form").valid();
+                        var fields = $("#wizard-1").find('#tab' + index).find(":input");
+                        var $valid = fields.valid();
                         if (index == 2) {
                             var $isempty = false;
                             $('#dtt-files tr').each(function () {
@@ -428,7 +426,9 @@
                                     $isempty = false;
                                 }
                             });
-                            if ($isempty) { alert("Please Add Submission File"); }}
+                            if ($isempty) {
+                                alert("Please Add Submission File"); $validator.focusInvalid();
+                                return false;}}
                         if (index == 4) {
                             var $isempty = false;
                             $('#dtt-files tr').each(function () {
@@ -439,10 +439,13 @@
                                     $isempty = false;
                                 }
                             });
-                            if ($isempty) { alert("Please Add Authors"); }
+                            if ($isempty) {
+                                alert("Please Add Authors"); $validator.focusInvalid();
+                                return false; }
                         }
                         if (!$valid) {
                             $validator.focusInvalid();
+                            $("#wizard-1").submit();
                             return false;
                         } else {
                             //$('textarea[name ="SubmissionFileEditor"]').each(function (idx, elem) {

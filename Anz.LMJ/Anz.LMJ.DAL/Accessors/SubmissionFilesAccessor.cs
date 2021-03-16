@@ -188,6 +188,26 @@ namespace Anz.LMJ.DAL.Accessors
             }
 
         }
+
+
+        public List<SubmissionFile> Edit(long submissionid)
+        {
+            try
+            {
+                using (LMJEntities db = new LMJEntities())
+                {
+                    List<SubmissionFile> files = db.SubmissionFiles.Where(e => e.SubmissionId == submissionid).ToList();
+                    files.ForEach(a => a.isDeleted = true);
+                    db.SaveChanges();
+                    return files;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
         #endregion
     }
 }

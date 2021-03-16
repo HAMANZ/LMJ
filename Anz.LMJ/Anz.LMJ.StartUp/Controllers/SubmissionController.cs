@@ -34,8 +34,8 @@ namespace Anz.LMJ.StartUp.Controllers
             ManagementService _ManagementService = new ManagementService();
             #endregion
 
-                if (Session["userId"] == null)
-                    return RedirectToAction("Index", "Admin");
+            if (Session["userId"] == null)
+                return RedirectToAction("Index", "Admin");
 
             long userId = long.Parse(Session["userId"].ToString());
             
@@ -72,64 +72,138 @@ namespace Anz.LMJ.StartUp.Controllers
             }
         }
 
+        //[HttpPost]
+        //public ActionResult AddSubmission(SubmissionLO submission)
+        //{
+        //    #region Logics 
+        //    SubmissionLogic _SubmissionLogic = new SubmissionLogic();
+        //    #endregion
+        //    DynamicResponse<SubmissionLO> response = new DynamicResponse<SubmissionLO>();
+
+        //    if (Session["userId"] == null)
+        //        return RedirectToAction("Index", "Admin");
+
+        //    long userId = long.Parse(Session["userId"].ToString());
+        //    submission.UserId = userId;
+        //    try
+        //    {
+
+
+        //        if (submission.FilesToUpload.Length != 0) {
+
+        //            string path = Server.MapPath("~/files/");
+        //            if (!Directory.Exists(path))
+        //            {
+        //                Directory.CreateDirectory(path);
+        //            }
+        //            for (int i = 0; i < submission.FilesToUpload.Length; i++)
+        //            {
+        //                if (submission.FilesToUpload[i] != null)
+        //                {
+        //                    string extension = Path.GetExtension(submission.FilesToUpload[i].FileName);
+        //                    string Name = Path.GetFileNameWithoutExtension(submission.FilesToUpload[i].FileName);
+        //                    string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+        //                    submission.FilesToUpload[i].SaveAs(path + newName);
+        //                }
+
+        //            }
+        //        }
+
+        //            if (submission.CoverPhoto != null)
+        //            {
+        //            string path_images = Server.MapPath("~/Images/");
+        //            if (!Directory.Exists(path_images))
+        //            {
+        //                Directory.CreateDirectory(path_images);
+        //            }
+        //            string extension = Path.GetExtension(submission.CoverPhoto.FileName);
+        //                string Name = Path.GetFileNameWithoutExtension(submission.CoverPhoto.FileName);
+        //                string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+        //                submission.CoverPhoto.SaveAs(path_images + newName);
+        //            }
+
+
+        //        response = _SubmissionLogic.AddSubmission(submission);
+
+        //        if (response.HttpStatusCode != HttpStatusCode.OK)
+        //        {
+        //            return RedirectToAction("Index", "Oops");
+        //        }
+
+        //        return RedirectToAction("Index", "Management", userId);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return RedirectToAction("Index", "Oops");
+        //    }
+
+        //}
+
+
         [HttpPost]
-        public ActionResult AddSubmission(SubmissionLO submission)
+        public JsonResult AddSubmission(SubmissionLO submission)
         {
             #region Logics 
             SubmissionLogic _SubmissionLogic = new SubmissionLogic();
             #endregion
             DynamicResponse<SubmissionLO> response = new DynamicResponse<SubmissionLO>();
 
-            
+            if (Session["userId"] == null)
+                return Json("null");
+
             long userId = long.Parse(Session["userId"].ToString());
             submission.UserId = userId;
             try
             {
 
-                string path = Server.MapPath("~/files/");
-                if (!Directory.Exists(path))
+
+                if (submission.FilesToUpload.Length != 0)
                 {
-                    Directory.CreateDirectory(path);
-                }
 
-                for (int i=0; i <submission.FilesToUpload.Length; i++) {
-                    if (submission.FilesToUpload[i] != null)
+                    string path = Server.MapPath("~/files/");
+                    if (!Directory.Exists(path))
                     {
-                        string extension = Path.GetExtension(submission.FilesToUpload[i].FileName);
-                        string Name = Path.GetFileNameWithoutExtension(submission.FilesToUpload[i].FileName);
-                        string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
-                        submission.FilesToUpload[i].SaveAs(path + newName);
+                        Directory.CreateDirectory(path);
                     }
+                    for (int i = 0; i < submission.FilesToUpload.Length; i++)
+                    {
+                        if (submission.FilesToUpload[i] != null)
+                        {
+                            string extension = Path.GetExtension(submission.FilesToUpload[i].FileName);
+                            string Name = Path.GetFileNameWithoutExtension(submission.FilesToUpload[i].FileName);
+                            string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+                            submission.FilesToUpload[i].SaveAs(path + newName);
+                        }
 
+                    }
                 }
 
-                string path_images = Server.MapPath("~/Images/");
-                if (!Directory.Exists(path_images))
+                if (submission.CoverPhoto != null)
                 {
-                    Directory.CreateDirectory(path_images);
-                }
-
-                    if (submission.CoverPhoto != null)
+                    string path_images = Server.MapPath("~/Images/");
+                    if (!Directory.Exists(path_images))
                     {
-                        string extension = Path.GetExtension(submission.CoverPhoto.FileName);
-                        string Name = Path.GetFileNameWithoutExtension(submission.CoverPhoto.FileName);
-                        string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
-                        submission.CoverPhoto.SaveAs(path_images + newName);
+                        Directory.CreateDirectory(path_images);
                     }
+                    string extension = Path.GetExtension(submission.CoverPhoto.FileName);
+                    string Name = Path.GetFileNameWithoutExtension(submission.CoverPhoto.FileName);
+                    string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+                    submission.CoverPhoto.SaveAs(path_images + newName);
+                }
 
 
                 response = _SubmissionLogic.AddSubmission(submission);
 
                 if (response.HttpStatusCode != HttpStatusCode.OK)
                 {
-                    return RedirectToAction("Index", "Oops");
+                    return Json("error");
                 }
 
-                return RedirectToAction("Index", "Management", userId);
+                return Json(response, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index", "Oops");
+                return Json("error");
             }
 
         }

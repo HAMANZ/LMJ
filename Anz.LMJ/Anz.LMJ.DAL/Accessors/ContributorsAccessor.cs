@@ -102,6 +102,28 @@ namespace Anz.LMJ.DAL.Accessors
             }
         }
 
+
+        #region edit
+        public List<Contributor> Edit(long submissionid)
+        {
+            try
+            {
+                using (LMJEntities db = new LMJEntities())
+                {
+                    List<Contributor> contributors = db.Contributors.Where(e => e.SubmissionId == submissionid).ToList();
+                    contributors.ForEach(a => a.isDeleted = true);
+                    db.SaveChanges();
+                    return contributors;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+        #endregion
+
     }
 
 

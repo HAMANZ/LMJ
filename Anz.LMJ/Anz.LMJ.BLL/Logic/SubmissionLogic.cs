@@ -2333,18 +2333,26 @@ namespace Anz.LMJ.BLL.Logic
             _Submission.QuestionId = submission.QuestionId;
             _Submission.IssueId = null;
             _Submission.isDeleted = false;
+            _Submission.IsEditorsPick = false;
+            _Submission.IsTopReader = false;
             _Submission.SysDate = DateTime.Now;
             _Submission.GUID = null;
             _Submission.LibraryId = null;
             _Submission.MiniDescription = submission.MiniDescription;
+            _Submission.Significance = submission.Significance;
+            _Submission.SourcesOfFunding = submission.SourcesOfFunding;
+            _Submission.ConflictsOfInterests = submission.ConflictsOfInterests;
             _Submission.CoverPhoto= submission.CoverPhoto.FileName;
-            _Submission.isDraft = submission.isDraft;
-            _Submission.isDraft = submission.isApproved;
+            _Submission.isDraft = true;
+            _Submission.isApproved = submission.isApproved;
+            _Submission.BannerImage = submission.BannerImage.FileName;
 
             try
             {
-
+                if (submission.Id == 0) 
                 _Submission = _SubmissionAccessor.Add(_Submission);
+                else
+                _Submission = _SubmissionAccessor.Edit(_Submission);
 
                 if (_Submission == null)
                 {
@@ -2354,124 +2362,149 @@ namespace Anz.LMJ.BLL.Logic
                     return response;
                 }
 
-                for (int i = 0; i < submission.ArticleComponentId.Count(); i++)
-                {
-                    _SubmissionFile = new SubmissionFile();
-                    _SubmissionFile.SubmissionId = _Submission.Id;
-                    _SubmissionFile.FileName = submission.FilesToUpload[i].FileName;
-                    _SubmissionFile.Caption = submission.Caption[i];
-                    _SubmissionFile.isDeleted = false;
-                    _SubmissionFile.UserId = _Submission.UserId;
-                    _SubmissionFile.ComponentId = long.Parse(submission.ArticleComponentId[i]);
-                    _SubmissionFile.isSubmission = true;
-                    _SubmissionFile.isAcceptedforCopyEditing = false;
-                    _SubmissionFile.isAcceptedforProduction = false;
-                    _SubmissionFile.isCopyedited = false;
-                    _SubmissionFile.isRevision = false;
-                    _SubmissionFile.isAcceptedforReview = false;
-                    _SubmissionFile.SysDate = DateTime.Now;
-                    _SubmissionFiles.Add(_SubmissionFile);
-                }
-                _SubmissionFiles = _SubmissionFilesAccessor.Add(_SubmissionFiles);
-
-                if (_SubmissionFiles == null || _SubmissionFiles.Count == 0)
-                {
-                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Check the submission files.";
-                    response.ServerMessage = "submission files can't added";
-                    return response;
-                }
-
-
-                for (int i = 0; i < submission.Keywords.Count(); i++)
-                {
-                    _SubmissionKeyword = new SubmissionKeyword();
-                    _SubmissionKeyword.SubmissionId = _Submission.Id;
-                    _SubmissionKeyword.keywords = submission.Keywords[i];
-                    _SubmissionKeyword.SysDate = DateTime.Now;
-                    _SubmissionKeyword.isDeleted = false;
-
-                    _SubmissionKeywords.Add(_SubmissionKeyword);
-
-                }
-                _SubmissionKeywords = _SubmissionKeywordsAccessor.Add(_SubmissionKeywords);
-
-
-                if (_SubmissionKeywords == null || _SubmissionKeywords.Count == 0)
-                {
-                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Check the Keywords.";
-                    response.ServerMessage = "Keywords can't added.";
-                    return response;
-                }
-
-
-                User user = new User();
-                for (int i = 0; i < submission.ContributorFname.Count(); i++)
-                {
-                    
-                    user = new User();
-                    _Contributor = new Contributor();
-                    user = _UserAccessor.Get(submission.ContributorEmail[i]);
-                    if (user == null)
+                if (submission.ArticleComponentId.Count() != 0) {
+                    for (int i = 0; i < submission.ArticleComponentId.Count(); i++)
                     {
-                        _Contributor.UserId = null;
-                        _Contributor.SubmissionId = _Submission.Id;
-                        _Contributor.Fname = submission.ContributorFname[i];
-                        _Contributor.Mname = submission.ContributoMname[i];
-                        _Contributor.Lname = submission.ContributorFname[i];
-                        _Contributor.Email = submission.ContributorEmail[i];
-                        _Contributor.Affiliation = submission.ContributorAffilation[i];
-                        _Contributor.Institution = submission.Institution[i];
-                        _Contributor.Degrees = submission.Degrees[i];
-                        _Contributor.isCorresponding = submission.isCorresponding[i];
-                        _Contributor.CityId = submission.City[i];
-                        _Contributor.CountryId = submission.Country[i];
-                        _Contributor.DepartmentId = submission.Department[i];
-                        _Contributor.ORCID = submission.ORCID[i];
-                        _Contributor.Order = i;
-                        _Contributor.SysDate = DateTime.Now;
-                        _Contributor.isDeleted = false;
+                        _SubmissionFile = new SubmissionFile();
+                        _SubmissionFile.SubmissionId = _Submission.Id;
+                        _SubmissionFile.FileName = submission.FilesToUpload[i].FileName;
+                        _SubmissionFile.Caption = submission.Caption[i];
+                        _SubmissionFile.isDeleted = false;
+                        _SubmissionFile.UserId = _Submission.UserId;
+                        _SubmissionFile.ComponentId = long.Parse(submission.ArticleComponentId[i]);
+                        _SubmissionFile.isSubmission = true;
+                        _SubmissionFile.isAcceptedforCopyEditing = false;
+                        _SubmissionFile.isAcceptedforProduction = false;
+                        _SubmissionFile.isCopyedited = false;
+                        _SubmissionFile.isRevision = false;
+                        _SubmissionFile.isAcceptedforReview = false;
+                        _SubmissionFile.SysDate = DateTime.Now;
+                        _SubmissionFiles.Add(_SubmissionFile);
                     }
-                    else
+
+                    _SubmissionFiles = _SubmissionFilesAccessor.Edit(_Submission.Id);
+                    if (_SubmissionFiles == null || _SubmissionFiles.Count == 0)
                     {
-                        _Contributor.UserId = submission.UserId;
-                        _Contributor.SubmissionId = _Submission.Id;
-                        _Contributor.Fname = submission.ContributorFname[i];
-                        _Contributor.Mname = submission.ContributoMname[i];
-                        _Contributor.Lname = submission.ContributorFname[i];
-                        _Contributor.Email = submission.ContributorEmail[i];
-                        _Contributor.Affiliation = submission.ContributorAffilation[i];
-                        _Contributor.Institution= submission.Institution[i];
-                        _Contributor.Degrees = submission.Degrees[i];
-                        _Contributor.isCorresponding = submission.isCorresponding[i];
-                        _Contributor.CityId = submission.City[i];
-                        _Contributor.CountryId = submission.City[i];
-                        _Contributor.DepartmentId = submission.City[i];
-                        _Contributor.ORCID = submission.ORCID[i];
-                        _Contributor.Order = i;
-                        _Contributor.SysDate = DateTime.Now;
-                        _Contributor.isDeleted = false;
+                        response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                        response.Message = "Check the submission files.";
+                        response.ServerMessage = "submission files can't deleted";
+                        return response;
                     }
-                    _Contributors.Add(_Contributor);
-                    //todo:add contributor in a list
-
+                    _SubmissionFiles = _SubmissionFilesAccessor.Add(_SubmissionFiles);
+                    if (_SubmissionFiles == null || _SubmissionFiles.Count == 0)
+                    {
+                        response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                        response.Message = "Check the submission files.";
+                        response.ServerMessage = "submission files can't added";
+                        return response;
+                    }
                 }
-                _Contributors = _ContributorsAccessor.Add(_Contributors);
-                //todo: add the contributor list to database
+                if (submission.Keywords.Count() != 0) {
+                    for (int i = 0; i < submission.Keywords.Count(); i++)
+                    {
+                        _SubmissionKeyword = new SubmissionKeyword();
+                        _SubmissionKeyword.SubmissionId = _Submission.Id;
+                        _SubmissionKeyword.keywords = submission.Keywords[i];
+                        _SubmissionKeyword.SysDate = DateTime.Now;
+                        _SubmissionKeyword.isDeleted = false;
 
-                //check the response of the addition of the contibutors
-                if (_Contributors == null || _Contributors.Count == 0)
-                {
-                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Check the contributers.";
-                    response.ServerMessage = "contributers can't added.";
-                    return response;
+                        _SubmissionKeywords.Add(_SubmissionKeyword);
+
+                    }
+                    _SubmissionKeywords = _SubmissionKeywordsAccessor.Edit(_Submission.Id);
+
+                    if (_SubmissionKeywords == null || _SubmissionKeywords.Count == 0)
+                    {
+                        response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                        response.Message = "Check the Keywords.";
+                        response.ServerMessage = "Keywords can't deleted.";
+                        return response;
+                    }
+                    _SubmissionKeywords = _SubmissionKeywordsAccessor.Add(_SubmissionKeywords);
+
+
+                    if (_SubmissionKeywords == null || _SubmissionKeywords.Count == 0)
+                    {
+                        response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                        response.Message = "Check the Keywords.";
+                        response.ServerMessage = "Keywords can't added.";
+                        return response;
+                    }
                 }
 
+                if (submission.ContributorFname.Count() != 0) {
+                    User user = new User();
+                    for (int i = 0; i < submission.ContributorFname.Count(); i++)
+                    {
 
+                        user = new User();
+                        _Contributor = new Contributor();
+                        user = _UserAccessor.Get(submission.ContributorEmail[i]);
+                        if (user == null)
+                        {
+                            _Contributor.UserId = null;
+                            _Contributor.SubmissionId = _Submission.Id;
+                            _Contributor.Fname = submission.ContributorFname[i];
+                            _Contributor.Mname = submission.ContributoMname[i];
+                            _Contributor.Lname = submission.ContributorFname[i];
+                            _Contributor.Email = submission.ContributorEmail[i];
+                            _Contributor.Affiliation = submission.ContributorAffilation[i];
+                            _Contributor.Institution = submission.Institution[i];
+                            _Contributor.Degrees = submission.Degrees[i];
+                            _Contributor.isCorresponding = submission.isCorresponding[i];
+                            _Contributor.CityId = submission.City[i];
+                            _Contributor.CountryId = submission.Country[i];
+                            _Contributor.DepartmentId = submission.Department[i];
+                            _Contributor.ORCID = submission.ORCID[i];
+                            _Contributor.Order = i;
+                            _Contributor.SysDate = DateTime.Now;
+                            _Contributor.isDeleted = false;
+                        }
+                        else
+                        {
+                            _Contributor.UserId = submission.UserId;
+                            _Contributor.SubmissionId = _Submission.Id;
+                            _Contributor.Fname = submission.ContributorFname[i];
+                            _Contributor.Mname = submission.ContributoMname[i];
+                            _Contributor.Lname = submission.ContributorFname[i];
+                            _Contributor.Email = submission.ContributorEmail[i];
+                            _Contributor.Affiliation = submission.ContributorAffilation[i];
+                            _Contributor.Institution = submission.Institution[i];
+                            _Contributor.Degrees = submission.Degrees[i];
+                            _Contributor.isCorresponding = submission.isCorresponding[i];
+                            _Contributor.CityId = submission.City[i];
+                            _Contributor.CountryId = submission.City[i];
+                            _Contributor.DepartmentId = submission.City[i];
+                            _Contributor.ORCID = submission.ORCID[i];
+                            _Contributor.Order = i;
+                            _Contributor.SysDate = DateTime.Now;
+                            _Contributor.isDeleted = false;
+                        }
+                        _Contributors.Add(_Contributor);
+                        //todo:add contributor in a list
 
+                    }
 
+                    _Contributors = _ContributorsAccessor.Edit(_Submission.Id);
+                    if (_Contributors == null || _Contributors.Count == 0)
+                    {
+                        response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                        response.Message = "Check the contributers.";
+                        response.ServerMessage = "contributers can't deleted.";
+                        return response;
+                    }
+                    _Contributors = _ContributorsAccessor.Add(_Contributors);
+                    //todo: add the contributor list to database
+
+                    //check the response of the addition of the contibutors
+                    if (_Contributors == null || _Contributors.Count == 0)
+                    {
+                        response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                        response.Message = "Check the contributers.";
+                        response.ServerMessage = "contributers can't added.";
+                        return response;
+                    }
+                }
 
                 response.HttpStatusCode = HttpStatusCode.OK;
                 response.Data = submission;

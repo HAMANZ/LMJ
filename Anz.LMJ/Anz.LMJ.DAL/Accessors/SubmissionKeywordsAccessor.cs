@@ -49,5 +49,27 @@ namespace Anz.LMJ.DAL.Accessors
         }
         #endregion
 
+
+        #region edit
+        public List<SubmissionKeyword> Edit(long submissionid)
+        {
+            try
+            {
+                using (LMJEntities db = new LMJEntities())
+                {
+                    List<SubmissionKeyword> keywords = db.SubmissionKeywords.Where(e => e.SubmissionId == submissionid).ToList();
+                    keywords.ForEach(a => a.isDeleted = true);
+                    db.SaveChanges();
+                    return keywords;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+        #endregion
+
     }
 }

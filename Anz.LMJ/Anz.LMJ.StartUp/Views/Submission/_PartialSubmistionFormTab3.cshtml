@@ -12,344 +12,205 @@
     <br />
     <div class="data-container">
         <div class="row">
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <div class="form-group">
-                    <label class="col-sm-12 control-label">
-                        <strong>Prefix</strong>
-                    </label>
-                </div>
-            </div>
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <div class="form-group">
-                    <input class="form-control input-md" placeholder="Prefix" name="Prefix" type="text">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <div class="form-group">
-                    <label class="col-sm-12 control-label">
-                        <strong>Title</strong>
-                    </label>
-                </div>
-            </div>
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <div class="form-group">
-                    <textarea class="form-control" name="Title" style="width:100%;"></textarea>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <div class="form-group">
-                    <label class="col-sm-12 control-label">
-                        <strong>Short Title</strong>
-                    </label>
-                </div>
-            </div>
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <div class="form-group">
-                    <input class="form-control input-md" placeholder="Subtitle" type="text" name="SubTitle" id="subtitle">
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <div class="form-group">
-                    <label class="col-sm-12 control-label">
-                        <strong>Cover Photo</strong>
-                    </label>
-                </div>
-            </div>
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <div class="form-group">
-                    <input class="form-control input-md CoverPhoto" name="CoverPhoto" type="file">
-                </div>
-            </div>
-        </div>
-
-        <section id="widget-grid" class="Info">
             <div class="row">
-                <div class="col-xs-0 col-sm-0 col-md-1 col-lg-2">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label"><strong>Prefix</strong></label>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-9">
-
-                    <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
-                        <header>
-                            <span class="widget-icon"><i class="fa fa-edit"></i></span>
-                            <h2>Subject</h2>
-                        </header>
-                        <div>
-                            <div class="jarviswidget-editbox">
-                            </div>
-                            <div class="widget-body no-padding">
-                                <br /><br />
-                                <fieldset>
-
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                            <div class="form-group">
-                                                <label class="col-sm-12 control-label">
-                                                    <strong>Subject</strong>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                            <div class="select-form">
-                                                <div class="form-group">
-                                                    <select name="SubjectId" style="width:100%" class="select2">
-                                                        <option value="">Please select</option>
-                                                        @foreach (SelectValues item in (List<SelectValues>)ViewBag.GetSelect.Subjects)
-                                                        {
-                                                            <optgroup label="@item.Value" value="@item.Id">
-                                                                @foreach (SubSelectValues SubSelectValues in (List<SubSelectValues>)item.SubSelectValues)
-                                                                {
-                                                                    <option value="@SubSelectValues.Id">@SubSelectValues.Value</option>
-                                                                }
-                                                            </optgroup>
-                                                        }
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                            <div class="form-group">
-                                                <label class="col-sm-12 control-label">
-                                                    <strong>Research</strong>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                            <div class="select-form">
-                                                <div class="form-group">
-                                                    <select name="ResearchId" style="width:100%" class="select2">
-                                                        <option value="">Please select</option>
-                                                        @foreach (SelectValues item in (List<SelectValues>)ViewBag.GetSelect.Researches)
-                                                        {
-                                                            if (@item.SubSelectValues.Count() != 0)
-                                                            {
-                                                                <optgroup label="@item.Value" value="@item.Id">
-                                                                    @foreach (SubSelectValues SubSelectValues in (List<SubSelectValues>)item.SubSelectValues)
-                                                                    {
-                                                                        if (@SubSelectValues.SubSubSelectValues.Count() != 0)
-                                                                        {
-                                                                            <optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;@SubSelectValues.Value">
-                                                                                @foreach (SubSubSelectValues SubSubSelectValues in (List<SubSubSelectValues>)SubSelectValues.SubSubSelectValues)
-                                                                                {
-                                                                                    <option value="@SubSubSelectValues.Id">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@SubSubSelectValues.Value</option>
-                                                                                }
-                                                                            </optgroup>
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            <option value="@SubSelectValues.Id"> &nbsp;&nbsp;&nbsp;&nbsp;@SubSelectValues.Value </option>
-                                                                        }
-                                                                    }
-                                                                </optgroup>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@item.Id">@item.Value</option>
-                                                            }
-
-                                                        }
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                            <div class="form-group">
-                                                <label class="col-sm-12 control-label">
-                                                    <strong>Question</strong>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                            <div class="select-form">
-                                                <div class="form-group">
-                                                    <select name="QuestionId" style="width:100%" class="select2">
-                                                        <option value="">Please select</option>
-                                                        @foreach (SelectValues item in (List<SelectValues>)ViewBag.GetSelect.Questions)
-                                                        {
-                                                            <option value="@item.Id">@item.Value</option>
-                                                        }
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </fieldset>
-                            </div>
-                        </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    <div class="form-group">
+                        <input class="form-control input-md" placeholder="Prefix" name="Prefix" type="text">
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-0 col-sm-0 col-md-1 col-lg-2">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label"><strong>Title</strong></label>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-9">
-                    <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-custombutton="false">
-                        <header>
-                            <span class="widget-icon"><i class="fa fa-edit"></i></span>
-                            <h2>Info</h2>
-                        </header>
-                        <div>
-                            <div class="jarviswidget-editbox">
-                            </div>
-                            <div class="widget-body no-padding">
-                                <br /><br />
-                                <fieldset>
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                            <div class="form-group">
-                                                <label class="col-sm-12 control-label">
-                                                    <strong>Sources of Funding</strong>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="SourcesOfFunding" style="width:100%;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                            <div class="form-group">
-                                                <label class="col-sm-12 control-label">
-                                                    <strong>Conflicts Of Interests</strong>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="ConflictsOfInterests" style="width:100%;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                            <div class="form-group">
-                                                <label class="col-sm-12 control-label">
-                                                    <strong>Significance</strong>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="Significance" style="width:100%;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                            <div class="form-group">
-                                                <label class="col-sm-12 control-label">
-                                                    <strong>Comments</strong>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="CommentsForEditor" style="width:100%;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                            <div class="form-group">
-                                                <label class="col-sm-12 control-label">
-                                                    <strong>Mini Description</strong>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="MiniDescription" style="width:100%;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                            <div class="form-group">
-                                                <label class="col-sm-12 control-label">
-                                                    <strong>Abstract</strong>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="AbstractText"  style="width:100%;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    <div class="form-group">
+                        <textarea class="form-control" name="Title" style="width:100%;"></textarea>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-0 col-sm-0 col-md-1 col-lg-2">
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label"><strong>Short Title</strong></label>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-9">
-                    <div class="jarviswidget" id="wid-id-3" data-widget-editbutton="false" data-widget-custombutton="false">
-                        <header>
-                            <span class="widget-icon"><i class="fa fa-edit"></i></span>
-                            <h2>Keywords</h2>
-                        </header>
-                        <div>
-                            <div class="jarviswidget-editbox">
-                            </div>
-                            <div class="widget-body no-padding">
-                                <br /><br />
-                                <fieldset>
-                                    <div id="keywords_container">
+                <div class="col-xs-8">
+                    <div class="form-group">
+                        <input class="form-control input-md" placeholder="Sub Title" name="SubTitle" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label"><strong>Cover Photo</strong></label>
+                    </div>
+                </div>
+                <div class="col-xs-8">
+                    <div class="form-group">
+                        <input class="form-control input-md" placeholder="Cover Photo" name="CoverPhoto" type="file">
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <section id="widget-grid" class="Info">
+           
+                <div class="row">
+                    <div class="col-xs-0 col-sm-0 col-md-1 col-lg-2">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-9">
+                        <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-custombutton="false">
+                            <header>
+                                <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                <h2>Info</h2>
+                            </header>
+                            <div>
+                                <div class="jarviswidget-editbox">
+                                </div>
+                                <div class="widget-body no-padding">
+                                    <br /><br />
+                                    <fieldset>
                                         <div class="row">
-                                            <div class="col-xs-3 col-sm-3 col-md-5 col-lg-3">
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                                 <div class="form-group">
                                                     <label class="col-sm-12 control-label">
-                                                        <strong>Keywords</strong><span><i id="add_keywords" style="color:#AD0202" class="fa fa-plus fa-1x fa-fw"></i></span>
+                                                        <strong>Sources of Funding</strong>
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-7 col-sm-4 col-md-6 col-lg-4">
+                                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                                                 <div class="form-group">
-                                                    <input class="form-control input-md Keywords" placeholder="Keywords" type="text" name="Keywords" id="Keywords">
+                                                    <textarea class="form-control" name="SourcesOfFunding" style="width:100%;"></textarea>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                </fieldset>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>Conflicts Of Interests</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" name="ConflictsOfInterests" style="width:100%;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>Significance</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" name="Significance" style="width:100%;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>Comments</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" name="CommentsForEditor" style="width:100%;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>Mini Description</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" name="MiniDescription" style="width:100%;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label">
+                                                        <strong>Abstract</strong>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" name="AbstractText" style="width:100%;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+                <div class="row">
+                    <div class="col-xs-0 col-sm-0 col-md-1 col-lg-2">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-9">
+                        <div class="jarviswidget" id="wid-id-3" data-widget-editbutton="false" data-widget-custombutton="false">
+                            <header>
+                                <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                <h2>Keywords</h2>
+                            </header>
+                            <div>
+                                <div class="jarviswidget-editbox">
+                                </div>
+                                <div class="widget-body no-padding">
+                                    <br /><br />
+                                    <fieldset>
+                                        <div id="keywords_container">
+                                            <div class="row">
+                                                <div class="col-xs-3 col-sm-3 col-md-5 col-lg-3">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12 control-label">
+                                                            <strong>Keywords</strong><span><i id="add_keywords" style="color:#AD0202" class="fa fa-plus fa-1x fa-fw"></i></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-7 col-sm-4 col-md-6 col-lg-4">
+                                                    <div class="form-group">
+                                                        <input class="form-control input-md Keywords" placeholder="Keywords" type="text" name="Keywords" id="Keywords">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-
-
-
-
-    </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <script type="text/javascript">
-
-
-            $(document).ready(function () {
-                $("jarviswidget-toggle-btn").trigger("click");
-                pageSetUp();
-            });
-        </script>
+    </div>
+   

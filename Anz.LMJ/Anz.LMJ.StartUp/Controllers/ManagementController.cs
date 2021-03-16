@@ -31,9 +31,10 @@ namespace Anz.LMJ.StartUp.Controllers
             #endregion
             try
             {
-                long userId = long.Parse(Session["userId"].ToString());
+             
                 if (Session["userId"] == null)
                     return RedirectToAction("Index", "Admin");
+                long userId = long.Parse(Session["userId"].ToString());
                 DynamicResponse<UserQueueLO> queue = _ManagementService.GetQueue(userId, 1);
                 DynamicResponse<List<SubmissionLO>> unassigned = _ManagementService.GetUnAssigned(userId);
                 

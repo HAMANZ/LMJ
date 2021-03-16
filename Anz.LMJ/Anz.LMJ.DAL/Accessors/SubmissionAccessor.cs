@@ -369,6 +369,52 @@ namespace Anz.LMJ.DAL.Accessors
 
         }
 
+
+        public Submission Edit(Submission s)
+        {
+            try
+            {
+                using (LMJEntities db = new LMJEntities())
+                {
+                    Submission submissios = db.Submissions.Where(e => e.Id == s.Id).FirstOrDefault();
+                    submissios.IsEditorsPick = s.IsEditorsPick;
+                    submissios.IsTopReader = s.IsTopReader;
+                    submissios.UserId = s.UserId;
+                    submissios.Prefix = s.Prefix;
+                    submissios.SectionId = s.SectionId;
+                    submissios.StudyTypeId = s.StudyTypeId;
+                    submissios.Library = s.Library;
+                    submissios.GUID = s.GUID;
+                    submissios.Title = s.Title;
+                    submissios.Subtitle = s.Subtitle; 
+                    submissios.Abstract = s.Abstract;
+                    submissios.MiniDescription = s.MiniDescription;
+                    submissios.ResearchId = s.ResearchId;
+                    submissios.QuestionId = s.QuestionId;
+                    submissios.ArticleTypeId = s.ArticleTypeId;
+                    submissios.CommentsForEditor = s.CommentsForEditor;
+                    submissios.CoverPhoto = s.CoverPhoto;
+                    submissios.BannerImage = s.BannerImage;
+                    submissios.SourcesOfFunding = s.SourcesOfFunding;
+                    submissios.ConflictsOfInterests = s.ConflictsOfInterests;
+                    submissios.Significance = s.Significance;
+                    submissios.SpecialitiesId = s.SpecialitiesId;
+                    submissios.ConflictsOfInterests = s.ConflictsOfInterests;
+                    submissios.Significance = s.Significance;
+                    submissios.SpecialitiesId = s.SpecialitiesId;
+                     db.SaveChanges();
+                    return submissios;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+       
+
         public long Update(long submissionid,long userId, bool isEditorsPick,bool isTopReader)
         {
             try

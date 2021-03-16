@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 
     <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="~/Scripts/cms/libs/jquery-2.1.1.min.js"></script>
     @Styles.Render("~/Content/cms/bootstrap.min.css")
     @Styles.Render("~/Content/cms/font-awesome.min.css")
     @Styles.Render("~/Content/cms/smartadmin-production-plugins.min.css")
@@ -300,17 +300,17 @@
 <script data-pace-options='{ "restartOnRequestAfter": true }' src="~/Scripts/cms/plugin/pace/pace.min.js"></script>
 
 @*<script>
-    if (!window.jQuery) {
-        document.write('<script src="~/Scripts/cms/libs/jquery-2.1.1.min.js"></script>');
-    }
-</script>
+        if (!window.jQuery) {
+            document.write('<script src="~/Scripts/cms/libs/jquery-2.1.1.min.js"></script>');
+        }
+    </script>
 
 
-<script>
-    if (!window.jQuery.ui) {
-        document.write('<script src="~/Scripts/cms/libs/jquery-ui-1.10.3.min.js"></script>');
-    }
-</script>*@
+    <script>
+        if (!window.jQuery.ui) {
+            document.write('<script src="~/Scripts/cms/libs/jquery-ui-1.10.3.min.js"></script>');
+        }
+    </script>*@
 
 <script src="~/Scripts/cms/libs/jquery-2.1.1.min.js"></script>
 <script src="~/Scripts/cms/app.config.js"></script>
@@ -337,9 +337,6 @@
 <script src="~/Scripts/cms/libs/jspdf.min.js"></script>
 <script src="~/Scripts/cms/editor.js"></script>
 <script src="~/Scripts/cms/CmsJquery.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
-
 
 
 <script type="text/javascript">
