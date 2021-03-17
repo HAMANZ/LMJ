@@ -4,6 +4,20 @@
     ViewBag.Title = "Citation Type";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<style>
+    .descriptionPart{
+        width:65%;
+    }
+    .buttonsPart{
+        width:15%;
+    }
+    .TitlePart{
+        width:15%;
+    }
+    .IdPart{
+        width:5%;
+    }
+</style>
 <div id="main" role="main">
     <div id="ribbon" style="display: block;">
         <ol class="breadcrumb">
@@ -42,10 +56,10 @@
                                     i = i + 1;
 
                                     <tr id="@i">
-                                        <td>@i</td>
-                                        <td>@item.Title</td>
-                                        <td>@item.Text</td>
-                                        <td>
+                                        <td class="IdPart">@i</td>
+                                        <td class="TitlePart">@item.Title</td>
+                                        <td class="descriptionPart">@item.Text</td>
+                                        <td class="buttonsPart">
                                             <a href="/Admin/GetCitationType/@item.Id" class="fa fa-pencil btn btn-sm btn-primary"> Edit</a>
                                             <a name="delete" class="btn btn-sm btn-danger fa fa-trash-o delete-events" data-row-id="@item.Id" href="/Admin/DeleteCitationType/@item.Id">Delete</a>
                                         </td>

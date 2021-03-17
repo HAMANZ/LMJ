@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <style>
+    
     .input {
         position: relative;
         display: block;
@@ -38,6 +39,9 @@
         line-height: 22px;
         text-align: center;
     }
+    .ImageInfo {
+        font-size: 12px;
+    }
 </style>
 <div id="main" role="main">
     <div id="ribbon" style="display: block;">
@@ -49,7 +53,7 @@
     <div id="content">
         @using (Html.BeginForm("AddVideos", "Admin", FormMethod.Post, new { @class = "AddVideos ", enctype = "multipart/form-data" }))
         {
-            <div class="row">
+            <div class="row" >
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                     <label class="col-sm-12 control-label">
                         <strong>Title</strong>
@@ -135,9 +139,10 @@
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
                     <input type="hidden" name="Image" id="BackGroundImage" value="" />
-                    <img src="" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
+                    <label class="ImageInfo">Recommended Size: 195*195</label>
                     <br />
-                    <span>Recommended Size: 195*195</span>
+                    <img src="" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
+
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
 
@@ -150,8 +155,8 @@
 
             </div>
 
-
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-8">
+            <br />
+            <div class="text-center">
                 <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
             </div>
         }

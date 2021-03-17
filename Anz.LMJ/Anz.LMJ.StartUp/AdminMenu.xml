@@ -33,7 +33,7 @@
   </TopLevelMenu>
 
  
-  <TopLevelMenu name="Role" link="/admin/Footer" icon="fa fa-lg fa-fw fa-dropbox" class="footerpage">
+  <TopLevelMenu name="Role" link="/admin/FormType?FormName=Role" icon="fa fa-lg fa-fw fa-dropbox" class="footerpage">
   </TopLevelMenu>
 
   <TopLevelMenu name="Position" link="/admin/FormType?FormName=Position"  icon="fa fa-lg fa-fw fa-dropbox" class="footermenupage">
