@@ -25,7 +25,7 @@ namespace Anz.LMJ.WebServices
             About_Page,
             Hero_Banner,
             Events,
-            Members,
+            EditorialBoard,
             Videos,
             Team,
             News,
@@ -58,7 +58,7 @@ namespace Anz.LMJ.WebServices
                 _SharedTables[ServiceTables.Hero_Banner] = LookUpLogic.AdminTables.Hero_Banner;
                 _SharedTables[ServiceTables.About_Page] = LookUpLogic.AdminTables.About_Page;
                 _SharedTables[ServiceTables.Events] = LookUpLogic.AdminTables.Events;
-                _SharedTables[ServiceTables.Members] = LookUpLogic.AdminTables.Members;
+                _SharedTables[ServiceTables.EditorialBoard] = LookUpLogic.AdminTables.EditorialBoard;
                 _SharedTables[ServiceTables.Videos] = LookUpLogic.AdminTables.Videos;
                 _SharedTables[ServiceTables.Team] = LookUpLogic.AdminTables.Team;
                 _SharedTables[ServiceTables.News] = LookUpLogic.AdminTables.News;

@@ -78,6 +78,7 @@ namespace Anz.LMJ.BLL.Logic
                 data.Id = userModel.Id;
                 data.FirstName = userModel.FirstName;
                 data.LastName = userModel.LastName;
+                data.MiddleName = userModel.MiddleName;
                 data.Email = userModel.Email;
                 data.Username = userModel.Username;
                 data.Affiliation = userModel.Affiliation;
@@ -90,6 +91,7 @@ namespace Anz.LMJ.BLL.Logic
                 data.Mobile2 = userModel.Mobile2;
                 data.Pob = userModel.POB;
                 data.Orcid = userModel.ORCID;
+                data.Password = userModel.Password;
                 data.PositionId =(int)userModel.PositionId;
                 data.DegreeIds = userModel.DegreeIds;
                 data.Desc = userModel.Desc;
@@ -1257,6 +1259,7 @@ namespace Anz.LMJ.BLL.Logic
                 user.Id = toEdit.Id;
                 user.FirstName = toEdit.FirstName;
                 user.LastName = toEdit.LastName;
+                user.MiddleName = toEdit.MiddleName;
                 user.Email = toEdit.Email;
                 user.Password = toEdit.Password;
                 user.Username = toEdit.Username;
@@ -1400,6 +1403,7 @@ namespace Anz.LMJ.BLL.Logic
                  user = new User();
                 user.FirstName = usr.FirstName;
                 user.LastName = usr.LastName;
+                user.MiddleName = usr.MiddleName;
                 user.Email = usr.Email;
                 user.Password = usr.Password;
                 user.Username = usr.Username;
@@ -1488,6 +1492,7 @@ namespace Anz.LMJ.BLL.Logic
 
                 response.Data = id;
                 response.HttpStatusCode = HttpStatusCode.OK;
+               
                 return response;
             }
             catch (Exception ex)

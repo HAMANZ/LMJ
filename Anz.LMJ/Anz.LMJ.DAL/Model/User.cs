@@ -54,6 +54,7 @@ namespace Anz.LMJ.DAL.Model
         public string Desc { get; set; }
         public Nullable<int> Pos { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+        public string MiddleName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contributor> Contributors { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f130a63d761944fc928de5ac9ed11b26" Name="Diagram1">
+      <Diagram DiagramId="962e7484453147db837e90ff4a853b37" Name="Diagram1">
         <EntityTypeShape EntityType="LMJModel.ArticleType" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LMJModel.City" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LMJModel.ContactU" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
@@ -47,10 +47,10 @@
         <EntityTypeShape EntityType="LMJModel.Subscription" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LMJModel.sysdiagram" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LMJModel.Tag" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LMJModel.UserResponsibleInProcess" Width="1.5" PointX="13.5" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.UserResponsibleInProcess" Width="1.5" PointX="13.5" PointY="26.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LMJModel.UserRole" Width="1.5" PointX="6.75" PointY="50.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LMJModel.UserRolesInJournal" Width="1.5" PointX="9" PointY="34.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LMJModel.User" Width="1.5" PointX="0.75" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMJModel.User" Width="1.5" PointX="0.75" PointY="26.75" IsExpanded="true" />
         <AssociationConnector Association="LMJModel.FK_City_Country" ManuallyRouted="false" />
         <AssociationConnector Association="LMJModel.FK_Contributors_Submissions" ManuallyRouted="false" />
         <AssociationConnector Association="LMJModel.FK_Contributors_Users" ManuallyRouted="false" />

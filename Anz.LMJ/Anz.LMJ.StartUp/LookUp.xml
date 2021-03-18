@@ -24,6 +24,13 @@
     <LookUpAttr Name="Img" Code="ABOUTUS_IMG" isLangNull="False" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
+
+  <LookUpNodes Name="EditorialBoard">
+    <LookUpAttr Name="Title" Code="EDITORIAL_TITLE" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Img" Code="EDITORIAL_IMG" isLangNull="False" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Txt" Code="EDITORIAL_TXT" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+  </LookUpNodes>
+  
   <LookUpNodes Name="IndexType">
     <LookUpAttr Name="Title" Code="INDEX_TYPE_TITLE" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="Desc" Code="INDEX_TYPE_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
@@ -46,6 +53,8 @@
     <LookUpAttr Name="AdditionalEmail" Code="ADDITIONAL_EMAIL" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="Facebook" Code="FACEBOOK" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name ="Twiter" Code="TWITER" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Instagram" Code="INSTAGRAM" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name ="LinkedIn" Code="LINKEDIN" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="Desc" Code="DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
   
@@ -70,14 +79,7 @@
   </LookUpNodes>
   
   
-  <LookUpNodes Name="Members">
-    <LookUpAttr Name="Name" Code="MEMBERS_NAME" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Image" Code="MEMBERS_IMG" isLangNull="False" isMedia ="True" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Position" Code="MEMBERS_POSITION" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="MainDesc" Code="MEMBERS_MAIN_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="SubDesc" Code="MEMBERS_SUB_DESC" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-    <LookUpAttr Name="Pos" Code="MEMBERS_POS" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-  </LookUpNodes>
+
 
 
   <LookUpNodes Name="Degree">
@@ -161,7 +163,8 @@
     <LookUpAttr Name="RecentArticleIds" Code="FOOTER_ARTICLE_IDS" isLangNull="False" isMedia ="False" isMain ="True" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="CategoryIds" Code="FOOTER_CATEGORY_IDS" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
     <LookUpAttr Name="ContactIds" Code="FOOTER_CONTACT_IDS" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
-
+    <LookUpAttr Name="Issn" Code="FOOTER_ISSN" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
+    <LookUpAttr Name="Eissn" Code="FOOTER_EISSN" isLangNull="False" isMedia ="False" isMain ="False" isList="False" isVideo="False"></LookUpAttr>
   </LookUpNodes>
 
 

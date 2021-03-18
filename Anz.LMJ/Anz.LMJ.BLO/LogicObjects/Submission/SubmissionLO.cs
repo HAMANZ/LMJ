@@ -17,15 +17,17 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Web.ModelBinding;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace Anz.LMJ.BLO.LogicObjects.Submission
 {
 
-    [AttributeUsage(AttributeTargets.All)]
-    public class SubmissionLO : Attribute
+    //[AttributeUsage(AttributeTargets.All)]
+    public class SubmissionLO
+        //: Attribute
     {
-        [DisplayName("Title")]
-        public long Id { get; set; }
+       
+        public long? Id { get; set; }
         public long UserId { get; set; }
         public string Prefix { get; set; }
 

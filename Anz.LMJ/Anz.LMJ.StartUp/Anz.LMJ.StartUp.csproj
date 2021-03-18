@@ -56,6 +56,10 @@
       <HintPath>..\Anz.LMJ.DAL\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Syroot.KnownFolders, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Syroot.Windows.IO.KnownFolders.1.2.3\lib\netstandard2.0\Syroot.KnownFolders.dll</HintPath>
     </Reference>
@@ -114,9 +118,6 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -819,10 +820,7 @@
     <Content Include="Views\Home\ArticleDetail.cshtml" />
     <Content Include="Views\Admin\AboutPage.cshtml" />
     <Content Include="Views\Admin\AddEvents.cshtml" />
-    <Content Include="Views\Admin\AddMembers.cshtml" />
     <Content Include="Views\Admin\ViewEvents.cshtml" />
-    <Content Include="Views\Admin\GetMembers.cshtml" />
-    <Content Include="Views\Admin\ViewMembers.cshtml" />
     <Content Include="Views\Admin\GetEvents.cshtml" />
     <Content Include="Views\Admin\ViewVideos.cshtml" />
     <Content Include="Views\Admin\GetVideos.cshtml" />
@@ -830,9 +828,6 @@
     <Content Include="Views\Home\EventDetail.cshtml" />
     <Content Include="Views\Home\VideoDetail.cshtml" />
     <Content Include="Views\Home\Articles.cshtml" />
-    <Content Include="Views\Admin\ViewTeam.cshtml" />
-    <Content Include="Views\Admin\GetTeam.cshtml" />
-    <Content Include="Views\Admin\AddTeam.cshtml" />
     <Content Include="Views\Admin\ViewArticles.cshtml" />
     <Content Include="Views\Home\_SearchModel.cshtml" />
     <Content Include="Views\Admin\GetArticle.cshtml" />
@@ -863,6 +858,8 @@
     <Content Include="Views\Home\FooterPage.cshtml" />
     <Content Include="Views\Management\GetNewsletter.cshtml" />
     <Content Include="Views\Management\MainMenu.cshtml" />
+    <Content Include="Views\Admin\EditorialBoard.cshtml" />
+    <Content Include="Views\Layout\_PartialViewHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

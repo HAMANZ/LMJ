@@ -1,0 +1,179 @@
+﻿@{
+    ViewBag.Title = "Editorial Board";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model Anz.LMJ.BLO.ContentObjects.EditorialBoard
+<style>
+
+    /* Style the CKEditor element to look like a textfield */
+    .cke_textarea_inline {
+        padding: 10px;
+        height: 200px;
+        overflow: auto;
+        border: 1px solid gray;
+        -webkit-appearance: textfield;
+    }
+    .title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    input {
+        width: 50%;
+    }
+    .DisplayImagePart {
+        float: left;
+        width: 50%;
+        display: inline-block;
+    }
+        .DisplayImagePart img {
+            width: 50%;
+        }
+    
+
+</style>
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @using (Html.BeginForm("EditorialBoard", "Admin", FormMethod.Post, new { @class = "EditorialBoard", enctype = "multipart/form-data" }))
+                {
+                    <div class="well well-sm">
+                        <!-- Timeline Content -->
+                        <div class="smart-timeline">
+                            <ul class="smart-timeline-list">
+
+                                <li>
+
+                                    <div class="smart-timeline-content">
+                                        <p class="title">
+                                            Title
+
+                                        </p>
+                                        <p>
+                                            <input class="input__beautify" type="text" name="Title" value="@Model.Title" required />
+
+                                        </p>
+
+                                    </div>
+                                </li>
+                                <li>
+
+                                    <div class="smart-timeline-content">
+                                        <p class="title">
+                                           Text
+
+                                        </p>
+                                        <p>
+                                            <textarea name="Txt" style="display:none" id="txteditorvalue">@Model.Txt</textarea>
+                                            <textarea style="height: 200px" name="txtAboutEditor"></textarea>
+
+                                        </p>
+
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="smart-timeline-content">
+                                        <p class="title">
+                                           BannerImage
+
+                                        </p>
+
+                                        <ul class="list-inline">
+                                            <li>
+                                                <input type="hidden" name="Img" id="BackGroundImage" value="@Model.Img" />
+                                                <div class="insertfile">
+                                                    <input type="file" name="PostedFileImg" id="imgInp" class="custom-file-input" style="width:50%; required">
+                                                </div>
+                                                <br />
+                                                <div class="DisplayImagePart">
+                                                    <img src="~/Images/EditorialBoard/@Model.Img" alt="img" id="blah">
+
+                                                </div>
+
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+
+
+                                <li class="text-center">
+                                    <button type="submit" class="btn btn-sm btn-primary"> Publish </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="~/Scripts/cms/plugin/ckeditor/ckeditor.js"></script>
+<script>
+
+    var bodyEditor;
+
+   
+
+    function SetContents() {
+        // Get the editor instance that we want to interact with.
+        var editor = CKEDITOR.instances.txtAboutEditor;
+        // Set editor contents (replace current contents).
+        // http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-setData
+        editor.setData($("#txteditorvalue").text());
+    }
+
+    function GetContents() {
+        // Get the editor instance that you want to interact with.
+        var editor = CKEDITOR.instances.txtAboutEditor;
+        // Get editor contents
+        // http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-getData
+        $("#txteditorvalue").html(editor.getData());
+    }
+
+    $(document).ready(function () {
+        //alert($("#txteditorvalue").html());
+        //$("#txtEditor").Editor();
+        bodyEditor=CKEDITOR.replace('txtAboutEditor');
+        SetContents();
+
+        // Handle when the Source changes.
+        bodyEditor.on('mode', function () {
+            if (this.mode == 'source') {
+                var editable = bodyEditor.editable();
+                editable.attachListener(editable, 'input', function () {
+                    GetContents()
+                });
+            }
+        });
+
+        // Handle when the HTML changes.
+        bodyEditor.on('change', function () {
+            GetContents()
+        });
+    });
+
+
+    GetContents()
+    $(".aboutuspage").addClass("active");
+    $(".Sentence").html($("input[name=Sentence]").val());
+    $(".SubTitle").html($("input[name=SubTitle]").val());
+    $(".Title").html($("input[name=Title]").val());
+
+</script>

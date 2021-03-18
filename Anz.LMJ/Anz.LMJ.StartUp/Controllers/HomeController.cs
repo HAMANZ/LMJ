@@ -98,6 +98,7 @@ namespace Anz.LMJ.StartUp.Controllers
         }
 
         #endregion
+
         #region VideoDetail
 
         public ActionResult VideoDetail(long id)
@@ -123,6 +124,7 @@ namespace Anz.LMJ.StartUp.Controllers
         }
 
         #endregion
+
         #region About
 
 
@@ -131,12 +133,7 @@ namespace Anz.LMJ.StartUp.Controllers
         {
            try
             {
-                DynamicResponse<SelectLO> options = new DynamicResponse<SelectLO>();
-                options = _HomeServices.GetOption();
-                ViewBag.options = options.Data;
-                List<Team> teams = _ContentServices.GetContent<Team>(ContentServices.ServiceTables.Team, 999).Contents.ToList();
-                teams = teams.OrderBy(e => e.Pos).ToList();
-                ViewBag.teams = teams;
+                
                 About_Page about = _ContentServices.GetContent<About_Page>(ContentServices.ServiceTables.About_Page, 1).Contents.FirstOrDefault();
                 ViewBag.about = about;
                 return View();
@@ -158,10 +155,8 @@ namespace Anz.LMJ.StartUp.Controllers
         {
             try
             {
-                List<Team> teams = _ContentServices.GetContent<Team>(ContentServices.ServiceTables.Team, 999).Contents.ToList();
-                teams = teams.OrderBy(e => e.Pos).ToList();
-                ViewBag.teams = teams;
-
+                EditorialBoard editorialBoards = _ContentServices.GetContent<EditorialBoard>(ContentServices.ServiceTables.EditorialBoard, 1).Contents.FirstOrDefault();
+                ViewBag.editorialBoards = editorialBoards;
                 List<DataType> degrees = _ContentServices.GetContent<DataType>(ContentServices.ServiceTables.Degree, 9999).Contents.ToList();
                 ViewBag.degrees = degrees;
                 List<DataType> position = _ContentServices.GetContent<DataType>(ContentServices.ServiceTables.Position, 9999).Contents.ToList();

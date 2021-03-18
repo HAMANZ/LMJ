@@ -35,7 +35,7 @@ namespace Anz.LMJ.WebServices
                 __SharedConvetTable[ServiceAdminTables.Home_Banner] = LookUpLogic.AdminTables.Hero_Banner;
                 __SharedConvetTable[ServiceAdminTables.About_Page] = LookUpLogic.AdminTables.About_Page;
                 __SharedConvetTable[ServiceAdminTables.Events] = LookUpLogic.AdminTables.Events;
-                __SharedConvetTable[ServiceAdminTables.Members] = LookUpLogic.AdminTables.Members;
+                __SharedConvetTable[ServiceAdminTables.EditorialBoard] = LookUpLogic.AdminTables.EditorialBoard;
                 __SharedConvetTable[ServiceAdminTables.Videos] = LookUpLogic.AdminTables.Videos;
                 __SharedConvetTable[ServiceAdminTables.Team] = LookUpLogic.AdminTables.Team;
                 __SharedConvetTable[ServiceAdminTables.News] = LookUpLogic.AdminTables.News;
@@ -64,7 +64,7 @@ namespace Anz.LMJ.WebServices
             About_Page,
             Hero_Banner,
             Events,
-            Members,
+            EditorialBoard,
             Videos,
             Team,
             News,
@@ -199,7 +199,7 @@ namespace Anz.LMJ.WebServices
             {
                 options.Add(new Options
                 {
-                    Id = item.Id,
+                    Id =(long) item.Id,
                     Value = item.Title
                 }); ;
 

@@ -42,7 +42,7 @@ namespace Anz.LMJ.BLL.Content
                 __SharedTableIds[AdminTables.Hero_Banner] = 3;
                 __SharedTableIds[AdminTables.About_Page] = 4;
                 __SharedTableIds[AdminTables.Events] = 5;
-                __SharedTableIds[AdminTables.Members] = 6;
+                __SharedTableIds[AdminTables.EditorialBoard] = 6;
                 __SharedTableIds[AdminTables.Videos] = 7; 
                 __SharedTableIds[AdminTables.Team] = 8;
                 __SharedTableIds[AdminTables.News] = 9;
@@ -65,7 +65,7 @@ namespace Anz.LMJ.BLL.Content
                 __SharedClassesForeachTable[AdminTables.Hero_Banner] = typeof(Hero_Banner);
                 __SharedClassesForeachTable[AdminTables.About_Page] = typeof(About_Page);
                 __SharedClassesForeachTable[AdminTables.Events] = typeof(Events);
-                __SharedClassesForeachTable[AdminTables.Members] = typeof(Members);
+                __SharedClassesForeachTable[AdminTables.EditorialBoard] = typeof(EditorialBoard);
                 __SharedClassesForeachTable[AdminTables.Videos] = typeof(Videos);
                 __SharedClassesForeachTable[AdminTables.Team] = typeof(Team);
                 __SharedClassesForeachTable[AdminTables.News] = typeof(News);
@@ -95,7 +95,7 @@ namespace Anz.LMJ.BLL.Content
             Hero_Banner,
             About_Page,
             Events,
-            Members,
+            EditorialBoard,
             Videos,
             Team,
             News,

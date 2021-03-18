@@ -14,6 +14,7 @@ using Anz.LMJ.BLO.LogicObjects.Submission.Discussion;
 using static Anz.LMJ.BLL.Logic.Enums;
 using System.IO;
 using Anz.LMJ.FrontEnd;
+using Newtonsoft.Json;
 
 namespace Anz.LMJ.StartUp.Controllers
 {
@@ -140,16 +141,60 @@ namespace Anz.LMJ.StartUp.Controllers
         //}
 
 
+        public ActionResult test()
+        {
+            string json = "testing json";
+            //System.Web.HttpContext.Current.Request.InputStream.Position = 0;
+            //using (var reader = new StreamReader(
+            //         Request.InputStream, System.Text.Encoding.UTF8, true, 4096, true))
+            //{
+            //    json = reader.ReadToEnd();
+            //}
+            ////Rest
+            //System.Web.HttpContext.Current.Request.InputStream.Position = 0;
+
+            //var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
+
+            //SubmissionLO submission = JsonConvert.DeserializeObject<SubmissionLO>(json, settings);
+
+            AddCookie(json);
+
+            return View("");
+        }
+
+
+        public static void AddCookie(string json)
+        {
+           
+            var cookies = System.Web.HttpContext.Current.Request.Cookies["submission"];
+
+            if (cookies==null)
+            {
+                HttpCookie mycookie = new HttpCookie("submission");
+                mycookie.Value = json;
+                mycookie.Expires = DateTime.Now.AddDays(2);
+                System.Web.HttpContext.Current.Response.Cookies.Add(mycookie);
+            }
+            else {
+              
+            }
+            
+        }
+
+
+
         [HttpPost]
         public JsonResult AddSubmission(SubmissionLO submission)
         {
             #region Logics 
             SubmissionLogic _SubmissionLogic = new SubmissionLogic();
             #endregion
+
+       
             DynamicResponse<SubmissionLO> response = new DynamicResponse<SubmissionLO>();
 
             if (Session["userId"] == null)
-                return Json("null");
+                return Json("nouser");
 
             long userId = long.Parse(Session["userId"].ToString());
             submission.UserId = userId;
@@ -157,7 +202,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
 
 
-                if (submission.FilesToUpload.Length != 0)
+                if (submission.FilesToUpload.Length != 0 || submission.FilesToUpload.Length == null)
                 {
 
                     string path = Server.MapPath("~/files/");

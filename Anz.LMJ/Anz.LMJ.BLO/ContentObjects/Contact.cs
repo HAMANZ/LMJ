@@ -19,12 +19,14 @@ namespace Anz.LMJ.BLO.ContentObjects
         public string AdditionalEmail { get; set; }
         public string Facebook { get; set; }
         public string Twiter { get; set; }
+        public string Instagram { get; set; }
+        public string LinkedIn { get; set; }
         public string Desc { get; set; }
         public override string ToString()
         {
             return this.Phone1 + ", " + this.Phone2 + ", " + this.Mobile1 + ", " + this.Mobile2 + ", " +
             this.Address + ", " + this.POBox + ", " + this.Email + ", " + this.AdditionalEmail + ", " + this.Facebook + ", " +
-            this.Twiter + ", " + this.Desc;
+            this.Twiter+ this.Instagram + ", " +this.LinkedIn + ", " + this.Desc;
         }
     }
 }

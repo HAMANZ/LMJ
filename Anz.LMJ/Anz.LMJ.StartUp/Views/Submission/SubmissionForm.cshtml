@@ -245,10 +245,10 @@
 
         var i = 1;
 
-       
-        
+
+
 			pageSetUp();
-     
+
                 //Bootstrap Wizard Validations
 
         var $validator = $("#wizard-1").validate({
@@ -373,7 +373,7 @@
                 CountryModel: {
                     required: true
                 }
-               },       
+               },
             messages: {
                         FilesToUpload: "Required",
                         ArticleComponentId: "Required",
@@ -382,7 +382,7 @@
                         Keywords: "Required",
                         SubTitle: "Required",
                         TitlePrefix: "Required",
-                        ContributoMname: "Required", 
+                        ContributoMname: "Required",
                         ContributorAffilation: "Required",
                         ContributorLname: "Required",
                         ContributorFname: "Required",
@@ -410,7 +410,7 @@
                         return false;
                     }
                 });
-        
+
                 $('#bootstrap-wizard-1').bootstrapWizard({
                     'tabClass': 'form-wizard',
                     'onNext': function (tab, navigation, index) {
@@ -445,7 +445,7 @@
                         }
                         if (!$valid) {
                             $validator.focusInvalid();
-                            $("#wizard-1").submit();
+
                             return false;
                         } else {
                             //$('textarea[name ="SubmissionFileEditor"]').each(function (idx, elem) {
@@ -454,6 +454,34 @@
                             //    Html = editor.getData();
                             //    HtmlToPdf(Html, id);
                             //});
+
+                            var formElement = document.querySelector("#wizard-1");
+                            var formData = new FormData(formElement);
+                            var object = {};
+                            formData.forEach(function (value, key) {
+                                if (key === 'CoverPhoto') {
+                                  
+                                    if ($("#CoverPhoto")[0].files.length== 0) {
+                                        value = null;
+                                    }
+                                    else {
+                                        filee = {};
+                                        file_to_upload = {};
+                                        filee['FileName'] = $("#CoverPhoto")[0].files.name;
+                                        filee['ContentLength'] = 0;
+                                        filee['ContentType'] = "";
+                                        file_to_upload = filee;
+                                        value = file_to_upload;
+                                        alert('nnnnnnnn' + value.name + "nnnnnnnnnn");
+                                    }
+                                }
+                                 object[key] =value;
+                            });
+                            delete object['dtt-files_length'];
+                            //delete object['CoverPhoto'];
+                            var json = JSON.stringify(object);
+                            console.log(json);
+                            AddSubmission(json);
                             $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass('complete');
                             $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step').html('<i class="fa fa-check"></i>');
                         }
@@ -472,7 +500,7 @@
                             }
                             $("#wizard-1").submit();
                         }
-                       
+
                     },
                     //'onTabClick': function (activeTab, navigation, currentIndex, nextIndex) {
                     //    if (nextIndex <= currentIndex) {
@@ -490,9 +518,22 @@
                 });
 
 
-          
 
-            });
+
+    });
+
+   
+    function display() {
+        var expires = (new Date(Date.now() + 86400 * 1000)).toUTCString();
+        document.cookie = "cookieName=submission; expires=" + expires + 86400) + ";path=/;"
+
+        //console.log(document.cookie);  // 'Wed, 31 Oct 2012 08:50:17 UTC'
+    }
+
+    function AddSubmission(json) {
+        display();
+        $.cookie("submission", json);
+    }
 
 </script>
 

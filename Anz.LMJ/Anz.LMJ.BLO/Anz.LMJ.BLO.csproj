@@ -34,9 +34,17 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Schema, Version=3.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.Schema.3.0.14\lib\net45\Newtonsoft.Json.Schema.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -64,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentObjects\EditorialBoard.cs" />
     <Compile Include="ContentObjects\About_Page.cs" />
     <Compile Include="ContentObjects\CitationType.cs" />
     <Compile Include="ContentObjects\Footer.cs" />
@@ -84,7 +93,9 @@
     <Compile Include="ContentObjects\Videos.cs" />
     <Compile Include="ContentObjects\Members.cs" />
     <Compile Include="LogicObjects\CommonObjects\DynamicResponse.cs" />
+    <Compile Include="LogicObjects\StringDictionaryConverter.cs" />
     <Compile Include="LogicObjects\Issue\IssueLO.cs" />
+    <Compile Include="LogicObjects\ObjectExtensions.cs" />
     <Compile Include="LogicObjects\Review\ReviewLO.cs" />
     <Compile Include="LogicObjects\Review\star.cs" />
     <Compile Include="LogicObjects\Submission\NewsletterLO.cs" />

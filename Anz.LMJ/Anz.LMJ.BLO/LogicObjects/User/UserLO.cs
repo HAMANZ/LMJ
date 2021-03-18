@@ -13,6 +13,7 @@ namespace Anz.LMJ.BLO.LogicObjects.User
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string MiddleName { get; set; }
         public string Affiliation { get; set; }
         public string TPhone1 { get; set; }
         public string Username { get; set; }
