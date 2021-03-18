@@ -22,7 +22,9 @@
     <MenuItem name="Degree" link="/admin/FormType?FormName=Degree" class="Degree"/>
   </TopLevelMenu>
 
-
+  <TopLevelMenu name="Role" link="/admin/FormType?FormName=Role" icon="fa fa-lg fa-fw fa-dropbox" class="footerpage">
+  </TopLevelMenu>
+  
   <TopLevelMenu name="Users" link="#" icon="fa fa-lg fa-fw fa-user" class="Types">
     <MenuItem name="Authors" link="/admin/Users?Role=author" class="Role"/>
     <MenuItem name="Members" link="/admin/Users?Role=member" class="Position"/>
