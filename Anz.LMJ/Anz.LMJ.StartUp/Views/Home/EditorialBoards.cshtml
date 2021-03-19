@@ -9,6 +9,10 @@
     .owl-item {
         text-align: justify;
     }
+    .AboutUsPage .services-2 .icon{
+        background:white;
+    }
+   
 </style>
 
 
@@ -51,7 +55,15 @@
                                 <div class="testimony-wrap d-flex">
                                     <div class="align-self-stretch">
                                         <div class="header-section">
-                                            <h5>@item.FirstName @item.LastName </h5>
+                                            <div class="icon d-flex justify-content-center align-items-center">
+                                                @if (@item.Image != null)
+                                                {
+                                                    <img src="~/Images/Users/@item.Image" style="height:150px;width:150px;" />
+                                                }
+                                                else
+                                                {<img src="~/Images/Users/usericon.png" style="height:150px;width:150px;" />}
+                                            </div>
+                                            <h5 class="text-center">@item.FirstName @item.LastName </h5>
 
                                             @if (@item.PositionId != 0)
                                             {
@@ -65,10 +77,10 @@
                                                     }
 
                                                 }
-                                                <div>@position</div>
+                                                <div class="text-center">@position</div>
                                             }
                                         </div>
-                                        @if (@item.RoleIds.Count != 0)
+                                        @*@if (@item.RoleIds.Count != 0)
                                         {
                                             string roles = "";
                                             foreach (int id in (List<int>)(@item.RoleIds))
@@ -85,7 +97,7 @@
                                             <p>
                                                 @roles
                                             </p>
-                                        }
+                                        }*@
 
                                         <p>
                                             @(item.Desc.Length > 110 ? item.Desc.Substring(0, 110) + "..." : item.Desc)
@@ -118,7 +130,7 @@
                     {
                         <div class="services-2 col-md-4 d-flex w-100">
                             <div class="icon d-flex justify-content-center align-items-center">
-                                <img src="~/Images/Users/@item.Image" />
+                                <img src="~/Images/Users/@item.Image" style="height:150px;width:150px;"/>
                             </div>
                             <div class="media-body pl-3">
                                 <h3 class="heading">@item.FirstName @item.LastName</h3>

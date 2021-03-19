@@ -30,7 +30,8 @@
                                 <h3 class="heading">  @(item.Title.Length > 29 ? item.Title.Substring(0, 29) + "..." : item.Title)</h3>
                                 <div class="meta">
                                     <div>@item.Type | @item.Specialit</div>
-                                    <div>Author: @item.Author.FirstName  @item.Author.LastName | Date: @item.PublishDate.ToString("dd. MM. yyyy")</div>
+                                    <div>Author: @item.Author.FirstName  @item.Author.LastName</div>
+                                    <div> Date: @item.PublishDate.ToString("dd. MM. yyyy")</div>
                                     <div>@item.Volume | @issno[0]</div>
                                     <br />
                                 </div>
