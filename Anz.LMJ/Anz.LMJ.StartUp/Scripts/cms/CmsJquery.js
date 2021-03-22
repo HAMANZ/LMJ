@@ -16,6 +16,24 @@ function readURL(input) {
 
 }
 
+function readURLBanner(input) {
+    console.log(input.files[0].name);
+    $("#BackGroundImageBanner").val(input.files[0].name);
+    $("#BackgroundImageBanner").val(input.files[0].name);
+    $("#ArticleImage").val(input.files[0].name);
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#blahBackGroundImageBanner').attr('src', e.target.result);
+            $("#ImageBase").val(e.target.result)
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+
+}
+  
+
+
 function readURL1(input) {
     console.log(input.files[0].name);
     //$("#BackGroundImage").val(input.files[0].name);
@@ -40,7 +58,7 @@ $(document).ready(function () {
     });
 
     $("#imgInpBanner").change(function () {
-        readURL1(this);
+        readURLBanner(this);
     });
     //var editor = "";
 
@@ -149,5 +167,4 @@ $(document).ready(function () {
 
 
     });
-
 });

@@ -13,46 +13,53 @@
   
   
     
-    <TopLevelMenu name="Indexation" link="/admin/Indexation" icon="fa fa-lg fa-fw fa-dropbox" class="indexationpage">
+    <TopLevelMenu name="Indexation" link="/admin/Indexation" icon="fa fa-lg fa-fw fa-indent" class="indexationpage">
   </TopLevelMenu>
   
-  <TopLevelMenu name="Define Types" link="#" icon="fa fa-lg fa-fw fa-home" class="Types">
+  <TopLevelMenu name="Define Types" link="#" icon="fa fa-lg fa-fw fa-list-ul" class="Types">
     <MenuItem name="Role" link="/admin/FormType?FormName=Role" class="Role"/>
     <MenuItem name="Position" link="/admin/FormType?FormName=Position" class="Position"/>
     <MenuItem name="IndexType" link="/admin/FormType?FormName=IndexType" class="IndexType"/>
     <MenuItem name="Degree" link="/admin/FormType?FormName=Degree" class="Degree"/>
   </TopLevelMenu>
 
-  <TopLevelMenu name="Role" link="/admin/FormType?FormName=Role" icon="fa fa-lg fa-fw fa-dropbox" class="footerpage">
-  </TopLevelMenu>
   
   <TopLevelMenu name="Users" link="#" icon="fa fa-lg fa-fw fa-user" class="Types">
+    <MenuItem name="AllUsers" link="/admin/Users?Role=all" class="management"/>
+    <MenuItem name="Managment" link="/admin/Users?Role=management" class="management"/>
     <MenuItem name="Authors" link="/admin/Users?Role=author" class="Role"/>
     <MenuItem name="Members" link="/admin/Users?Role=member" class="Position"/>
     <MenuItem name="Team" link="/admin/Users?Role=team" class="IndexType"/>
-    <MenuItem name="Managment" link="/admin/Users?Role=management" class="Degree"/>
+    <MenuItem name="Tags" link="/admin/Users?Role=tag" class="tags"/>
+    <MenuItem name="CopyEditor" link="/admin/Users?Role=copyediting" class="copyediting"/>
+    <MenuItem name="Reviewer" link="/admin/Users?Role=reviewer" class="reviewer"/>
+    <MenuItem name="Proofreading" link="/admin/Users?Role=proofreading" class="proofreading"/>
   </TopLevelMenu>
 
 
 
 
-  <TopLevelMenu name="Admit Reviews" link="/admin/Review" icon="fa fa-lg fa-fw fa-dropbox" class="Review">
+  <TopLevelMenu name="Admit Reviews" link="/admin/Review" icon="fa fa-lg fa-fw fa-check" class="Review">
   </TopLevelMenu>
   
 
-  <TopLevelMenu name="Citation" link="/admin/CitationType" icon="fa fa-lg fa-fw fa-dropbox" class="citationpage">
+  <TopLevelMenu name="Citation" link="/admin/CitationType" icon="fa fa-lg fa-fw fa-quote-left" class="citationpage">
   </TopLevelMenu>
 
-  <TopLevelMenu name="Articles" link="/admin/Articles" icon="fa fa-lg fa-fw fa-dropbox" class="articles">
+  <TopLevelMenu name="Articles" link="/admin/Articles" icon="fa fa-lg fa-fw fa-clipart" class="articles">
   </TopLevelMenu>
 
-  <TopLevelMenu name="Issue Filter" link="/admin/IssueFilter" icon="fa fa-lg fa-fw fa-dropbox" class="Filter">
+
+  <TopLevelMenu name="Issues" link="/admin/Issues" icon="fa fa-lg fa-fw fa-paper" class="Issues">
+  </TopLevelMenu>
+  
+  <TopLevelMenu name="Issue Filter" link="/admin/IssueFilter" icon="fa fa-lg fa-fw fa-filter" class="Filter">
   </TopLevelMenu>
 
-  <TopLevelMenu name="Events" link="/admin/Events" icon="fa fa-lg fa-fw fa-dropbox" class="events">
+  <TopLevelMenu name="Events" link="/admin/Events" icon="fa fa-lg fa-fw fa-calendar" class="events">
   </TopLevelMenu>
 
-  <TopLevelMenu name="Videos" link="/admin/Videos" icon="fa fa-lg fa-fw fa-dropbox" class="videos">
+  <TopLevelMenu name="Videos" link="/admin/Videos" icon="fa fa-lg fa-fw fa-video-camera" class="videos">
   </TopLevelMenu>
   
 </root>

@@ -1,0 +1,165 @@
+﻿@using Anz.LMJ.BLO.LogicObjects.User;
+@{
+    ViewBag.Title = "GetIssue";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    #content {
+        text-align: right;
+    }
+
+    .ImageInfo {
+        font-size: 12px;
+        float: left;
+    }
+
+    .input {
+        position: relative;
+        display: block;
+        font-weight: 400;
+    }
+
+    .icon-append {
+        color: #A2A2A2;
+    }
+
+    .icon-append {
+        border-color: #BDBDBD;
+        transition: border-color .3s;
+        -o-transition: border-color .3s;
+        -ms-transition: border-color .3s;
+        -moz-transition: border-color .3s;
+        -webkit-transition: border-color .3s;
+    }
+
+    .icon-append {
+        right: 5px;
+        padding-left: 3px;
+        border-left-width: 1px;
+        border-left-style: solid;
+    }
+
+    .icon-append {
+        position: absolute;
+        top: 5px;
+        width: 22px;
+        height: 22px;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: center;
+    }
+
+    .input img {
+        /*width: 50%;*/
+    }
+
+    .ImgClick {
+        background-image: url(/Images/delete.png);
+        background-repeat: no-repeat;
+        width: 2em;
+        background-color: transparent;
+        border: 0;
+        vertical-align: middle;
+        background-position: center;
+        background-size: contain;
+    }
+
+    .list-inline {
+        position: relative;
+    }
+
+        .list-inline input[type=file] {
+            position: absolute;
+            top: 2rem;
+        }
+</style>
+<div id="main" role="main">
+    <div id="ribbon" style="display: block;">
+        <ol class="breadcrumb">
+            <li>Home</li>
+            <li>@ViewBag.Title</li>
+        </ol>
+    </div>
+    <div id="content">
+        <!-- row -->
+        <div class="row">
+
+            @using (Html.BeginForm("EditIssue", "Admin", FormMethod.Post, new { @class = "EditIssue", enctype = "multipart/form-data" }))
+            {
+                <div class="row">
+                    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                        <label class="col-sm-12 control-label">
+                            <strong>Title</strong>
+                        </label>
+                    </div>
+                    <div class="col-xs-9 col-sm-4 col-md-5 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="Title" value="@ViewBag.Issue.Title" />
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-2">
+                        <label class="col-sm-12 control-label">
+                            <strong>Short Title</strong>
+                        </label>
+                    </div>
+                    <div class="col-xs-9 col-sm-4 col-md-5 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="SubTitle" value="@ViewBag.Issue.SubTitle" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                        <label class="col-sm-12 control-label">
+                            <strong>IssueNo</strong>
+                        </label>
+                    </div>
+                    <div class="col-xs-9 col-sm-4 col-md-5 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="IssueNo" value="@ViewBag.Issue.IssueNo" />
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-2">
+                        <label class="col-sm-12 control-label">
+                            <strong>IssuePrintNo</strong>
+                        </label>
+                    </div>
+                    <div class="col-xs-9 col-sm-4 col-md-5 col-lg-4">
+                        <div class="form-group">
+                            <input class="form-control input__beautify" type="text" name="IssuePrintNo" value="@ViewBag.Issue.IssuePrintNo" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-2 col-sm-2  col-lg-1">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                <strong>CoverImage</strong>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                        <input type="file" name="Photo" id="imgInp" class="custom-file-input" style="width:50%;">
+                        <label class="ImageInfo">Recommended Size: 256*160</label>
+                        <br />
+                        <input type="hidden" name="Photo" id="BackGroundImage" value="@ViewBag.Issue.CoverImage" />
+                        <img src="~/Images/Issues/@ViewBag.Issue.CoverImage" alt="img" width="50%" id="blah" accept="image/png,image/gif,image/jpeg">
+                        <br />
+
+                    </div>
+                </div>
+                <br />
+                <div class="col-xs-7">
+                    <button type="submit" class="btn btn-sm btn-primary EditIssue"> Publish </button>
+                    <input type="hidden" name="Id" value="@ViewBag.Issue.Id" />
+                </div>
+            }
+        </div>
+
+    </div>
+
+</div>

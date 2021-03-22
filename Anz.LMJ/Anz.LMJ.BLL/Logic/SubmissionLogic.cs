@@ -304,14 +304,17 @@ namespace Anz.LMJ.BLL.Logic
                 data.SourcesOfFunding = submission.SourcesOfFunding;
                 data.PublishDate = (DateTime)submission.PublishedDate;
                 data.isTopReader =(bool) submission.IsTopReader;
+                data.ArticleTypeId = (long)submission.ArticleTypeId;
+                data.SpecialitiesId = (long)submission.SpecialitiesId;
                 data.isEditorsPick = (bool)submission.IsEditorsPick;
                 issue = _IssueAccessor.Get((long)submission.IssueId);
                 data.IssueNO = issue.IssuePrintNo;
+                data.Banner = submission.BannerImage;
                 newsletter = _NewsletterAccessor.Get(issue.NewsletterId);
                 data.Volume = newsletter.Volume;
                 data.Issn = newsletter.ISSN;
                 data.Year = (DateTime)newsletter.PublishDate;
-                data.year = ((DateTime)newsletter.PublishDate).ToString("yyyy");
+                data.yearstring = ((DateTime)newsletter.PublishDate).ToString("yyyy");
                 data.UserId = submission.UserId;
                 data.Date = ((DateTime)submission.PublishedDate).ToString("MMM.dd.yyyy");
                 issue = _IssueAccessor.Get((long)submission.IssueId);
@@ -2964,20 +2967,53 @@ namespace Anz.LMJ.BLL.Logic
         }
 
 
-        public DynamicResponse<long> UpdateSubmission(long submissionid, long userId, bool isEditorsPick, bool isTopReader,List<long> tagsid)
+        public DynamicResponse<long> UpdateSubmission(SubmissionLO submission)
         {
             #region Accessor
             SubmissionAccessor _SubmissionAccessor = new SubmissionAccessor();
+            SubmissionFilesAccessor _SubmissionFilesAccessor = new SubmissionFilesAccessor();
             ContributorsAccessor _ContributorsAccessor = new ContributorsAccessor();
             #endregion
             DynamicResponse<long> response = new DynamicResponse<long>();
             List<Contributor> _Contributors = new List<Contributor>();
-            long id;
+            Submission _Submission = new Submission();
+            List<SubmissionFile> files = new List<SubmissionFile>();
+            long id = 0;
+            _Submission.Id =(long) submission.Id;
+            _Submission.UserId = submission.UserId;
+            //_Submission.SectionId = 1;
+            //_Submission.CommentsForEditor = submission.CommentsForEditor;
+            //_Submission.Prefix = submission.Prefix;
+            _Submission.Title = submission.Title;
+            _Submission.Subtitle = submission.SubTitle;
+            _Submission.Abstract = submission.AbstractText;
+            _Submission.ArticleTypeId = submission.ArticleTypeId;
+            _Submission.SpecialitiesId = submission.SpecialitiesId;
+            //_Submission.StudyTypeId = 1;
+            //_Submission.ResearchId = submission.ResearchId;
+            //_Submission.SubjectId = submission.SubjectId;
+            //_Submission.QuestionId = submission.QuestionId;
+            //_Submission.IssueId = null;
+            //_Submission.isDeleted = false;
+            _Submission.IsEditorsPick = submission.isEditorsPick;
+            _Submission.IsTopReader = submission.isTopReader;
+            //_Submission.SysDate = DateTime.Now;
+            //_Submission.GUID = null;
+            //_Submission.LibraryId = null;
+            //_Submission.MiniDescription = submission.MiniDescription;
+            //_Submission.Significance = submission.Significance;
+            //_Submission.SourcesOfFunding = submission.SourcesOfFunding;
+            //_Submission.ConflictsOfInterests = submission.ConflictsOfInterests;
+            _Submission.CoverPhoto = submission.Photo;
+            //_Submission.isDraft = true;
+            //_Submission.isApproved = submission.isApproved;
+            _Submission.BannerImage = submission.Banner;
             try
             {
 
-                id = _SubmissionAccessor.Update(submissionid, userId,isEditorsPick,isTopReader);
-                if (id == 0)
+
+                id = _SubmissionAccessor.Update(_Submission);
+                      if (id == 0)
                 {
 
                     response.HttpStatusCode = HttpStatusCode.InternalServerError;
@@ -2985,13 +3021,34 @@ namespace Anz.LMJ.BLL.Logic
                     response.ServerMessage = "submission can't updated";
                     return response;
                 }
-                Contributor _Contributor = new Contributor();
+                if (submission.FileName != null) {
+                    SubmissionFile file = new SubmissionFile();
+                    file.SubmissionId = submission.Id;
+                    file.FileName = submission.FileName;
+                    file.isAcceptedforProduction = true;
+                    file.isDeleted = false;
+                    file.SysDate = DateTime.Now;
+                    files.Add(file);
+                    files=_SubmissionFilesAccessor.Add(files);
+
+                    if (files.Count == 0) {
+                        response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                        response.Message = "Check the submission files.";
+                        response.ServerMessage = "files can't updated";
+                        return response;
+                    }
+
+                }
                
-                for (int i = 0; i < tagsid.Count(); i++)
+
+                Contributor _Contributor = new Contributor();
+                if (submission.TagsIds.Count != 0)
                 {
+                    for (int i = 0; i < submission.TagsIds.Count(); i++)
+                    {
                         _Contributor = new Contributor();
-                        _Contributor.UserId = tagsid[i];
-                        _Contributor.SubmissionId = id;
+                        _Contributor.UserId = (long)submission.TagsIds[i];
+                        _Contributor.SubmissionId = (long)submission.Id;
                         _Contributor.Fname = null;
                         _Contributor.Mname = null;
                         _Contributor.Lname = null;
@@ -3009,23 +3066,25 @@ namespace Anz.LMJ.BLL.Logic
                         _Contributor.isDeleted = false;
                         _Contributor.IsTag = true;
 
-                    _Contributors.Add(_Contributor);
+                        _Contributors.Add(_Contributor);
 
-                }
+                    }
 
 
 
-                _Contributors = _ContributorsAccessor.Add(_Contributors);
+                    _Contributors = _ContributorsAccessor.Add(_Contributors);
                     //check the response of the addition of the contibutors
-                if(_Contributors == null || _Contributors.Count == 0)
-                {
-                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Check the contributers.";
-                    response.ServerMessage = "contributers can't added.";
-                    return response;
-                }
+                    if (_Contributors == null || _Contributors.Count == 0)
+                    {
+                        response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                        response.Message = "Check the contributers.";
+                        response.ServerMessage = "contributers can't added.";
+                        return response;
+                    }
 
-                _ContributorsAccessor.Delete(id, true);
+                    _ContributorsAccessor.Delete(id, true);
+                }
+                response.Data = (long)submission.Id;
                 response.HttpStatusCode = HttpStatusCode.OK;
                 return response;
 
@@ -3040,7 +3099,51 @@ namespace Anz.LMJ.BLL.Logic
 
         }
 
-        
+
+
+        public DynamicResponse<long> UpdateIssue(IssueLO issue)
+        {
+            #region Accessor
+            IssueAccessor _IssueAccessor = new IssueAccessor();
+            SubmissionFilesAccessor _SubmissionFilesAccessor = new SubmissionFilesAccessor();
+            ContributorsAccessor _ContributorsAccessor = new ContributorsAccessor();
+            #endregion
+            DynamicResponse<long> response = new DynamicResponse<long>();
+            Issue _Issue = new Issue();
+
+            long id = 0;
+            _Issue.Id = (long)issue.Id;
+            _Issue.CoverImage = issue.CoverImage;
+            _Issue.Title = issue.Title;
+            _Issue.SubTitle = issue.SubTitle;
+            _Issue.IssueNo = issue.IssueNo;
+            try
+            {
+
+
+                _Issue = _IssueAccessor.Edit(_Issue);
+                if (_Issue == null)
+                {
+
+                    response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                    response.Message = "Check the Issue.";
+                    response.ServerMessage = "Issue can't updated";
+                    return response;
+                }
+                response.Data = (long)_Issue.Id;
+                response.HttpStatusCode = HttpStatusCode.OK;
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.BadRequest;
+                response.Message = "Please try again later!";
+                response.ServerMessage = ex.Message;
+                return response;
+            }
+
+        }
         #endregion
 
     }

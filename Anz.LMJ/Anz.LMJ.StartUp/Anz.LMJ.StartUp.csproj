@@ -860,11 +860,14 @@
     <Content Include="Views\Management\MainMenu.cshtml" />
     <Content Include="Views\Admin\EditorialBoard.cshtml" />
     <Content Include="Views\Layout\_PartialViewHeader.cshtml" />
+    <Content Include="Views\Admin\GetIssue.cshtml" />
+    <Content Include="Views\Admin\ViewIssue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Articles\" />
     <Folder Include="Images\FooterMenu\" />
+    <Folder Include="Images\Issues\" />
     <Folder Include="Images\NewsletterImages\" />
     <Folder Include="Images\Videos\" />
     <Folder Include="Models\" />

@@ -135,6 +135,7 @@ namespace Anz.LMJ.DAL.Accessors
                     User usr = db.Users.Where(e => e.Id == toEdit.Id).FirstOrDefault();
                     usr.FirstName = toEdit.FirstName;
                     usr.LastName = toEdit.LastName;
+                    usr.MiddleName = toEdit.MiddleName;
                     usr.Email = toEdit.Email;
                     usr.Username = toEdit.Username;
                     usr.Affiliation = toEdit.Affiliation;
@@ -150,6 +151,7 @@ namespace Anz.LMJ.DAL.Accessors
                     usr.PositionId = (int)toEdit.PositionId;
                     usr.DegreeIds = toEdit.DegreeIds;
                     usr.Desc = toEdit.Desc;
+                    usr.Password = toEdit.Password;
                     usr.Pos = (int)toEdit.Pos;
                     usr.IsDeleted = false;
                     db.SaveChanges();
@@ -182,6 +184,55 @@ namespace Anz.LMJ.DAL.Accessors
 
         }
 
+        public int getMaxPos() {
 
+            try
+            {
+                int pos = 0;
+                using (LMJEntities db = new LMJEntities())
+                {
+                    User usr=db.Users.OrderByDescending(e=>e.Pos).FirstOrDefault();
+                    pos = (int)usr.Pos;
+                   
+                }
+                return pos;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+          
+        }
+
+        public List<long> EditPos(List<long> ids,List<int> Pos)
+        {
+            try
+            {
+                User usr = new User();
+              
+                    using (LMJEntities db = new LMJEntities())
+                    {
+                    for (int i = 0; i <ids.Count; i++)
+                    {
+                        usr = new User();
+                        long id = (long)ids[i];
+                        int pos = int.Parse(Pos[i].ToString());
+                        usr = db.Users.Where(e => e.Id ==id).FirstOrDefault();
+                        usr.Pos = pos;
+                        db.SaveChanges();
+                    }
+                    return ids;
+                }
+                 
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        
     }
 }

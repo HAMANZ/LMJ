@@ -107,6 +107,28 @@ namespace Anz.LMJ.DAL.Accessors
         }
         #endregion
 
+        public Issue Edit(Issue s)
+        {
+            try
+            {
+                using (LMJEntities db = new LMJEntities())
+                {
+                    Issue Issue = db.Issues.Where(e => e.Id == s.Id).FirstOrDefault();
+                    Issue.CoverImage = s.CoverImage;
+                    Issue.Title = s.Title;
+                    Issue.SubTitle = s.SubTitle;
+                    Issue.IssueNo = s.IssueNo;
+                    db.SaveChanges();
+                    return Issue;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
 
     }
 }

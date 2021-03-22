@@ -2,6 +2,7 @@
 using Anz.LMJ.BLL.Logic;
 using Anz.LMJ.BLO.LogicObjects.CommonObjects;
 using Anz.LMJ.BLO.LogicObjects.Submission;
+using Anz.LMJ.BLO.LogicObjects.Issue;
 using Anz.LMJ.BLO.LogicObjects.User;
 using Anz.LMJ.BLO.ContentObjects;
 using System;
@@ -216,11 +217,37 @@ namespace Anz.LMJ.WebServices
             return submissions.Data;
         }
 
+        public DynamicResponse<List<IssueLO>> GetAllIssues()
+        {
+            #region Logic
+            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
+            #endregion
+            return _SubmissionLogic.GetAllIssues();
+
+        }
+
+        public DynamicResponse<List<Options>> GetArticlesType()
+        {
+            #region Logic
+            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
+            #endregion
+            return _SubmissionLogic.GetArticlesType();
+
+        }
         public List<SubmissionLO> GetAllArticles()
         {
             HomeServices _HomeServices = new HomeServices();
             DynamicResponse<List<SubmissionLO>> submissions = _HomeServices.GetAllArticles();
             return submissions.Data;
+        }
+
+        public DynamicResponse<IssueLO> GetIssueInfo(long issueid)
+        {
+            #region Logic
+            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
+            #endregion
+
+            return _SubmissionLogic.GetIssueInfo(issueid);
         }
 
         public SubmissionLO GetArticle(long id)
@@ -300,6 +327,52 @@ namespace Anz.LMJ.WebServices
             }
 
         }
+
+        public List<int> GetAllRoles()
+        {
+            #region logics
+            DynamicResponse<List<DataType>> response = new DynamicResponse<List<DataType>>();
+            UserLogic _UserLogic = new UserLogic();
+            #endregion
+            try
+            {
+                response = _UserLogic.GetRoles();
+                List<int> idss = new List<int>();
+                List<long> ids = response.Data.Select(s => s.Id).ToList();
+                foreach (long item in ids) {
+                    idss.Add((int)item);
+                }
+                return idss;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        
+        public List<UserLO> GetUsers()
+        {
+            #region logics
+            DynamicResponse<List<UserLO>> uesrs = new DynamicResponse<List<UserLO>>();
+            UserLogic _UserLogic = new UserLogic();
+            #endregion
+            try
+            {
+                uesrs = _UserLogic.GetUsers();
+                return uesrs.Data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
         public List<UserLO> GetUsers(List<int> rolesid)
         {
             #region logics
@@ -398,6 +471,25 @@ namespace Anz.LMJ.WebServices
         }
 
 
+
+        public DynamicResponse<List<long>> EditPos(List<PosLO> toedit)
+         {
+            #region logics
+
+            UserLogic _UserLogic = new UserLogic();
+            #endregion
+            try
+            {
+                return _UserLogic.EditPos(toedit);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
         public DynamicResponse<long> EditUser(UserLO toEdit)
         {
             #region logics

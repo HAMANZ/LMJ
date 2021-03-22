@@ -93,6 +93,7 @@
     <Compile Include="ContentObjects\Videos.cs" />
     <Compile Include="ContentObjects\Members.cs" />
     <Compile Include="LogicObjects\CommonObjects\DynamicResponse.cs" />
+    <Compile Include="LogicObjects\PosLO.cs" />
     <Compile Include="LogicObjects\StringDictionaryConverter.cs" />
     <Compile Include="LogicObjects\Issue\IssueLO.cs" />
     <Compile Include="LogicObjects\ObjectExtensions.cs" />

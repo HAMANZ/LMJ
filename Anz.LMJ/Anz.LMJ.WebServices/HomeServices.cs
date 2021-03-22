@@ -159,10 +159,15 @@ namespace Anz.LMJ.WebServices
         }
 
 
-        public DynamicResponse<long> UpdateSubmission(long submissionid, long userId, bool isEditorsPick, bool isTopReader,List<long> tagsid)
+        public DynamicResponse<long> UpdateIssue(IssueLO issue)
         {
             SubmissionLogic _SubmissionLogic = new SubmissionLogic();
-            return _SubmissionLogic.UpdateSubmission(submissionid,userId,isEditorsPick,isTopReader, tagsid);
+            return _SubmissionLogic.UpdateIssue(issue);
+        }
+        public DynamicResponse<long> UpdateSubmission(SubmissionLO submission)
+        {
+            SubmissionLogic _SubmissionLogic = new SubmissionLogic();
+            return _SubmissionLogic.UpdateSubmission(submission);
         }
 
         public DynamicResponse<UserLO> Auth(string email,string pass) {

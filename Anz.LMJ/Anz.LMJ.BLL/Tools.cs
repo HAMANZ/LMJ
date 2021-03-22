@@ -34,17 +34,17 @@ namespace Anz.LMJ.BLL
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
-                mail.From = new MailAddress("", "LMJ");
+                mail.From = new MailAddress("lmj@terra.net.lb", "LMJ_2021");
                 mail.To.Add(emailTo);
                 mail.Subject = subject;
                 mail.Body = body;
                 mail.IsBodyHtml = true;
 
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("", "LMJ_2021");
+                SmtpServer.Credentials = new System.Net.NetworkCredential("hudaabumayha.ham@gmail.com", "123310Hh$$");
                 SmtpServer.EnableSsl = true;
 
-                //SmtpServer.Send(mail);
+                SmtpServer.Send(mail);
             }
             catch (Exception ex)
             {

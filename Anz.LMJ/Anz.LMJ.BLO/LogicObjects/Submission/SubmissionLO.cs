@@ -59,7 +59,7 @@ namespace Anz.LMJ.BLO.LogicObjects.Submission
         public List<UserLO> Reviewers { get; set; }
         public List<UserLO> CopyEditors { get; set; }
         public List<UserLO> ProofReaders { get; set; }
-
+        public List<long> TagsIds { get; set; }
         public List<HttpPostedFileBase> SubmissionFilesToUpload { get; set; }
         public List<SubmissionFilesLO> Galleys { get; set; }
         public List<SubmissionFilesLO> SubmissionFiles { get; set; }
@@ -79,7 +79,7 @@ namespace Anz.LMJ.BLO.LogicObjects.Submission
         public string Issn { get; set; }
         public DateTime Year { get; set; }
 
-        public string year { get; set; }
+        public string yearstring { get; set; }
 
         public string Volume { get; set; }
 
@@ -93,11 +93,13 @@ namespace Anz.LMJ.BLO.LogicObjects.Submission
         public long ArticleTypeId { get; set; }
         public long OrderFile { get; set; }
         public long SectionId { get; set; }
+        public long SpecialitiesId { get; set; }
         public long SubjectId { get; set; }
         public long ResearchId { get; set; }
         public long QuestionId { get; set; }
         public string FileName { get; set; }
         public string[] MetaData { get; set; }
+        [AllowHtml]
         public string AbstractText { get; set; }
         public string EditorText { get; set; }
         public string CommentsForEditor { get; set; }

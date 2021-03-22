@@ -2,6 +2,7 @@
 using Anz.LMJ.BLO.ContentObjects;
 using Anz.LMJ.BLO.LogicObjects.CommonObjects;
 using Anz.LMJ.BLO.LogicObjects.Submission;
+using Anz.LMJ.BLO.LogicObjects.Issue;
 using Anz.LMJ.BLO.LogicObjects.User;
 using Anz.LMJ.BLO.LogicObjects.Review;
 using Anz.LMJ.FrontEnd;
@@ -91,7 +92,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:SignIn", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:SignIn", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("SignIn", LoggerServices.ActionTypes.Read, "email:" + email + " password:" + password, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -118,7 +119,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:IssueFilter", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:IssueFilter", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("IssueFilter", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -151,7 +152,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:HomeBanner", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:HomeBanner", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("ViewIssueFilter", LoggerServices.ActionTypes.Add, "home banner inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -177,7 +178,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:HomeBanner", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:HomeBanner", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("HomeBanner", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -245,7 +246,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:HomeBanner", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:HomeBanner", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 // _LoggerServices.Error("HomeBanner", LoggerServices.ActionTypes.Add, "home banner inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -284,7 +285,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:Footer_Page", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:Footer_Page", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("Footer_Page", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -347,7 +348,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:Footer", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:Footer", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("Footer", LoggerServices.ActionTypes.Add, "inputs" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -372,7 +373,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:Contact_Page", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:Contact_Page", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("Contact_Page", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -444,7 +445,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:Contact_Page", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:Contact_Page", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("Contact_Page", LoggerServices.ActionTypes.Add, "inputs" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -469,7 +470,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:AboutUs_Page", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:AboutUs_Page", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("AboutUs_Page", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -519,7 +520,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:AboutUs_Page", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:AboutUs_Page", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("AboutUs_Page", LoggerServices.ActionTypes.Add, "inputs" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -549,7 +550,7 @@ namespace Anz.LMJ.StartUp.Controllers
             catch (Exception ex)
             {
                 #region Logger
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:Review", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:Review", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("Review", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -576,7 +577,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:GetReview", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:GetReview", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("GetReview", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -610,6 +611,105 @@ namespace Anz.LMJ.StartUp.Controllers
 
         #endregion
 
+
+        #region Issues
+        [HttpGet]
+        [CheckUserSession]
+        public ActionResult Issues()
+        {
+            try
+            {
+
+                DynamicResponse<List<IssueLO>> response = _AdminServices.GetAllIssues();
+                if (response.HttpStatusCode != HttpStatusCode.OK)
+                {
+                    return RedirectToAction("Index", "Oops");
+                }
+                ViewBag.Issues = response.Data;
+
+
+            }
+            catch (Exception ex)
+            {
+                #region Logger
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:Issues", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                _LoggerServices.Error("Issues", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
+
+                #endregion
+            }
+            return View("ViewIssue");
+
+        }
+
+
+        [CheckUserSession]
+        public ActionResult GetIssue(long id)
+        {
+            try
+            {
+                 DynamicResponse<IssueLO> response = _AdminServices.GetIssueInfo(id);
+                if (response.HttpStatusCode != HttpStatusCode.OK)
+                {
+                    return RedirectToAction("Index", "Oops");
+                }
+                ViewBag.Issue= response.Data;
+
+            }
+            catch (Exception ex)
+            {
+                #region Logger
+
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:GetIssue", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                _LoggerServices.Error("GetIssue", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
+
+                #endregion
+            }
+
+            return View("GetIssue");
+
+        }
+
+
+        [CheckUserSession]
+        [HttpPost, ValidateInput(false)]
+        public ActionResult EditIssue(IssueLO issue)
+        {
+            try
+            {
+                DynamicResponse<long> response;
+                string path = Server.MapPath("~/Images/Issues/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+
+                if (issue.Photo != null)
+                {
+                    string extension = Path.GetExtension(issue.Photo.FileName);
+                    string Name = Path.GetFileNameWithoutExtension(issue.Photo.FileName);
+                    string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+                    issue.Photo.SaveAs(path + newName);
+                    issue.CoverImage = newName;
+                }
+
+                response = _HomeServices.UpdateIssue(issue);
+                if (response.HttpStatusCode != HttpStatusCode.OK)
+                {
+                    return RedirectToAction("Index", "Oops");
+                }
+                return RedirectToAction("GetIssue", new { id = issue.Id });
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Oops");
+            }
+
+        }
+
+
+        #endregion
+
         #region article
         [HttpGet]
         [CheckUserSession]
@@ -626,7 +726,7 @@ namespace Anz.LMJ.StartUp.Controllers
             catch (Exception ex)
             {
                 #region Logger
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditorPick", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:EditorPick", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("EditorPick", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -636,11 +736,15 @@ namespace Anz.LMJ.StartUp.Controllers
         }
 
 
-
+        [CheckUserSession]
         public ActionResult GetArticle(long id)
         {
             try
             {
+                DynamicResponse<SelectLO> options = new DynamicResponse<SelectLO>();
+                options = _HomeServices.GetOption();
+                ViewBag.articletype = options.Data.ArticleType;
+                ViewBag.Category = options.Data.Category;
                 SubmissionLO article = _AdminServices.GetArticle(id);
                 ViewBag.article = article;
                 List<UserLO> users = _AdminServices.GetAllUsers();
@@ -650,7 +754,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:GetArticle", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:GetArticle", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("GetArticle", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -662,20 +766,62 @@ namespace Anz.LMJ.StartUp.Controllers
 
 
         [CheckUserSession]
-        public JsonResult EditArticle(long submissionid, long userId, bool isEditorsPick, bool isTopReader, List<long> tagsid)
+        [HttpPost, ValidateInput(false)]
+        public ActionResult EditArticle(SubmissionLO submission)
         {
             try
             {
                 DynamicResponse<long> response;
-                response = _HomeServices.UpdateSubmission(submissionid, userId, isEditorsPick, isTopReader, tagsid);
-                if (response.HttpStatusCode != HttpStatusCode.OK) {
-                    return Json("error");
+                string path = Server.MapPath("~/Images/Articles/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
                 }
-                return Json(response, JsonRequestBehavior.AllowGet);
+
+
+                if (submission.CoverPhoto != null)
+                {
+                    string extension = Path.GetExtension(submission.CoverPhoto.FileName);
+                    string Name = Path.GetFileNameWithoutExtension(submission.CoverPhoto.FileName);
+                    string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+                    submission.CoverPhoto.SaveAs(path + newName);
+                    submission.Photo = newName;
+                }
+               
+                if (submission.BannerImage != null)
+                {
+                    string extension = Path.GetExtension(submission.BannerImage.FileName);
+                    string Name = Path.GetFileNameWithoutExtension(submission.BannerImage.FileName);
+                    string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+                    submission.BannerImage.SaveAs(path + newName);
+                    submission.Banner = newName;
+                }
+
+                path = Server.MapPath("~/files/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+
+                if (submission.FilesToUpload[0]!=null)
+                {
+                    string extension = Path.GetExtension(submission.FilesToUpload[0].FileName);
+                    string Name = Path.GetFileNameWithoutExtension(submission.FilesToUpload[0].FileName);
+                    string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+                    submission.FilesToUpload[0].SaveAs(path + newName);
+                    submission.FileName = newName;
+                }
+
+                response = _HomeServices.UpdateSubmission(submission);
+                if (response.HttpStatusCode != HttpStatusCode.OK) {
+                    return RedirectToAction("Index", "Oops");
+                }
+                return RedirectToAction("GetArticle", new { id = submission.Id });
             }
             catch (Exception ex)
             {
-                return Json("error");
+                return RedirectToAction("Index", "Oops");
             }
 
         }
@@ -698,7 +844,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:AddEventsSectionForm", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:AddEventsSectionForm", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("AddEventsSectionForm", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -751,7 +897,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:AddEventsSection", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:AddEventsSection", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("AddEventsSection", LoggerServices.ActionTypes.Add, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -774,7 +920,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:DeleteEventsSection", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:DeleteEventsSection", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("DeleteEventsSection", LoggerServices.ActionTypes.Delete, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -795,7 +941,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:GetEventsSection", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:GetEventsSection", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("GetEventsSection", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -885,7 +1031,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditEventsSection", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:EditEventsSection", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("EditEventsSection", LoggerServices.ActionTypes.Update, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -909,7 +1055,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditEventsSection", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:EditEventsSection", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("EditEventsSection", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -935,7 +1081,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditorialBoard", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:EditorialBoard", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("EditorialBoard", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -985,7 +1131,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditorialBoard", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:EditorialBoard", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("EditorialBoard", LoggerServices.ActionTypes.Add, "inputs" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion
@@ -1020,7 +1166,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:GetTeam", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:GetTeam", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("GetTeam", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1062,7 +1208,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditUser", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:EditUser", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("EditUser", LoggerServices.ActionTypes.Update, "inputs:" + toedit, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1091,17 +1237,29 @@ namespace Anz.LMJ.StartUp.Controllers
                 foreach (int id in roleids) {
                     ids.Add((int)id);
                 }
-                if(Role!=null)
-                ids = _AdminServices.GetRoles(Role);
-               
-                List<UserLO> users = _AdminServices.GetUsers(ids);
-                ViewBag.users = users;
+                List<UserLO> users = new List<UserLO>();
+                if (Role != null)
+                    {
+                        if (Role[0] == "all")
+                        {
+                            users = _AdminServices.GetUsers();
+                        }else
+                        {
+                            ids = _AdminServices.GetRoles(Role);
+                            users = _AdminServices.GetUsers(ids);
+                        }
+                    }
+                    else {
+                    users = _AdminServices.GetUsers(ids);
+                }
+                
+                ViewBag.users = users.OrderBy(e => e.Pos).ToList();
             }
             catch (Exception ex)
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:Team", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:Team", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("Team", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1166,7 +1324,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:AddUsr", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:AddUsr", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("AddUsr", LoggerServices.ActionTypes.Add, "inputs:" + toAdd, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1186,7 +1344,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:DeleteTeam", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:DeleteTeam", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("DeleteTeam", LoggerServices.ActionTypes.Delete, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1222,7 +1380,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:GetTeam", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:GetTeam", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("GetTeam", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1275,7 +1433,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:Type", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:Type", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("Type", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1308,7 +1466,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:GetType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:GetType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("GetType", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1329,7 +1487,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:DeleteTeam", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:DeleteTeam", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("DeleteTypeData", LoggerServices.ActionTypes.Delete, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1388,7 +1546,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:AddDataType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:AddDataType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("AddDataType", LoggerServices.ActionTypes.Add, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1434,7 +1592,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditDataType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:EditDataType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("EditDataType", LoggerServices.ActionTypes.Update, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1461,7 +1619,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:Index", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:Index", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("Index", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1485,7 +1643,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:GetIndex", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:GetIndex", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("GetIndex", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1503,7 +1661,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:DeleteIndex", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:DeleteIndex", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("DeleteIndex", LoggerServices.ActionTypes.Delete, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1549,7 +1707,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:AddIndex", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:AddIndex", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("AddIndex", LoggerServices.ActionTypes.Add, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1580,7 +1738,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditIndex", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:EditIndex", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("EditIndex", LoggerServices.ActionTypes.Update, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1605,7 +1763,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:FooterMenu", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:FooterMenu", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("FooterMenu", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1627,7 +1785,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:GetFooterMenu", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:GetFooterMenu", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("GetFooterMenu", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1645,7 +1803,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:DeleteFooterMenu", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:DeleteFooterMenu", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("DeleteFooterMenu", LoggerServices.ActionTypes.Delete, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1706,7 +1864,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:AddFooterMenu", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:AddFooterMenu", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("AddFooterMenu", LoggerServices.ActionTypes.Add, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1754,7 +1912,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditFooterMenu", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:EditFooterMenu", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("EditFooterMenu", LoggerServices.ActionTypes.Update, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1779,7 +1937,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:CitationType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:CitationType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("CitationType", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1809,7 +1967,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:GetCitationType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:GetCitationType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("GetCitationType", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1827,7 +1985,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:DeleteCitationType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:DeleteCitationType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("DeleteCitationType", LoggerServices.ActionTypes.Delete, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1892,7 +2050,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:AddCitationType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:AddCitationType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("AddCitationType", LoggerServices.ActionTypes.Add, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -1926,7 +2084,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditCitationType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:EditCitationType", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("EditCitationType", LoggerServices.ActionTypes.Update, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -2014,7 +2172,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:AddVideos", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:AddVideos", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("AddVideos", LoggerServices.ActionTypes.Add, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -2038,7 +2196,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:DeleteVideos", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:DeleteVideos", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("DeleteVideos", LoggerServices.ActionTypes.Delete, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -2061,7 +2219,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:Videos", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:Videos", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("Videos", LoggerServices.ActionTypes.Read, "", "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -2082,7 +2240,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:GetVideos", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:GetVideos", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("GetVideos", LoggerServices.ActionTypes.Read, "id:" + id, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -2143,7 +2301,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 #region Logger
 
-                ToolsServices.sendEmail("f.refaai@anzimaty.com", "[LMJ] Error:EditVideos", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
+                ToolsServices.sendEmail("hudaabumayha.ham@gmail.com", "[LMJ] Error:EditVideos", "<p>" + ex.Message + "</p><p>" + ex.InnerException + "</p>");
                 _LoggerServices.Error("EditVideos", LoggerServices.ActionTypes.Update, "inputs:" + json, "<p>Error: " + ex.Message + "</p>");
 
                 #endregion;
@@ -2154,6 +2312,27 @@ namespace Anz.LMJ.StartUp.Controllers
         #endregion
 
 
-      
+        
+        [CheckUserSession]
+        [HttpPost]
+        public JsonResult EditPos(List<PosLO> toedit)
+        {
+            try
+            {
+                DynamicResponse<List<long>> response = _AdminServices.EditPos(toedit);
+                if (response.HttpStatusCode != HttpStatusCode.OK)
+                {
+                    return Json("error");
+                }
+
+                return Json("re-orderd");
+            }
+            catch (Exception ex)
+            {
+
+                return Json("error");
+            }
+            return Json("okk");
+        }
     }
 }

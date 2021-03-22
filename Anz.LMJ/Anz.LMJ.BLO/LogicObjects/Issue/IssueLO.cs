@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Anz.LMJ.BLO.LogicObjects.Issue
 {
@@ -16,6 +17,6 @@ namespace Anz.LMJ.BLO.LogicObjects.Issue
         public DateTime Date { get; set; }
         public string CoverImage { get; set; }
 
-
+        public HttpPostedFileBase Photo { get; set; }
     }
 }

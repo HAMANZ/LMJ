@@ -60,7 +60,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
                 return RedirectToAction("Index", "Oops");
             }
-            ViewBag.allissues = allissues.Data;
+            ViewBag.allissues = allissues.Data.OrderByDescending(e => e.Date).ToList(); ;
             IssueFilter issuefilter = new IssueFilter();
             issuefilter = _ContentServices.GetContent<IssueFilter>(ContentServices.ServiceTables.IssueFilter, 1).Contents.FirstOrDefault();
             ViewBag.issuefilter = issuefilter;
@@ -216,7 +216,7 @@ namespace Anz.LMJ.StartUp.Controllers
             try
             {
                 Contact contact = _ContentServices.GetContent<Contact>(ContentServices.ServiceTables.Contact, 1).Contents.FirstOrDefault();
-                c.Email = contact.Email;
+                c.Email = "hudaabumayha.ham@gmail.com";
                 _HomeServices.ContactUs(c);
                 return View("Contact");
             }

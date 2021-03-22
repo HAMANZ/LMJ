@@ -1045,7 +1045,7 @@
                                 DateTime.TryParse(@item.Date.ToString(), out dateValue);
 
                                 DateTime.TryParse(@ViewBag.issuefilter.CurrentFromDate.ToString(), out CurrentFromDate);
-                                DateTime.TryParse(@ViewBag.issuefilter.CurrentFromDate.ToString(), out CurrentToDate);
+                                DateTime.TryParse(@ViewBag.issuefilter.CurrentToDate.ToString(), out CurrentToDate);
                                 DateTime.TryParse(@ViewBag.issuefilter.RecentFromDate.ToString(), out RecentFromDate);
                                 DateTime.TryParse(@ViewBag.issuefilter.RecentToDate.ToString(), out RecentToDate);
                                 DateTime.TryParse(@ViewBag.issuefilter.IndexFromDate.ToString(), out IndexFromDate);
@@ -1076,7 +1076,7 @@
                                     classfilter = "filter-lmj";
                                 }
                                 <div class="col-lg-4 col-md-6 portfolio-item @classfilter @datawowdelay">
-                                    <div class="room-wrap d-md-flex bg-grey">
+                                    <div class="room-wrap d-md-flex" style="background-image: url('/Images/Issues/@item.CoverImage')">
                                         <div class="half d-flex align-items-center">
                                             <div class="text p-4">
                                                 <h3>@item.IssuePrintNo</h3>
@@ -1086,6 +1086,7 @@
                                     </div>
                                 </div>
                             }
+                            </div>
                         </div>
                       </section>
 

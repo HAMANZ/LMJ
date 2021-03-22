@@ -415,18 +415,43 @@ namespace Anz.LMJ.DAL.Accessors
 
        
 
-        public long Update(long submissionid,long userId, bool isEditorsPick,bool isTopReader)
+        public long Update(Submission submission)
         {
             try
             {
                 using (LMJEntities db = new LMJEntities())
                 {
-                    Submission submissios = db.Submissions.Where(e => e.Id == submissionid).FirstOrDefault();
-                    submissios.IsEditorsPick = isEditorsPick;
-                    submissios.IsTopReader = isTopReader;
-                    submissios.UserId = userId;
+                    Submission _Submission = db.Submissions.Where(e => e.Id == submission.Id).FirstOrDefault();
+                    //_Submission.UserId = submission.UserId;
+                    //_Submission.SectionId = 1;
+                    //_Submission.CommentsForEditor = submission.CommentsForEditor;
+                    //_Submission.Prefix = submission.Prefix;
+                    _Submission.Title = submission.Title;
+                    _Submission.SpecialitiesId = submission.SpecialitiesId;
+                    _Submission.Subtitle = submission.Subtitle;
+                    _Submission.Abstract = submission.Abstract;
+                    _Submission.ArticleTypeId = submission.ArticleTypeId;
+                    //_Submission.StudyTypeId = 1;
+                    //_Submission.ResearchId = submission.ResearchId;
+                    //_Submission.SubjectId = submission.SubjectId;
+                    //_Submission.QuestionId = submission.QuestionId;
+                    //_Submission.IssueId = null;
+                    //_Submission.isDeleted = false;
+                    _Submission.IsEditorsPick = submission.IsEditorsPick;
+                    _Submission.IsTopReader = submission.IsTopReader;
+                    //_Submission.SysDate = DateTime.Now;
+                    //_Submission.GUID = null;
+                    //_Submission.LibraryId = null;
+                    //_Submission.MiniDescription = submission.MiniDescription;
+                    //_Submission.Significance = submission.Significance;
+                    //_Submission.SourcesOfFunding = submission.SourcesOfFunding;
+                    //_Submission.ConflictsOfInterests = submission.ConflictsOfInterests;
+                    _Submission.CoverPhoto = submission.CoverPhoto;
+                    //_Submission.isDraft = true;
+                    //_Submission.isApproved = submission.isApproved;
+                    _Submission.BannerImage = submission.BannerImage;
                     db.SaveChanges();
-                    return submissionid;
+                    return submission.Id;
                 }
             }
             catch (Exception ex)

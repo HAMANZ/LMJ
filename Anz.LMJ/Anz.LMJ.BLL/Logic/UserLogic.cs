@@ -1065,6 +1065,7 @@ namespace Anz.LMJ.BLL.Logic
                         Id = item.Id,
                         FirstName = item.FirstName,
                         LastName = item.LastName,
+                        MiddleName = item.MiddleName,
                         Email = item.Email,
                         Username = item.Username,
                         Affiliation = item.Affiliation,
@@ -1240,8 +1241,53 @@ namespace Anz.LMJ.BLL.Logic
 
 
         #region edit   
-        public DynamicResponse<long> EditUser(UserLO toEdit)
+
+        public DynamicResponse<List<long>> EditPos(List<PosLO> toEdit)
         {
+            #region Accessor
+            UserAccessor _UserAccessor = new UserAccessor();
+            #endregion
+
+            DynamicResponse<List<long>> response = new DynamicResponse<List<long>>();
+
+            long id;
+            try {
+                List<long> ids = new List<long> ();
+                List<int> pos = new List<int> ();
+
+                foreach (PosLO item in toEdit)
+                {
+                    ids.Add(item.Id);
+                    pos.Add(item.Pos);
+                }
+
+
+                ids = _UserAccessor.EditPos(ids,pos);
+
+            if (ids.Count==0)
+            {
+
+                response.HttpStatusCode = HttpStatusCode.InternalServerError;
+                response.Message = "Check the user  .";
+                response.ServerMessage = "use can't edit";
+                return response;
+            }
+            response.Data = ids;
+            response.HttpStatusCode = HttpStatusCode.OK;
+            return response;
+        }
+            catch (Exception ex)
+            {
+                response.HttpStatusCode = HttpStatusCode.BadRequest;
+                response.Message = "Please try again later!";
+                response.ServerMessage = ex.Message;
+                return response;
+            }
+
+
+        }
+            public DynamicResponse<long> EditUser(UserLO toEdit)
+            {
             #region Accessor
             UserAccessor _UserAccessor = new UserAccessor();
             UserRolesInJournalAccessor _UserRolesInJournalAccessor = new UserRolesInJournalAccessor();
@@ -1255,6 +1301,8 @@ namespace Anz.LMJ.BLL.Logic
 
             try
             {
+      
+                int pos=_UserAccessor.getMaxPos();
                 user = new User();
                 user.Id = toEdit.Id;
                 user.FirstName = toEdit.FirstName;
@@ -1275,7 +1323,7 @@ namespace Anz.LMJ.BLL.Logic
                 user.ORCID = toEdit.Orcid;
                 user.PositionId = toEdit.PositionId;
                 user.Desc = toEdit.Desc;
-                user.Pos = toEdit.Pos;
+                user.Pos = pos;
                 user.IsDeleted = false;
                 string degree = "";
                 if (toEdit.degIds!=null) {
@@ -1399,8 +1447,8 @@ namespace Anz.LMJ.BLL.Logic
 
             try
             {
-               
-                 user = new User();
+                int pos = _UserAccessor.getMaxPos();
+                user = new User();
                 user.FirstName = usr.FirstName;
                 user.LastName = usr.LastName;
                 user.MiddleName = usr.MiddleName;
@@ -1419,7 +1467,7 @@ namespace Anz.LMJ.BLL.Logic
                 user.ORCID = usr.Orcid;
                 user.PositionId = usr.PositionId;
                 user.Desc = usr.Desc;
-                user.Pos = usr.Pos;
+                user.Pos = pos;
                 user.IsDeleted = false;
                 string degree = "";
                 if (usr.degIds!= null)

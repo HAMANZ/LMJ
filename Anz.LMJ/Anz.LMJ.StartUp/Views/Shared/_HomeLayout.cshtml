@@ -57,8 +57,62 @@
 
 <body>
 
-    @Html.Action("Header", "Layout")
+    <header id="header">
+        <div class="logo float-left desktop-none">
+            <a href="/Home" class="scrollto"><img src="~/Content/img/LMJ-logo.jpg" alt="LMJ-LOGO" class="img-fluid img-logo"></a>
+        </div>
 
+        @Html.Action("Header", "Layout")
+        <div class="topbar">
+            <div class="container border-2">
+                <div class="row" style="width: 100%">
+                    <div class="col-md-6">
+                        <a href="/Home" class="scrollto"><img src="~/Content/img/LMJ-logo.jpg" alt="LMJ-LOGO" class="img-fluid img-logo"></a>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="search">
+                            <input type="text" class="searchTerm" value="" placeholder="Search">
+                            <button type="submit" class="searchButton">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button data-toggle="modal" data-target="#myModalAdvancedSearch" class="btn btn-primary AdvancedSearch">Advanced search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container topbar border-3">
+            <nav class="main-nav d-none d-lg-block">
+                <ul>
+                    <li id="Home" class="active"><a href="/Home/index">Home</a></li>
+
+                    <li id="Articles"><a href="/Home/Articles">Articles</a></li>
+                    @*<li id="SubmitArticles"><a href="/Home/SubmitArticles">Submit your article</a></li>*@
+                    <li id="EditorialBoard"><a href="/Home/EditorialBoards">Editorial board</a></li>
+                    <li id="AboutUs"><a href="/Home/About">About Us</a></li>
+                    <li id="ContactUs"><a href="/Home/Contact">Contact us</a></li>
+                </ul>
+            </nav><!-- .main-nav -->
+
+        </div>
+        <div class="container stp-bar">
+            <div class="logo float-left">
+                <a href="/Home" class="scrollto"><img src="~/Content/img/LMJ-logo.jpg" alt="LMJ-LOGO" class="img-fluid img-logo"></a>
+            </div>
+            <nav class="main-nav float-right d-none d-lg-block">
+                <ul>
+                    <li id="Home" class="active"><a href="/Home/index">Home</a></li>
+                    <li id="AboutUs"><a href="/Home/About">About Us</a></li>
+                    <li id="Articles"><a href="/Home/Articles">Articles</a></li>
+                    <li id="SubmitArticles"><a href="/Home/SubmitArticles">Submit your article</a></li>
+                    <li id="EditorialBoard"><a href="#">Editorial board</a></li>
+                    <li id="ContactUs"><a href="/ContactUs">Contact us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     @RenderBody()
 
@@ -109,6 +163,20 @@
 
         };
         carousel();
+
+        if ($(window).width() > 992) {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 40) {
+                    $('#header').addClass("fixed-top");
+                    // add padding top to show content behind navbar
+                    $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
+                } else {
+                    $('#header').removeClass("fixed-top");
+                    // remove padding top from body
+                    $('body').css('padding-top', '0');
+                }
+            });
+        }
     </script>
 
 </body>
