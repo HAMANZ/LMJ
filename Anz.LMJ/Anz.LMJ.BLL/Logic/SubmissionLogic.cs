@@ -2345,14 +2345,14 @@ namespace Anz.LMJ.BLL.Logic
             _Submission.Significance = submission.Significance;
             _Submission.SourcesOfFunding = submission.SourcesOfFunding;
             _Submission.ConflictsOfInterests = submission.ConflictsOfInterests;
-            _Submission.CoverPhoto= submission.CoverPhoto.FileName;
+            _Submission.CoverPhoto= submission.Photo;
             _Submission.isDraft = true;
             _Submission.isApproved = submission.isApproved;
-            _Submission.BannerImage = submission.BannerImage.FileName;
+            _Submission.BannerImage = submission.Banner;
 
             try
             {
-                if (submission.Id == 0) 
+                if (submission.Id == null) 
                 _Submission = _SubmissionAccessor.Add(_Submission);
                 else
                 _Submission = _SubmissionAccessor.Edit(_Submission);
@@ -2365,7 +2365,7 @@ namespace Anz.LMJ.BLL.Logic
                     return response;
                 }
 
-                if (submission.ArticleComponentId.Count() != 0) {
+                if (submission.ArticleComponentId!=null) {
                     for (int i = 0; i < submission.ArticleComponentId.Count(); i++)
                     {
                         _SubmissionFile = new SubmissionFile();
@@ -2402,7 +2402,7 @@ namespace Anz.LMJ.BLL.Logic
                         return response;
                     }
                 }
-                if (submission.Keywords.Count() != 0) {
+                if ( submission.Keywords!=null) {
                     for (int i = 0; i < submission.Keywords.Count(); i++)
                     {
                         _SubmissionKeyword = new SubmissionKeyword();
@@ -2435,7 +2435,7 @@ namespace Anz.LMJ.BLL.Logic
                     }
                 }
 
-                if (submission.ContributorFname.Count() != 0) {
+                if (submission.ContributorFname!=null) {
                     User user = new User();
                     for (int i = 0; i < submission.ContributorFname.Count(); i++)
                     {
@@ -2508,7 +2508,7 @@ namespace Anz.LMJ.BLL.Logic
                         return response;
                     }
                 }
-
+                submission.Id = _Submission.Id;
                 response.HttpStatusCode = HttpStatusCode.OK;
                 response.Data = submission;
                 return response;

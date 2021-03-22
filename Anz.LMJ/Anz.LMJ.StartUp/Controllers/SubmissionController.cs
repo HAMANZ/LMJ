@@ -202,7 +202,7 @@ namespace Anz.LMJ.StartUp.Controllers
             {
 
 
-                if (submission.FilesToUpload.Length != 0 || submission.FilesToUpload.Length == null)
+                if (submission.FilesToUpload != null)
                 {
 
                     string path = Server.MapPath("~/files/");
@@ -225,7 +225,7 @@ namespace Anz.LMJ.StartUp.Controllers
 
                 if (submission.CoverPhoto != null)
                 {
-                    string path_images = Server.MapPath("~/Images/");
+                    string path_images = Server.MapPath("~/Images/Articles/CoverPhoto/");
                     if (!Directory.Exists(path_images))
                     {
                         Directory.CreateDirectory(path_images);
@@ -234,17 +234,28 @@ namespace Anz.LMJ.StartUp.Controllers
                     string Name = Path.GetFileNameWithoutExtension(submission.CoverPhoto.FileName);
                     string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
                     submission.CoverPhoto.SaveAs(path_images + newName);
+                    submission.Photo = newName;
+                }
+
+                if (submission.Banner != null)
+                {
+                    string path_images = Server.MapPath("~/Images/Articles/Banner/");
+                    if (!Directory.Exists(path_images))
+                    {
+                        Directory.CreateDirectory(path_images);
+                    }
+                    string extension = Path.GetExtension(submission.BannerImage.FileName);
+                    string Name = Path.GetFileNameWithoutExtension(submission.BannerImage.FileName);
+                    string newName = Name + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+                    submission.BannerImage.SaveAs(path_images + newName);
+                    submission.Banner = newName;
                 }
 
 
                 response = _SubmissionLogic.AddSubmission(submission);
 
-                if (response.HttpStatusCode != HttpStatusCode.OK)
-                {
-                    return Json("error");
-                }
-
                 return Json(response, JsonRequestBehavior.AllowGet);
+
             }
             catch (Exception ex)
             {

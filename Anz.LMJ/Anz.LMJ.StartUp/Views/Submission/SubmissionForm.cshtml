@@ -414,6 +414,7 @@
                 $('#bootstrap-wizard-1').bootstrapWizard({
                     'tabClass': 'form-wizard',
                     'onNext': function (tab, navigation, index) {
+                        var id = $("#submissionid").val();
                         var fields = $("#wizard-1").find('#tab' + index).find(":input");
                         var $valid = fields.valid();
                         if (index == 2) {
@@ -454,14 +455,13 @@
                             //    Html = editor.getData();
                             //    HtmlToPdf(Html, id);
                             //});
-
                             var formElement = document.querySelector("#wizard-1");
                             var formData = new FormData(formElement);
                             var object = {};
                             formData.forEach(function (value, key) {
                                 if (key === 'CoverPhoto') {
-                                  
-                                    if ($("#CoverPhoto")[0].files.length== 0) {
+
+                                    if ($("#CoverPhoto")[0].files.length == 0) {
                                         value = null;
                                     }
                                     else {
@@ -475,13 +475,20 @@
                                         alert('nnnnnnnn' + value.name + "nnnnnnnnnn");
                                     }
                                 }
-                                 object[key] =value;
+                                object[key] = value;
                             });
-                            delete object['dtt-files_length'];
-                            //delete object['CoverPhoto'];
-                            var json = JSON.stringify(object);
-                            console.log(json);
-                            AddSubmission(json);
+                            if (id.length == 0) {
+
+                                //delete object['dtt-files_length'];
+                                //delete object['CoverPhoto'];
+                                var json = JSON.stringify(object);
+                                console.log(formData);
+                                AddSubmission(object);
+                            }
+                            else {
+                                AddSubmissionToCookie(object)
+                            }
+                           
                             $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass('complete');
                             $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step').html('<i class="fa fa-check"></i>');
                         }
@@ -522,17 +529,39 @@
 
     });
 
-   
-    function display() {
-        var expires = (new Date(Date.now() + 86400 * 1000)).toUTCString();
-        document.cookie = "cookieName=submission; expires=" + expires + 86400) + ";path=/;"
 
-        //console.log(document.cookie);  // 'Wed, 31 Oct 2012 08:50:17 UTC'
+    function AddSubmissionToCookie(json) {
+        
+        var expires = new Date();
+        var value = json;
+        var key = "tessst";
+        expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
+        document.cookie = key + '=' + value + ';path=/' + ';expires=' + expires.toUTCString();
+
     }
 
     function AddSubmission(json) {
-        display();
-        $.cookie("submission", json);
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AddSubmission")',
+            data: {
+                submission: json,
+            },
+            success: function (result) {
+                if (result.HttpStatusCode != 200) {
+                    alert(result.Message);
+                } else {
+                    alert(result.Data.Id);
+                    $("#submissionid").val(result.Data.Id);
+                }
+            },
+            error: function (ex) {
+
+            }
+        });
+
+       
     }
 
 </script>
